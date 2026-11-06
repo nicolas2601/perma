@@ -31,7 +31,7 @@ export function ImageFigure({ src, reference, className, imageClassName = DESKTO
   const t = useT('inspect');
   const shown = src ?? (reference ? PUBLIC_REFERENCE_URL : null);
   return (
-    <figure className={cx('m-0 flex flex-col overflow-hidden rounded-tile bg-surface', className)}>
+    <figure className={cx('m-0 flex flex-col overflow-hidden rounded-tile bg-surface lg:bg-subtle', className)}>
       {shown ? (
         <img
           src={shown}

@@ -4,6 +4,7 @@ import { useNavigate } from '@/app/router';
 import { useExam, useExamDispatch } from '@/core/exam/react';
 import { useT } from '@/core/i18n/I18nProvider';
 import { createExportDeps, exportRecord } from '@/core/export/exportRecord';
+import { buildCsvRows } from '@/core/export/csv';
 import { buildJsonDocument, serializeJson } from '@/core/export/json';
 import type { ExportFormat, ExportSnapshot } from '@/core/export/types';
 import { ActionDock, ExperimentalNotice, ScreenHeader } from '@/features/inspect/Chrome';
@@ -40,6 +41,7 @@ export default function ExportScreen() {
     () => serializeJson(buildJsonDocument(snapshot, new Date(), tCore)),
     [snapshot, tCore],
   );
+  const csvRows = useMemo(() => buildCsvRows(snapshot, new Date(), tCore), [snapshot, tCore]);
 
   // The acknowledgement is recorded only after a real download; any failure goes to recovery (G4).
   const exportNow = async () => {
@@ -85,14 +87,42 @@ export default function ExportScreen() {
           ) : null}
         </div>
         <figure className="order-1 m-0 flex flex-col gap-1.5 lg:sticky lg:top-6 lg:order-none lg:col-start-1 lg:row-start-1 lg:self-start">
-          <figcaption className="text-label text-muted">{t('exportPreviewLabel')}</figcaption>
-          <pre
-            tabIndex={0}
-            aria-label={t('exportPreviewLabel')}
-            className="m-0 max-h-64 overflow-auto rounded-tile border border-solid border-soft-line bg-surface p-3 text-caption text-ink lg:max-h-[40dvh]"
-          >
-            {preview}
-          </pre>
+          <figcaption className="text-label text-muted">{format === 'csv' ? t('exportPreviewLabelCsv') : t('exportPreviewLabel')}</figcaption>
+          {format === 'csv' ? (
+            <div
+              tabIndex={0}
+              role="region"
+              aria-label={t('exportPreviewLabelCsv')}
+              className="max-h-64 overflow-auto rounded-tile border border-solid border-soft-line bg-surface lg:max-h-[50dvh]"
+            >
+              <table className="w-full border-collapse text-left text-caption text-ink">
+                <thead>
+                  <tr>
+                    {['colSection', 'colField', 'colValue'].map((key) => (
+                      <th key={key} scope="col" className="sticky top-0 bg-subtle px-3 py-2 font-medium">{tCore(`core.csv.${key}`)}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {csvRows.map((row, index) => (
+                    <tr key={index} className="border-0 border-t border-solid border-soft-line align-top">
+                      <td className="px-3 py-1.5 text-muted">{row[0]}</td>
+                      <td className="px-3 py-1.5">{row[1]}</td>
+                      <td className="px-3 py-1.5 break-words">{row[2]}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <pre
+              tabIndex={0}
+              aria-label={t('exportPreviewLabel')}
+              className="m-0 max-h-64 overflow-auto rounded-tile border border-solid border-soft-line bg-surface p-3 text-caption text-ink lg:max-h-[40dvh]"
+            >
+              {preview}
+            </pre>
+          )}
           {format === 'pdf' ? <p className="m-0 text-caption text-muted">{t('exportPdfPreviewNote')}</p> : null}
         </figure>
       </div>

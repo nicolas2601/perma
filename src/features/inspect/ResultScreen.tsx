@@ -38,7 +38,7 @@ export default function ResultScreen() {
       <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3 lg:grid lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:items-start lg:gap-x-8 lg:gap-y-0 lg:overflow-visible lg:px-8 lg:pb-8">
         <div className="contents lg:sticky lg:top-6 lg:col-start-1 lg:flex lg:flex-col lg:gap-4 lg:self-start lg:rounded-card lg:bg-surface lg:p-4 lg:shadow-raised">
           <div className="hidden lg:block">
-            <ImageFigure src={src} reference={isReferenceImage(image)} />
+            <ImageFigure src={src} reference={isReferenceImage(image)} imageClassName="lg:h-[42dvh]" />
           </div>
           {simulated ? (
             <div className="flex flex-col gap-2">
