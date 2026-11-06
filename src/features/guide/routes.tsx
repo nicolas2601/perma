@@ -1,4 +1,8 @@
 import type { RouteDef } from '@/app/router';
+import { lazyScreen } from '@/features/inspect/lazyRoute';
 
-/** Owned by the guide feature squad. Replace the stub with lazy screens. */
-export const guideRoutes: RouteDef[] = [];
+export const guideRoutes: RouteDef[] = [
+  { path: '/guia', component: lazyScreen(() => import('./GuideScreen')) },
+  { path: '/guia/privacidad', component: lazyScreen(() => import('./PrivacyScreen')) },
+  { path: '/investigacion/tono', component: lazyScreen(() => import('./ToneScreen')), devOnly: true },
+];
