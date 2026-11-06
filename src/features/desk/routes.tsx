@@ -1,4 +1,7 @@
 import type { RouteDef } from '@/app/router';
+import { lazyScreen } from './lazyScreen';
 
-/** Owned by the desk feature squad. Replace the stub with lazy screens. */
-export const deskRoutes: RouteDef[] = [];
+export const deskRoutes: RouteDef[] = [
+  { path: '/', component: lazyScreen(() => import('./Home')) },
+  { path: '/contexto', component: lazyScreen(() => import('./Context')) },
+];
