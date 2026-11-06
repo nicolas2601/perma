@@ -38,7 +38,7 @@ export default function CompareScreen() {
         <button
           type="button"
           onClick={() => navigate('/examen/previo')}
-          className="flex min-h-15 flex-col gap-1 rounded-tile border border-solid border-line bg-surface p-4 text-left outline-offset-2"
+          className="grid min-h-15 gap-1 rounded-tile border border-solid border-line bg-surface p-4 text-left outline-offset-2"
         >
           <span className="text-body-medium text-ink">{t('priorCardTitle')}</span>
           <span className="text-header text-muted">{t('priorCardBody')}</span>

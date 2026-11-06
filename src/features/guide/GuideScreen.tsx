@@ -9,7 +9,7 @@ function GuideItem({ to, label, hint }: GuideItemProps) {
   return (
     <Link
       to={to}
-      className="flex flex-col gap-1 rounded-tile border border-solid border-line bg-surface p-4 text-left outline-offset-2"
+      className="grid gap-1 rounded-tile border border-solid border-line bg-surface p-4 text-left outline-offset-2"
     >
       <span className="text-body-medium text-ink">{label}</span>
       <span className="text-header text-muted">{hint}</span>

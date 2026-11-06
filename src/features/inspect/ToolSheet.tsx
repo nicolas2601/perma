@@ -66,7 +66,7 @@ function ToolRow({ title, hint, onClick }: { title: string; hint: string; onClic
       <button
         type="button"
         onClick={onClick}
-        className="flex min-h-14 w-full flex-col gap-0.5 rounded-tile border border-solid border-line bg-surface p-4 text-left outline-offset-2"
+        className="grid min-h-14 w-full gap-0.5 rounded-tile border border-solid border-line bg-surface p-4 text-left outline-offset-2"
       >
         <span className="text-body-medium text-ink">{title}</span>
         <span className="text-label text-muted">{hint}</span>

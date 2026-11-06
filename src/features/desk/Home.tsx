@@ -125,7 +125,7 @@ export default function Home() {
           <button
             type="button"
             onClick={() => setScopeOpen(true)}
-            className="flex w-32 cursor-pointer flex-col gap-2 rounded-tile border border-solid border-surface bg-subtle p-3 text-left text-ink outline-offset-2"
+            className="grid w-32 cursor-pointer gap-2 rounded-tile border border-solid border-surface bg-subtle p-3 text-left text-ink outline-offset-2"
           >
             <Glyph className="size-5"><BookIcon /></Glyph>
             <span className="text-section text-ink">{t('protocolTitle')}</span>

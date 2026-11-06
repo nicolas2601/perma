@@ -114,7 +114,7 @@ export default function Processing() {
       <button
         type="button"
         onClick={openStop}
-        className="flex min-h-13 w-full flex-col items-start justify-center rounded-tile border border-solid border-line bg-surface px-4 py-3 text-left text-ink outline-offset-2"
+        className="grid min-h-13 w-full justify-items-start content-center rounded-tile border border-solid border-line bg-surface px-4 py-3 text-left text-ink outline-offset-2"
       >
         <span className="text-body text-ink">{t('waitStop')}</span>
         <span className="text-caption text-muted">{t('waitStopHint')}</span>

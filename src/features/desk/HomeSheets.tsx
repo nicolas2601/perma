@@ -34,7 +34,7 @@ export function DiscardSheet({ open, onOpenChange, onConfirm }: DiscardSheetProp
         <button
           type="button"
           onClick={() => onOpenChange(false)}
-          className="flex min-h-14 w-full cursor-pointer flex-col items-start justify-center gap-1 rounded-tile border border-solid border-line bg-surface px-4 py-3 text-left text-ink outline-offset-2"
+          className="grid min-h-14 w-full cursor-pointer justify-items-start content-center gap-1 rounded-tile border border-solid border-line bg-surface px-4 py-3 text-left text-ink outline-offset-2"
         >
           <span className="text-body text-ink">{t('discardKeep')}</span>
           <span className="text-caption text-muted">{t('discardKeepBody')}</span>

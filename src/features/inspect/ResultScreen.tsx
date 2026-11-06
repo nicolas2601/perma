@@ -44,7 +44,7 @@ export default function ResultScreen() {
         </section>
         <Link
           to="/resultado/clases"
-          className="flex min-h-15 flex-col gap-1 rounded-tile border border-solid border-line bg-surface p-4 text-left outline-offset-2"
+          className="grid min-h-15 gap-1 rounded-tile border border-solid border-line bg-surface p-4 text-left outline-offset-2"
         >
           <span className="text-body-medium text-ink">{t('viewAllScores')}</span>
           <span className="text-header text-muted">{t('viewAllScoresHint')}</span>
@@ -52,7 +52,7 @@ export default function ResultScreen() {
         <button
           type="button"
           onClick={() => setModelOpen(true)}
-          className="flex min-h-15 flex-col gap-1 rounded-tile border border-solid border-line bg-surface p-4 text-left outline-offset-2"
+          className="grid min-h-15 gap-1 rounded-tile border border-solid border-line bg-surface p-4 text-left outline-offset-2"
         >
           <span className="text-body-medium text-ink">{t('modelProvenance')}</span>
           <span className="text-header text-muted">{t('modelProvenanceHint')}</span>

@@ -26,7 +26,7 @@ export default function PriorScreen() {
         <button
           type="button"
           onClick={() => navigate('/examen/abcde?criterio=e')}
-          className="flex w-full flex-col gap-0.5 rounded-tile border border-solid border-line bg-surface p-4 text-left outline-offset-2"
+          className="grid w-full gap-0.5 rounded-tile border border-solid border-line bg-surface p-4 text-left outline-offset-2"
         >
           <span className="text-body-medium text-ink">{t('priorCardAction')}</span>
           <span className="text-label text-muted">{t('priorRequirementsHint')}</span>
