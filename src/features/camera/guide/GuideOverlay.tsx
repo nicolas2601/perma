@@ -1,8 +1,9 @@
 import { useEffect, useRef, type ReactNode } from 'react';
 import type { Locale } from '@/core/i18n/contract';
 import { GUIDE_CROP_FRACTION } from '@/core/capture/constants';
-import type { Advice } from '@/core/capture/types';
+import { NO_DATA_STATUS, type Advice, type GuideStatus } from '@/core/capture/types';
 import { copy } from './copy';
+import { GuideChips } from './GuideChips';
 
 const VIBRATION_MS = 40;
 
@@ -27,6 +28,10 @@ function adviceText(advice: Advice | null, locale: Locale): string {
   return advice.id === 'none' ? '' : table[`advice.${advice.id}` as CopyKey];
 }
 
+function statusOf(advice: Advice | null): GuideStatus {
+  return advice?.status ?? NO_DATA_STATUS;
+}
+
 function useVibrationOnChange(advice: Advice | null, enabled: boolean): void {
   const previous = useRef<string | null>(null);
   useEffect(() => {
@@ -39,9 +44,10 @@ function useVibrationOnChange(advice: Advice | null, enabled: boolean): void {
 }
 
 /**
- * Presentational guide: a square crop frame (72% of the shorter side) and one advice line at a time.
- * Never says that blur was detected or that quality was approved. Motion is opacity and transform only,
- * and reduced to a short crossfade under prefers-reduced-motion.
+ * Presentational guide: a square crop frame (72% of the shorter side), three status chips (focus, light, distance)
+ * and one advice line at a time. Only the advice line is a live region. Never says that blur was detected or that
+ * quality was approved. Motion is opacity and transform only, and reduced to a short crossfade under
+ * prefers-reduced-motion.
  */
 export function GuideOverlay({ advice, locale, vibrate = false, children }: GuideOverlayProps) {
   const table = copy[locale];
@@ -56,6 +62,7 @@ export function GuideOverlay({ advice, locale, vibrate = false, children }: Guid
         className="pointer-events-none absolute top-1/2 left-1/2 aspect-square -translate-x-1/2 -translate-y-1/2 rounded-xl border-2 border-white/90 shadow-[0_0_0_100vmax_rgb(0_0_0/0.25)]"
         style={{ width: `${GUIDE_CROP_FRACTION * 100}%` }}
       />
+      <GuideChips status={statusOf(advice)} locale={locale} label={table['guide.status']} />
       <p
         role="status"
         aria-live="polite"

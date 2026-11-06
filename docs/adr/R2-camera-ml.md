@@ -1,6 +1,6 @@
 # ADR R2: On-device camera capture advice runtime
 
-- Status: Proposed (research recommendation, no production change)
+- Status: Proposed (research recommendation, no production change). Revised 2026-11-06: the deterministic rule runtime is implemented (see the revision at the end). The decisions 1-4 below still hold for heavy runtimes and the blur head.
 - Date: 2026-11-05
 - Lane: R2 camera-ML (Research squad)
 - Scope: capture advice only (dark, glare, low detail/blur, motion, framing). Not diagnosis, not image quality approval.
@@ -116,3 +116,33 @@ npm view onnxruntime-web@1.31.1 dist.unpackedSize license dependencies
 ```
 
 The bench reads `scripts/bench/baseline-model.json`, a byte-identical copy of the reference model (git blob `4c1d1402`, sha256 prefix `5816530c`).
+
+## Revision 2026-11-06: rule runtime, motion root cause, head stays off
+
+Context: the first iPhone trial showed only "Mantenga quieto el teléfono". The motion signal was an absolute luma
+difference, so auto-exposure drift read as movement, and hold-still outranked every other advice. Evidence and numbers:
+`docs/camera-ml.md`.
+
+Decisions:
+
+1. **Motion is sharpness-normalised and gain-invariant.** The relative grid (cell means divided by the frame mean, minus
+   one) removes uniform exposure changes. The shift is divided by the frame's own neighbour gradient, in cells per frame.
+   Hold-still needs a median of five frames above 0.55 cells. Browser check on fixtures: hand-shake of 1-4 px per frame
+   gives 0% hold-still (before, with drift: 67-71%).
+2. **Priority: light, glare, sustained motion, framing (closer, farther, centre), focus.** Each rule is a Schmitt trigger
+   with enter and exit thresholds and a dwell. A shown advice keeps at least 1 s.
+3. **Chips carry the status of each measure** (focus, light, distance), with `ok`, `revisar` or `sin-dato`. Focus is not
+   judged while the camera moves or when exposure is the problem. The advice sentence stays the only live region.
+4. **The blur head stays disabled.** The retrained head on real-texture fixtures (per-scene split) fails the gate: test
+   recall 0.50 (gate 0.80), R2 battery recall 0.00. The shipped model JSON keeps `acceptance.passed: false`.
+5. **No heavier runtime is adopted.** The Hugging Face search found no model that is at most 5 MB, permissively licensed
+   and runnable in WASM. The shortlisted candidates are 17 MB, 94 MB, or depend on a CLIP encoder of hundreds of MB.
+
+Consequences:
+
+- Positive: the deterministic runtime covers six advices and the chips, with a measured false-alert rate of 0% on the
+  sharp, steady and hand-shake fixtures, and 98% expected-advice share on positives (browser, three source sets).
+- Negative: the R2 battery is not a valid framing benchmark (full-frame textures). `farther` fires on clean frames of
+  that battery. The framing rule assumes a subject on a background, so close-up skin may read as "too large". This is the
+  main risk for clinical use and is open until an on-device check.
+- Negative: nothing was measured on a phone.

@@ -17,20 +17,6 @@ export function lumaOf(frame: FramePixels): Float64Array {
   return luma;
 }
 
-/** Share of pixels with luma strictly below `limit`. */
-export function fractionBelow(luma: Float64Array, limit: number): number {
-  let count = 0;
-  for (const value of luma) if (value < limit) count++;
-  return count / luma.length;
-}
-
-/** Share of pixels with luma strictly above `limit`. */
-export function fractionAbove(luma: Float64Array, limit: number): number {
-  let count = 0;
-  for (const value of luma) if (value > limit) count++;
-  return count / luma.length;
-}
-
 /** Median luma, from a 256-bin histogram of rounded values. */
 export function medianLuma(luma: Float64Array): number {
   const bins = new Uint32Array(256);
