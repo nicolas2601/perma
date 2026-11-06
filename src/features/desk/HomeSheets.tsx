@@ -24,21 +24,24 @@ export interface DiscardSheetProps extends HomeSheetProps {
   onConfirm: () => void;
 }
 
-/** Destructive confirm: the safe action (cancel) is first in the focus order. */
+/** Destructive confirm per Figma 141:2420: keep-card (cancel) above, erase-and-start primary below. */
 export function DiscardSheet({ open, onOpenChange, onConfirm }: DiscardSheetProps) {
   const t = useT('desk');
   return (
     <Sheet open={open} onOpenChange={onOpenChange} title={t('discardTitle')} closeLabel={t('close')}>
       <div className="flex flex-col gap-4">
         <p className="m-0 text-body text-ink">{t('discardBody')}</p>
-        <div className="flex gap-2">
-          <Button variant="secondary" fullWidth onClick={() => onOpenChange(false)}>
-            {t('cancel')}
-          </Button>
-          <Button variant="danger" fullWidth onClick={onConfirm}>
-            {t('discardConfirm')}
-          </Button>
-        </div>
+        <button
+          type="button"
+          onClick={() => onOpenChange(false)}
+          className="flex min-h-14 w-full cursor-pointer flex-col items-start justify-center gap-1 rounded-tile border border-solid border-line bg-surface px-4 py-3 text-left text-ink outline-offset-2"
+        >
+          <span className="text-body text-ink">{t('discardKeep')}</span>
+          <span className="text-caption text-muted">{t('discardKeepBody')}</span>
+        </button>
+        <Button fullWidth onClick={onConfirm}>
+          {t('discardConfirm')}
+        </Button>
       </div>
     </Sheet>
   );
