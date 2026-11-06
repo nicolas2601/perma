@@ -44,7 +44,7 @@ Blush marks problems (offline gap, file problem); it is never a status colour on
 - All eight SVGs passed `node ~/.claude/skills/svg-craft/tools/lint.mjs` (exit 0, "clean") before and after optimization.
 - All eight were optimized with `optimize.mjs` (static profile; `--animated` for `export-done.svg`). Sizes after optimization: 0.5 to 1.0 kB each, 5.8 kB total against the 30 kB budget.
 - Rendered with the flat style pack renderer (`illustration-flat-with-black/scripts/render.mjs`) into `src/assets/illustrations/_contact-sheet.png` and opened. Visual issue found and fixed: the first `file-problem` used a white document on a white background and read as a bracket; it now uses a sky fill with white bars.
-- `tsc --noEmit` exit 0; `eslint src/assets/illustrations` exit 0; `npm run lint` exit 0.
+- `tsc --noEmit` exit 0; `eslint src/assets/illustrations` exit 0; `bun run lint` exit 0.
 
 ## What was not checked
 

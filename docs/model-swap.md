@@ -59,9 +59,9 @@ These tests pin the captured identity. Change them to the new fixture values, do
 ## 6. Verify
 
 ```sh
-npm run typecheck
+bun run typecheck
 npx vitest run tests/unit/inference
-npm run lint
+bun run lint
 ```
 
 All three must exit 0. A failing `contract.test.ts` after a re-capture means the server schema changed: fix the schema in `contract.ts` deliberately, do not relax it.

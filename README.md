@@ -7,20 +7,20 @@ Persistent notice shown in the app: "Prototipo experimental de investigación. L
 ## Requirements
 
 - Node 24 (CI uses Node 24; the engines of vitest, size-limit and msw require >= 22.12).
-- npm (the project lock is `package-lock.json`; `pnpm-lock.yaml` is git-ignored).
+- Bun >= 1.3 (lockfile `bun.lock`; Node >= 22 is still used by Vite and Playwright).
 
 ## Install and run
 
 ```sh
-npm ci                  # reproducible install from package-lock.json
-npm run dev             # Vite dev server; proxies /api to VITE_API_ORIGIN
-npm run preview         # serves the last build from dist/ (needs npm run build first)
+bun install --frozen-lockfile                  # reproducible install from bun.lock
+bun run dev             # Vite dev server; proxies /api to VITE_API_ORIGIN
+bun run preview         # serves the last build from dist/ (needs bun run build first)
 ```
 
 ## Mock inference
 
 ```sh
-VITE_INFERENCE=mock npm run dev
+VITE_INFERENCE=mock bun run dev
 ```
 
 Planned: the mock client belongs to the `src/core/inference` module, which is not in this branch yet. Until it lands, the flag has no effect. Every simulated value must carry the badge "Modelo simulado" and must never be exported as a real result.
@@ -29,23 +29,23 @@ Planned: the mock client belongs to the `src/core/inference` module, which is no
 
 | Command | What it does |
 | --- | --- |
-| `npm run typecheck` | `tsc --noEmit` over `src/`, `tests/`, configs |
-| `npm run lint` | ESLint (typescript-eslint, react-hooks rules) |
-| `npm test` | Vitest unit tests (jsdom), `tests/unit/**` and `src/**/*.test.*` |
-| `npm run build` | Typecheck, then production build into `dist/` with the PWA service worker |
+| `bun run typecheck` | `tsc --noEmit` over `src/`, `tests/`, configs |
+| `bun run lint` | ESLint (typescript-eslint, react-hooks rules) |
+| `bun run test` | Vitest unit tests (jsdom), `tests/unit/**` and `src/**/*.test.*` |
+| `bun run build` | Typecheck, then production build into `dist/` with the PWA service worker |
 | `node scripts/check-no-msw-in-dist.mjs` | Fails (exit 1) if MSW strings reach `dist/`; exit 2 if `dist/` is missing |
-| `npm run size` | size-limit on the initial JS (budget 170 kB gzip). Run `npm run build` first |
-| `./node_modules/.bin/lhci autorun --config=lighthouserc.json` | Lighthouse CI on `dist/` (mobile, LCP <= 2.5 s, CLS <= 0.05). Run `npm run build` first |
-| `npm run e2e` | Playwright. Builds `dist-e2e/` with `VITE_INFERENCE=mock`, then serves it on port 4173 |
+| `bun run size` | size-limit on the initial JS (budget 170 kB gzip). Run `bun run build` first |
+| `./node_modules/.bin/lhci autorun --config=lighthouserc.json` | Lighthouse CI on `dist/` (mobile, LCP <= 2.5 s, CLS <= 0.05). Run `bun run build` first |
+| `bun run e2e` | Playwright. Builds `dist-e2e/` with `VITE_INFERENCE=mock`, then serves it on port 4173 |
 
 Typical pre-PR sequence:
 
 ```sh
-npm run typecheck && npm run lint && npm test
-npm run build && node scripts/check-no-msw-in-dist.mjs && npm run size
+bun run typecheck && bun run lint && bun run test
+bun run build && node scripts/check-no-msw-in-dist.mjs && bun run size
 ```
 
-Known state: `tests/e2e/` has no specs yet, so `npm run e2e` exits 1 with "No tests found". This is intentional until the first specs land.
+Known state: `tests/e2e/` has no specs yet, so `bun run e2e` exits 1 with "No tests found". This is intentional until the first specs land.
 
 ## Environment variables
 
@@ -57,7 +57,7 @@ Vite embeds only `VITE_*` variables in the client bundle. Everything in a `.env*
 | `VITE_DEFAULT_MODEL` | `B71` | Model selected first in the UI (`A71` or `B71`) |
 | `VITE_API_ORIGIN` | `https://derm.nicolasmoreno.site` | Dev-proxy target for `/api` |
 
-Gotcha: `vite.config.ts` reads `process.env.VITE_API_ORIGIN`, not the `.env` files. To change the proxy target, export it in the shell: `VITE_API_ORIGIN=https://other.example npm run dev`. Copy `.env.example` to `.env.local` for the other two variables.
+Gotcha: `vite.config.ts` reads `process.env.VITE_API_ORIGIN`, not the `.env` files. To change the proxy target, export it in the shell: `VITE_API_ORIGIN=https://other.example bun run dev`. Copy `.env.example` to `.env.local` for the other two variables.
 
 ## Deploy
 

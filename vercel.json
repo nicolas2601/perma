@@ -1,8 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "vite",
-  "installCommand": "npm ci",
-  "buildCommand": "VITE_INFERENCE=live npm run build",
+  "installCommand": "bun install --frozen-lockfile",
+  "buildCommand": "VITE_INFERENCE=live bun run build",
   "outputDirectory": "dist",
   "rewrites": [
     { "source": "/api/:path*", "destination": "https://derm.nicolasmoreno.site/api/:path*" },

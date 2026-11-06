@@ -21,7 +21,7 @@ Status: 2026-11-05. Applies to the static PWA (`dist/`) and to the reverse proxy
 | Silent loss of an in-progress review on update | `UpdatePrompt` never reloads while `canReload` is false; `applyUpdate` is also guarded in the hook | The user may postpone updates indefinitely. The waiting worker still activates on the next full load after all tabs close. |
 | Camera access by third-party frames | `Permissions-Policy: camera=(self), microphone=(), geolocation=()` | Camera permission still depends on the user prompt. |
 | Referrer leakage of exam URLs | `Referrer-Policy: strict-origin-when-cross-origin` | None known. |
-| Supply-chain drift | `npm ci` with the tracked `package-lock.json`; CI runs typecheck, lint, tests, build, size budget | A local `pnpm-lock.yaml` may exist; it is git-ignored and must not be committed or used by CI. |
+| Supply-chain drift | `bun install --frozen-lockfile` with the tracked `bun.lock`; CI runs typecheck, lint, tests, build, size budget | A local `pnpm-lock.yaml` may exist; it is git-ignored and must not be committed or used by CI. |
 
 ## Headers and why
 
@@ -55,6 +55,6 @@ Set `Strict-Transport-Security` at the TLS edge (host or proxy), not in `_header
 
 - `.github/workflows/ci.yml` still greps for `setupWorker|setupServer|mockServiceWorker`. Replace the step with `node scripts/check-no-msw-in-dist.mjs` (exit 0 is required). That file is outside this lane.
 - `vite.config.ts` should set `injectRegister: null` explicitly. It is already implied when the app imports `virtual:pwa-register/react` (vite-plugin-pwa 2.0.0, `dist/index.js` lines 253-254 and 391-392), but the explicit setting makes the intent visible.
-- `.size-limit.json` measures `dist/registerSW.js`. When `UpdatePrompt` is mounted, the plugin stops emitting that file (see above). Re-check `npm run size` after mounting and update the path if it matches nothing.
-- The CSP has not been checked in a browser. Load the production build with `npm run preview`, open the console and look for CSP violations, including any from motion or Radix inline styles.
+- `.size-limit.json` measures `dist/registerSW.js`. When `UpdatePrompt` is mounted, the plugin stops emitting that file (see above). Re-check `bun run size` after mounting and update the path if it matches nothing.
+- The CSP has not been checked in a browser. Load the production build with `bun run preview`, open the console and look for CSP violations, including any from motion or Radix inline styles.
 - Security scan not run in this change. Run the project's scanner before merging security-related changes.

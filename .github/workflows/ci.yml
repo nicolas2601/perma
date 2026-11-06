@@ -23,28 +23,31 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: npm
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.12
 
       - name: Install
-        run: npm ci
+        run: bun install --frozen-lockfile
 
       - name: Typecheck
-        run: npm run typecheck
+        run: bun run typecheck
 
       - name: Lint
-        run: npm run lint
+        run: bun run lint
 
       - name: Unit tests
-        run: npm run test
+        run: bun run test
 
       - name: Build (production, live inference)
-        run: npm run build
+        run: bun run build
 
       - name: Guard - no MSW in production bundle
         run: node scripts/check-no-msw-in-dist.mjs dist
 
       - name: Bundle budget
-        run: npm run size
+        run: bun run size
 
       - name: Lighthouse CI (mobile, LCP and CLS budgets)
         run: ./node_modules/.bin/lhci autorun --config=lighthouserc.json
@@ -53,7 +56,7 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: E2E (chromium, all viewport projects)
-        run: npm run e2e
+        run: bun run e2e
 
       - name: Upload reports
         if: always()
