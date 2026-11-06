@@ -52,9 +52,9 @@ function ReferenceCard() {
     <button
       type="button"
       onClick={() => navigate(GALLERY_PATH)}
-      className="flex w-full cursor-pointer gap-3 rounded-card border border-solid border-soft-line bg-surface p-3 text-left text-ink shadow-raised outline-offset-2 active:scale-[0.98] motion-reduce:active:scale-100 transition-transform duration-(--motion-card) ease-perma-out"
+      className="flex w-full cursor-pointer gap-3 rounded-card border border-solid border-soft-line bg-surface p-3 text-left text-ink shadow-raised outline-offset-2 active:scale-[0.98] motion-reduce:active:scale-100 transition-transform duration-(--motion-card) ease-perma-out lg:gap-8 lg:p-5"
     >
-      <span className="flex w-28 shrink-0 flex-col gap-1">
+      <span className="flex w-28 shrink-0 flex-col gap-1 lg:w-56">
         <picture>
           <source srcSet={referenceAvif} type="image/avif" />
           <img
@@ -70,7 +70,7 @@ function ReferenceCard() {
         <span className="text-caption text-muted">{t('referenceAuthor')}</span>
         <span className="whitespace-nowrap text-caption text-muted">{t('referenceLicense')}</span>
       </span>
-      <span className="flex min-w-0 flex-1 flex-col gap-2">
+      <span className="flex min-w-0 flex-1 flex-col gap-2 lg:justify-center lg:gap-3">
         <span className="text-section text-ink">{t('referenceTitle')}</span>
         <span className="text-label text-muted">{t('referenceExplore')}</span>
         <span className="text-label text-muted">{t('referenceNote')}</span>
@@ -128,6 +128,11 @@ export default function Home() {
           <div className="flex min-w-0 flex-1 flex-col gap-4">
             <h1 className="m-0 min-w-0 max-w-36 text-title text-ink lg:max-w-md lg:text-[48px] lg:leading-[54px]">{t('headline')}</h1>
             <p className="m-0 hidden max-w-md text-body text-ink/80 lg:block">{t('homeLead')}</p>
+            <div className="hidden lg:block">
+              <Button className="lg:px-10" onClick={openNewExam}>
+                {t('newExam')}
+              </Button>
+            </div>
           </div>
           <img src={geometricArt} alt="" width={160} height={150} className="h-auto w-40 shrink-0 lg:w-72" />
         </m.div>
@@ -138,7 +143,7 @@ export default function Home() {
             </IconBlob>
             <h2 className="m-0 text-section text-ink">{t('prepareTitle')}</h2>
             <p className="m-0 text-label text-muted">{t('prepareBody')}</p>
-            <Button fullWidth className="min-h-14 lg:w-auto lg:self-start lg:px-10" onClick={openNewExam}>
+            <Button fullWidth className="min-h-14 lg:hidden" onClick={openNewExam}>
               {t('newExam')}
             </Button>
           </Card>
