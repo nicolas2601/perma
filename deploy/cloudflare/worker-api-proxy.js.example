@@ -1,0 +1,30 @@
+// EXAMPLE, NOT DEPLOYED. Cloudflare Worker: forwards /api/* to the inference backend and
+// serves everything else from the static assets binding (ASSETS, wrangler `assets.binding`).
+// Unverified in this repo: confirm with `wrangler dev` before use.
+//
+// wrangler.toml (example):
+//   name = "perma"
+//   main = "worker-api-proxy.js"
+//   [assets]
+//   directory = "./dist"
+//   binding = "ASSETS"
+
+const API_ORIGIN = 'https://derm.nicolasmoreno.site';
+const NO_STORE = 'no-store';
+
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    if (!url.pathname.startsWith('/api/')) {
+      return env.ASSETS.fetch(request);
+    }
+
+    const upstream = new URL(url.pathname + url.search, API_ORIGIN);
+    const response = await fetch(new Request(upstream, request));
+
+    // Backend responses are already no-store; enforce it at the edge anyway.
+    const proxied = new Response(response.body, response);
+    proxied.headers.set('Cache-Control', NO_STORE);
+    return proxied;
+  },
+};
