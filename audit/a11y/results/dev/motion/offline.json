@@ -1,0 +1,8 @@
+{
+  "view": "offline",
+  "route": "/recuperacion/sin-conexion",
+  "reducedMotionEmulated": true,
+  "longDeclaredTransitions": [],
+  "animationsSampled": 0,
+  "offenders": []
+}

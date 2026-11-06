@@ -1,4 +1,5 @@
-import { ExifStripError, stripExifLocation } from '@/core/storage/exif';
+import { ExifStripError } from '@/core/storage/exif';
+import { stripImageMetadata } from '@/core/storage/metadata';
 import {
   EXAM_SCHEMA_VERSION,
   type ExamStorageAdapter,
@@ -16,7 +17,7 @@ const storedImageCache = new WeakMap<ExamImage, Promise<StoredImage | null>>();
 
 /**
  * Both copies are stripped of EXIF (GPS included) before they reach storage.
- * A non-JPEG image cannot be verified clean, so it is not persisted (null).
+ * JPEG, PNG and WebP are scrubbed; any other container cannot be verified clean and is not persisted (null).
  */
 export function prepareStoredImage(image: ExamImage): Promise<StoredImage | null> {
   const cached = storedImageCache.get(image);
@@ -29,8 +30,8 @@ export function prepareStoredImage(image: ExamImage): Promise<StoredImage | null
 async function stripBothCopies(image: ExamImage): Promise<StoredImage | null> {
   try {
     const [original, upload] = await Promise.all([
-      stripExifLocation(image.original),
-      stripExifLocation(image.upload),
+      stripImageMetadata(image.original),
+      stripImageMetadata(image.upload),
     ]);
     return { original, upload, name: image.name, origin: image.origin };
   } catch (error) {
@@ -41,13 +42,13 @@ async function stripBothCopies(image: ExamImage): Promise<StoredImage | null> {
 
 export async function toStoredExam(state: ExamState): Promise<StoredExam> {
   const image = state.image === null ? null : await prepareStoredImage(state.image);
-  return { schemaVersion: EXAM_SCHEMA_VERSION, record: state.record, image };
+  return { schemaVersion: EXAM_SCHEMA_VERSION, record: state.record, image, result: state.result };
 }
 
 export async function restoreExam(storage: ExamStorageAdapter, clock: ExamClock): Promise<ExamState> {
   const stored = await storage.load();
   if (stored === null) return createInitialState(clock);
-  return createHydratedState({ record: stored.record, image: stored.image });
+  return createHydratedState({ record: stored.record, image: stored.image, result: stored.result ?? null });
 }
 
 export interface AutosaveOptions {
@@ -80,14 +81,30 @@ export function attachAutosave(
   };
   const unsubscribe = store.subscribe(() => {
     const state = store.getState();
-    if (state.record === watched.record && state.image === watched.image) return;
+    if (state.record === watched.record && state.image === watched.image && state.result === watched.result) return;
+    const resultChanged = state.result !== watched.result;
     watched = state;
     if (timer !== null) clearTimeout(timer);
-    timer = setTimeout(flush, delay);
+    // A fresh model output is saved at once: it cannot be recomputed without a new request.
+    timer = setTimeout(flush, resultChanged ? 0 : delay);
   });
+
+  // A tab closed or reloaded inside the debounce window must not lose the last change.
+  const flushNow = (): void => {
+    if (timer === null) return;
+    clearTimeout(timer);
+    flush();
+  };
+  const onVisibility = (): void => {
+    if (document.visibilityState === 'hidden') flushNow();
+  };
+  globalThis.addEventListener?.('pagehide', flushNow);
+  globalThis.document?.addEventListener('visibilitychange', onVisibility);
 
   return () => {
     unsubscribe();
+    globalThis.removeEventListener?.('pagehide', flushNow);
+    globalThis.document?.removeEventListener('visibilitychange', onVisibility);
     if (timer !== null) clearTimeout(timer);
     timer = null;
   };

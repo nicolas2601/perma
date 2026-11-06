@@ -11,8 +11,9 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "vitest run",
-    "e2e": "playwright test",
-    "size": "node scripts/measure-initial.mjs"
+    "e2e": "playwright test -c playwright.flows.config.ts",
+    "size": "node scripts/measure-initial.mjs",
+    "e2e:all": "playwright test"
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.3.0",

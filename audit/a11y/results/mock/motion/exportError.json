@@ -1,0 +1,8 @@
+{
+  "view": "exportError",
+  "route": "/recuperacion/exportacion",
+  "reducedMotionEmulated": true,
+  "longDeclaredTransitions": [],
+  "animationsSampled": 0,
+  "offenders": []
+}

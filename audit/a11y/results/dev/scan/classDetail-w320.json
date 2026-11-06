@@ -1,0 +1,49 @@
+{
+  "view": "classDetail",
+  "nodeId": "141:3041",
+  "phase": "04 · Result",
+  "manifestState": "result",
+  "requestedUrl": "/resultado/clases/nv?seed=result",
+  "finalPath": "/resultado/clases/nv?seed=result",
+  "httpStatus": 200,
+  "viewport": "w320",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "Puntaje crudo"
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [],
+  "targets": {
+    "total": 4,
+    "under24": [],
+    "under44Count": 0
+  },
+  "contrast": {
+    "checked": 13,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 320,
+    "scrollWidth": 320,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 320,
+    "scrollWidth": 376,
+    "overflowPx": 56,
+    "clipped": [
+      "button:EN",
+      "span:0,61"
+    ]
+  },
+  "liveRegions": [],
+  "pageErrors": [],
+  "screenshot": "screenshots/dev/classDetail-w320.png"
+}

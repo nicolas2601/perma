@@ -1,0 +1,2266 @@
+{
+  "run": "mock",
+  "generatedAt": "2026-11-06T08:20:18.643Z",
+  "viewportViewCount": 96,
+  "axeViolationsByImpact": {
+    "critical": 0,
+    "serious": 4,
+    "moderate": 0,
+    "minor": 0
+  },
+  "axeRows": [
+    {
+      "id": "calibration@w320",
+      "rule": "scrollable-region-focusable",
+      "impact": "serious",
+      "nodes": 1,
+      "target": ".min-h-0",
+      "evidence": "screenshots/mock/calibration-w320.png"
+    },
+    {
+      "id": "calibrationReady@w320",
+      "rule": "scrollable-region-focusable",
+      "impact": "serious",
+      "nodes": 1,
+      "target": ".min-h-0",
+      "evidence": "screenshots/mock/calibrationReady-w320.png"
+    },
+    {
+      "id": "privacy@w320",
+      "rule": "scrollable-region-focusable",
+      "impact": "serious",
+      "nodes": 1,
+      "target": ".min-h-0",
+      "evidence": "screenshots/mock/privacy-w320.png"
+    },
+    {
+      "id": "privacy@w390",
+      "rule": "scrollable-region-focusable",
+      "impact": "serious",
+      "nodes": 1,
+      "target": ".min-h-0",
+      "evidence": "screenshots/mock/privacy-w390.png"
+    }
+  ],
+  "contrastRows": [],
+  "targetRows": [
+    {
+      "id": "export@w320",
+      "below24NotExempt": 1,
+      "sample": {
+        "selector": "input:",
+        "width": 16.6,
+        "height": 20,
+        "spacingExempt": false
+      }
+    },
+    {
+      "id": "export@w320",
+      "under44Advisory": 1,
+      "advisory": true
+    },
+    {
+      "id": "export@w390",
+      "below24NotExempt": 1,
+      "sample": {
+        "selector": "input:",
+        "width": 20,
+        "height": 20,
+        "spacingExempt": false
+      }
+    },
+    {
+      "id": "export@w390",
+      "under44Advisory": 1,
+      "advisory": true
+    },
+    {
+      "id": "exportOptions@w320",
+      "below24NotExempt": 1,
+      "sample": {
+        "selector": "input:",
+        "width": 16.6,
+        "height": 20,
+        "spacingExempt": false
+      }
+    },
+    {
+      "id": "exportOptions@w320",
+      "under44Advisory": 1,
+      "advisory": true
+    },
+    {
+      "id": "exportOptions@w390",
+      "below24NotExempt": 1,
+      "sample": {
+        "selector": "input:",
+        "width": 20,
+        "height": 20,
+        "spacingExempt": false
+      }
+    },
+    {
+      "id": "exportOptions@w390",
+      "under44Advisory": 1,
+      "advisory": true
+    }
+  ],
+  "reflowRows": [],
+  "zoomEmulatedRows": [
+    {
+      "id": "abcde@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "abcdeB@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "abcdeC@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "abcdeD@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "abcdeE@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "calibration@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN"
+      ]
+    },
+    {
+      "id": "calibrationReady@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN"
+      ]
+    },
+    {
+      "id": "camera@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "cameraPrimer@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "capture@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "classDetail@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "classes@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "compare@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN"
+      ]
+    },
+    {
+      "id": "consent@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "context@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "contextDetails@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "contractError@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN"
+      ]
+    },
+    {
+      "id": "discard@w320",
+      "overflowPx": 168,
+      "clipped": [
+        "button:",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "discard@w390",
+      "overflowPx": 98,
+      "clipped": [
+        "button:EN",
+        "li:Revisión",
+        "button:Revisión"
+      ]
+    },
+    {
+      "id": "error@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN"
+      ]
+    },
+    {
+      "id": "export@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN"
+      ]
+    },
+    {
+      "id": "exportDone@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN"
+      ]
+    },
+    {
+      "id": "exportError@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN"
+      ]
+    },
+    {
+      "id": "exportOptions@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN"
+      ]
+    },
+    {
+      "id": "fileError@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN"
+      ]
+    },
+    {
+      "id": "gallery@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "guide@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN"
+      ]
+    },
+    {
+      "id": "home@w320",
+      "overflowPx": 168,
+      "clipped": [
+        "button:",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "home@w390",
+      "overflowPx": 98,
+      "clipped": [
+        "button:EN",
+        "li:Revisión",
+        "button:Revisión"
+      ]
+    },
+    {
+      "id": "modelDetails@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "notesSheet@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN"
+      ]
+    },
+    {
+      "id": "offline@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN"
+      ]
+    },
+    {
+      "id": "original@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN"
+      ]
+    },
+    {
+      "id": "permission@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN"
+      ]
+    },
+    {
+      "id": "prior@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN"
+      ]
+    },
+    {
+      "id": "privacy@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN"
+      ]
+    },
+    {
+      "id": "processing@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "quality@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "qualityIssue@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "rateLimit@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN"
+      ]
+    },
+    {
+      "id": "result@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "scope@w320",
+      "overflowPx": 168,
+      "clipped": [
+        "button:",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "scope@w390",
+      "overflowPx": 98,
+      "clipped": [
+        "button:EN",
+        "li:Revisión",
+        "button:Revisión"
+      ]
+    },
+    {
+      "id": "siteSheet@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "stopWaiting@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "summary@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN"
+      ]
+    },
+    {
+      "id": "timeout@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN"
+      ]
+    },
+    {
+      "id": "toolSheet@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "viewer@w320",
+      "overflowPx": 56,
+      "clipped": [
+        "button:EN",
+        "span:",
+        "svg:"
+      ]
+    },
+    {
+      "id": "zoom@w320",
+      "overflowPx": 77,
+      "clipped": [
+        "button:EN",
+        "button:Volver a la imagen",
+        "span:Volver a la imagen"
+      ]
+    },
+    {
+      "id": "zoom@w390",
+      "overflowPx": 7,
+      "clipped": [
+        "button:Volver a la imagen",
+        "span:Volver a la imagen"
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "routeRows": [
+    {
+      "view": "abcde",
+      "viewport": "w320",
+      "route": "/examen/abcde",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "abcde",
+      "viewport": "w390",
+      "route": "/examen/abcde",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "abcdeB",
+      "viewport": "w320",
+      "route": "/examen/abcde?criterio=b",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "abcdeB",
+      "viewport": "w390",
+      "route": "/examen/abcde?criterio=b",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "abcdeC",
+      "viewport": "w320",
+      "route": "/examen/abcde?criterio=c",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "abcdeC",
+      "viewport": "w390",
+      "route": "/examen/abcde?criterio=c",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "abcdeD",
+      "viewport": "w320",
+      "route": "/examen/abcde?criterio=d",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "abcdeD",
+      "viewport": "w390",
+      "route": "/examen/abcde?criterio=d",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "abcdeE",
+      "viewport": "w320",
+      "route": "/examen/abcde?criterio=e",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "abcdeE",
+      "viewport": "w390",
+      "route": "/examen/abcde?criterio=e",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "calibration",
+      "viewport": "w320",
+      "route": "/examen/calibracion",
+      "finalPath": "/examen/calibracion",
+      "status": 200,
+      "h1": "Mis observaciones · Escala"
+    },
+    {
+      "view": "calibration",
+      "viewport": "w390",
+      "route": "/examen/calibracion",
+      "finalPath": "/examen/calibracion",
+      "status": 200,
+      "h1": "Mis observaciones · Escala"
+    },
+    {
+      "view": "calibrationReady",
+      "viewport": "w320",
+      "route": "/examen/calibracion/lista",
+      "finalPath": "/examen/calibracion/lista",
+      "status": 200,
+      "h1": "Mis observaciones · Referencia"
+    },
+    {
+      "view": "calibrationReady",
+      "viewport": "w390",
+      "route": "/examen/calibracion/lista",
+      "finalPath": "/examen/calibracion/lista",
+      "status": 200,
+      "h1": "Mis observaciones · Referencia"
+    },
+    {
+      "view": "camera",
+      "viewport": "w320",
+      "route": "/imagen/camara",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "camera",
+      "viewport": "w390",
+      "route": "/imagen/camara",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "cameraPrimer",
+      "viewport": "w320",
+      "route": "/imagen",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "cameraPrimer",
+      "viewport": "w390",
+      "route": "/imagen",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "capture",
+      "viewport": "w320",
+      "route": "/imagen",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "capture",
+      "viewport": "w390",
+      "route": "/imagen",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "classDetail",
+      "viewport": "w320",
+      "route": "/resultado/clases/nv",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "classDetail",
+      "viewport": "w390",
+      "route": "/resultado/clases/nv",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "classes",
+      "viewport": "w320",
+      "route": "/resultado/clases",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "classes",
+      "viewport": "w390",
+      "route": "/resultado/clases",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "compare",
+      "viewport": "w320",
+      "route": "/examen/comparar",
+      "finalPath": "/examen/comparar",
+      "status": 200,
+      "h1": "Mis observaciones · Comparar"
+    },
+    {
+      "view": "compare",
+      "viewport": "w390",
+      "route": "/examen/comparar",
+      "finalPath": "/examen/comparar",
+      "status": 200,
+      "h1": "Mis observaciones · Comparar"
+    },
+    {
+      "view": "consent",
+      "viewport": "w320",
+      "route": "/envio",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "consent",
+      "viewport": "w390",
+      "route": "/envio",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "context",
+      "viewport": "w320",
+      "route": "/contexto",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "context",
+      "viewport": "w390",
+      "route": "/contexto",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "contextDetails",
+      "viewport": "w320",
+      "route": "/contexto",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "contextDetails",
+      "viewport": "w390",
+      "route": "/contexto",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "contractError",
+      "viewport": "w320",
+      "route": "/recuperacion/respuesta",
+      "finalPath": "/recuperacion/respuesta",
+      "status": 200,
+      "h1": "La respuesta no se puede usar."
+    },
+    {
+      "view": "contractError",
+      "viewport": "w390",
+      "route": "/recuperacion/respuesta",
+      "finalPath": "/recuperacion/respuesta",
+      "status": 200,
+      "h1": "La respuesta no se puede usar."
+    },
+    {
+      "view": "discard",
+      "viewport": "w320",
+      "route": "/",
+      "finalPath": "/",
+      "status": 200,
+      "h1": "Empiece con contexto."
+    },
+    {
+      "view": "discard",
+      "viewport": "w390",
+      "route": "/",
+      "finalPath": "/",
+      "status": 200,
+      "h1": "Empiece con contexto."
+    },
+    {
+      "view": "error",
+      "viewport": "w320",
+      "route": "/recuperacion/servidor",
+      "finalPath": "/recuperacion/servidor",
+      "status": 200,
+      "h1": "No se recibió ningún resultado del análisis."
+    },
+    {
+      "view": "error",
+      "viewport": "w390",
+      "route": "/recuperacion/servidor",
+      "finalPath": "/recuperacion/servidor",
+      "status": 200,
+      "h1": "No se recibió ningún resultado del análisis."
+    },
+    {
+      "view": "export",
+      "viewport": "w320",
+      "route": "/revision/exportar",
+      "finalPath": "/revision/exportar",
+      "status": 200,
+      "h1": "Revisión · Exportar"
+    },
+    {
+      "view": "export",
+      "viewport": "w390",
+      "route": "/revision/exportar",
+      "finalPath": "/revision/exportar",
+      "status": 200,
+      "h1": "Revisión · Exportar"
+    },
+    {
+      "view": "exportDone",
+      "viewport": "w320",
+      "route": "/revision/exportada",
+      "finalPath": "/revision",
+      "status": 200,
+      "h1": "Revisión · Sesión"
+    },
+    {
+      "view": "exportDone",
+      "viewport": "w390",
+      "route": "/revision/exportada",
+      "finalPath": "/revision",
+      "status": 200,
+      "h1": "Revisión · Sesión"
+    },
+    {
+      "view": "exportError",
+      "viewport": "w320",
+      "route": "/recuperacion/exportacion",
+      "finalPath": "/recuperacion/exportacion",
+      "status": 200,
+      "h1": "No se creó la exportación."
+    },
+    {
+      "view": "exportError",
+      "viewport": "w390",
+      "route": "/recuperacion/exportacion",
+      "finalPath": "/recuperacion/exportacion",
+      "status": 200,
+      "h1": "No se creó la exportación."
+    },
+    {
+      "view": "exportOptions",
+      "viewport": "w320",
+      "route": "/revision/exportar",
+      "finalPath": "/revision/exportar",
+      "status": 200,
+      "h1": "Revisión · Exportar"
+    },
+    {
+      "view": "exportOptions",
+      "viewport": "w390",
+      "route": "/revision/exportar",
+      "finalPath": "/revision/exportar",
+      "status": 200,
+      "h1": "Revisión · Exportar"
+    },
+    {
+      "view": "fileError",
+      "viewport": "w320",
+      "route": "/recuperacion/archivo",
+      "finalPath": "/recuperacion/archivo",
+      "status": 200,
+      "h1": "No se pudo abrir esta imagen."
+    },
+    {
+      "view": "fileError",
+      "viewport": "w390",
+      "route": "/recuperacion/archivo",
+      "finalPath": "/recuperacion/archivo",
+      "status": 200,
+      "h1": "No se pudo abrir esta imagen."
+    },
+    {
+      "view": "gallery",
+      "viewport": "w320",
+      "route": "/imagen/muestras",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "gallery",
+      "viewport": "w390",
+      "route": "/imagen/muestras",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "guide",
+      "viewport": "w320",
+      "route": "/guia",
+      "finalPath": "/guia",
+      "status": 200,
+      "h1": "Referencia · Guía"
+    },
+    {
+      "view": "guide",
+      "viewport": "w390",
+      "route": "/guia",
+      "finalPath": "/guia",
+      "status": 200,
+      "h1": "Referencia · Guía"
+    },
+    {
+      "view": "home",
+      "viewport": "w320",
+      "route": "/",
+      "finalPath": "/",
+      "status": 200,
+      "h1": "Empiece con contexto."
+    },
+    {
+      "view": "home",
+      "viewport": "w390",
+      "route": "/",
+      "finalPath": "/",
+      "status": 200,
+      "h1": "Empiece con contexto."
+    },
+    {
+      "view": "modelDetails",
+      "viewport": "w320",
+      "route": "/resultado",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "modelDetails",
+      "viewport": "w390",
+      "route": "/resultado",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "notesSheet",
+      "viewport": "w320",
+      "route": "/examen/comparar",
+      "finalPath": "/examen/comparar",
+      "status": 200,
+      "h1": "Mis observaciones · Comparar"
+    },
+    {
+      "view": "notesSheet",
+      "viewport": "w390",
+      "route": "/examen/comparar",
+      "finalPath": "/examen/comparar",
+      "status": 200,
+      "h1": "Mis observaciones · Comparar"
+    },
+    {
+      "view": "offline",
+      "viewport": "w320",
+      "route": "/recuperacion/sin-conexion",
+      "finalPath": "/recuperacion/sin-conexion",
+      "status": 200,
+      "h1": "Sin conexión para el análisis."
+    },
+    {
+      "view": "offline",
+      "viewport": "w390",
+      "route": "/recuperacion/sin-conexion",
+      "finalPath": "/recuperacion/sin-conexion",
+      "status": 200,
+      "h1": "Sin conexión para el análisis."
+    },
+    {
+      "view": "original",
+      "viewport": "w320",
+      "route": "/inspeccion/original",
+      "finalPath": "/inspeccion/original",
+      "status": 200,
+      "h1": "Imagen original"
+    },
+    {
+      "view": "original",
+      "viewport": "w390",
+      "route": "/inspeccion/original",
+      "finalPath": "/inspeccion/original",
+      "status": 200,
+      "h1": "Imagen original"
+    },
+    {
+      "view": "permission",
+      "viewport": "w320",
+      "route": "/recuperacion/permiso",
+      "finalPath": "/recuperacion/permiso",
+      "status": 200,
+      "h1": "El acceso a la cámara no está disponible."
+    },
+    {
+      "view": "permission",
+      "viewport": "w390",
+      "route": "/recuperacion/permiso",
+      "finalPath": "/recuperacion/permiso",
+      "status": 200,
+      "h1": "El acceso a la cámara no está disponible."
+    },
+    {
+      "view": "prior",
+      "viewport": "w320",
+      "route": "/examen/previo",
+      "finalPath": "/examen/previo",
+      "status": 200,
+      "h1": "Comparación anterior"
+    },
+    {
+      "view": "prior",
+      "viewport": "w390",
+      "route": "/examen/previo",
+      "finalPath": "/examen/previo",
+      "status": 200,
+      "h1": "Comparación anterior"
+    },
+    {
+      "view": "privacy",
+      "viewport": "w320",
+      "route": "/guia/privacidad",
+      "finalPath": "/guia/privacidad",
+      "status": 200,
+      "h1": "Referencia · Tratamiento de datos"
+    },
+    {
+      "view": "privacy",
+      "viewport": "w390",
+      "route": "/guia/privacidad",
+      "finalPath": "/guia/privacidad",
+      "status": 200,
+      "h1": "Referencia · Tratamiento de datos"
+    },
+    {
+      "view": "processing",
+      "viewport": "w320",
+      "route": "/envio/procesando",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "processing",
+      "viewport": "w390",
+      "route": "/envio/procesando",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "quality",
+      "viewport": "w320",
+      "route": "/imagen/calidad",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "quality",
+      "viewport": "w390",
+      "route": "/imagen/calidad",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "qualityIssue",
+      "viewport": "w320",
+      "route": "/imagen/calidad",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "qualityIssue",
+      "viewport": "w390",
+      "route": "/imagen/calidad",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "rateLimit",
+      "viewport": "w320",
+      "route": "/recuperacion/limite",
+      "finalPath": "/recuperacion/limite",
+      "status": 200,
+      "h1": "El servicio está limitando las solicitudes."
+    },
+    {
+      "view": "rateLimit",
+      "viewport": "w390",
+      "route": "/recuperacion/limite",
+      "finalPath": "/recuperacion/limite",
+      "status": 200,
+      "h1": "El servicio está limitando las solicitudes."
+    },
+    {
+      "view": "result",
+      "viewport": "w320",
+      "route": "/resultado",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "result",
+      "viewport": "w390",
+      "route": "/resultado",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "scope",
+      "viewport": "w320",
+      "route": "/",
+      "finalPath": "/",
+      "status": 200,
+      "h1": "Empiece con contexto."
+    },
+    {
+      "view": "scope",
+      "viewport": "w390",
+      "route": "/",
+      "finalPath": "/",
+      "status": 200,
+      "h1": "Empiece con contexto."
+    },
+    {
+      "view": "siteSheet",
+      "viewport": "w320",
+      "route": "/contexto",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "siteSheet",
+      "viewport": "w390",
+      "route": "/contexto",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "stopWaiting",
+      "viewport": "w320",
+      "route": "/envio/procesando",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "stopWaiting",
+      "viewport": "w390",
+      "route": "/envio/procesando",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "summary",
+      "viewport": "w320",
+      "route": "/revision",
+      "finalPath": "/revision",
+      "status": 200,
+      "h1": "Revisión · Sesión"
+    },
+    {
+      "view": "summary",
+      "viewport": "w390",
+      "route": "/revision",
+      "finalPath": "/revision",
+      "status": 200,
+      "h1": "Revisión · Sesión"
+    },
+    {
+      "view": "timeout",
+      "viewport": "w320",
+      "route": "/recuperacion/tiempo",
+      "finalPath": "/recuperacion/tiempo",
+      "status": 200,
+      "h1": "No se confirmó la finalización."
+    },
+    {
+      "view": "timeout",
+      "viewport": "w390",
+      "route": "/recuperacion/tiempo",
+      "finalPath": "/recuperacion/tiempo",
+      "status": 200,
+      "h1": "No se confirmó la finalización."
+    },
+    {
+      "view": "tone",
+      "viewport": "all",
+      "note": "NOT_IN_PRODUCTION_BUILD"
+    },
+    {
+      "view": "tone",
+      "viewport": "all",
+      "note": "NOT_IN_PRODUCTION_BUILD"
+    },
+    {
+      "view": "toolSheet",
+      "viewport": "w320",
+      "route": "/inspeccion",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "toolSheet",
+      "viewport": "w390",
+      "route": "/inspeccion",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "viewer",
+      "viewport": "w320",
+      "route": "/inspeccion?tab=imagen",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "viewer",
+      "viewport": "w390",
+      "route": "/inspeccion?tab=imagen",
+      "finalPath": "/contexto",
+      "status": 200,
+      "h1": "Dé contexto a la imagen."
+    },
+    {
+      "view": "zoom",
+      "viewport": "w320",
+      "route": "/inspeccion/zoom",
+      "finalPath": "/inspeccion/zoom",
+      "status": 200,
+      "h1": "Ampliar"
+    },
+    {
+      "view": "zoom",
+      "viewport": "w390",
+      "route": "/inspeccion/zoom",
+      "finalPath": "/inspeccion/zoom",
+      "status": 200,
+      "h1": "Ampliar"
+    }
+  ],
+  "keyboardRows": [
+    {
+      "route": "/contexto",
+      "uniqueStops": 6,
+      "trapCandidates": 0,
+      "invisibleFocus": 0,
+      "obscuredFocus": 0,
+      "backwardJumps": 17,
+      "reachedEnd": true
+    },
+    {
+      "route": "/envio",
+      "uniqueStops": 6,
+      "trapCandidates": 0,
+      "invisibleFocus": 0,
+      "obscuredFocus": 0,
+      "backwardJumps": 17,
+      "reachedEnd": true
+    },
+    {
+      "route": "/envio/procesando",
+      "uniqueStops": 6,
+      "trapCandidates": 0,
+      "invisibleFocus": 0,
+      "obscuredFocus": 0,
+      "backwardJumps": 17,
+      "reachedEnd": true
+    },
+    {
+      "route": "/examen/abcde",
+      "uniqueStops": 6,
+      "trapCandidates": 0,
+      "invisibleFocus": 0,
+      "obscuredFocus": 0,
+      "backwardJumps": 17,
+      "reachedEnd": true
+    },
+    {
+      "route": "/examen/comparar",
+      "uniqueStops": 7,
+      "trapCandidates": 0,
+      "invisibleFocus": 0,
+      "obscuredFocus": 0,
+      "backwardJumps": 14,
+      "reachedEnd": true
+    },
+    {
+      "route": "/guia",
+      "uniqueStops": 5,
+      "trapCandidates": 0,
+      "invisibleFocus": 0,
+      "obscuredFocus": 0,
+      "backwardJumps": 19,
+      "reachedEnd": true
+    },
+    {
+      "route": "/imagen",
+      "uniqueStops": 6,
+      "trapCandidates": 0,
+      "invisibleFocus": 0,
+      "obscuredFocus": 0,
+      "backwardJumps": 17,
+      "reachedEnd": true
+    },
+    {
+      "route": "/imagen/calidad",
+      "uniqueStops": 6,
+      "trapCandidates": 0,
+      "invisibleFocus": 0,
+      "obscuredFocus": 0,
+      "backwardJumps": 17,
+      "reachedEnd": true
+    },
+    {
+      "route": "/inspeccion",
+      "uniqueStops": 6,
+      "trapCandidates": 0,
+      "invisibleFocus": 0,
+      "obscuredFocus": 0,
+      "backwardJumps": 17,
+      "reachedEnd": true
+    },
+    {
+      "route": "/resultado",
+      "uniqueStops": 6,
+      "trapCandidates": 0,
+      "invisibleFocus": 0,
+      "obscuredFocus": 0,
+      "backwardJumps": 17,
+      "reachedEnd": true
+    },
+    {
+      "route": "/resultado/clases",
+      "uniqueStops": 6,
+      "trapCandidates": 0,
+      "invisibleFocus": 0,
+      "obscuredFocus": 0,
+      "backwardJumps": 17,
+      "reachedEnd": true
+    },
+    {
+      "route": "/revision",
+      "uniqueStops": 6,
+      "trapCandidates": 0,
+      "invisibleFocus": 0,
+      "obscuredFocus": 0,
+      "backwardJumps": 17,
+      "reachedEnd": true
+    },
+    {
+      "route": "/revision/exportar",
+      "uniqueStops": 6,
+      "trapCandidates": 0,
+      "invisibleFocus": 0,
+      "obscuredFocus": 0,
+      "backwardJumps": 17,
+      "reachedEnd": true
+    },
+    {
+      "route": "/",
+      "uniqueStops": 9,
+      "trapCandidates": 0,
+      "invisibleFocus": 0,
+      "obscuredFocus": 0,
+      "backwardJumps": 23,
+      "reachedEnd": true
+    }
+  ],
+  "escapeRows": [
+    {
+      "route": "/contexto",
+      "trigger": "",
+      "opened": false
+    },
+    {
+      "route": "/contexto",
+      "trigger": "",
+      "opened": false
+    },
+    {
+      "route": "/contexto",
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "route": "/contexto",
+      "trigger": "Body siteNot recorded",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/contexto",
+      "trigger": "Optional clinical contextAge, duration, ",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/contexto",
+      "trigger": "Continue to image",
+      "opened": false
+    },
+    {
+      "route": "/envio",
+      "trigger": "",
+      "opened": false
+    },
+    {
+      "route": "/envio",
+      "trigger": "",
+      "opened": false
+    },
+    {
+      "route": "/envio",
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "route": "/envio",
+      "trigger": "Body siteNot recorded",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/envio",
+      "trigger": "Optional clinical contextAge, duration, ",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/envio",
+      "trigger": "Continue to image",
+      "opened": false
+    },
+    {
+      "route": "/envio/procesando",
+      "trigger": "",
+      "opened": false
+    },
+    {
+      "route": "/envio/procesando",
+      "trigger": "",
+      "opened": false
+    },
+    {
+      "route": "/envio/procesando",
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "route": "/envio/procesando",
+      "trigger": "Body siteNot recorded",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/envio/procesando",
+      "trigger": "Optional clinical contextAge, duration, ",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/envio/procesando",
+      "trigger": "Continue to image",
+      "opened": false
+    },
+    {
+      "route": "/examen/abcde",
+      "trigger": "",
+      "opened": false
+    },
+    {
+      "route": "/examen/abcde",
+      "trigger": "",
+      "opened": false
+    },
+    {
+      "route": "/examen/abcde",
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "route": "/examen/abcde",
+      "trigger": "Body siteNot recorded",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/examen/abcde",
+      "trigger": "Optional clinical contextAge, duration, ",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/examen/abcde",
+      "trigger": "Continue to image",
+      "opened": false
+    },
+    {
+      "route": "/examen/comparar",
+      "trigger": "‹",
+      "opened": false
+    },
+    {
+      "route": "/examen/comparar",
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "route": "/examen/comparar",
+      "trigger": "An earlier source is requiredNo invented",
+      "opened": false
+    },
+    {
+      "route": "/examen/comparar",
+      "trigger": "Write professional note",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/examen/comparar",
+      "trigger": "Back to evolution",
+      "opened": false
+    },
+    {
+      "route": "/examen/comparar",
+      "trigger": "Review the session",
+      "opened": false
+    },
+    {
+      "route": "/guia",
+      "trigger": "‹",
+      "opened": false
+    },
+    {
+      "route": "/guia",
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "route": "/imagen",
+      "trigger": "",
+      "opened": false
+    },
+    {
+      "route": "/imagen",
+      "trigger": "",
+      "opened": false
+    },
+    {
+      "route": "/imagen",
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "route": "/imagen",
+      "trigger": "Body siteNot recorded",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/imagen",
+      "trigger": "Optional clinical contextAge, duration, ",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/imagen",
+      "trigger": "Continue to image",
+      "opened": false
+    },
+    {
+      "route": "/imagen/calidad",
+      "trigger": "",
+      "opened": false
+    },
+    {
+      "route": "/imagen/calidad",
+      "trigger": "",
+      "opened": false
+    },
+    {
+      "route": "/imagen/calidad",
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "route": "/imagen/calidad",
+      "trigger": "Body siteNot recorded",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/imagen/calidad",
+      "trigger": "Optional clinical contextAge, duration, ",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/imagen/calidad",
+      "trigger": "Continue to image",
+      "opened": false
+    },
+    {
+      "route": "/inspeccion",
+      "trigger": "",
+      "opened": false
+    },
+    {
+      "route": "/inspeccion",
+      "trigger": "",
+      "opened": false
+    },
+    {
+      "route": "/inspeccion",
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "route": "/inspeccion",
+      "trigger": "Body siteNot recorded",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/inspeccion",
+      "trigger": "Optional clinical contextAge, duration, ",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/inspeccion",
+      "trigger": "Continue to image",
+      "opened": false
+    },
+    {
+      "route": "/resultado",
+      "trigger": "",
+      "opened": false
+    },
+    {
+      "route": "/resultado",
+      "trigger": "",
+      "opened": false
+    },
+    {
+      "route": "/resultado",
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "route": "/resultado",
+      "trigger": "Body siteNot recorded",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/resultado",
+      "trigger": "Optional clinical contextAge, duration, ",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/resultado",
+      "trigger": "Continue to image",
+      "opened": false
+    },
+    {
+      "route": "/resultado/clases",
+      "trigger": "",
+      "opened": false
+    },
+    {
+      "route": "/resultado/clases",
+      "trigger": "",
+      "opened": false
+    },
+    {
+      "route": "/resultado/clases",
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "route": "/resultado/clases",
+      "trigger": "Body siteNot recorded",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/resultado/clases",
+      "trigger": "Optional clinical contextAge, duration, ",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/resultado/clases",
+      "trigger": "Continue to image",
+      "opened": false
+    },
+    {
+      "route": "/revision",
+      "trigger": "‹",
+      "opened": false
+    },
+    {
+      "route": "/revision",
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "route": "/revision",
+      "trigger": "Edit manual observations",
+      "opened": false
+    },
+    {
+      "route": "/revision",
+      "trigger": "Professional note",
+      "opened": false
+    },
+    {
+      "route": "/revision",
+      "trigger": "Export preview",
+      "opened": false
+    },
+    {
+      "route": "/revision/exportar",
+      "trigger": "‹",
+      "opened": false
+    },
+    {
+      "route": "/revision/exportar",
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "route": "/revision/exportar",
+      "trigger": "Export options",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/",
+      "trigger": "",
+      "opened": false
+    },
+    {
+      "route": "/",
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "route": "/",
+      "trigger": "New exam",
+      "opened": false
+    },
+    {
+      "route": "/",
+      "trigger": "ProtocolScope and limitsUnder study. Doe",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "route": "/",
+      "trigger": "P. Tschandl · CC BY-SA 4.0Reference imag",
+      "opened": false
+    },
+    {
+      "route": "/",
+      "trigger": "Desk",
+      "opened": false
+    },
+    {
+      "route": "/",
+      "trigger": "Examine",
+      "opened": false
+    },
+    {
+      "route": "/",
+      "trigger": "Review",
+      "opened": false
+    },
+    {
+      "route": "/",
+      "trigger": "Guide",
+      "opened": false
+    }
+  ],
+  "motion": [
+    {
+      "view": "abcde",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "abcdeB",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "abcdeC",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "abcdeD",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "abcdeE",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "calibration",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "calibrationReady",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "camera",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "cameraPrimer",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "capture",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "classDetail",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "classes",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "compare",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "consent",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "context",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "contextDetails",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "contractError",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "discard",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "error",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "export",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "exportDone",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "exportError",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "exportOptions",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "fileError",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "gallery",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "guide",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "home",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "modelDetails",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "notesSheet",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "offline",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "original",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "permission",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "prior",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "privacy",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "processing",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "quality",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "qualityIssue",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "rateLimit",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "result",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "scope",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "siteSheet",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "stopWaiting",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "summary",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "timeout",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "toolSheet",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "viewer",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    },
+    {
+      "view": "zoom",
+      "emulated": true,
+      "offenders": 0,
+      "sample": null,
+      "longDeclared": 0
+    }
+  ],
+  "i18nRows": [
+    {
+      "route": "/contexto",
+      "found": true,
+      "target": "en",
+      "docLangBefore": "es",
+      "docLangAfter": "es",
+      "documentLangUpdated": false,
+      "visibleTextChanged": true
+    },
+    {
+      "route": "/examen/abcde",
+      "found": true,
+      "target": "en",
+      "docLangBefore": "es",
+      "docLangAfter": "es",
+      "documentLangUpdated": false,
+      "visibleTextChanged": true
+    },
+    {
+      "route": "/inspeccion",
+      "found": true,
+      "target": "en",
+      "docLangBefore": "es",
+      "docLangAfter": "es",
+      "documentLangUpdated": false,
+      "visibleTextChanged": true
+    },
+    {
+      "route": "/resultado",
+      "found": true,
+      "target": "en",
+      "docLangBefore": "es",
+      "docLangAfter": "es",
+      "documentLangUpdated": false,
+      "visibleTextChanged": true
+    },
+    {
+      "route": "/revision",
+      "found": true,
+      "target": "en",
+      "docLangBefore": "es",
+      "docLangAfter": "es",
+      "documentLangUpdated": false,
+      "visibleTextChanged": true
+    },
+    {
+      "route": "/",
+      "found": true,
+      "target": "en",
+      "docLangBefore": "es",
+      "docLangAfter": "es",
+      "documentLangUpdated": false,
+      "visibleTextChanged": true
+    }
+  ],
+  "liveRegions": [
+    {
+      "route": "/envio/procesando",
+      "regions": 0
+    },
+    {
+      "route": "/recuperacion/servidor",
+      "regions": 1
+    },
+    {
+      "route": "/recuperacion/sin-conexion",
+      "regions": 1
+    },
+    {
+      "route": "/revision/exportada",
+      "regions": 0
+    }
+  ]
+}

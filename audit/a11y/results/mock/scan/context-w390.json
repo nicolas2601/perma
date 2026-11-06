@@ -1,0 +1,46 @@
+{
+  "view": "context",
+  "nodeId": "141:2444",
+  "phase": "01 · Context",
+  "manifestState": "idle",
+  "requestedUrl": "/contexto",
+  "finalPath": "/contexto",
+  "httpStatus": 200,
+  "viewport": "w390",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "Dé contexto a la imagen."
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [],
+  "targets": {
+    "total": 6,
+    "under24": [],
+    "under44Count": 0
+  },
+  "contrast": {
+    "checked": 11,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "liveRegions": [],
+  "pageErrors": [],
+  "screenshot": "screenshots/mock/context-w390.png"
+}

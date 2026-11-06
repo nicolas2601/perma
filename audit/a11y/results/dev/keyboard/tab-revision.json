@@ -1,0 +1,113 @@
+{
+  "route": "/revision",
+  "tabPresses": 120,
+  "reachedBrowserOrEnd": true,
+  "uniqueStops": 6,
+  "trapCandidates": [],
+  "invisibleFocus": [],
+  "obscuredFocus": [],
+  "backwardJumps": [
+    {
+      "step": 8,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 15,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 22,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 29,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 36,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 43,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 50,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 57,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 64,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 71,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 78,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 85,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 92,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 99,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 106,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 113,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 120,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    }
+  ],
+  "firstStops": [
+    "button:Volver",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "button:Editar observaciones manuales",
+    "button:Nota profesional",
+    "button:Vista previa de exportación",
+    "button:Volver",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "button:Editar observaciones manuales",
+    "button:Nota profesional",
+    "button:Vista previa de exportación",
+    "button:Volver",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés"
+  ]
+}

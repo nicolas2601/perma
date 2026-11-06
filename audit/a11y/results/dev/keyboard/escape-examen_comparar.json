@@ -1,0 +1,32 @@
+{
+  "route": "/examen/comparar",
+  "triggersTested": 6,
+  "results": [
+    {
+      "trigger": "‹",
+      "opened": false
+    },
+    {
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "trigger": "An earlier source is requiredNo invented",
+      "opened": false
+    },
+    {
+      "trigger": "Write professional note",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "trigger": "Back to evolution",
+      "opened": false
+    },
+    {
+      "trigger": "Review the session",
+      "opened": false
+    }
+  ]
+}

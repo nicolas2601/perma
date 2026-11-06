@@ -1,0 +1,8 @@
+{
+  "view": "summary",
+  "route": "/revision",
+  "reducedMotionEmulated": true,
+  "longDeclaredTransitions": [],
+  "animationsSampled": 0,
+  "offenders": []
+}

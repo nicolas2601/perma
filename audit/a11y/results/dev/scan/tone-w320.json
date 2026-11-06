@@ -1,0 +1,48 @@
+{
+  "view": "tone",
+  "nodeId": "141:3869",
+  "phase": "10 · Research",
+  "manifestState": "(any)",
+  "requestedUrl": "/investigacion/tono",
+  "finalPath": "/investigacion/tono",
+  "httpStatus": 200,
+  "viewport": "w320",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "Transformación de tono solo para investigación"
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [],
+  "targets": {
+    "total": 3,
+    "under24": [],
+    "under44Count": 0
+  },
+  "contrast": {
+    "checked": 6,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 320,
+    "scrollWidth": 320,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 320,
+    "scrollWidth": 395,
+    "overflowPx": 75,
+    "clipped": [
+      "button:EN"
+    ]
+  },
+  "liveRegions": [],
+  "pageErrors": [],
+  "screenshot": "screenshots/dev/tone-w320.png"
+}

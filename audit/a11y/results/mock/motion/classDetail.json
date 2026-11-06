@@ -1,0 +1,8 @@
+{
+  "view": "classDetail",
+  "route": "/resultado/clases/:clase",
+  "reducedMotionEmulated": true,
+  "longDeclaredTransitions": [],
+  "animationsSampled": 0,
+  "offenders": []
+}

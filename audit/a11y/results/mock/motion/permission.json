@@ -1,0 +1,8 @@
+{
+  "view": "permission",
+  "route": "/recuperacion/permiso",
+  "reducedMotionEmulated": true,
+  "longDeclaredTransitions": [],
+  "animationsSampled": 0,
+  "offenders": []
+}

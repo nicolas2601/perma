@@ -1,0 +1,6 @@
+{
+  "view": "tone",
+  "route": "/investigacion/tono",
+  "status": "NOT_IN_PRODUCTION_BUILD",
+  "note": "Route is devOnly (src/features/guide/routes.tsx) and is excluded from the production bundle."
+}

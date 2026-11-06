@@ -1,0 +1,8 @@
+{
+  "view": "compare",
+  "route": "/examen/comparar",
+  "reducedMotionEmulated": true,
+  "longDeclaredTransitions": [],
+  "animationsSampled": 0,
+  "offenders": []
+}

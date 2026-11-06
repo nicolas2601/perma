@@ -1,0 +1,18 @@
+{
+  "route": "/",
+  "switchFound": true,
+  "controlLabel": "Idioma: EN",
+  "switchTargetLang": "en",
+  "before": {
+    "htmlLang": "es",
+    "title": "PERMA",
+    "h1": "Empiece con contexto."
+  },
+  "after": {
+    "htmlLang": "es",
+    "title": "PERMA",
+    "h1": "Start with context."
+  },
+  "documentLangUpdated": false,
+  "visibleTextChanged": true
+}

@@ -1,0 +1,51 @@
+{
+  "view": "toolSheet",
+  "nodeId": "141:3219",
+  "phase": "05 · Inspection",
+  "manifestState": "inspecting",
+  "requestedUrl": "/inspeccion?seed=result",
+  "finalPath": "/inspeccion?seed=result",
+  "httpStatus": 200,
+  "viewport": "w390",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "Imagen de referencia"
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [],
+  "targets": {
+    "total": 11,
+    "under24": [],
+    "under44Count": 0
+  },
+  "contrast": {
+    "checked": 18,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "clipped": [
+      "button:Mis observaciones",
+      "div:Estado de revisiónSin iniciar",
+      "span:Estado de revisión",
+      "span:Sin iniciar"
+    ]
+  },
+  "liveRegions": [],
+  "pageErrors": [],
+  "screenshot": "screenshots/dev/toolSheet-w390.png"
+}

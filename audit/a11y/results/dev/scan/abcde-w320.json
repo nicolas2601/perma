@@ -1,0 +1,50 @@
+{
+  "view": "abcde",
+  "nodeId": "141:3252",
+  "phase": "06 · ABCDE",
+  "manifestState": "abcde",
+  "requestedUrl": "/examen/abcde?seed=result",
+  "finalPath": "/examen/abcde?seed=result",
+  "httpStatus": 200,
+  "viewport": "w320",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "Mis observaciones · ABCDE"
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [],
+  "targets": {
+    "total": 15,
+    "under24": [],
+    "under44Count": 0
+  },
+  "contrast": {
+    "checked": 50,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 320,
+    "scrollWidth": 320,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 320,
+    "scrollWidth": 376,
+    "overflowPx": 56,
+    "clipped": [
+      "button:EN",
+      "span:Asimétrica en un eje",
+      "span:Asimétrica en dos ejes"
+    ]
+  },
+  "liveRegions": [],
+  "pageErrors": [],
+  "screenshot": "screenshots/dev/abcde-w320.png"
+}

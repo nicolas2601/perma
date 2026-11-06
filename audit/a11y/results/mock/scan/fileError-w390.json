@@ -1,0 +1,52 @@
+{
+  "view": "fileError",
+  "nodeId": "141:2685",
+  "phase": "08 · Recovery",
+  "manifestState": "recoverFile",
+  "requestedUrl": "/recuperacion/archivo",
+  "finalPath": "/recuperacion/archivo",
+  "httpStatus": 200,
+  "viewport": "w390",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "No se pudo abrir esta imagen."
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [],
+  "targets": {
+    "total": 4,
+    "under24": [],
+    "under44Count": 0
+  },
+  "contrast": {
+    "checked": 7,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "liveRegions": [
+    {
+      "role": "alert",
+      "live": null,
+      "text": "No se pudo abrir esta imagen."
+    }
+  ],
+  "pageErrors": [],
+  "screenshot": "screenshots/mock/fileError-w390.png"
+}

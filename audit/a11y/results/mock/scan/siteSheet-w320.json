@@ -1,0 +1,51 @@
+{
+  "view": "siteSheet",
+  "nodeId": "141:2490",
+  "phase": "01 · Context",
+  "manifestState": "idle",
+  "requestedUrl": "/contexto",
+  "finalPath": "/contexto",
+  "httpStatus": 200,
+  "viewport": "w320",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "Dé contexto a la imagen."
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [],
+  "targets": {
+    "total": 6,
+    "under24": [],
+    "under44Count": 0
+  },
+  "contrast": {
+    "checked": 11,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 320,
+    "scrollWidth": 320,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 320,
+    "scrollWidth": 376,
+    "overflowPx": 56,
+    "clipped": [
+      "button:EN",
+      "span:",
+      "svg:",
+      "path:"
+    ]
+  },
+  "liveRegions": [],
+  "pageErrors": [],
+  "screenshot": "screenshots/mock/siteSheet-w320.png"
+}

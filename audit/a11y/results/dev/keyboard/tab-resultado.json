@@ -1,0 +1,78 @@
+{
+  "route": "/resultado",
+  "tabPresses": 120,
+  "reachedBrowserOrEnd": true,
+  "uniqueStops": 15,
+  "trapCandidates": [],
+  "invisibleFocus": [],
+  "obscuredFocus": [],
+  "backwardJumps": [
+    {
+      "step": 12,
+      "from": "Inspeccionar la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 23,
+      "from": "Inspeccionar la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 34,
+      "from": "Inspeccionar la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 45,
+      "from": "Inspeccionar la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 56,
+      "from": "Inspeccionar la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 67,
+      "from": "Inspeccionar la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 78,
+      "from": "Inspeccionar la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 89,
+      "from": "Inspeccionar la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 100,
+      "from": "Inspeccionar la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 111,
+      "from": "Inspeccionar la imagen",
+      "to": "Volver"
+    }
+  ],
+  "firstStops": [
+    "button:Volver",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "div:Nevo melanocítico (nv)0,610,001,00",
+    "a:Nevo melanocítico (nv)0,610,001,00",
+    "div:Queratosis benigna (bkl)0,150,001,00",
+    "a:Queratosis benigna (bkl)0,150,001,00",
+    "a:Ver los siete puntajesAbrir detalles",
+    "button:Modelo y procedenciaAbrir detalles",
+    "button:Inspeccionar la imagen",
+    "button:Volver",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "div:Nevo melanocítico (nv)0,610,001,00",
+    "a:Nevo melanocítico (nv)0,610,001,00"
+  ]
+}

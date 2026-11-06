@@ -1,0 +1,14 @@
+{
+  "route": "/guia",
+  "triggersTested": 2,
+  "results": [
+    {
+      "trigger": "‹",
+      "opened": false
+    },
+    {
+      "trigger": "EN",
+      "opened": false
+    }
+  ]
+}

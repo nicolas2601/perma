@@ -1,0 +1,26 @@
+{
+  "route": "/revision",
+  "triggersTested": 5,
+  "results": [
+    {
+      "trigger": "‹",
+      "opened": false
+    },
+    {
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "trigger": "Edit manual observations",
+      "opened": false
+    },
+    {
+      "trigger": "Professional note",
+      "opened": false
+    },
+    {
+      "trigger": "Export preview",
+      "opened": false
+    }
+  ]
+}

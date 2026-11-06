@@ -1,0 +1,67 @@
+[
+  {
+    "view": "context",
+    "ok": true,
+    "path": "/contexto"
+  },
+  {
+    "view": "contextDetails",
+    "ok": true,
+    "path": "/contexto"
+  },
+  {
+    "view": "siteSheet",
+    "ok": true,
+    "path": "/contexto"
+  },
+  {
+    "view": "capture",
+    "ok": true,
+    "path": "/imagen"
+  },
+  {
+    "view": "gallery",
+    "ok": true,
+    "path": "/imagen/muestras"
+  },
+  {
+    "view": "quality",
+    "ok": true,
+    "path": "/imagen/calidad"
+  },
+  {
+    "view": "qualityIssue",
+    "ok": false,
+    "error": "sample is 600x443 (>=300 px): no low-resolution alert is reachable without a user file"
+  },
+  {
+    "view": "consent",
+    "ok": true,
+    "path": "/envio"
+  },
+  {
+    "view": "processing",
+    "ok": true,
+    "path": "/envio/procesando?mock=slow"
+  },
+  {
+    "view": "stopWaiting",
+    "ok": true,
+    "path": "/envio/procesando?mock=slow"
+  },
+  {
+    "view": "contextFlowCheck",
+    "ok": true,
+    "path": "/imagen"
+  },
+  {
+    "view": "cameraPrimer",
+    "ok": true,
+    "path": "/imagen"
+  },
+  {
+    "view": "camera",
+    "ok": true,
+    "path": "/recuperacion/permiso"
+  }
+]

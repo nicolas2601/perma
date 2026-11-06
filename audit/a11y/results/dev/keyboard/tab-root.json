@@ -1,0 +1,143 @@
+{
+  "route": "/",
+  "tabPresses": 120,
+  "reachedBrowserOrEnd": true,
+  "uniqueStops": 9,
+  "trapCandidates": [],
+  "invisibleFocus": [],
+  "obscuredFocus": [],
+  "backwardJumps": [
+    {
+      "step": 4,
+      "from": "Nuevo examen",
+      "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
+    },
+    {
+      "step": 11,
+      "from": "Guía",
+      "to": "Ver guía"
+    },
+    {
+      "step": 14,
+      "from": "Nuevo examen",
+      "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
+    },
+    {
+      "step": 21,
+      "from": "Guía",
+      "to": "Ver guía"
+    },
+    {
+      "step": 24,
+      "from": "Nuevo examen",
+      "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
+    },
+    {
+      "step": 31,
+      "from": "Guía",
+      "to": "Ver guía"
+    },
+    {
+      "step": 34,
+      "from": "Nuevo examen",
+      "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
+    },
+    {
+      "step": 41,
+      "from": "Guía",
+      "to": "Ver guía"
+    },
+    {
+      "step": 44,
+      "from": "Nuevo examen",
+      "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
+    },
+    {
+      "step": 51,
+      "from": "Guía",
+      "to": "Ver guía"
+    },
+    {
+      "step": 54,
+      "from": "Nuevo examen",
+      "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
+    },
+    {
+      "step": 61,
+      "from": "Guía",
+      "to": "Ver guía"
+    },
+    {
+      "step": 64,
+      "from": "Nuevo examen",
+      "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
+    },
+    {
+      "step": 71,
+      "from": "Guía",
+      "to": "Ver guía"
+    },
+    {
+      "step": 74,
+      "from": "Nuevo examen",
+      "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
+    },
+    {
+      "step": 81,
+      "from": "Guía",
+      "to": "Ver guía"
+    },
+    {
+      "step": 84,
+      "from": "Nuevo examen",
+      "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
+    },
+    {
+      "step": 91,
+      "from": "Guía",
+      "to": "Ver guía"
+    },
+    {
+      "step": 94,
+      "from": "Nuevo examen",
+      "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
+    },
+    {
+      "step": 101,
+      "from": "Guía",
+      "to": "Ver guía"
+    },
+    {
+      "step": 104,
+      "from": "Nuevo examen",
+      "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
+    },
+    {
+      "step": 111,
+      "from": "Guía",
+      "to": "Ver guía"
+    },
+    {
+      "step": 114,
+      "from": "Nuevo examen",
+      "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
+    }
+  ],
+  "firstStops": [
+    "button:Ver guía",
+    "button:Idioma: EN",
+    "button:Nuevo examen",
+    "button:ProtocoloAlcance y límitesEn estudio. No diagnostica.",
+    "button:P. Tschandl · CC BY-SA 4.0Imagen de referenciaExplorar el es",
+    "button:Escritorio",
+    "button:Examinar",
+    "button:Revisión",
+    "button:Guía",
+    "button:Ver guía",
+    "button:Idioma: EN",
+    "button:Nuevo examen",
+    "button:ProtocoloAlcance y límitesEn estudio. No diagnostica.",
+    "button:P. Tschandl · CC BY-SA 4.0Imagen de referenciaExplorar el es",
+    "button:Escritorio"
+  ]
+}

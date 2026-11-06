@@ -1,0 +1,8 @@
+{
+  "view": "modelDetails",
+  "route": "/resultado",
+  "reducedMotionEmulated": true,
+  "longDeclaredTransitions": [],
+  "animationsSampled": 0,
+  "offenders": []
+}

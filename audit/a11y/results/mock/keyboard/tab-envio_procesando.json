@@ -1,0 +1,113 @@
+{
+  "route": "/envio/procesando",
+  "tabPresses": 120,
+  "reachedBrowserOrEnd": true,
+  "uniqueStops": 6,
+  "trapCandidates": [],
+  "invisibleFocus": [],
+  "obscuredFocus": [],
+  "backwardJumps": [
+    {
+      "step": 8,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 15,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 22,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 29,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 36,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 43,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 50,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 57,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 64,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 71,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 78,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 85,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 92,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 99,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 106,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 113,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 120,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    }
+  ],
+  "firstStops": [
+    "button:Volver",
+    "button:Ver guía",
+    "button:Idioma: EN",
+    "button:Sitio del cuerpoSin registrar",
+    "button:Contexto clínico opcionalEdad, duración, síntomas y antecede",
+    "button:Continuar a la imagen",
+    "button:Volver",
+    "button:Ver guía",
+    "button:Idioma: EN",
+    "button:Sitio del cuerpoSin registrar",
+    "button:Contexto clínico opcionalEdad, duración, síntomas y antecede",
+    "button:Continuar a la imagen",
+    "button:Volver",
+    "button:Ver guía",
+    "button:Idioma: EN"
+  ]
+}

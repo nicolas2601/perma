@@ -1,0 +1,8 @@
+{
+  "view": "exportOptions",
+  "route": "/revision/exportar",
+  "reducedMotionEmulated": true,
+  "longDeclaredTransitions": [],
+  "animationsSampled": 0,
+  "offenders": []
+}

@@ -1,0 +1,123 @@
+{
+  "route": "/guia",
+  "tabPresses": 120,
+  "reachedBrowserOrEnd": true,
+  "uniqueStops": 5,
+  "trapCandidates": [],
+  "invisibleFocus": [],
+  "obscuredFocus": [],
+  "backwardJumps": [
+    {
+      "step": 7,
+      "from": "Tratamiento de datosAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 13,
+      "from": "Tratamiento de datosAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 19,
+      "from": "Tratamiento de datosAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 25,
+      "from": "Tratamiento de datosAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 31,
+      "from": "Tratamiento de datosAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 37,
+      "from": "Tratamiento de datosAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 43,
+      "from": "Tratamiento de datosAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 49,
+      "from": "Tratamiento de datosAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 55,
+      "from": "Tratamiento de datosAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 61,
+      "from": "Tratamiento de datosAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 67,
+      "from": "Tratamiento de datosAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 73,
+      "from": "Tratamiento de datosAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 79,
+      "from": "Tratamiento de datosAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 85,
+      "from": "Tratamiento de datosAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 91,
+      "from": "Tratamiento de datosAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 97,
+      "from": "Tratamiento de datosAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 103,
+      "from": "Tratamiento de datosAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 109,
+      "from": "Tratamiento de datosAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 115,
+      "from": "Tratamiento de datosAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    }
+  ],
+  "firstStops": [
+    "button:Volver al espacio de trabajo",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "a:Identidad del modelo y de la inferenciaAbrir detalles",
+    "a:Tratamiento de datosAbrir detalles",
+    "button:Volver al espacio de trabajo",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "a:Identidad del modelo y de la inferenciaAbrir detalles",
+    "a:Tratamiento de datosAbrir detalles",
+    "button:Volver al espacio de trabajo",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "a:Identidad del modelo y de la inferenciaAbrir detalles",
+    "a:Tratamiento de datosAbrir detalles"
+  ]
+}

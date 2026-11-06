@@ -1,0 +1,113 @@
+{
+  "route": "/guia",
+  "tabPresses": 120,
+  "reachedBrowserOrEnd": true,
+  "uniqueStops": 6,
+  "trapCandidates": [],
+  "invisibleFocus": [],
+  "obscuredFocus": [],
+  "backwardJumps": [
+    {
+      "step": 8,
+      "from": "Transformación de tono solo para investigaciónAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 15,
+      "from": "Transformación de tono solo para investigaciónAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 22,
+      "from": "Transformación de tono solo para investigaciónAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 29,
+      "from": "Transformación de tono solo para investigaciónAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 36,
+      "from": "Transformación de tono solo para investigaciónAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 43,
+      "from": "Transformación de tono solo para investigaciónAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 50,
+      "from": "Transformación de tono solo para investigaciónAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 57,
+      "from": "Transformación de tono solo para investigaciónAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 64,
+      "from": "Transformación de tono solo para investigaciónAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 71,
+      "from": "Transformación de tono solo para investigaciónAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 78,
+      "from": "Transformación de tono solo para investigaciónAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 85,
+      "from": "Transformación de tono solo para investigaciónAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 92,
+      "from": "Transformación de tono solo para investigaciónAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 99,
+      "from": "Transformación de tono solo para investigaciónAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 106,
+      "from": "Transformación de tono solo para investigaciónAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 113,
+      "from": "Transformación de tono solo para investigaciónAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 120,
+      "from": "Transformación de tono solo para investigaciónAbrir detalles",
+      "to": "Volver al espacio de trabajo"
+    }
+  ],
+  "firstStops": [
+    "button:Volver al espacio de trabajo",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "a:Identidad del modelo y de la inferenciaAbrir detalles",
+    "a:Tratamiento de datosAbrir detalles",
+    "a:Transformación de tono solo para investigaciónAbrir detalles",
+    "button:Volver al espacio de trabajo",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "a:Identidad del modelo y de la inferenciaAbrir detalles",
+    "a:Tratamiento de datosAbrir detalles",
+    "a:Transformación de tono solo para investigaciónAbrir detalles",
+    "button:Volver al espacio de trabajo",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés"
+  ]
+}

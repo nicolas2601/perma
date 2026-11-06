@@ -1,0 +1,46 @@
+{
+  "view": "calibration",
+  "nodeId": "141:3455",
+  "phase": "06 · ABCDE",
+  "manifestState": "abcde",
+  "requestedUrl": "/examen/calibracion",
+  "finalPath": "/examen/calibracion",
+  "httpStatus": 200,
+  "viewport": "w390",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "Mis observaciones · Escala"
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [],
+  "targets": {
+    "total": 4,
+    "under24": [],
+    "under44Count": 0
+  },
+  "contrast": {
+    "checked": 11,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "liveRegions": [],
+  "pageErrors": [],
+  "screenshot": "screenshots/mock/calibration-w390.png"
+}

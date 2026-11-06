@@ -12,3 +12,10 @@ dist-e2e
 pnpm-lock.yaml
 pnpm-workspace.yaml
 .claude/worktrees
+audit/**/test-results
+audit/**/playwright-report
+audit/**/screenshots
+audit/visual/shots
+audit/visual/figma
+audit/perf/lh
+test-results

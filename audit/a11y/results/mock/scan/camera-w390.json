@@ -1,0 +1,46 @@
+{
+  "view": "camera",
+  "nodeId": "141:2577",
+  "phase": "02 · Image",
+  "manifestState": "capturing",
+  "requestedUrl": "/imagen/camara",
+  "finalPath": "/contexto",
+  "httpStatus": 200,
+  "viewport": "w390",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "Dé contexto a la imagen."
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [],
+  "targets": {
+    "total": 6,
+    "under24": [],
+    "under44Count": 0
+  },
+  "contrast": {
+    "checked": 11,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "liveRegions": [],
+  "pageErrors": [],
+  "screenshot": "screenshots/mock/camera-w390.png"
+}

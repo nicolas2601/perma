@@ -1,0 +1,8 @@
+{
+  "view": "contractError",
+  "route": "/recuperacion/respuesta",
+  "reducedMotionEmulated": true,
+  "longDeclaredTransitions": [],
+  "animationsSampled": 0,
+  "offenders": []
+}

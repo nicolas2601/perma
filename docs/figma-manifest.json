@@ -8,7 +8,7 @@
    "view": "home",
    "route": "/",
    "state": "idle",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -17,7 +17,7 @@
    "view": "scope",
    "route": "/",
    "state": "idle",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -26,7 +26,7 @@
    "view": "discard",
    "route": "/",
    "state": "idle",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -35,7 +35,7 @@
    "view": "context",
    "route": "/contexto",
    "state": "idle",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -44,7 +44,7 @@
    "view": "contextDetails",
    "route": "/contexto",
    "state": "idle",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -53,7 +53,7 @@
    "view": "siteSheet",
    "route": "/contexto",
    "state": "idle",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -62,7 +62,7 @@
    "view": "capture",
    "route": "/imagen",
    "state": "contextSet",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -71,7 +71,7 @@
    "view": "cameraPrimer",
    "route": "/imagen",
    "state": "contextSet",
-   "test": null,
+   "test": "tests/e2e/flows/camera-privacy.spec.ts",
    "reason": null
   },
   {
@@ -80,7 +80,7 @@
    "view": "camera",
    "route": "/imagen/camara",
    "state": "capturing",
-   "test": null,
+   "test": "tests/e2e/flows/camera-privacy.spec.ts",
    "reason": null
   },
   {
@@ -89,7 +89,7 @@
    "view": "gallery",
    "route": "/imagen/muestras",
    "state": "capturing",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -98,7 +98,7 @@
    "view": "quality",
    "route": "/imagen/calidad",
    "state": "reviewing",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -107,7 +107,7 @@
    "view": "qualityIssue",
    "route": "/imagen/calidad",
    "state": "reviewing",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -116,7 +116,7 @@
    "view": "fileError",
    "route": "/recuperacion/archivo",
    "state": "recoverFile",
-   "test": null,
+   "test": "tests/e2e/flows/recovery.spec.ts",
    "reason": null
   },
   {
@@ -125,7 +125,7 @@
    "view": "exportError",
    "route": "/recuperacion/exportacion",
    "state": "recoverExport",
-   "test": null,
+   "test": "tests/e2e/flows/recovery.spec.ts",
    "reason": null
   },
   {
@@ -134,7 +134,7 @@
    "view": "permission",
    "route": "/recuperacion/permiso",
    "state": "recoverPermission",
-   "test": null,
+   "test": "tests/e2e/flows/recovery.spec.ts",
    "reason": null
   },
   {
@@ -143,7 +143,7 @@
    "view": "offline",
    "route": "/recuperacion/sin-conexion",
    "state": "recoverOffline",
-   "test": null,
+   "test": "tests/e2e/flows/recovery.spec.ts",
    "reason": null
   },
   {
@@ -152,7 +152,7 @@
    "view": "error",
    "route": "/recuperacion/servidor",
    "state": "recoverServer",
-   "test": null,
+   "test": "tests/e2e/flows/recovery.spec.ts",
    "reason": null
   },
   {
@@ -161,7 +161,7 @@
    "view": "timeout",
    "route": "/recuperacion/tiempo",
    "state": "recoverTimeout",
-   "test": null,
+   "test": "tests/e2e/flows/recovery.spec.ts",
    "reason": null
   },
   {
@@ -170,7 +170,7 @@
    "view": "contractError",
    "route": "/recuperacion/respuesta",
    "state": "recoverContract",
-   "test": null,
+   "test": "tests/e2e/flows/recovery.spec.ts",
    "reason": null
   },
   {
@@ -179,7 +179,7 @@
    "view": "rateLimit",
    "route": "/recuperacion/limite",
    "state": "recoverRateLimit",
-   "test": null,
+   "test": "tests/e2e/flows/recovery.spec.ts",
    "reason": null
   },
   {
@@ -188,7 +188,7 @@
    "view": "consent",
    "route": "/envio",
    "state": "consenting",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -197,7 +197,7 @@
    "view": "processing",
    "route": "/envio/procesando",
    "state": "processing",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -206,7 +206,7 @@
    "view": "stopWaiting",
    "route": "/envio/procesando",
    "state": "processing",
-   "test": null,
+   "test": "tests/e2e/flows/stop-wait.spec.ts",
    "reason": null
   },
   {
@@ -215,7 +215,7 @@
    "view": "result",
    "route": "/resultado",
    "state": "result",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -224,7 +224,7 @@
    "view": "classes",
    "route": "/resultado/clases",
    "state": "result",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -233,7 +233,7 @@
    "view": "classDetail",
    "route": "/resultado/clases/:clase",
    "state": "result",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -242,7 +242,7 @@
    "view": "modelDetails",
    "route": "/resultado",
    "state": "result",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -251,7 +251,7 @@
    "view": "viewer",
    "route": "/inspeccion?tab=imagen",
    "state": "inspecting",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -260,7 +260,7 @@
    "view": "original",
    "route": "/inspeccion/original",
    "state": "inspecting",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -269,7 +269,7 @@
    "view": "zoom",
    "route": "/inspeccion/zoom",
    "state": "inspecting",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -278,7 +278,7 @@
    "view": "toolSheet",
    "route": "/inspeccion",
    "state": "inspecting",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -287,7 +287,7 @@
    "view": "abcde",
    "route": "/examen/abcde",
    "state": "abcde",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -296,7 +296,7 @@
    "view": "abcdeB",
    "route": "/examen/abcde?criterio=b",
    "state": "abcde",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -305,7 +305,7 @@
    "view": "abcdeC",
    "route": "/examen/abcde?criterio=c",
    "state": "abcde",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -314,7 +314,7 @@
    "view": "abcdeD",
    "route": "/examen/abcde?criterio=d",
    "state": "abcde",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -323,7 +323,7 @@
    "view": "abcdeE",
    "route": "/examen/abcde?criterio=e",
    "state": "abcde",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -332,7 +332,7 @@
    "view": "calibration",
    "route": "/examen/calibracion",
    "state": "abcde",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -341,7 +341,7 @@
    "view": "calibrationReady",
    "route": "/examen/calibracion/lista",
    "state": "abcde",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -350,7 +350,7 @@
    "view": "prior",
    "route": "/examen/previo",
    "state": "abcde",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -359,7 +359,7 @@
    "view": "compare",
    "route": "/examen/comparar",
    "state": "compare",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -368,7 +368,7 @@
    "view": "notesSheet",
    "route": "/examen/comparar",
    "state": "compare",
-   "test": null,
+   "test": "tests/e2e/flows/journey.spec.ts",
    "reason": null
   },
   {
@@ -377,7 +377,7 @@
    "view": "summary",
    "route": "/revision",
    "state": "exporting",
-   "test": null,
+   "test": "tests/e2e/flows/export-ack.spec.ts",
    "reason": null
   },
   {
@@ -386,7 +386,7 @@
    "view": "export",
    "route": "/revision/exportar",
    "state": "exporting",
-   "test": null,
+   "test": "tests/e2e/flows/export-ack.spec.ts",
    "reason": null
   },
   {
@@ -395,7 +395,7 @@
    "view": "exportOptions",
    "route": "/revision/exportar",
    "state": "exporting",
-   "test": null,
+   "test": "tests/e2e/flows/export-ack.spec.ts",
    "reason": null
   },
   {
@@ -404,7 +404,7 @@
    "view": "exportDone",
    "route": "/revision/exportada",
    "state": "exported",
-   "test": null,
+   "test": "tests/e2e/flows/export-ack.spec.ts",
    "reason": null
   },
   {
@@ -413,7 +413,7 @@
    "view": "guide",
    "route": "/guia",
    "state": "(any)",
-   "test": null,
+   "test": "tests/unit/features-b (copy and routes); a11y and visual audits",
    "reason": null
   },
   {
@@ -422,7 +422,7 @@
    "view": "privacy",
    "route": "/guia/privacidad",
    "state": "(any)",
-   "test": null,
+   "test": "tests/unit/features-b (copy and routes); a11y and visual audits",
    "reason": null
   },
   {
@@ -432,7 +432,7 @@
    "route": "/investigacion/tono",
    "state": "(any)",
    "test": null,
-   "reason": null
+   "reason": "Dev-only research route (devOnly); excluded from production, never shipped."
   }
  ],
  "extra": [

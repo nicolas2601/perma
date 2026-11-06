@@ -1,0 +1,78 @@
+{
+  "route": "/inspeccion",
+  "tabPresses": 120,
+  "reachedBrowserOrEnd": true,
+  "uniqueStops": 10,
+  "trapCandidates": [],
+  "invisibleFocus": [],
+  "obscuredFocus": [],
+  "backwardJumps": [
+    {
+      "step": 12,
+      "from": "Registrar en ABCDE",
+      "to": "Volver"
+    },
+    {
+      "step": 23,
+      "from": "Registrar en ABCDE",
+      "to": "Volver"
+    },
+    {
+      "step": 34,
+      "from": "Registrar en ABCDE",
+      "to": "Volver"
+    },
+    {
+      "step": 45,
+      "from": "Registrar en ABCDE",
+      "to": "Volver"
+    },
+    {
+      "step": 56,
+      "from": "Registrar en ABCDE",
+      "to": "Volver"
+    },
+    {
+      "step": 67,
+      "from": "Registrar en ABCDE",
+      "to": "Volver"
+    },
+    {
+      "step": 78,
+      "from": "Registrar en ABCDE",
+      "to": "Volver"
+    },
+    {
+      "step": 89,
+      "from": "Registrar en ABCDE",
+      "to": "Volver"
+    },
+    {
+      "step": 100,
+      "from": "Registrar en ABCDE",
+      "to": "Volver"
+    },
+    {
+      "step": 111,
+      "from": "Registrar en ABCDE",
+      "to": "Volver"
+    }
+  ],
+  "firstStops": [
+    "button:Volver",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "button:Imagen",
+    "div:Mire más de cerca.Referencia pública · Color originalP. Tsch",
+    "button:Ajustar",
+    "button:Ampliar",
+    "button:Capas",
+    "button:Info",
+    "button:Registrar en ABCDE",
+    "button:Volver",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "button:Imagen",
+    "div:Mire más de cerca.Referencia pública · Color originalP. Tsch"
+  ]
+}

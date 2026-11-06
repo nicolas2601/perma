@@ -1,0 +1,60 @@
+{
+  "view": "privacy",
+  "nodeId": "141:3841",
+  "phase": "09 · Reference",
+  "manifestState": "(any)",
+  "requestedUrl": "/guia/privacidad",
+  "finalPath": "/guia/privacidad",
+  "httpStatus": 200,
+  "viewport": "w320",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "Referencia · Tratamiento de datos"
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [
+    {
+      "id": "scrollable-region-focusable",
+      "impact": "serious",
+      "help": "Scrollable region must have keyboard access",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/scrollable-region-focusable?application=playwright",
+      "nodes": 1,
+      "sampleTargets": [
+        ".min-h-0"
+      ],
+      "sampleSummary": "Fix any of the following: Element should have focusable content Element should be focusable"
+    }
+  ],
+  "targets": {
+    "total": 4,
+    "under24": [],
+    "under44Count": 0
+  },
+  "contrast": {
+    "checked": 19,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 320,
+    "scrollWidth": 320,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 320,
+    "scrollWidth": 376,
+    "overflowPx": 56,
+    "clipped": [
+      "button:EN"
+    ]
+  },
+  "liveRegions": [],
+  "pageErrors": [],
+  "screenshot": "screenshots/mock/privacy-w320.png"
+}

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import type { Locale } from '@/core/i18n/contract';
 import { Button } from '@/ui/Button';
 import { copy, type PwaCopyKey } from './copy';
@@ -11,20 +12,51 @@ export interface UpdatePromptProps {
 }
 
 const DEFAULT_LOCALE: Locale = 'es';
+const OFFLINE_NOTICE_MS = 6000;
+const BANNER_CLASS =
+  'fixed inset-x-3 top-[calc(env(safe-area-inset-top)+8px)] z-50 flex flex-col gap-2 rounded-tile border border-solid border-line bg-surface p-3 text-label text-ink';
+
+function useOnline(): boolean {
+  const [online, setOnline] = useState(() => navigator.onLine);
+  useEffect(() => {
+    const update = () => setOnline(navigator.onLine);
+    window.addEventListener('online', update);
+    window.addEventListener('offline', update);
+    return () => {
+      window.removeEventListener('online', update);
+      window.removeEventListener('offline', update);
+    };
+  }, []);
+  return online;
+}
 
 export function UpdatePrompt({ canReload, locale = DEFAULT_LOCALE }: UpdatePromptProps) {
   const update = useAppUpdate({ canReload });
   const text = copy[locale];
+  const { phase, dismissOffline } = update;
+  useEffect(() => {
+    if (phase !== 'offline-ready') return undefined;
+    const timer = setTimeout(dismissOffline, OFFLINE_NOTICE_MS);
+    return () => clearTimeout(timer);
+  }, [phase, dismissOffline]);
 
-  if (update.phase === 'hidden') return null;
+  const online = useOnline();
+  if (update.phase === 'hidden' && online) return null;
 
+  if (update.phase === 'hidden') {
+    return (
+      <section role="status" aria-label={text.regionLabel} data-phase="offline" className={BANNER_CLASS}>
+        <p className="m-0">{text.offlineReady}</p>
+      </section>
+    );
+  }
   const message = messageFor(update.phase, text);
   return (
     <section
       role="status"
       aria-label={text.regionLabel}
       data-phase={update.phase}
-      className="fixed inset-x-3 bottom-3 z-50 flex flex-col gap-2 rounded-tile border border-solid border-line bg-surface p-3 text-label text-ink"
+      className={BANNER_CLASS}
     >
       <p className="m-0">{message}</p>
       {update.phase === 'offline-ready' ? (

@@ -56,6 +56,16 @@ function isImage(value: unknown): boolean {
   );
 }
 
+function isResult(value: unknown): boolean {
+  if (value === null) return true;
+  if (!isObject(value) || !isObject(value.scores)) return false;
+  return (
+    oneOf(['live', 'mock'], value.source) &&
+    typeof value.model === 'string' &&
+    Object.values(value.scores).every((score) => typeof score === 'number' && Number.isFinite(score))
+  );
+}
+
 /**
  * Validates whatever the storage returned. Unknown schema versions and corrupt
  * payloads yield null, so the app starts clean instead of rendering partial data.
@@ -65,5 +75,6 @@ export function parseStoredExam(input: unknown): StoredExam | null {
   if (!isObject(input)) return null;
   if (input.schemaVersion !== EXAM_SCHEMA_VERSION) return null;
   if (!isRecord(input.record) || !isImage(input.image)) return null;
+  if (input.result !== undefined && !isResult(input.result)) return null;
   return input as unknown as StoredExam;
 }

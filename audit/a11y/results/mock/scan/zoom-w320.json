@@ -1,0 +1,50 @@
+{
+  "view": "zoom",
+  "nodeId": "141:3199",
+  "phase": "05 · Inspection",
+  "manifestState": "inspecting",
+  "requestedUrl": "/inspeccion/zoom",
+  "finalPath": "/inspeccion/zoom",
+  "httpStatus": 200,
+  "viewport": "w320",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "Ampliar"
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [],
+  "targets": {
+    "total": 5,
+    "under24": [],
+    "under44Count": 0
+  },
+  "contrast": {
+    "checked": 8,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 320,
+    "scrollWidth": 320,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 320,
+    "scrollWidth": 397,
+    "overflowPx": 77,
+    "clipped": [
+      "button:EN",
+      "button:Volver a la imagen",
+      "span:Volver a la imagen"
+    ]
+  },
+  "liveRegions": [],
+  "pageErrors": [],
+  "screenshot": "screenshots/mock/zoom-w320.png"
+}

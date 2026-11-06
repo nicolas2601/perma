@@ -1,0 +1,8 @@
+{
+  "view": "qualityIssue",
+  "route": "/imagen/calidad",
+  "reducedMotionEmulated": true,
+  "longDeclaredTransitions": [],
+  "animationsSampled": 0,
+  "offenders": []
+}

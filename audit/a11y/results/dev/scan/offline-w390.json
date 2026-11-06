@@ -1,0 +1,52 @@
+{
+  "view": "offline",
+  "nodeId": "141:2745",
+  "phase": "08 · Recovery",
+  "manifestState": "recoverOffline",
+  "requestedUrl": "/recuperacion/sin-conexion",
+  "finalPath": "/recuperacion/sin-conexion",
+  "httpStatus": 200,
+  "viewport": "w390",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "Sin conexión para el análisis."
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [],
+  "targets": {
+    "total": 4,
+    "under24": [],
+    "under44Count": 0
+  },
+  "contrast": {
+    "checked": 9,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "liveRegions": [
+    {
+      "role": "alert",
+      "live": null,
+      "text": "Sin conexión para el análisis."
+    }
+  ],
+  "pageErrors": [],
+  "screenshot": "screenshots/dev/offline-w390.png"
+}

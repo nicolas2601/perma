@@ -1,0 +1,88 @@
+{
+  "route": "/resultado/clases",
+  "tabPresses": 120,
+  "reachedBrowserOrEnd": true,
+  "uniqueStops": 18,
+  "trapCandidates": [],
+  "invisibleFocus": [],
+  "obscuredFocus": [],
+  "backwardJumps": [
+    {
+      "step": 16,
+      "from": "Lesión vascular (vasc)0,030,001,00",
+      "to": "Dermatofibroma (df)0,020,001,00"
+    },
+    {
+      "step": 20,
+      "from": "Volver a imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 35,
+      "from": "Lesión vascular (vasc)0,030,001,00",
+      "to": "Dermatofibroma (df)0,020,001,00"
+    },
+    {
+      "step": 39,
+      "from": "Volver a imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 54,
+      "from": "Lesión vascular (vasc)0,030,001,00",
+      "to": "Dermatofibroma (df)0,020,001,00"
+    },
+    {
+      "step": 58,
+      "from": "Volver a imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 73,
+      "from": "Lesión vascular (vasc)0,030,001,00",
+      "to": "Dermatofibroma (df)0,020,001,00"
+    },
+    {
+      "step": 77,
+      "from": "Volver a imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 92,
+      "from": "Lesión vascular (vasc)0,030,001,00",
+      "to": "Dermatofibroma (df)0,020,001,00"
+    },
+    {
+      "step": 96,
+      "from": "Volver a imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 111,
+      "from": "Lesión vascular (vasc)0,030,001,00",
+      "to": "Dermatofibroma (df)0,020,001,00"
+    },
+    {
+      "step": 115,
+      "from": "Volver a imagen",
+      "to": "Volver"
+    }
+  ],
+  "firstStops": [
+    "button:Volver",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "div:Nevo melanocítico (nv)0,610,001,00",
+    "a:Nevo melanocítico (nv)0,610,001,00",
+    "div:Queratosis benigna (bkl)0,150,001,00",
+    "a:Queratosis benigna (bkl)0,150,001,00",
+    "div:Melanoma (mel)0,090,001,00",
+    "a:Melanoma (mel)0,090,001,00",
+    "div:Carcinoma basocelular (bcc)0,060,001,00",
+    "a:Carcinoma basocelular (bcc)0,060,001,00",
+    "div:Queratosis actínica / carcinoma intraepidérmico (akiec)0,040",
+    "a:Queratosis actínica / carcinoma intraepidérmico (akiec)0,040",
+    "div:Lesión vascular (vasc)0,030,001,00",
+    "a:Lesión vascular (vasc)0,030,001,00"
+  ]
+}

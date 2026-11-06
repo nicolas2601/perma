@@ -1,0 +1,61 @@
+{
+  "view": "exportOptions",
+  "nodeId": "141:3760",
+  "phase": "07 · Export",
+  "manifestState": "exporting",
+  "requestedUrl": "/revision/exportar",
+  "finalPath": "/revision/exportar",
+  "httpStatus": 200,
+  "viewport": "w320",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "Revisión · Exportar"
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [],
+  "targets": {
+    "total": 5,
+    "under24": [
+      {
+        "selector": "input:",
+        "width": 16.6,
+        "height": 20,
+        "spacingExempt": false
+      }
+    ],
+    "under44Count": 1
+  },
+  "contrast": {
+    "checked": 13,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 320,
+    "scrollWidth": 320,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 320,
+    "scrollWidth": 376,
+    "overflowPx": 56,
+    "clipped": [
+      "button:EN"
+    ]
+  },
+  "liveRegions": [
+    {
+      "role": "status",
+      "live": "polite",
+      "text": "iConfirme la revisión para habilitar la descarga."
+    }
+  ],
+  "pageErrors": [],
+  "screenshot": "screenshots/mock/exportOptions-w320.png"
+}

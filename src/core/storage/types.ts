@@ -1,3 +1,4 @@
+import type { InferenceResult } from '@/core/inference/types';
 export type AbcdeCriterion = 'A' | 'B' | 'C' | 'D' | 'E';
 
 export interface ExamRecord {
@@ -29,6 +30,8 @@ export interface StoredExam {
   schemaVersion: typeof EXAM_SCHEMA_VERSION;
   record: ExamRecord;
   image: StoredImage | null;
+  /** Last experimental model output (raw scores, source label). Absent in records saved before it existed. */
+  result?: InferenceResult | null;
 }
 
 /** Persistence port. Implementations: IndexedDB (idb) and an in-memory fallback. */
