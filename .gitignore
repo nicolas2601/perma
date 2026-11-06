@@ -7,3 +7,7 @@ dev-dist
 playwright-report
 test-results
 .DS_Store
+dist-e2e
+.lighthouseci
+pnpm-lock.yaml
+pnpm-workspace.yaml

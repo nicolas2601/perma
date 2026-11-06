@@ -1,0 +1,156 @@
+export type SystemLocale = 'es' | 'en';
+
+export type SystemCopy = {
+  title: string;
+  languageLabel: string;
+  navLabel: string;
+  noticeLabel: string;
+  notice: string;
+  sectionButtons: string;
+  sectionCards: string;
+  sectionTabs: string;
+  sectionAccordion: string;
+  sectionSheet: string;
+  sectionNav: string;
+  sectionScores: string;
+  sectionFeedback: string;
+  variants: { primary: string; secondary: string; quiet: string; danger: string };
+  states: { default: string; pressed: string; disabled: string; loading: string };
+  iconLabel: string;
+  focusDemo: string;
+  badgeSimulated: string;
+  bentoTitle: string;
+  bentoBody: string;
+  protocolTitle: string;
+  protocolBody: string;
+  tabsLabel: string;
+  tabs: { image: string; model: string; notes: string };
+  tabImageBody: string;
+  tabModelBody: string;
+  tabNotesBody: string;
+  abcdeLabel: string;
+  abcdeStatus: string;
+  criteria: { letter: string; title: string }[];
+  openSheet: string;
+  sheetTitle: string;
+  sheetBody: string;
+  closeSheet: string;
+  navItems: { escritorio: string; examinar: string; revision: string; guia: string };
+  scoreLabel: (index: number) => string;
+  scoreAxis: string;
+  statusDemo: string;
+  statusDone: string;
+  dropLabel: string;
+  dropHint: string;
+  dropButton: string;
+  dropReceived: (count: number) => string;
+  loadingDemo: string;
+};
+
+const ES: SystemCopy = {
+  title: 'Sistema PERMA',
+  languageLabel: 'Idioma',
+  navLabel: 'Navegación principal',
+  noticeLabel: 'Aviso del prototipo',
+  notice: 'Prototipo experimental de investigación. Los puntajes no son probabilidades clínicas. No diagnostica.',
+  sectionButtons: 'Botones',
+  sectionCards: 'Tarjetas',
+  sectionTabs: 'Vistas',
+  sectionAccordion: 'Criterios ABCDE',
+  sectionSheet: 'Hoja inferior',
+  sectionNav: 'Navegación',
+  sectionScores: 'Puntajes crudos',
+  sectionFeedback: 'Estado y archivo',
+  variants: { primary: 'Principal', secondary: 'Secundario', quiet: 'Discreto', danger: 'Peligro' },
+  states: { default: 'Reposo', pressed: 'Presionado', disabled: 'Deshabilitado', loading: 'Cargando' },
+  iconLabel: 'Opciones de la imagen',
+  focusDemo: 'Foco',
+  badgeSimulated: 'Modelo simulado',
+  bentoTitle: 'Prepare una imagen.',
+  bentoBody: 'Registre el contexto y sus observaciones.',
+  protocolTitle: 'Protocolo',
+  protocolBody: 'Alcance y límites',
+  tabsLabel: 'Vistas de la imagen',
+  tabs: { image: 'Imagen', model: 'Salida del modelo', notes: 'Mis observaciones' },
+  tabImageBody: 'Imagen de referencia sin modificar.',
+  tabModelBody: 'Puntajes crudos experimentales.',
+  tabNotesBody: 'Sus observaciones se registran aparte.',
+  abcdeLabel: 'Criterios ABCDE',
+  abcdeStatus: 'Sin evaluar',
+  criteria: [
+    { letter: 'A', title: 'Asimetría' },
+    { letter: 'B', title: 'Borde' },
+    { letter: 'C', title: 'Color' },
+    { letter: 'D', title: 'Diámetro' },
+    { letter: 'E', title: 'Evolución' },
+  ],
+  openSheet: 'Abrir hoja',
+  sheetTitle: 'Sitio del cuerpo',
+  sheetBody: 'Elija una ubicación general. No se realiza localización automática.',
+  closeSheet: 'Cerrar',
+  navItems: { escritorio: 'Escritorio', examinar: 'Examinar', revision: 'Revisión', guia: 'Guía' },
+  scoreLabel: (index) => `Puntaje ${index}`,
+  scoreAxis: 'Escala cruda 0 a 1',
+  statusDemo: 'Estado de ejemplo',
+  statusDone: 'Acción completada.',
+  dropLabel: 'Seleccione una imagen',
+  dropHint: 'Arrástrela aquí o use el botón.',
+  dropButton: 'Elegir archivo',
+  dropReceived: (count) => `Archivos recibidos: ${count}`,
+  loadingDemo: 'Cargando',
+};
+
+const EN: SystemCopy = {
+  title: 'PERMA system',
+  languageLabel: 'Language',
+  navLabel: 'Main navigation',
+  noticeLabel: 'Prototype notice',
+  notice: 'Experimental research prototype. Scores are not clinical probabilities. It does not diagnose.',
+  sectionButtons: 'Buttons',
+  sectionCards: 'Cards',
+  sectionTabs: 'Views',
+  sectionAccordion: 'ABCDE criteria',
+  sectionSheet: 'Bottom sheet',
+  sectionNav: 'Navigation',
+  sectionScores: 'Raw scores',
+  sectionFeedback: 'Status and file',
+  variants: { primary: 'Primary', secondary: 'Secondary', quiet: 'Quiet', danger: 'Danger' },
+  states: { default: 'Default', pressed: 'Pressed', disabled: 'Disabled', loading: 'Loading' },
+  iconLabel: 'Image options',
+  focusDemo: 'Focus',
+  badgeSimulated: 'Simulated model',
+  bentoTitle: 'Prepare an image.',
+  bentoBody: 'Record the context and your observations.',
+  protocolTitle: 'Protocol',
+  protocolBody: 'Scope and limits',
+  tabsLabel: 'Image views',
+  tabs: { image: 'Image', model: 'Model output', notes: 'My observations' },
+  tabImageBody: 'Unmodified reference image.',
+  tabModelBody: 'Experimental raw scores.',
+  tabNotesBody: 'Your observations are recorded separately.',
+  abcdeLabel: 'ABCDE criteria',
+  abcdeStatus: 'Not evaluated',
+  criteria: [
+    { letter: 'A', title: 'Asymmetry' },
+    { letter: 'B', title: 'Border' },
+    { letter: 'C', title: 'Color' },
+    { letter: 'D', title: 'Diameter' },
+    { letter: 'E', title: 'Evolution' },
+  ],
+  openSheet: 'Open sheet',
+  sheetTitle: 'Body site',
+  sheetBody: 'Choose a general location. No automatic localization is performed.',
+  closeSheet: 'Close',
+  navItems: { escritorio: 'Desk', examinar: 'Inspect', revision: 'Review', guia: 'Guide' },
+  scoreLabel: (index) => `Score ${index}`,
+  scoreAxis: 'Raw scale 0 to 1',
+  statusDemo: 'Example status',
+  statusDone: 'Action completed.',
+  dropLabel: 'Choose an image',
+  dropHint: 'Drag it here or use the button.',
+  dropButton: 'Choose file',
+  dropReceived: (count) => `Files received: ${count}`,
+  loadingDemo: 'Loading',
+};
+
+export const SYSTEM_COPY: Record<SystemLocale, SystemCopy> = { es: ES, en: EN };

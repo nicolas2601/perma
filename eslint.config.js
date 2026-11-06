@@ -7,5 +7,6 @@ export default tseslint.config(
   { ignores: ['dist', 'node_modules', 'fixtures', 'playwright-report', 'test-results', 'dev-dist'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
+  { files: ['scripts/**/*.{mjs,js}', '*.config.js'], languageOptions: { globals: { ...globals.node } } },
   { files: ['**/*.{ts,tsx}'], languageOptions: { globals: { ...globals.browser } }, plugins: { 'react-hooks': hooks }, rules: { ...hooks.configs.recommended.rules } },
 );

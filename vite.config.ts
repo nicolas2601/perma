@@ -18,12 +18,17 @@ export default defineConfig({
       workbox: {
         navigateFallbackDenylist: [/^\/api/],
         globPatterns: ['**/*.{js,css,html,woff2,svg,webp,avif,png}'],
+        globIgnores: ['**/geist-{cyrillic,cyrillic-ext,latin-ext,vietnamese}-*.woff2'],
         runtimeCaching: [{ urlPattern: /^\/api\//, handler: 'NetworkOnly' }],
       },
       manifest: {
         name: 'PERMA', short_name: 'PERMA', lang: 'es', display: 'standalone',
         background_color: '#f2f5f4', theme_color: '#006779', start_url: '/',
-        icons: [],
+        icons: [
+          { src: '/icons/pwa-192.png', sizes: '192x192', type: 'image/png' },
+          { src: '/icons/pwa-512.png', sizes: '512x512', type: 'image/png' },
+          { src: '/icons/pwa-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+        ],
       },
     }),
   ],

@@ -1,0 +1,8 @@
+[
+  {
+    "name": "Initial JS (entry + registerSW), gzip",
+    "path": ["dist/assets/index-*.js", "dist/registerSW.js"],
+    "limit": "170 kB",
+    "gzip": true
+  }
+]
