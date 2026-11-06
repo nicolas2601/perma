@@ -88,17 +88,17 @@ describe('rules on synthetic scenes (still frames)', () => {
     expect(settled(discOnBackground(64, 64, 12))).toBe('closer');
   });
 
-  it('content that fills the crop asks to move back', () => {
-    expect(settled(discOnBackground(64, 64, 60))).toBe('farther');
+  it('content that fills the crop never asks to move back (close-up skin photos are valid)', () => {
+    expect(settled(discOnBackground(64, 64, 60))).not.toBe('farther');
   });
 
   it('off-centre content asks to centre the area', () => {
     expect(settled(discOnBackground(34, 34, 36))).toBe('center-area');
   });
 
-  it('a high-frequency texture that fills the crop is sharp: it asks to move back, never to refocus', () => {
+  it('a high-frequency texture that fills the crop is sharp: it never asks to refocus or to move back', () => {
     const checker = mapLuma(new Float64Array(EDGE * EDGE), (_v, i) => ((i % EDGE) + Math.floor(i / EDGE)) % 2 === 0 ? 98 : 158);
-    expect(settled(checker)).toBe('farther');
+    expect(settled(checker)).toBe('none');
   });
 
   it('brightness drift between frames is not motion', () => {

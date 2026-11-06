@@ -3,6 +3,7 @@ import {
   CENTER_ON,
   CLOSER_OFF,
   CLOSER_ON,
+  FARTHER_ADVICE_ENABLED,
   FARTHER_OFF,
   FARTHER_ON,
   FOCUS_OFF,
@@ -101,7 +102,7 @@ export class RuleEngine {
       glare: this.glare.update(reading.specularFraction),
       holdStill: this.holdStill.update(this.shifts.push(reading.shift)),
       closer: this.closer.update(size),
-      farther: this.farther.update(size),
+      farther: FARTHER_ADVICE_ENABLED ? this.farther.update(size) : false,
       center: this.center.update(offset),
       blurry: focusTrigger || headSaysBlur,
     };

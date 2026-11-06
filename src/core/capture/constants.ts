@@ -68,6 +68,11 @@ export const CONTENT_TRIM_HIGH = 0.98;
 export const CLOSER_ON = 0.38;
 export const CLOSER_OFF = 0.44;
 /** Too large (cut off at the edges) asks to move back. */
+/**
+ * Off by default: dermatology photos are close-ups that legitimately fill the frame, so
+ * 'move back' advice would push users away from the lesion. The rule stays available for other uses.
+ */
+export const FARTHER_ADVICE_ENABLED = false;
 export const FARTHER_ON = 0.8;
 export const FARTHER_OFF = 0.72;
 /** Offset of the content centre from the crop centre, as a share of the crop. */
