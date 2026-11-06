@@ -3,7 +3,11 @@ import { cx } from './cx';
 
 type IconProps = { className?: string };
 
+/** A caller-supplied width/height utility wins; `size-full` only fills a container that gave no size. */
+const SIZE_CLASS = /(^|\s)(size|w|h)-/;
+
 function Svg({ className, children }: IconProps & { children: ReactNode }) {
+  const providesSize = SIZE_CLASS.test(className ?? '');
   return (
     <svg
       viewBox="0 0 24 24"
@@ -13,7 +17,7 @@ function Svg({ className, children }: IconProps & { children: ReactNode }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
-      className={cx('size-full', className)}
+      className={cx(providesSize ? undefined : 'size-full', className)}
     >
       {children}
     </svg>

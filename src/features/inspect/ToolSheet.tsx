@@ -1,8 +1,6 @@
 import type { ExamImage } from '@/core/exam/contract';
 import { Sheet } from '@/ui';
-import { useT } from './api';
-import { copy } from './copy';
-import { viewerCopy } from './viewerCopy';
+import { useT } from '@/core/i18n/I18nProvider';
 import { isReferenceImage } from './useImageSource';
 
 export type ToolName = 'layers' | 'info';
@@ -16,8 +14,8 @@ type ToolSheetProps = {
 
 /** Layers and info for the viewer. There are no overlays to toggle: the image is unmodified. */
 export function ToolSheet({ open, tool, image, onOpenChange }: ToolSheetProps) {
-  const t = useT(viewerCopy);
-  const tCommon = useT(copy);
+  const t = useT('inspect');
+  const tCommon = t;
   const isLayers = tool === 'layers';
   const reference = isReferenceImage(image);
   const sourceText = reference ? t('referenceCaption') : (image?.name ?? '');

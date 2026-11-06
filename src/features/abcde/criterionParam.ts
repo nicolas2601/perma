@@ -1,17 +1,14 @@
 import type { AbcdeCriterion } from '@/core/storage/types';
 import { CRITERIA } from './logic';
 
-/** Reads `?criterio=a..e` (case-insensitive). Anything else yields null and the page stays collapsed. */
+/** `?criterio=a..e` (case-insensitive). Anything else is ignored at the edge. */
 export function parseCriterionParam(raw: string | null): AbcdeCriterion | null {
   if (raw === null) return null;
-  const upper = raw.trim().toUpperCase();
+  const upper = raw.toUpperCase();
   return (CRITERIA as readonly string[]).includes(upper) ? (upper as AbcdeCriterion) : null;
 }
 
-export function accordionValue(criterion: AbcdeCriterion): string {
-  return `criterion-${criterion.toLowerCase()}`;
-}
-
+/** DOM id of one criterion row, used for scroll-to-criterion. */
 export function rowId(criterion: AbcdeCriterion): string {
   return `abcde-${criterion.toLowerCase()}`;
 }

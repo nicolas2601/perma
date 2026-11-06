@@ -1,8 +1,7 @@
 import type { ReactNode } from 'react';
 import { IconButton, Notice, cx } from '@/ui';
 import { Link, useNavigate } from '@/app/router';
-import { setLocale, useLocale, useT } from './api';
-import { copy } from './copy';
+import { useI18n, useT } from '@/core/i18n/I18nProvider';
 
 type ScreenHeaderProps = {
   title: string;
@@ -39,8 +38,8 @@ export function ScreenHeader({ title, backTo, backLabel, infoTo = '/guia', infoL
 
 /** Persistent ES/EN switch. Changing language never touches the exam record or the export ack. */
 export function LanguageSwitch() {
-  const locale = useLocale();
-  const t = useT(copy);
+  const { locale, setLocale } = useI18n();
+  const t = useT('inspect');
   const nextLocale = locale === 'es' ? 'en' : 'es';
   const label = nextLocale === 'en' ? t('langSwitchToEn') : t('langSwitchToEs');
   const shown = nextLocale === 'en' ? t('langLabelEn') : t('langLabelEs');
@@ -59,7 +58,7 @@ export function LanguageSwitch() {
 
 /** Persistent experimental notice. Shown on every screen that displays model output. */
 export function ExperimentalNotice({ className }: { className?: string }) {
-  const t = useT(copy);
+  const t = useT('inspect');
   return (
     <div className={cx('w-full', className)}>
       <Notice label={t('experimentalNotice')}>{t('experimentalNotice')}</Notice>

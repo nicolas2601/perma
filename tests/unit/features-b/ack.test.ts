@@ -1,52 +1,74 @@
 import { describe, expect, it } from 'vitest';
-import { canRecordAck, isAckCurrent } from '@/features/review/ack';
-import { buildExportPayload, exportFileName } from '@/features/review/exportRecord';
-import { initialExamState, mockResult, reduceExam } from '@/features/inspect/fakeStore';
+import type { ExamState } from '@/core/exam/contract';
+import { createInitialState, isAckValid } from '@/core/exam/state';
+import { buildFilename } from '@/core/export/exportRecord';
+import { fixedClock, makeImage, makeResult, run } from '../exam/fixtures';
 
-/** Export ack flow with the local fake reducer: ack, then edits invalidate it. */
+const clock = fixedClock();
+
+/** Reaches `exporting` through the real reducer: idle -> result -> compare -> summary. */
+function toExporting(): ExamState {
+  return run(
+    createInitialState(clock),
+    clock,
+    { type: 'SET_SITE', site: 'face' },
+    { type: 'START_CAPTURE' },
+    { type: 'IMAGE_LOADED', image: makeImage({ origin: 'sample' }) },
+    { type: 'CONFIRM_IMAGE' },
+    { type: 'CONSENT', value: true },
+    { type: 'SEND' },
+    { type: 'RESULT_OK', result: makeResult('mock') },
+    { type: 'OPEN_INSPECT' },
+    { type: 'OPEN_ABCDE' },
+    { type: 'OPEN_COMPARE' },
+    { type: 'OPEN_EXPORT' },
+  );
+}
+
+/** Export acknowledgement through the real reducer: ack is current only for the record it was given for. */
 describe('export acknowledgement', () => {
   it('is not current before any export', () => {
-    const state = initialExamState(true);
-    expect(isAckCurrent(state.ackRegistryVersion, state.record)).toBe(false);
+    expect(isAckValid(toExporting())).toBe(false);
   });
 
-  it('becomes current after ACK_EXPORT and stays current through no-op edits', () => {
-    let state = reduceExam(initialExamState(true), { type: 'ACK_EXPORT', format: 'json' });
-    expect(isAckCurrent(state.ackRegistryVersion, state.record)).toBe(true);
-    state = reduceExam(state, { type: 'ABCDE_SET', criterion: 'A', value: null });
-    expect(isAckCurrent(state.ackRegistryVersion, state.record)).toBe(true);
+  it('becomes current after ACK_EXPORT and stays current through a no-op ABCDE edit', () => {
+    let state = run(toExporting(), clock, { type: 'ACK_EXPORT', format: 'json' });
+    expect(state.phase).toBe('exported');
+    expect(isAckValid(state)).toBe(true);
+    state = run(state, clock, { type: 'ABCDE_SET', criterion: 'A', value: null });
+    expect(isAckValid(state)).toBe(true);
   });
 
-  it('is invalidated by an ABCDE change', () => {
-    let state = reduceExam(initialExamState(true), { type: 'ACK_EXPORT', format: 'json' });
-    state = reduceExam(state, { type: 'ABCDE_SET', criterion: 'B', value: 'regular' });
-    expect(isAckCurrent(state.ackRegistryVersion, state.record)).toBe(false);
+  it('is invalidated by a real ABCDE change', () => {
+    const state = run(
+      toExporting(),
+      clock,
+      { type: 'ACK_EXPORT', format: 'pdf' },
+      { type: 'ABCDE_SET', criterion: 'B', value: 'regular' },
+    );
+    expect(isAckValid(state)).toBe(false);
   });
 
   it('is invalidated by a note change, but not by re-saving the same note', () => {
-    let state = reduceExam(initialExamState(true), { type: 'ACK_EXPORT', format: 'json' });
-    state = reduceExam(state, { type: 'NOTE_SET', note: '' });
-    expect(isAckCurrent(state.ackRegistryVersion, state.record)).toBe(true);
-    state = reduceExam(state, { type: 'NOTE_SET', note: 'Revisión de control' });
-    expect(isAckCurrent(state.ackRegistryVersion, state.record)).toBe(false);
+    let state = run(toExporting(), clock, { type: 'ACK_EXPORT', format: 'json' });
+    state = run(state, clock, { type: 'NOTE_SET', note: '' });
+    expect(isAckValid(state)).toBe(true);
+    state = run(state, clock, { type: 'NOTE_SET', note: 'Revisión de control' });
+    expect(isAckValid(state)).toBe(false);
   });
 
-  it('is never recorded for a download that did not start', () => {
-    expect(canRecordAck(false)).toBe(false);
-    expect(canRecordAck(true)).toBe(true);
+  it('is never recorded outside the exporting phase', () => {
+    const idle = createInitialState(clock);
+    const state = run(idle, clock, { type: 'ACK_EXPORT', format: 'json' });
+    expect(state.phase).toBe('idle');
+    expect(isAckValid(state)).toBe(false);
   });
 });
 
-describe('export payload', () => {
-  it('makes unanswered criteria explicit and labels simulated output', () => {
-    const payload = buildExportPayload(initialExamState(true).record, mockResult());
-    expect(payload.manualObservations).toEqual({ A: 'unanswered', B: 'unanswered', C: 'unanswered', D: 'unanswered', E: 'unanswered' });
-    expect(payload.modelOutput?.simulated).toBe(true);
-    expect(payload.modelOutput?.label).toBe('Modelo simulado');
-  });
-
-  it('builds a file name from the record timestamp', () => {
-    const record = { ...initialExamState(false).record, createdAt: '2026-11-05T10:20:30.000Z' };
-    expect(exportFileName(record)).toBe('perma-registro-20261105102030.json');
+describe('export file name', () => {
+  it('uses the record id prefix and the export date for both formats', () => {
+    const at = new Date('2026-11-05T12:00:00.000Z');
+    expect(buildFilename('rec-1', at, 'json')).toBe('perma-rec1-2026-11-05.json');
+    expect(buildFilename('rec-1', at, 'pdf')).toBe('perma-rec1-2026-11-05.pdf');
   });
 });

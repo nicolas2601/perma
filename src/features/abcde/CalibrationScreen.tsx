@@ -1,40 +1,36 @@
 import { Button } from '@/ui';
 import { useNavigate } from '@/app/router';
+import { useT } from '@/core/i18n/I18nProvider';
 import { ActionDock, ScreenHeader } from '@/features/inspect/Chrome';
-import { copy as inspectCopy } from '@/features/inspect/copy';
-import { useT } from './api';
-import { copy } from './copy';
-import { calibrationCopy } from './calibrationCopy';
 
 /** Calibration guidance (Figma 141:3455). This prototype does not calibrate photographs. */
 export default function CalibrationScreen() {
-  const t = useT(calibrationCopy);
-  const tCommon = useT(copy);
-  const tInspect = useT(inspectCopy);
+  const t = useT('abcde');
+  const tInspect = useT('inspect');
   const navigate = useNavigate();
   return (
-    <main className="flex min-h-dvh flex-col bg-canvas">
+    <main className="flex h-dvh flex-col bg-canvas">
       <ScreenHeader
-        title={t('title')}
+        title={t('calibrationTitle')}
         backTo="/examen/abcde"
-        backLabel={tCommon('back')}
+        backLabel={t('back')}
         infoLabel={tInspect('info')}
       />
-      <div className="flex flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
-        <h2 className="m-0 text-title text-ink">{t('heading')}</h2>
-        <p className="m-0 text-body text-ink">{t('body')}</p>
+      <div className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
+        <h2 className="m-0 text-title text-ink">{t('calibrationHeading')}</h2>
+        <p className="m-0 text-body text-ink">{t('calibrationBody')}</p>
         <section className="flex flex-col gap-1.5">
-          <h3 className="m-0 text-section text-ink">{t('noRulerTitle')}</h3>
-          <p className="m-0 text-body text-muted">{t('noRulerBody')}</p>
+          <h3 className="m-0 text-section text-ink">{t('calibrationNoRulerTitle')}</h3>
+          <p className="m-0 text-body text-muted">{t('calibrationNoRulerBody')}</p>
         </section>
         <section className="flex flex-col gap-1.5">
-          <h3 className="m-0 text-section text-ink">{t('withoutTitle')}</h3>
-          <p className="m-0 text-body text-muted">{t('withoutBody')}</p>
+          <h3 className="m-0 text-section text-ink">{t('calibrationWithoutTitle')}</h3>
+          <p className="m-0 text-body text-muted">{t('calibrationWithoutBody')}</p>
         </section>
       </div>
       <ActionDock>
         <Button fullWidth onClick={() => navigate('/examen/abcde?criterio=d')}>
-          {t('action')}
+          {t('calibrationAction')}
         </Button>
       </ActionDock>
     </main>

@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { Badge, Button, Notice } from '@/ui';
 import { Link, useNavigate } from '@/app/router';
-import { useLocale, useT } from './api';
+import { useI18n, useT } from '@/core/i18n/I18nProvider';
 import { ActionDock, ExperimentalNotice, ScreenHeader } from './Chrome';
-import { copy } from './copy';
 import { ModelDetailsSheet } from './ModelDetailsSheet';
 import { ScoreCard } from './ScoreCard';
 import { rankClasses } from './classes';
@@ -12,8 +11,8 @@ import { useResultGuard } from './guards';
 const TOP_COUNT = 2;
 
 export default function ResultScreen() {
-  const t = useT(copy);
-  const locale = useLocale();
+  const t = useT('inspect');
+  const { locale } = useI18n();
   const navigate = useNavigate();
   const result = useResultGuard();
   const [modelOpen, setModelOpen] = useState(false);
@@ -21,9 +20,9 @@ export default function ResultScreen() {
   const top = rankClasses(result.scores).slice(0, TOP_COUNT);
   const simulated = result.source === 'mock';
   return (
-    <main className="flex min-h-dvh flex-col bg-canvas">
+    <main className="flex h-dvh flex-col bg-canvas">
       <ScreenHeader title={t('resultTitle')} backTo="/" backLabel={t('back')} infoLabel={t('info')} />
-      <div className="flex flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
+      <div className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
         {simulated ? (
           <div className="flex flex-col gap-2">
             <Badge tone="simulated">{t('mockBadge')}</Badge>
@@ -36,13 +35,7 @@ export default function ResultScreen() {
         </section>
         <section aria-label={t('topScores')} className="flex flex-col gap-3">
           {top.map((code) => (
-            <ScoreCard
-              key={code}
-              code={code}
-              score={result.scores[code]}
-              locale={locale}
-              to="/resultado/clases"
-            />
+            <ScoreCard key={code} code={code} score={result.scores[code]} locale={locale} to="/resultado/clases" />
           ))}
         </section>
         <section className="rounded-tile border border-solid border-white/80 bg-surface p-4">

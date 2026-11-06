@@ -1,6 +1,9 @@
 import type { AbcdeCriterion } from '@/core/storage/types';
 
-/** ABCDE copy. Option keys mirror `ABCDE_OPTIONS` in logic.ts (17 entries across the five criteria). */
+/**
+ * ABCDE, calibration and comparison-entry copy. Option keys mirror `ABCDE_OPTIONS`
+ * in logic.ts (17 entries across the five criteria). Keys are namespaced `abcde.<key>`.
+ */
 export const copy = {
   es: {
     pageTitle: 'Mis observaciones',
@@ -10,8 +13,6 @@ export const copy = {
     next: 'Ver resumen',
     navLabel: 'Criterios ABCDE',
     listLabel: 'Observaciones ABCDE',
-    chosen: 'Selección',
-    optionsLabel: 'Opciones del criterio',
     criterionA: 'Asimetría',
     criterionB: 'Borde',
     criterionC: 'Color',
@@ -39,6 +40,26 @@ export const copy = {
     'E.change-reported': 'Cambio reportado',
     'E.no-change-reported': 'No se reportan cambios',
     'E.not-evaluable': 'No evaluable',
+    calibrationTitle: 'Mis observaciones · Escala',
+    calibrationHeading: 'Una referencia antes que un número.',
+    calibrationBody:
+      'En una implementación real, establezca una longitud física conocida en el mismo plano de la lesión. Este prototipo no calibra la fotografía.',
+    calibrationNoRulerTitle: 'No dé por sentada la regla',
+    calibrationNoRulerBody:
+      'Las marcas visibles por sí solas no verifican las unidades, la perspectiva ni la geometría de adquisición.',
+    calibrationWithoutTitle: 'Sin calibración',
+    calibrationWithoutBody: 'Registre Sin medición física. No convierta píxeles a milímetros.',
+    calibrationAction: 'Ir al criterio D',
+    readyTitle: 'Mis observaciones · Referencia',
+    readyHeading: 'Lista de verificación de referencia',
+    readyIntro: 'Ejemplo de documentación, no una calibración exitosa.',
+    readyLengthTitle: 'Longitud y unidades conocidas',
+    readyLengthBody: 'Deben confirmarse la longitud de referencia y sus unidades.',
+    readyPlaneTitle: 'Mismo plano de imagen',
+    readyPlaneBody: 'La perspectiva y la distorsión no deben invalidar la referencia.',
+    readyConfirmTitle: 'Confirmación manual',
+    readyConfirmBody: 'El profesional confirma la referencia antes de presentar cualquier medición física.',
+    readyAction: 'Volver sin medir',
   },
   en: {
     pageTitle: 'My observations',
@@ -48,8 +69,6 @@ export const copy = {
     next: 'View summary',
     navLabel: 'ABCDE criteria',
     listLabel: 'ABCDE observations',
-    chosen: 'Selection',
-    optionsLabel: 'Criterion options',
     criterionA: 'Asymmetry',
     criterionB: 'Border',
     criterionC: 'Colour',
@@ -77,12 +96,31 @@ export const copy = {
     'E.change-reported': 'Change reported',
     'E.no-change-reported': 'No change reported',
     'E.not-evaluable': 'Not evaluable',
+    calibrationTitle: 'My observations · Scale',
+    calibrationHeading: 'A reference before a number.',
+    calibrationBody:
+      'In a real deployment, set a known physical length in the same plane as the lesion. This prototype does not calibrate the photograph.',
+    calibrationNoRulerTitle: 'Do not assume the ruler',
+    calibrationNoRulerBody:
+      'Visible markings alone do not verify units, perspective or acquisition geometry.',
+    calibrationWithoutTitle: 'Without calibration',
+    calibrationWithoutBody: 'Record No physical measurement. Do not convert pixels to millimetres.',
+    calibrationAction: 'Go to criterion D',
+    readyTitle: 'My observations · Reference',
+    readyHeading: 'Reference checklist',
+    readyIntro: 'Documentation example, not a successful calibration.',
+    readyLengthTitle: 'Known length and units',
+    readyLengthBody: 'The reference length and its units must be confirmed.',
+    readyPlaneTitle: 'Same image plane',
+    readyPlaneBody: 'Perspective and distortion must not invalidate the reference.',
+    readyConfirmTitle: 'Manual confirmation',
+    readyConfirmBody: 'The professional confirms the reference before reporting any physical measurement.',
+    readyAction: 'Return without measuring',
   },
 } as const;
 
-export type AbcdeCopyKey = keyof typeof copy.es;
-
-export const CRITERION_TITLE_KEY: Record<AbcdeCriterion, AbcdeCopyKey> = {
+/** Copy key of the criterion title, e.g. "A" -> "criterionA". */
+export const CRITERION_TITLE_KEY: Record<AbcdeCriterion, string> = {
   A: 'criterionA',
   B: 'criterionB',
   C: 'criterionC',
@@ -90,7 +128,7 @@ export const CRITERION_TITLE_KEY: Record<AbcdeCriterion, AbcdeCopyKey> = {
   E: 'criterionE',
 };
 
-export const CRITERION_DESC_KEY: Record<AbcdeCriterion, AbcdeCopyKey> = {
+export const CRITERION_DESC_KEY: Record<AbcdeCriterion, string> = {
   A: 'descA',
   B: 'descB',
   C: 'descC',
@@ -99,6 +137,6 @@ export const CRITERION_DESC_KEY: Record<AbcdeCriterion, AbcdeCopyKey> = {
 };
 
 /** Copy key of an option value, e.g. ("B", "regular") -> "B.regular". */
-export function optionKey(criterion: AbcdeCriterion, value: string): AbcdeCopyKey {
-  return `${criterion}.${value}` as AbcdeCopyKey;
+export function optionKey(criterion: AbcdeCriterion, value: string): string {
+  return `${criterion}.${value}`;
 }

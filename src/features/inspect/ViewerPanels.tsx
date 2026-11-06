@@ -3,18 +3,13 @@ import { Link, useNavigate } from '@/app/router';
 import type { ExamImage } from '@/core/exam/contract';
 import type { InferenceResult } from '@/core/inference/types';
 import type { ExamRecord } from '@/core/storage/types';
+import type { Locale } from '@/core/i18n/contract';
+import { useT } from '@/core/i18n/I18nProvider';
 import { CRITERIA, answeredCount, criterionValue } from '@/features/abcde/logic';
-import {
-  CRITERION_TITLE_KEY,
-  copy as abcdeCopy,
-  optionKey,
-} from '@/features/abcde/copy';
-import { useLocale, useT } from './api';
+import { CRITERION_TITLE_KEY, optionKey } from '@/features/abcde/copy';
 import { ExperimentalNotice } from './Chrome';
-import { copy } from './copy';
 import { rankClasses } from './classes';
 import { ScoreCard } from './ScoreCard';
-import { viewerCopy } from './viewerCopy';
 import { isReferenceImage, PUBLIC_REFERENCE_URL } from './useImageSource';
 import { ExpandIcon, InfoGlyphIcon, LayersIcon, PlusIcon } from './toolIcons';
 import { Tile } from './Tile';
@@ -28,7 +23,7 @@ type ImagePanelProps = {
 
 /** Unmodified image plus the floating tools. The image is never drawn over (no mask, no heatmap). */
 export function ImagePanel({ src, image, record, onOpenTool }: ImagePanelProps) {
-  const t = useT(viewerCopy);
+  const t = useT('inspect');
   const navigate = useNavigate();
   const reference = isReferenceImage(image);
   const shown = src ?? (reference ? PUBLIC_REFERENCE_URL : null);
@@ -84,19 +79,15 @@ export function ImagePanel({ src, image, record, onOpenTool }: ImagePanelProps) 
   );
 }
 
-type ViewerKey = keyof typeof viewerCopy.es;
-
-function statusLabel(record: ExamRecord, t: (key: ViewerKey) => string): string {
+function statusLabel(record: ExamRecord, t: (key: string) => string): string {
   const count = answeredCount(record);
   if (count === 0) return t('statusNone');
   if (count === CRITERIA.length) return t('statusDone');
   return t('statusPartial');
 }
 
-export function OutputPanel({ result }: { result: InferenceResult }) {
-  const locale = useLocale();
-  const t = useT(viewerCopy);
-  const tCommon = useT(copy);
+export function OutputPanel({ result, locale }: { result: InferenceResult; locale: Locale }) {
+  const t = useT('inspect');
   return (
     <div className="flex flex-col gap-3">
       <h2 className="m-0 text-title text-ink">{t('outputTitle')}</h2>
@@ -109,15 +100,15 @@ export function OutputPanel({ result }: { result: InferenceResult }) {
         ))}
       </ul>
       <Link to="/resultado" className="text-label text-accent outline-offset-2">
-        {tCommon('viewAllScores')}
+        {t('viewAllScores')}
       </Link>
     </div>
   );
 }
 
 export function ObservationsPanel({ record }: { record: ExamRecord }) {
-  const t = useT(viewerCopy);
-  const tAbcde = useT(abcdeCopy);
+  const t = useT('inspect');
+  const tAbcde = useT('abcde');
   const navigate = useNavigate();
   return (
     <div className="flex flex-col gap-3">
@@ -129,9 +120,7 @@ export function ObservationsPanel({ record }: { record: ExamRecord }) {
           return (
             <li key={criterion} className="flex items-center gap-2.5 rounded-control bg-surface px-3 py-2.5">
               <span className="text-body-medium text-accent">{criterion}</span>
-              <span className="min-w-0 flex-1 text-label text-ink">
-                {tAbcde(CRITERION_TITLE_KEY[criterion])}
-              </span>
+              <span className="min-w-0 flex-1 text-label text-ink">{tAbcde(CRITERION_TITLE_KEY[criterion])}</span>
               <span className="text-label text-muted">
                 {value === null ? tAbcde('unanswered') : tAbcde(optionKey(criterion, value))}
               </span>
