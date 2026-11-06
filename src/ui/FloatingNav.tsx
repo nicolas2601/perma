@@ -32,7 +32,7 @@ export function FloatingNav({ items, currentId, onNavigate, label }: FloatingNav
                 aria-current={current ? 'page' : undefined}
                 onClick={() => onNavigate(item.id)}
                 className={cx(
-                  'flex min-h-12 w-full flex-col items-center justify-center gap-px rounded-tile border border-solid p-1 text-header outline-offset-2 transition-[background-color,color] duration-(--motion-press) ease-out',
+                  'flex min-h-12 w-full flex-col items-center justify-center gap-px rounded-tile border border-solid p-1 text-label outline-offset-2 transition-[background-color,color] duration-(--motion-press) ease-out',
                   current
                     ? 'border-surface bg-subtle text-ink'
                     : 'border-transparent text-muted enabled:fine-hover:text-ink',
