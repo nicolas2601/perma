@@ -28,7 +28,7 @@ export const COPY = {
   reviewSession: 'Revisar la sesión',
   exportPreview: 'Vista previa de exportación',
   exportAck: 'He revisado el contenido de este registro.',
-  exportJson: 'Descargar registro JSON',
+  exportJson: 'Descargar tabla CSV',
   dismissBanner: 'Entendido',
 } as const;
 
@@ -137,4 +137,14 @@ export async function uploadJpeg(page: Page): Promise<void> {
   });
   await page.locator('input[type="file"]').setInputFiles({ name: 'lesion-test.jpg', mimeType: 'image/jpeg', buffer: Buffer.from(bytes) });
   await expect(page).toHaveURL(/\/imagen\/calidad$/);
+}
+
+/** Mobile has the header language button; desktop has the rail segmented control (ES / EN radios). */
+export async function switchLanguage(page: import('@playwright/test').Page, to: 'es' | 'en'): Promise<void> {
+  const button = page.getByRole('button', { name: to === 'en' ? /Cambiar a inglés/ : 'Switch to Spanish' });
+  if (await button.isVisible()) {
+    await button.click();
+    return;
+  }
+  await page.getByRole('radio', { name: to === 'en' ? 'EN' : 'ES', exact: true }).click();
 }

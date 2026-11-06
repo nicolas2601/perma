@@ -76,7 +76,7 @@ export default function AbcdeScreen() {
             <Chip tint={PHASE_TINT.observaciones}>{tInspect('stepObservations')}</Chip>
           </div>
           <p className="m-0 text-label text-muted">{t('intro')}</p>
-          <nav aria-label={t('navLabel')}>
+          <nav aria-label={t('navLabel')} className="lg:hidden">
             <ul className="m-0 grid list-none grid-cols-5 gap-1.5 p-0 lg:grid-cols-1 lg:gap-2">
               {CRITERIA.map((criterion) => (
                 <li key={criterion}>

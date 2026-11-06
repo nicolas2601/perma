@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { statSync } from 'node:fs';
-import { COPY, chooseSample, openHome, runToResult, toCapture, toConsentChecked, toExportChecked, toReviewWithAbcde } from './support';
+import { COPY, chooseSample, openHome, runToResult, toCapture, toConsentChecked, toExportChecked, toReviewWithAbcde, switchLanguage } from './support';
 
 const EXPORT_OPTIONS_LABEL = 'Opciones de exportación';
 const PDF_OPTION_LABEL = 'PDF (resumen imprimible)';
@@ -34,9 +34,9 @@ test.describe('export acknowledgement and PDF download', () => {
     await toExportChecked(page);
 
     await test.step('ES to EN to ES keeps the acknowledgement (no invalidation)', async () => {
-      await page.getByRole('button', { name: /Cambiar a inglés/ }).click();
+      await switchLanguage(page, 'en');
       await expect(page.getByRole('checkbox', { name: /reviewed|revisado/i })).toBeChecked();
-      await page.getByRole('button', { name: 'Switch to Spanish' }).click();
+      await switchLanguage(page, 'es');
       await expect(page.getByRole('checkbox', { name: COPY.exportAck })).toBeChecked();
       await expect(page.getByRole('button', { name: COPY.exportJson })).toBeEnabled();
     });

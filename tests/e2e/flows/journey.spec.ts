@@ -7,6 +7,7 @@ import {
   dismissOfflineBanner,
   openHome,
   previewImage,
+  switchLanguage,
   toCapture,
   toConsentChecked,
 } from './support';
@@ -51,11 +52,11 @@ async function openAbcde(page: Page): Promise<void> {
 }
 
 test.describe('9-step journey (mock build, success scenario)', () => {
-  test('Home to JSON export, with the ack only after a real download', async ({ page }) => {
+  test('Home to CSV export, with the ack only after a real download', async ({ page }) => {
     await test.step('1 Home renders the entry sequence and the reference card', async () => {
       await openHome(page);
       await expect(page.getByRole('button', { name: COPY.newExam })).toBeVisible();
-      await expect(page.getByText('Imagen de referencia')).toBeVisible();
+      await expect(page.getByText('Imagen de referencia', { exact: true })).toBeVisible();
     });
 
     await test.step('2 Context step, then continue to capture', async () => {
@@ -112,7 +113,7 @@ test.describe('9-step journey (mock build, success scenario)', () => {
       for (const criterion of ABCDE_CRITERIA) {
         await expect(criterionHeader(page, criterion)).toBeVisible();
       }
-      await expect(page.getByText(ES_UNANSWERED, { exact: true })).toHaveCount(UNANSWERED_COUNT);
+      await expect(page.getByText(ES_UNANSWERED, { exact: true }).filter({ visible: true })).toHaveCount(UNANSWERED_COUNT);
       await criterionHeader(page, 'A').click();
       await expect(page.getByRole('radiogroup', { name: 'Asimetría' }).getByRole('radio')).toHaveCount(4);
       await page.getByRole('radio', { name: 'Simétrica', exact: true }).click();
@@ -123,10 +124,10 @@ test.describe('9-step journey (mock build, success scenario)', () => {
     });
 
     await test.step('9b ABCDE: language ES to EN to ES keeps the record', async () => {
-      await page.getByRole('button', { name: /Cambiar a inglés/ }).click();
-      await expect(page.getByText(EN_UNANSWERED, { exact: true })).toHaveCount(UNANSWERED_COUNT - 1);
-      await page.getByRole('button', { name: 'Switch to Spanish' }).click();
-      await expect(page.getByText(ES_UNANSWERED, { exact: true })).toHaveCount(UNANSWERED_COUNT - 1);
+      await switchLanguage(page, 'en');
+      await expect(page.getByText(EN_UNANSWERED, { exact: true }).filter({ visible: true })).toHaveCount(UNANSWERED_COUNT - 1);
+      await switchLanguage(page, 'es');
+      await expect(page.getByText(ES_UNANSWERED, { exact: true }).filter({ visible: true })).toHaveCount(UNANSWERED_COUNT - 1);
     });
 
     await test.step('9c Note, compare and review', async () => {
@@ -141,7 +142,7 @@ test.describe('9-step journey (mock build, success scenario)', () => {
       await expect(page).toHaveURL(/\/revision$/);
     });
 
-    await test.step('10 Export JSON: ack required, real download event, then acknowledgement', async () => {
+    await test.step('10 Export CSV: ack required, real download event, then acknowledgement', async () => {
       await page.getByRole('button', { name: COPY.exportPreview }).click();
       await expect(page).toHaveURL(/\/revision\/exportar$/);
       const download = page.getByRole('button', { name: COPY.exportJson });
@@ -151,11 +152,13 @@ test.describe('9-step journey (mock build, success scenario)', () => {
       await expect(page).toHaveURL(/\/revision\/exportar$/);
       await expect(page.getByText('Descarga iniciada.')).toHaveCount(0);
       const [file] = await Promise.all([page.waitForEvent('download'), download.click()]);
-      expect(file.suggestedFilename()).toMatch(/\.json$/);
+      expect(file.suggestedFilename()).toMatch(/\.csv$/);
       const path = await file.path();
       expect(path).toBeTruthy();
       expect(statSync(path as string).size).toBeGreaterThan(0);
-      expect(JSON.parse(readFileSync(path as string, 'utf8'))).toBeTruthy();
+      const csv = readFileSync(path as string, 'utf8');
+      expect(csv.startsWith('\uFEFFSección;Campo;Valor;Nota')).toBe(true);
+      expect(csv.split('\r\n').filter((line) => /^Puntajes crudos;/.test(line))).toHaveLength(7);
       await expect(page).toHaveURL(/\/revision\/exportada$/);
       await expect(page.getByText('Descarga iniciada.')).toBeVisible();
     });
