@@ -17,7 +17,7 @@ export function ViewerNav() {
     { id: GUIDE_PATH, label: t('navGuide'), icon: <BookIcon className={ICON_CLASS} /> },
   ];
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-30 px-5 pb-[calc(env(safe-area-inset-bottom)+12px)]">
+    <nav className="fixed inset-x-0 bottom-0 z-30 px-5 pb-[calc(env(safe-area-inset-bottom)+12px)] lg:hidden">
       <FloatingNav label={t('navLabel')} items={items} currentId={CAPTURE_PATH} onNavigate={(id) => navigate(id)} />
     </nav>
   );
