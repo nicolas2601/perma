@@ -1,6 +1,8 @@
 import { Sheet } from '@/ui/Sheet';
 import { cx } from '@/ui/cx';
 import { useT } from '@/core/i18n/I18nProvider';
+import type { ClinicalContext } from '@/core/storage/types';
+import { ClinicalContextForm } from './ClinicalContextForm';
 import { copy } from './copy';
 
 export const BODY_SITE_KEYS = ['face', 'scalp', 'trunk', 'upperLimb', 'lowerLimb'] as const;
@@ -19,11 +21,24 @@ interface SheetBase {
   onOpenChange: (open: boolean) => void;
 }
 
-export function ContextDetailsSheet({ open, onOpenChange }: SheetBase) {
+export interface ClinicalContextSheetProps extends SheetBase {
+  context: ClinicalContext | undefined;
+  onSave: (context: ClinicalContext) => void;
+}
+
+/** Editable optional context. Saving closes the sheet; Cancelar closes it without touching the record. */
+export function ClinicalContextSheet({ open, onOpenChange, context, onSave }: ClinicalContextSheetProps) {
   const t = useT('desk');
   return (
-    <Sheet open={open} onOpenChange={onOpenChange} title={t('contextDetailsTitle')} closeLabel={t('close')}>
-      <p className="m-0 text-body text-ink">{t('contextDetailsBody')}</p>
+    <Sheet open={open} onOpenChange={onOpenChange} title={t('ctxSheetTitle')} closeLabel={t('close')}>
+      <ClinicalContextForm
+        initial={context}
+        onSave={(next) => {
+          onSave(next);
+          onOpenChange(false);
+        }}
+        onCancel={() => onOpenChange(false)}
+      />
     </Sheet>
   );
 }

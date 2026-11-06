@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from '@/app/router';
+import { clinicalContextSummary } from '@/core/exam/clinicalContext';
 import { useExam, useExamDispatch } from '@/core/exam/react';
 import { useT } from '@/core/i18n/I18nProvider';
 import { Button } from '@/ui/Button';
 import { ChevronDownIcon } from '@/ui/icons';
 import { Glyph } from './Glyph';
 import { AppShell } from './AppShell';
-import { BODY_SITE_KEYS, ContextDetailsSheet, SITE_LABEL_KEY, SiteSheet, type BodySiteKey } from './ContextSheets';
+import { BODY_SITE_KEYS, ClinicalContextSheet, SITE_LABEL_KEY, SiteSheet, type BodySiteKey } from './ContextSheets';
 import { CAPTURE_PATH, DESK_PATH } from './recoveryPaths';
 
 const FIELD_CLASS =
@@ -18,11 +19,13 @@ function isBodySite(value: string | null): value is BodySiteKey {
 
 export default function Context() {
   const t = useT('desk');
+  const tFull = useT('');
   const navigate = useNavigate();
   const dispatch = useExamDispatch();
   const storedSite = useExam((s) => s.record.bodySite);
+  const storedContext = useExam((s) => s.record.clinicalContext);
   const [site, setSite] = useState<BodySiteKey | null>(isBodySite(storedSite) ? storedSite : null);
-  const [detailsOpen, setDetailsOpen] = useState(false);
+  const [contextOpen, setContextOpen] = useState(false);
   const [siteOpen, setSiteOpen] = useState(false);
   const siteLabel = site === null ? t('siteEmpty') : t(SITE_LABEL_KEY[site]);
 
@@ -47,9 +50,9 @@ export default function Context() {
           <span className="text-caption text-muted">{t('site')}</span>
           <span className="text-body text-ink">{siteLabel}</span>
         </button>
-        <button type="button" className={FIELD_CLASS} onClick={() => setDetailsOpen(true)}>
+        <button type="button" className={FIELD_CLASS} onClick={() => setContextOpen(true)}>
           <span className="text-body text-ink">{t('clinicalContext')}</span>
-          <span className="text-caption text-muted">{t('clinicalContextHint')}</span>
+          <span className="text-caption text-muted">{clinicalContextSummary(storedContext, tFull)}</span>
         </button>
       </div>
       <div className="mt-auto pt-4">
@@ -57,7 +60,12 @@ export default function Context() {
           {t('continue')}
         </Button>
       </div>
-      <ContextDetailsSheet open={detailsOpen} onOpenChange={setDetailsOpen} />
+      <ClinicalContextSheet
+        open={contextOpen}
+        onOpenChange={setContextOpen}
+        context={storedContext}
+        onSave={(context) => dispatch({ type: 'SET_CLINICAL_CONTEXT', context })}
+      />
       <SiteSheet open={siteOpen} onOpenChange={setSiteOpen} selected={site} onSelect={setSite} />
     </AppShell>
   );

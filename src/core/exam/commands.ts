@@ -1,4 +1,5 @@
 import type { RecoveryScenario } from '@/core/inference/types';
+import type { ClinicalContext } from '@/core/storage/types';
 import type { ExamEvent } from './contract';
 
 export type RecoveryMode = 'back' | 'retry';
@@ -9,6 +10,7 @@ export type RecoveryMode = 'back' | 'retry';
  * accepts ExamEvent and these.
  */
 export type ExamFlowCommand =
+  | { type: 'SET_CLINICAL_CONTEXT'; context: ClinicalContext | null }
   | { type: 'START_CAPTURE' }
   | { type: 'CONFIRM_IMAGE' }
   | { type: 'BACK' }

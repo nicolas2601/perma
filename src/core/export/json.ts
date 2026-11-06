@@ -1,5 +1,6 @@
-import type { ExamRecord } from '@/core/storage/types';
+import type { ClinicalContext, ExamRecord } from '@/core/storage/types';
 import type { InferenceResult } from '@/core/inference/types';
+import { normalizeClinicalContext, qualified } from '@/core/exam/clinicalContext';
 import { UNANSWERED_VALUE, type ExportSnapshot, type Translate } from './types';
 
 export const EXPORT_FORMAT_ID = 'perma-exam-record';
@@ -32,6 +33,18 @@ export interface JsonExportDocument {
     scores: InferenceResult['scores'];
     warnings: string[];
   } | null;
+  /** User-typed context. Not interpreted by the model and not used in any score. */
+  userSuppliedContext: UserSuppliedContextJson;
+}
+
+export interface UserSuppliedContextJson {
+  label: string;
+  notice: string;
+  /** Always false: the model never reads this context. */
+  interpretedByModel: false;
+  /** Always false: no score uses this context. */
+  usedInScores: false;
+  context: ClinicalContext | null;
 }
 
 export function buildJsonDocument(
@@ -57,6 +70,18 @@ export function buildJsonDocument(
     modelSource: result?.source ?? null,
     simulated: result?.source === 'mock',
     result: result === null ? null : resultPayload(result),
+    userSuppliedContext: userSuppliedJson(record, t),
+  };
+}
+
+function userSuppliedJson(record: ExamRecord, t: Translate): UserSuppliedContextJson {
+  const context = record.clinicalContext === undefined ? undefined : normalizeClinicalContext(record.clinicalContext);
+  return {
+    label: t(qualified('ctxExportTitle')),
+    notice: t(qualified('ctxExportNotice')),
+    interpretedByModel: false,
+    usedInScores: false,
+    context: context ?? null,
   };
 }
 
