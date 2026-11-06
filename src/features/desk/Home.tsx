@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { m, useReducedMotion, type Variants } from 'motion/react';
 import { useNavigate } from '@/app/router';
+import { hasRecordContent } from '@/core/exam/content';
 import { useExam, useExamDispatch } from '@/core/exam/react';
 import { useT } from '@/core/i18n/I18nProvider';
 import { Button } from '@/ui/Button';
@@ -13,8 +14,8 @@ import referenceAvif from '@/assets/images/reference-tschandl-300.avif';
 import referenceWebp from '@/assets/images/reference-tschandl-300.webp';
 import moreIcon from '@/assets/icons/more.svg';
 import { AppShell } from './AppShell';
-import { DiscardSheet, ScopeSheet } from './HomeSheets';
-import { CONTEXT_PATH, GALLERY_PATH } from './recoveryPaths';
+import { DiscardSheet, OptionsSheet, ScopeSheet } from './HomeSheets';
+import { CONTEXT_PATH, GALLERY_PATH, GUIDE_PATH } from './recoveryPaths';
 
 const ENTRY_STAGGER_S = 0.08;
 const ENTRY_OFFSET_PX = 12;
@@ -81,13 +82,25 @@ export default function Home() {
   const t = useT('desk');
   const navigate = useNavigate();
   const reduce = useReducedMotion() ?? false;
-  const hasRecord = useExam((s) => s.phase !== 'idle' || s.image !== null);
+  const hasContent = useExam((s) => hasRecordContent(s));
   const dispatch = useExamDispatch();
   const [scopeOpen, setScopeOpen] = useState(false);
   const [discardOpen, setDiscardOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [continueToContext, setContinueToContext] = useState(false);
+  // The trigger is the element that receives focus back when a menu-opened sheet closes.
+  // Focus moves to it only after the options sheet has closed: while that modal is open its
+  // focus trap pulls focus back, so the child sheet would capture the wrong element.
+  const menuTriggerRef = useRef<HTMLElement | null>(null);
+  const openFromMenu = (open: () => void) => {
+    setMenuOpen(false);
+    requestAnimationFrame(() => {
+      menuTriggerRef.current?.focus();
+      open();
+    });
+  };
   const openNewExam = () => {
-    if (!hasRecord) {
+    if (!hasContent) {
       navigate(CONTEXT_PATH);
       return;
     }
@@ -99,11 +112,11 @@ export default function Home() {
       title={t('brand')}
       headerAction={
         <IconButton
-          label={t('discardAction')}
-          disabled={!hasRecord}
-          onClick={() => {
-            setContinueToContext(false);
-            setDiscardOpen(true);
+          label={t('menuAction')}
+          onClick={(event) => {
+            menuTriggerRef.current = event.currentTarget;
+            event.currentTarget.focus();
+            setMenuOpen(true);
           }}
           icon={<img src={moreIcon} alt="" className="size-5" />}
         />
@@ -137,6 +150,22 @@ export default function Home() {
           <ReferenceCard />
         </m.div>
       </m.div>
+      <OptionsSheet
+        open={menuOpen}
+        onOpenChange={setMenuOpen}
+        hasContent={hasContent}
+        onScope={() => openFromMenu(() => setScopeOpen(true))}
+        onGuide={() => {
+          setMenuOpen(false);
+          navigate(GUIDE_PATH);
+        }}
+        onDelete={() =>
+          openFromMenu(() => {
+            setContinueToContext(false);
+            setDiscardOpen(true);
+          })
+        }
+      />
       <ScopeSheet open={scopeOpen} onOpenChange={setScopeOpen} />
       <DiscardSheet
         open={discardOpen}
