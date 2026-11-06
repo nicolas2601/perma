@@ -88,37 +88,39 @@ export function RecoveryPage({ scenario }: RecoveryPageProps) {
   const sectionIndexes = Array.from({ length: SECTION_COUNT[scenario] }, (_, i) => i + 1);
   return (
     <AppShell title={t(`${scenario}.shell`)} onBack={() => go(targets.back)} showNav={false}>
-      <p role="alert" className="sr-only">
-        {t(`${scenario}.title`)}
-      </p>
-      <img
-        src={illustrationUrl(RECOVERY_ART[scenario])}
-        alt=""
-        width={160}
-        height={120}
-        decoding="async"
-        className="h-auto w-40 self-center"
-      />
-      <h1 className="m-0 text-title text-ink">{t(`${scenario}.title`)}</h1>
-      <p className="m-0 text-body text-ink">{t(`${scenario}.body`)}</p>
-      {sectionIndexes.map((n) => (
-        <section key={n} className="flex flex-col gap-1">
-          <h2 className="m-0 text-section text-ink">{t(`${scenario}.heading${n}`)}</h2>
-          <p className="m-0 text-label text-muted">{t(`${scenario}.text${n}`)}</p>
-        </section>
-      ))}
-      {scenario === 'server-error' && imageName !== null ? (
-        <ImageDetailRow title={t('server-error.detailTitle')} hint={t('server-error.detailHint')} fileLabel={t('server-error.detailFile')} fileName={imageName} />
-      ) : null}
-      <div className="mt-auto flex flex-col gap-2 pt-4">
-        <Button fullWidth onClick={() => go(targets.primary)}>
-          {t(`${scenario}.primary`)}
-        </Button>
-        {secondary ? (
-          <Button variant="secondary" fullWidth onClick={() => go(secondary)}>
-            {t(`${scenario}.secondary`)}
-          </Button>
+      <div className="flex flex-1 flex-col gap-5 lg:my-auto lg:mx-auto lg:w-full lg:max-w-140 lg:flex-none lg:rounded-card lg:bg-surface lg:p-8 lg:text-center lg:shadow-raised">
+        <p role="alert" className="sr-only">
+          {t(`${scenario}.title`)}
+        </p>
+        <img
+          src={illustrationUrl(RECOVERY_ART[scenario])}
+          alt=""
+          width={160}
+          height={120}
+          decoding="async"
+          className="h-auto w-40 self-center"
+        />
+        <h1 className="m-0 text-title text-ink">{t(`${scenario}.title`)}</h1>
+        <p className="m-0 text-body text-ink">{t(`${scenario}.body`)}</p>
+        {sectionIndexes.map((n) => (
+          <section key={n} className="flex flex-col gap-1">
+            <h2 className="m-0 text-section text-ink">{t(`${scenario}.heading${n}`)}</h2>
+            <p className="m-0 text-label text-muted">{t(`${scenario}.text${n}`)}</p>
+          </section>
+        ))}
+        {scenario === 'server-error' && imageName !== null ? (
+          <ImageDetailRow title={t('server-error.detailTitle')} hint={t('server-error.detailHint')} fileLabel={t('server-error.detailFile')} fileName={imageName} />
         ) : null}
+        <div className="mt-auto flex flex-col gap-2 pt-4 lg:mt-2 lg:flex-row lg:flex-wrap lg:justify-center lg:pt-2">
+          <Button fullWidth className="lg:w-auto lg:px-8" onClick={() => go(targets.primary)}>
+            {t(`${scenario}.primary`)}
+          </Button>
+          {secondary ? (
+            <Button variant="secondary" fullWidth className="lg:w-auto lg:px-8" onClick={() => go(secondary)}>
+              {t(`${scenario}.secondary`)}
+            </Button>
+          ) : null}
+        </div>
       </div>
     </AppShell>
   );

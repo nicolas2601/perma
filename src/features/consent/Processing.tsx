@@ -99,39 +99,41 @@ export default function Processing() {
 
   return (
     <AppShell title={t('waitShellTitle')} onBack={openStop} showNav={false}>
-      <h1 className="m-0 text-title text-ink">{t('waitTitle')}</h1>
-      <p className="m-0 text-body text-ink">{t('waitBody')}</p>
-      <img src={illustrationUrl('waitingResponse')} alt="" width={160} height={120} decoding="async" className="h-auto w-40 self-center" />
-      <div className="flex items-center gap-3">
-        <Spinner />
-        <div className="min-w-0 flex-1">
-          <StatusLine message={t('waitStatus')} tone="info" />
+      <div className="flex flex-1 flex-col gap-5 lg:my-auto lg:mx-auto lg:w-full lg:max-w-140 lg:flex-none lg:rounded-card lg:bg-surface lg:p-8 lg:shadow-raised">
+        <h1 className="m-0 text-title text-ink">{t('waitTitle')}</h1>
+        <p className="m-0 text-body text-ink">{t('waitBody')}</p>
+        <img src={illustrationUrl('waitingResponse')} alt="" width={160} height={120} decoding="async" className="h-auto w-40 self-center" />
+        <div className="flex items-center gap-3">
+          <Spinner />
+          <div className="min-w-0 flex-1">
+            <StatusLine message={t('waitStatus')} tone="info" />
+          </div>
         </div>
+        <section className="flex flex-col gap-1">
+          <h2 className="m-0 text-body-medium text-ink">{t('waitContextTitle')}</h2>
+          <p className="m-0 text-label text-muted">{t('waitContextBody')}</p>
+        </section>
+        <section className="flex flex-col gap-1">
+          <h2 className="m-0 text-body-medium text-ink">{t('waitNoProgressTitle')}</h2>
+          <p className="m-0 text-label text-muted">{t('waitNoProgressBody')}</p>
+        </section>
+        <button
+          type="button"
+          onClick={openStop}
+          className="grid min-h-16 w-full grid-cols-[auto_1fr_auto] items-center gap-3 rounded-card bg-surface px-4 py-3 text-left text-ink shadow-raised outline-offset-2 transition-transform duration-(--motion-card) ease-perma-out active:scale-[0.98] motion-reduce:active:scale-100 lg:bg-subtle lg:shadow-none"
+        >
+          <IconBlob tint="butter">
+            <CloseIcon />
+          </IconBlob>
+          <span className="flex min-w-0 flex-col gap-1">
+            <span className="text-body text-ink">{t('waitStop')}</span>
+            <span className="text-caption text-muted">{t('waitStopHint')}</span>
+          </span>
+          <Glyph className="size-5 -rotate-90 text-muted">
+            <ChevronDownIcon />
+          </Glyph>
+        </button>
       </div>
-      <section className="flex flex-col gap-1">
-        <h2 className="m-0 text-body-medium text-ink">{t('waitContextTitle')}</h2>
-        <p className="m-0 text-label text-muted">{t('waitContextBody')}</p>
-      </section>
-      <section className="flex flex-col gap-1">
-        <h2 className="m-0 text-body-medium text-ink">{t('waitNoProgressTitle')}</h2>
-        <p className="m-0 text-label text-muted">{t('waitNoProgressBody')}</p>
-      </section>
-      <button
-        type="button"
-        onClick={openStop}
-        className="grid min-h-16 w-full grid-cols-[auto_1fr_auto] items-center gap-3 rounded-card bg-surface px-4 py-3 text-left text-ink shadow-raised outline-offset-2 transition-transform duration-(--motion-card) ease-perma-out active:scale-[0.98] motion-reduce:active:scale-100"
-      >
-        <IconBlob tint="butter">
-          <CloseIcon />
-        </IconBlob>
-        <span className="flex min-w-0 flex-col gap-1">
-          <span className="text-body text-ink">{t('waitStop')}</span>
-          <span className="text-caption text-muted">{t('waitStopHint')}</span>
-        </span>
-        <Glyph className="size-5 -rotate-90 text-muted">
-          <ChevronDownIcon />
-        </Glyph>
-      </button>
       <Sheet open={stopOpen} onOpenChange={setStopOpen} title={t('waitStopSheetTitle')} closeLabel={t('close')}>
         <div className="flex flex-col gap-4">
           <h2 className="m-0 text-title text-ink">{t('waitStopHeading')}</h2>

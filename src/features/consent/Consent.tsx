@@ -53,48 +53,54 @@ export default function Consent() {
 
   return (
     <AppShell title={t('shellTitle')} onBack={back} showNav={false}>
-      <h1 className="m-0 text-title text-ink">{t('title')}</h1>
-      <p className="m-0 text-body text-ink">{t('body')}</p>
-      <img src={illustrationUrl('consentPrivacy')} alt="" width={96} height={72} decoding="async" className="h-auto w-24 self-start" />
-      <Card variant="raised" className="items-center gap-2 p-3">
-        {previewUrl ? (
-          <img src={previewUrl} alt="" decoding="async" className="max-h-40 w-auto max-w-full rounded-chip object-contain" />
-        ) : null}
-        <p className="m-0 text-caption text-muted">{isSample ? t('sampleCaption') : t('imageCaption')}</p>
-        {isSample ? <p className="m-0 text-caption text-muted">{t('attribution')}</p> : null}
-      </Card>
-      <div className="flex flex-col gap-2">
-        <label className={CONSENT_ROW}>
-          <input
-            type="checkbox"
-            checked={consented}
-            onChange={(event) => dispatch({ type: 'CONSENT', value: event.target.checked })}
-            className="size-5 shrink-0 accent-accent"
-          />
-          <span>{t('consentLabel')}</span>
-        </label>
-        <p className="m-0 text-caption text-muted">{t('consentHint')}</p>
-      </div>
-      <button
-        type="button"
-        onClick={() => setPrivacyOpen(true)}
-        className={PRIVACY_ROW}
-      >
-        <IconBlob tint="sky">
-          <InfoIcon />
-        </IconBlob>
-        <span className="flex min-w-0 flex-col gap-1">
-          <span className="text-body text-ink">{t('privacyTitle')}</span>
-          <span className="text-caption text-muted">{t('privacyHint')}</span>
-        </span>
-        <Glyph className="size-5 -rotate-90 text-muted">
-          <ChevronDownIcon />
-        </Glyph>
-      </button>
-      <div className="mt-auto pt-4">
-        <Button fullWidth disabled={!canSend} onClick={send}>
-          {t('send')}
-        </Button>
+      <div className="flex flex-1 flex-col gap-5 lg:grid lg:grid-cols-2 lg:content-start lg:items-start lg:gap-x-8 lg:gap-y-6">
+        <h1 className="m-0 text-title text-ink lg:col-span-2">{t('title')}</h1>
+        <p className="m-0 text-body text-ink lg:col-span-2">{t('body')}</p>
+        <div className="contents lg:flex lg:flex-col lg:gap-5 lg:col-start-1">
+          <img src={illustrationUrl('consentPrivacy')} alt="" width={96} height={72} decoding="async" className="h-auto w-24 self-start lg:w-32" />
+          <Card variant="raised" className="items-center gap-2 p-3 lg:p-4">
+            {previewUrl ? (
+              <img src={previewUrl} alt="" decoding="async" className="max-h-40 w-auto max-w-full rounded-chip object-contain lg:max-h-64" />
+            ) : null}
+            <p className="m-0 text-caption text-muted">{isSample ? t('sampleCaption') : t('imageCaption')}</p>
+            {isSample ? <p className="m-0 text-caption text-muted">{t('attribution')}</p> : null}
+          </Card>
+        </div>
+        <div className="contents lg:flex lg:flex-col lg:gap-5 lg:col-start-2">
+          <div className="flex flex-col gap-2">
+            <label className={CONSENT_ROW}>
+              <input
+                type="checkbox"
+                checked={consented}
+                onChange={(event) => dispatch({ type: 'CONSENT', value: event.target.checked })}
+                className="size-5 shrink-0 accent-accent"
+              />
+              <span>{t('consentLabel')}</span>
+            </label>
+            <p className="m-0 text-caption text-muted">{t('consentHint')}</p>
+          </div>
+          <button
+            type="button"
+            onClick={() => setPrivacyOpen(true)}
+            className={PRIVACY_ROW}
+          >
+            <IconBlob tint="sky">
+              <InfoIcon />
+            </IconBlob>
+            <span className="flex min-w-0 flex-col gap-1">
+              <span className="text-body text-ink">{t('privacyTitle')}</span>
+              <span className="text-caption text-muted">{t('privacyHint')}</span>
+            </span>
+            <Glyph className="size-5 -rotate-90 text-muted">
+              <ChevronDownIcon />
+            </Glyph>
+          </button>
+          <div className="mt-auto pt-4 lg:mt-2 lg:pt-0">
+            <Button fullWidth className="lg:w-auto lg:px-8" disabled={!canSend} onClick={send}>
+              {t('send')}
+            </Button>
+          </div>
+        </div>
       </div>
       <Sheet open={privacyOpen} onOpenChange={setPrivacyOpen} title={t('privacyTitle')} closeLabel={t('close')}>
         <p className="m-0 text-body text-ink">{t('privacyBody')}</p>
