@@ -117,7 +117,7 @@ export function setNote(state: ExamState, note: string): ExamState {
  */
 export function acknowledgeExport(
   state: ExamState,
-  format: 'json' | 'pdf',
+  format: 'csv' | 'json' | 'pdf',
   clock: ExamClock,
 ): ExamState {
   if (state.phase !== 'exporting') return state;

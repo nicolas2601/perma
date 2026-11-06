@@ -11,8 +11,9 @@ type ExportOptionsSheetProps = {
   onOpenChange: (open: boolean) => void;
 };
 
-const FORMATS: readonly ExportFormat[] = ['json', 'pdf'];
+const FORMATS: readonly ExportFormat[] = ['csv', 'pdf', 'json'];
 const OPTION_KEYS: Record<ExportFormat, { label: string; hint: string }> = {
+  csv: { label: 'optionCsv', hint: 'optionCsvHint' },
   json: { label: 'optionJson', hint: 'optionJsonHint' },
   pdf: { label: 'optionPdf', hint: 'optionPdfHint' },
 };

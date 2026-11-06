@@ -29,7 +29,7 @@ export interface ExamRecord {
   abcde: Partial<Record<AbcdeCriterion, string>>;
   note: string;
   priorImageId: string | null;
-  lastExport: { at: string; format: 'json' | 'pdf'; registryVersion: number } | null;
+  lastExport: { at: string; format: 'csv' | 'json' | 'pdf'; registryVersion: number } | null;
   registryVersion: number;
   /** User-supplied clinical context. Absent until the user saves it. */
   clinicalContext?: ClinicalContext;

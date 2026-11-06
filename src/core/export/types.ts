@@ -1,7 +1,7 @@
 import type { InferenceResult } from '@/core/inference/types';
 import type { ExamRecord, ImageOrigin } from '@/core/storage/types';
 
-export type ExportFormat = 'json' | 'pdf';
+export type ExportFormat = 'csv' | 'json' | 'pdf';
 
 /** Everything an export needs, copied out of the exam state. */
 export interface ExportSnapshot {

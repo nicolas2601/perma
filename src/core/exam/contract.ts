@@ -37,7 +37,7 @@ export type ExamEvent =
   | { type: 'RECOVER'; scenario: RecoveryScenario }
   | { type: 'ABCDE_SET'; criterion: AbcdeCriterion; value: string | null }
   | { type: 'NOTE_SET'; note: string }
-  | { type: 'ACK_EXPORT'; format: 'json' | 'pdf' }
+  | { type: 'ACK_EXPORT'; format: 'csv' | 'json' | 'pdf' }
   | { type: 'RESET' };
 
 export interface ExamStore {

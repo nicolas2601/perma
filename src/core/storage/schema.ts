@@ -8,7 +8,7 @@ import {
 } from './types';
 
 const CRITERIA = ['A', 'B', 'C', 'D', 'E'] as const;
-const EXPORT_FORMATS = ['json', 'pdf'] as const;
+const EXPORT_FORMATS = ['csv', 'json', 'pdf'] as const;
 const IMAGE_ORIGINS = ['camera', 'file', 'sample'] as const;
 
 type Obj = Record<string, unknown>;

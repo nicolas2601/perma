@@ -10,7 +10,8 @@ import { ActionDock, ExperimentalNotice, ScreenHeader } from '@/features/inspect
 import { useFlowSync } from '@/features/inspect/flowSync';
 import { ExportOptionsSheet } from './ExportOptionsSheet';
 
-const ACTION_KEY: Record<ExportFormat, 'exportActionJson' | 'exportActionPdf'> = {
+const ACTION_KEY: Record<ExportFormat, 'exportActionCsv' | 'exportActionJson' | 'exportActionPdf'> = {
+  csv: 'exportActionCsv',
   json: 'exportActionJson',
   pdf: 'exportActionPdf',
 };
@@ -28,7 +29,7 @@ export default function ExportScreen() {
   const dispatch = useExamDispatch();
   useFlowSync('exporting');
   const [reviewed, setReviewed] = useState(false);
-  const [format, setFormat] = useState<ExportFormat>('json');
+  const [format, setFormat] = useState<ExportFormat>('csv');
   const [optionsOpen, setOptionsOpen] = useState(false);
   const [busy, setBusy] = useState(false);
   const snapshot = useMemo<ExportSnapshot>(

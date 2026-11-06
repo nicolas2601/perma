@@ -1,13 +1,14 @@
 import { renderPdf } from './pdf';
 import { buildPdfBlocks, type PdfBlock } from './pdfContent';
 import { buildJsonDocument, serializeJson } from './json';
+import { buildCsvRows, serializeCsv } from './csv';
 import { triggerDownload } from './download';
 import type { ExportFormat, ExportResult, ExportSnapshot, Translate } from './types';
 
 const DATE_PREFIX_LENGTH = 10;
 const ID_PREFIX_LENGTH = 8;
-const FILE_EXTENSION: Record<ExportFormat, string> = { json: 'json', pdf: 'pdf' };
-const MIME_TYPE: Record<ExportFormat, string> = { json: 'application/json', pdf: 'application/pdf' };
+const FILE_EXTENSION: Record<ExportFormat, string> = { csv: 'csv', json: 'json', pdf: 'pdf' };
+const MIME_TYPE: Record<ExportFormat, string> = { csv: 'text/csv;charset=utf-8', json: 'application/json', pdf: 'application/pdf' };
 
 /** Injected so tests run without pdf-lib or a real download. */
 export interface ExportDeps {
@@ -62,6 +63,9 @@ function encode(
 ): Promise<BlobPart> {
   if (format === 'pdf') {
     return deps.renderPdf(buildPdfBlocks(snapshot, exportedAt, deps.t));
+  }
+  if (format === 'csv') {
+    return Promise.resolve(serializeCsv(buildCsvRows(snapshot, exportedAt, deps.t), deps.t));
   }
   const json = serializeJson(buildJsonDocument(snapshot, exportedAt, deps.t));
   return Promise.resolve(json);
