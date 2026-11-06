@@ -28,27 +28,31 @@ export default function Gallery() {
 
   return (
     <AppShell title={t('galleryShell')} onBack={back} showNav={false}>
-      <h1 className="m-0 text-title text-ink">{t('galleryTitle')}</h1>
-      <p className="m-0 text-body text-ink">{t('galleryBody')}</p>
-      <Card variant="raised" className="items-center gap-2 p-3">
-        <img
-          src={referenceWebp}
-          width={SAMPLE_WIDTH_PX}
-          height={SAMPLE_HEIGHT_PX}
-          alt=""
-          decoding="async"
-          className="h-auto w-full rounded-chip object-contain"
-        />
-        <p className="m-0 self-start text-caption text-muted">{t('galleryAttribution')}</p>
-      </Card>
-      <Card variant="soft" className="gap-1 p-3">
-        <p className="m-0 text-body text-ink">{t('galleryFileName')}</p>
-        <p className="m-0 text-caption text-muted">{t('galleryFileMeta')}</p>
-      </Card>
-      <div className="mt-auto pt-4">
-        <Button fullWidth disabled={busy} onClick={() => void run(loadSampleImage)}>
-          {t('galleryCta')}
-        </Button>
+      <div className="flex flex-1 flex-col gap-5 lg:grid lg:grid-cols-12 lg:content-start lg:items-start lg:gap-x-8 lg:gap-y-6">
+        <h1 className="m-0 text-title text-ink lg:col-span-12">{t('galleryTitle')}</h1>
+        <p className="m-0 text-body text-ink lg:col-span-12 lg:max-w-180">{t('galleryBody')}</p>
+        <Card variant="raised" className="items-center gap-2 p-3 lg:col-span-7 lg:p-4">
+          <img
+            src={referenceWebp}
+            width={SAMPLE_WIDTH_PX}
+            height={SAMPLE_HEIGHT_PX}
+            alt=""
+            decoding="async"
+            className="h-auto w-full rounded-chip object-contain"
+          />
+          <p className="m-0 self-start text-caption text-muted">{t('galleryAttribution')}</p>
+        </Card>
+        <div className="flex flex-1 flex-col gap-5 lg:col-span-5">
+          <Card variant="soft" className="gap-1 p-3 lg:p-6">
+            <p className="m-0 text-body text-ink">{t('galleryFileName')}</p>
+            <p className="m-0 text-caption text-muted">{t('galleryFileMeta')}</p>
+          </Card>
+          <div className="mt-auto pt-4 lg:mt-0 lg:pt-0">
+            <Button fullWidth className="lg:w-auto lg:px-8" disabled={busy} onClick={() => void run(loadSampleImage)}>
+              {t('galleryCta')}
+            </Button>
+          </div>
+        </div>
       </div>
     </AppShell>
   );

@@ -84,26 +84,30 @@ export default function LiveCamera() {
 
   return (
     <AppShell title={t('liveShell')} onBack={() => navigate(CAPTURE_PATH)} showNav={false}>
-      <h1 className="m-0 text-title text-ink">{t('liveTitle')}</h1>
-      <p className="m-0 text-body text-ink">{t('liveBody')}</p>
-      <div className="relative aspect-[3/4] w-full overflow-hidden rounded-tile bg-ink">
-        <video
-          ref={videoRef}
-          autoPlay
-          playsInline
-          muted
-          aria-label={t('liveTitle')}
-          className="size-full object-cover"
-        />
-        <div className="absolute inset-0">
-          <GuideOverlay advice={advice} locale={locale} />
+      <div className="flex flex-1 flex-col gap-5 lg:grid lg:grid-cols-[minmax(0,1fr)_16rem] lg:content-start lg:items-start lg:gap-x-8 lg:gap-y-6">
+        <h1 className="m-0 text-title text-ink lg:col-span-2">{t('liveTitle')}</h1>
+        <p className="m-0 text-body text-ink lg:col-span-2 lg:max-w-180">{t('liveBody')}</p>
+        <div className="relative aspect-[3/4] w-full overflow-hidden rounded-tile bg-ink lg:aspect-video lg:max-w-220 lg:col-start-1">
+          <video
+            ref={videoRef}
+            autoPlay
+            playsInline
+            muted
+            aria-label={t('liveTitle')}
+            className="size-full object-cover"
+          />
+          <div className="absolute inset-0">
+            <GuideOverlay advice={advice} locale={locale} />
+          </div>
         </div>
-      </div>
-      {ready ? null : <StatusLine message={t('starting')} tone="info" />}
-      <div className="mt-auto pt-4">
-        <Button fullWidth disabled={!ready || busy} onClick={() => void shoot()}>
-          {t('shutter')}
-        </Button>
+        <div className="contents lg:flex lg:flex-col lg:justify-end lg:gap-4 lg:self-stretch lg:col-start-2">
+          {ready ? null : <StatusLine message={t('starting')} tone="info" />}
+          <div className="mt-auto pt-4 lg:mt-0 lg:pt-0">
+            <Button fullWidth className="lg:w-auto lg:px-8" disabled={!ready || busy} onClick={() => void shoot()}>
+              {t('shutter')}
+            </Button>
+          </div>
+        </div>
       </div>
     </AppShell>
   );

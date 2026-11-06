@@ -17,7 +17,7 @@ import { StatusLine } from '@/ui/StatusLine';
 import { cx } from '@/ui/cx';
 
 const OPTION_CLASS =
-  'grid min-h-20 w-full cursor-pointer grid-cols-[auto_1fr_auto] items-center gap-3 rounded-card bg-surface px-4 py-3 text-left text-ink shadow-raised outline-offset-2 transition-transform duration-(--motion-card) ease-perma-out active:scale-[0.98] motion-reduce:active:scale-100';
+  'grid min-h-20 w-full cursor-pointer grid-cols-[auto_1fr_auto] items-center gap-3 rounded-card bg-surface px-4 py-3 text-left text-ink shadow-raised outline-offset-2 transition-transform duration-(--motion-card) ease-perma-out active:scale-[0.98] motion-reduce:active:scale-100 lg:grid-cols-1 lg:content-start lg:justify-items-start lg:gap-4 lg:p-6';
 
 function OptionBody({ title, hint, icon }: { title: string; hint: string; icon: ReactNode }) {
   return (
@@ -29,7 +29,7 @@ function OptionBody({ title, hint, icon }: { title: string; hint: string; icon: 
         <span className="text-body text-ink">{title}</span>
         <span className="text-caption text-muted">{hint}</span>
       </span>
-      <Glyph className="size-5 -rotate-90 text-muted">
+      <Glyph className="size-5 -rotate-90 text-muted lg:hidden">
         <ChevronDownIcon />
       </Glyph>
     </>
@@ -57,9 +57,9 @@ export default function Capture() {
   return (
     <AppShell title={t('captureShell')} onBack={back} showNav={false}>
       <h1 className="m-0 text-title text-ink">{t('captureTitle')}</h1>
-      <p className="m-0 text-body text-ink">{t('captureBody')}</p>
+      <p className="m-0 text-body text-ink lg:max-w-180">{t('captureBody')}</p>
       {busy ? <StatusLine message={t('measuring')} tone="info" /> : null}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 lg:grid lg:grid-cols-3 lg:content-start lg:gap-4">
         <button type="button" disabled={busy} onClick={() => setPrimerOpen(true)} className={cx(OPTION_CLASS, busy && 'opacity-60')}>
           <OptionBody title={t('optCamera')} hint={t('optCameraHint')} icon={<ScanIcon />} />
         </button>
@@ -77,8 +77,8 @@ export default function Capture() {
           <OptionBody title={t('optSample')} hint={t('optSampleHint')} icon={<BookIcon />} />
         </button>
       </div>
-      <div className="mt-auto pt-4">
-        <Button fullWidth disabled={busy} onClick={() => void loadAndReview(loadSampleImage)}>
+      <div className="mt-auto pt-4 lg:mt-0 lg:pt-0">
+        <Button fullWidth className="lg:w-auto lg:px-8" disabled={busy} onClick={() => void loadAndReview(loadSampleImage)}>
           {t('ctaSample')}
         </Button>
       </div>
