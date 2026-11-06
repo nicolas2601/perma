@@ -4,6 +4,7 @@ import { useExam } from '@/core/exam/react';
 import { useT } from '@/core/i18n/I18nProvider';
 import { CRITERIA, criterionValue } from '@/features/abcde/logic';
 import { CRITERION_TITLE_KEY, optionKey } from '@/features/abcde/copy';
+import { clinicalContextLines, qualified } from '@/core/exam/clinicalContext';
 import { ExperimentalNotice, ScreenHeader, ActionDock } from '@/features/inspect/Chrome';
 import { useFlowSync } from '@/features/inspect/flowSync';
 import { reviewSource } from './reviewSource';
@@ -19,6 +20,7 @@ export default function SummaryScreen() {
   const t = useT('review');
   const tAbcde = useT('abcde');
   const tInspect = useT('inspect');
+  const tFull = useT('');
   const navigate = useNavigate();
   const record = useExam((state) => state.record);
   const result = useExam((state) => state.result);
@@ -34,6 +36,14 @@ export default function SummaryScreen() {
           <h3 className="m-0 text-section text-ink">{t('contextTitle')}</h3>
           <Field label={t('bodySiteLabel')} value={siteText(record.bodySite, t)} />
           <Field label={t('modalityLabel')} value={reviewSource(image, t)} />
+        </section>
+        <section className="flex flex-col gap-2 rounded-tile border border-solid border-white/80 bg-surface p-4">
+          <h3 className="m-0 text-section text-ink">{tFull(qualified('ctxExportTitle'))}</h3>
+          {clinicalContextLines(record.clinicalContext, tFull).map((line) => (
+            <p key={line} className="m-0 text-body text-ink">{line}</p>
+          ))}
+          <p className="m-0 text-label text-muted">{tFull(qualified('ctxExportNotice'))}</p>
+          <p className="m-0 text-label text-muted">{tFull(qualified('ctxReviewScores'))}</p>
         </section>
         <section className="flex flex-col gap-2">
           <h3 className="m-0 text-section text-ink">{t('observationsTitle')}</h3>

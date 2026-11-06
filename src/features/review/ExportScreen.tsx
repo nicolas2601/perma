@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Button, StatusLine } from '@/ui';
 import { useNavigate } from '@/app/router';
 import { useExam, useExamDispatch } from '@/core/exam/react';
-import { useI18n, useT } from '@/core/i18n/I18nProvider';
+import { useT } from '@/core/i18n/I18nProvider';
 import { createExportDeps, exportRecord } from '@/core/export/exportRecord';
 import { buildJsonDocument, serializeJson } from '@/core/export/json';
 import type { ExportFormat, ExportSnapshot } from '@/core/export/types';
@@ -19,7 +19,8 @@ const ACTION_KEY: Record<ExportFormat, 'exportActionJson' | 'exportActionPdf'> =
 export default function ExportScreen() {
   const t = useT('review');
   const tInspect = useT('inspect');
-  const { t: tCore } = useI18n();
+  // Full-key lookup: export copy includes namespaced desk keys (clinical context section).
+  const tCore = useT('');
   const navigate = useNavigate();
   const record = useExam((state) => state.record);
   const result = useExam((state) => state.result);

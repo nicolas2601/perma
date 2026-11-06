@@ -1,6 +1,5 @@
 import type { InferenceResult } from '@/core/inference/types';
 import type { ExamRecord, ImageOrigin } from '@/core/storage/types';
-import type { CopyKey } from '@/core/i18n/registry';
 
 export type ExportFormat = 'json' | 'pdf';
 
@@ -18,6 +17,7 @@ export type ExportResult =
   | { ok: true; filename: string; bytes: number }
   | { ok: false; reason: ExportFailureReason };
 
-export type Translate = (key: CopyKey) => string;
+/** Full copy keys (core keys or namespaced feature keys such as `desk.ctxExportTitle`). */
+export type Translate = (key: string) => string;
 
 export const UNANSWERED_VALUE = 'unanswered';

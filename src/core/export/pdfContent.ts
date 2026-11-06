@@ -1,4 +1,6 @@
 import { CLASS_CODES, type InferenceResult } from '@/core/inference/types';
+import type { ExamRecord } from '@/core/storage/types';
+import { clinicalContextLines, qualified } from '@/core/exam/clinicalContext';
 import type { ExportSnapshot, Translate } from './types';
 
 export type PdfBlock =
@@ -25,8 +27,18 @@ export function buildPdfBlocks(snapshot: ExportSnapshot, exportedAt: Date, t: Tr
     { kind: 'line', text: imageText(image, t) },
   ];
   if (result !== null) blocks.push(...resultBlocks(result, t));
-  blocks.push(...abcdeBlocks(snapshot, t), ...noteBlocks(record.note, t));
+  blocks.push(...abcdeBlocks(snapshot, t), ...noteBlocks(record.note, t), ...userContextBlocks(record.clinicalContext, t));
   return blocks;
+}
+
+/** Labelled apart from the model output: the model never reads this context. */
+function userContextBlocks(context: ExamRecord['clinicalContext'], t: Translate): PdfBlock[] {
+  const lines = clinicalContextLines(context, t).map((text): PdfBlock => ({ kind: 'line', text }));
+  return [
+    { kind: 'heading', text: t(qualified('ctxExportTitle')) },
+    { kind: 'notice', text: t(qualified('ctxExportNotice')) },
+    ...lines,
+  ];
 }
 
 function sourceText(result: InferenceResult | null, t: Translate): string {
