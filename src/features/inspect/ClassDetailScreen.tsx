@@ -21,28 +21,32 @@ export default function ClassDetailScreen() {
   const info = CLASS_INFO[clase];
   const name = info.name[locale];
   return (
-    <main className="flex h-dvh flex-col bg-canvas">
+    <main className="flex h-dvh flex-col bg-canvas lg:h-auto lg:min-h-dvh">
       <ScreenHeader title={t('classDetailTitle')} backTo="/resultado/clases" backLabel={t('back')} infoLabel={t('info')} />
-      <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
-        <section className="flex flex-col gap-2">
-          <h2 className="m-0 text-title text-ink">{t('classDefinitionHeading')}</h2>
-          <p className="m-0 text-body text-ink">{t('classDetailIntro')}</p>
-          <p className="m-0 text-label text-muted">{clase}</p>
-          <p className="m-0 text-body-medium text-ink">{name}</p>
-        </section>
-        <section className="flex flex-col gap-1 rounded-tile border border-solid border-white/80 bg-surface p-4">
-          <p className="m-0 text-title text-ink">{formatRawScore(result.scores[clase], locale)}</p>
-          <p className="m-0 text-label text-muted">
-            {result.source === 'mock' ? t('rawScoreMock') : t('rawScoreLive')}
-          </p>
-        </section>
-        <section className="flex flex-col gap-2">
-          <h3 className="m-0 text-section text-ink">{t('contextHeading')}</h3>
-          <p className="m-0 text-body text-muted">{t('contextBody')}</p>
-          <h3 className="m-0 text-section text-ink">{t('fullOutputHeading')}</h3>
-          <p className="m-0 text-body text-muted">{t('fullOutputBody')}</p>
-        </section>
-        <ExperimentalNotice />
+      <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:items-start lg:gap-x-8 lg:gap-y-0 lg:overflow-visible lg:px-8 lg:pb-8">
+        <div className="contents lg:col-start-1 lg:flex lg:flex-col lg:gap-5 lg:self-start lg:rounded-card lg:bg-surface lg:p-6 lg:shadow-raised">
+          <section className="flex flex-col gap-2">
+            <h2 className="m-0 text-title text-ink">{t('classDefinitionHeading')}</h2>
+            <p className="m-0 text-body text-ink">{t('classDetailIntro')}</p>
+            <p className="m-0 text-label text-muted">{clase}</p>
+            <p className="m-0 text-body-medium text-ink">{name}</p>
+          </section>
+          <section className="flex flex-col gap-1 rounded-tile border border-solid border-white/80 bg-surface p-4">
+            <p className="m-0 text-title text-ink">{formatRawScore(result.scores[clase], locale)}</p>
+            <p className="m-0 text-label text-muted">
+              {result.source === 'mock' ? t('rawScoreMock') : t('rawScoreLive')}
+            </p>
+          </section>
+        </div>
+        <div className="contents lg:col-start-2 lg:flex lg:flex-col lg:gap-5">
+          <section className="flex flex-col gap-2">
+            <h3 className="m-0 text-section text-ink">{t('contextHeading')}</h3>
+            <p className="m-0 text-body text-muted">{t('contextBody')}</p>
+            <h3 className="m-0 text-section text-ink">{t('fullOutputHeading')}</h3>
+            <p className="m-0 text-body text-muted">{t('fullOutputBody')}</p>
+          </section>
+          <ExperimentalNotice />
+        </div>
       </div>
       <ActionDock>
         <Button fullWidth variant="secondary" onClick={() => navigate('/resultado/clases')}>

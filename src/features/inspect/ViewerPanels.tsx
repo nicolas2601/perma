@@ -1,4 +1,4 @@
-import { Button } from '@/ui';
+import { Button, cx } from '@/ui';
 import { Link, useNavigate } from '@/app/router';
 import type { ExamImage } from '@/core/exam/contract';
 import type { InferenceResult } from '@/core/inference/types';
@@ -14,58 +14,107 @@ import { isReferenceImage, PUBLIC_REFERENCE_URL } from './useImageSource';
 import { ExpandIcon, InfoGlyphIcon, LayersIcon, PlusIcon } from './toolIcons';
 import { Tile } from './Tile';
 
+type ToolName = 'layers' | 'info';
+
+type ImageFigureProps = {
+  src: string | null;
+  reference: boolean;
+  className?: string;
+  /** Desktop height of the picture; the mobile height is fixed. */
+  imageClassName?: string;
+};
+
+const DESKTOP_IMAGE_HEIGHT = 'lg:h-[70dvh]';
+
+/** The original image, unmodified (no mask, no heatmap, no filter). Shared by the mobile tab and the desktop stage. */
+export function ImageFigure({ src, reference, className, imageClassName = DESKTOP_IMAGE_HEIGHT }: ImageFigureProps) {
+  const t = useT('inspect');
+  const shown = src ?? (reference ? PUBLIC_REFERENCE_URL : null);
+  return (
+    <figure className={cx('m-0 flex flex-col overflow-hidden rounded-tile bg-surface', className)}>
+      {shown ? (
+        <img
+          src={shown}
+          alt={reference ? t('imageAltReference') : t('imageAltSession')}
+          decoding="async"
+          className={cx('block h-65 w-full object-contain', imageClassName)}
+        />
+      ) : (
+        <p className="m-0 p-4 text-label text-muted">{t('unavailableImage')}</p>
+      )}
+      {reference && shown ? (
+        <figcaption className="flex flex-col gap-0.5 border-t border-solid border-soft-line px-3.5 py-2 text-caption text-ink">
+          <span>{t('referenceCaption')}</span>
+          <span className="text-muted">{t('referenceAttribution')}</span>
+        </figcaption>
+      ) : null}
+    </figure>
+  );
+}
+
+type ImageToolbarProps = {
+  onOpenTool: (tool: ToolName) => void;
+  className?: string;
+};
+
+/** Floating tools under the image: Ajustar, Ampliar, Capas, Info. */
+export function ImageToolbar({ onOpenTool, className }: ImageToolbarProps) {
+  const t = useT('inspect');
+  const navigate = useNavigate();
+  return (
+    <div role="group" aria-label={t('toolbarLabel')} className={cx('grid grid-cols-4 gap-1.5 rounded-nav bg-surface p-1.5', className)}>
+      <Button variant="quiet" pressed aria-pressed="true" className="flex-col">
+        <ExpandIcon />
+        <span className="text-header">{t('toolFit')}</span>
+      </Button>
+      <Button variant="quiet" onClick={() => navigate('/inspeccion/zoom')} className="flex-col">
+        <PlusIcon />
+        <span className="text-header">{t('toolZoom')}</span>
+      </Button>
+      <Button variant="quiet" onClick={() => onOpenTool('layers')} className="flex-col">
+        <LayersIcon />
+        <span className="text-header">{t('toolLayers')}</span>
+      </Button>
+      <Button variant="quiet" onClick={() => onOpenTool('info')} className="flex-col">
+        <InfoGlyphIcon />
+        <span className="text-header">{t('toolInfo')}</span>
+      </Button>
+    </div>
+  );
+}
+
+type ViewerStageProps = {
+  src: string | null;
+  image: ExamImage | null;
+  onOpenTool: (tool: ToolName) => void;
+};
+
+/** Desktop only (lg): the image stays on the left whatever tab is open, with its tools under it. */
+export function ViewerStage({ src, image, onOpenTool }: ViewerStageProps) {
+  return (
+    <div className="hidden lg:sticky lg:top-6 lg:flex lg:flex-col lg:gap-3 lg:self-start">
+      <ImageFigure src={src} reference={isReferenceImage(image)} />
+      <ImageToolbar onOpenTool={onOpenTool} />
+    </div>
+  );
+}
+
 type ImagePanelProps = {
   src: string | null;
   image: ExamImage | null;
   record: ExamRecord;
-  onOpenTool: (tool: 'layers' | 'info') => void;
+  onOpenTool: (tool: ToolName) => void;
 };
 
-/** Unmodified image plus the floating tools. The image is never drawn over (no mask, no heatmap). */
+/** Unmodified image plus the floating tools (mobile). On desktop the stage shows them instead. */
 export function ImagePanel({ src, image, record, onOpenTool }: ImagePanelProps) {
   const t = useT('inspect');
   const navigate = useNavigate();
-  const reference = isReferenceImage(image);
-  const shown = src ?? (reference ? PUBLIC_REFERENCE_URL : null);
   return (
     <div className="flex flex-col gap-3">
       <h2 className="m-0 text-title text-ink">{t('imageHeading')}</h2>
-      <figure className="m-0 flex flex-col overflow-hidden rounded-tile bg-surface">
-        {shown ? (
-          <img
-            src={shown}
-            alt={reference ? t('imageAltReference') : t('imageAltSession')}
-            decoding="async"
-            className="block h-65 w-full object-contain"
-          />
-        ) : (
-          <p className="m-0 p-4 text-label text-muted">{t('unavailableImage')}</p>
-        )}
-        {reference && shown ? (
-          <figcaption className="flex flex-col gap-0.5 border-t border-solid border-soft-line px-3.5 py-2 text-caption text-ink">
-            <span>{t('referenceCaption')}</span>
-            <span className="text-muted">{t('referenceAttribution')}</span>
-          </figcaption>
-        ) : null}
-      </figure>
-      <div role="group" aria-label={t('toolbarLabel')} className="grid grid-cols-4 gap-1.5 rounded-nav bg-surface p-1.5">
-        <Button variant="quiet" pressed aria-pressed="true" className="flex-col">
-          <ExpandIcon />
-          <span className="text-header">{t('toolFit')}</span>
-        </Button>
-        <Button variant="quiet" onClick={() => navigate('/inspeccion/zoom')} className="flex-col">
-          <PlusIcon />
-          <span className="text-header">{t('toolZoom')}</span>
-        </Button>
-        <Button variant="quiet" onClick={() => onOpenTool('layers')} className="flex-col">
-          <LayersIcon />
-          <span className="text-header">{t('toolLayers')}</span>
-        </Button>
-        <Button variant="quiet" onClick={() => onOpenTool('info')} className="flex-col">
-          <InfoGlyphIcon />
-          <span className="text-header">{t('toolInfo')}</span>
-        </Button>
-      </div>
+      <ImageFigure src={src} reference={isReferenceImage(image)} className="lg:hidden" />
+      <ImageToolbar onOpenTool={onOpenTool} className="lg:hidden" />
       <div className="grid grid-cols-[1fr_7rem] gap-3">
         <div className="flex flex-col gap-3 rounded-tile bg-ink p-3 text-on-accent">
           <p className="m-0 text-body text-on-accent">{t('manualInvitation')}</p>
