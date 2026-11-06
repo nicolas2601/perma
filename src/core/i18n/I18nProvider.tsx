@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import type { Locale } from './contract';
 import { copyRegistry, qualify, translate, type CopyDictionary, type CopyKey } from './registry';
 import {
@@ -37,6 +37,10 @@ export function I18nProvider({
   const [locale, setLocaleState] = useState<Locale>(() =>
     detectLocale(navigatorLanguage, readStoredLocale(storage)),
   );
+
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
 
   const setLocale = useCallback(
     (next: Locale) => {

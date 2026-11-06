@@ -27,6 +27,15 @@ export function validateImageFile(file: Pick<File, 'type' | 'size'>): void {
   }
 }
 
+/** Detects the real container from the first bytes; the declared MIME type is user-controlled. */
+export function sniffImageType(head: Uint8Array): (typeof ACCEPTED_IMAGE_TYPES)[number] | null {
+  const startsWith = (...bytes: number[]) => bytes.every((byte, index) => head[index] === byte);
+  if (startsWith(0xff, 0xd8, 0xff)) return 'image/jpeg';
+  if (startsWith(0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a)) return 'image/png';
+  const riff = startsWith(0x52, 0x49, 0x46, 0x46) && head[8] === 0x57 && head[9] === 0x45 && head[10] === 0x42 && head[11] === 0x50;
+  return riff ? 'image/webp' : null;
+}
+
 export function checkMegapixels(width: number, height: number): void {
   if (width * height > MAX_MEGAPIXELS * PIXELS_PER_MEGAPIXEL) {
     throw new ImageRejectedError('megapixels');
@@ -88,6 +97,8 @@ export async function prepareExamImage(
   meta: { name: string; origin: ExamImage['origin'] },
 ): Promise<ExamImage> {
   validateImageFile({ type: original.type, size: original.size });
+  const sniffed = sniffImageType(new Uint8Array(await original.slice(0, 12).arrayBuffer()));
+  if (sniffed === null) throw new ImageRejectedError('type');
   const decoded = await decode(original);
   checkMegapixels(decoded.width, decoded.height);
   const upload = await stripExifLocation(await resizeForUpload(decoded));

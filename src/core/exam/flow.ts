@@ -118,7 +118,7 @@ export function freshRecord(state: ExamState, clock: ExamClock): ExamState {
 
 /** G12: clears image, ABCDE, note and ack in one transition. Reference pages never reach here. */
 export function discardRecord(state: ExamState): ExamState {
-  const record = { ...state.record, abcde: {}, note: '' };
+  const record = { ...state.record, abcde: {}, note: '', bodySite: null, priorImageId: null };
   const changed = !sameContent(state.record, record) || state.image !== null;
   return {
     ...state,

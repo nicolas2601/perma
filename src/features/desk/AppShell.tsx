@@ -63,7 +63,7 @@ export function AppShell({ title, onBack, headerAction, showNav = true, children
   const navId = activeNavId(location.path);
   return (
     <div className="flex min-h-dvh flex-col bg-canvas text-ink">
-      <header className="sticky top-0 z-30 flex items-center gap-2 bg-canvas px-5 pt-[env(safe-area-inset-top)] pb-3">
+      <header className="sticky top-0 z-30 flex flex-wrap items-center gap-2 bg-canvas px-5 pt-[env(safe-area-inset-top)] pb-3">
         {onBack ? (
           <IconButton
             label={t('back')}

@@ -230,6 +230,8 @@ describe('exam reducer: record content', () => {
     expect(discarded.record.abcde).toEqual({});
     expect(discarded.record.note).toBe('');
     expect(discarded.ackRegistryVersion).toBeNull();
+    expect(discarded.record.bodySite).toBeNull();
+    expect(discarded.record.priorImageId).toBeNull();
     expect(discarded.record.registryVersion).toBe(exported.record.registryVersion + 1);
   });
 

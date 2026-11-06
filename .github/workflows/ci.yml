@@ -41,11 +41,7 @@ jobs:
         run: npm run build
 
       - name: Guard - no MSW in production bundle
-        run: |
-          if grep -rqE 'setupWorker|setupServer|mockServiceWorker' dist; then
-            echo "MSW code found in dist/"
-            exit 1
-          fi
+        run: node scripts/check-no-msw-in-dist.mjs dist
 
       - name: Bundle budget
         run: npm run size

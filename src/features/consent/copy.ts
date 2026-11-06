@@ -15,7 +15,7 @@ export const copy = {
     privacyTitle: 'Revisar el tratamiento de datos',
     privacyHint: 'Abrir detalles',
     privacyBody:
-      'La imagen sale del dispositivo sólo cuando usted pulsa Enviar. Los fotogramas de cámara no se guardan ni se suben desde la aplicación. El servicio de análisis trata la imagen según sus propias condiciones; esta pantalla no las verifica.',
+      'La imagen sale del dispositivo sólo cuando usted pulsa Enviar. Los fotogramas que analiza la guía de la cámara no se guardan ni se suben; la foto que usted toma sí queda en este dispositivo y sólo viaja al pulsar Enviar. El servicio de análisis trata la imagen según sus propias condiciones; esta pantalla no las verifica.',
     send: 'Enviar para análisis',
     close: 'Cerrar',
     waitShellTitle: 'Salida del modelo · En espera',
@@ -46,7 +46,7 @@ export const copy = {
     privacyTitle: 'Review data handling',
     privacyHint: 'Open details',
     privacyBody:
-      'The image leaves the device only when you press Send. Camera frames are not stored or uploaded by the app. The analysis service handles the image under its own terms; this screen does not verify them.',
+      'The image leaves the device only when you press Send. The frames the camera guide analyses are not stored or uploaded; the photo you take stays on this device and only travels when you press Send. The analysis service handles the image under its own terms; this screen does not verify them.',
     send: 'Send for analysis',
     close: 'Close',
     waitShellTitle: 'Model output · Waiting',

@@ -35,7 +35,7 @@ export default function Capture() {
 
   const onFileChosen = (file: File | undefined) => {
     if (!file) return;
-    void loadAndReview(() => prepareExamImage(file, { name: file.name, origin: 'file' }));
+    void loadAndReview(() => prepareExamImage(file, { name: 'imagen-adjunta', origin: 'file' }));
   };
 
   const back = () => {

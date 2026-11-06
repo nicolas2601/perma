@@ -23,7 +23,7 @@ export const copy = {
       'Esta versión es un prototipo de investigación. Describe qué queda en su dispositivo y qué viaja al servidor de inferencia cuando usted lo solicita.',
     stayTitle: 'Permanece en su dispositivo',
     stayBody:
-      'El registro ABCDE, la nota profesional y el contexto de la sesión. La imagen original no se sube sin su acción. Los fotogramas de la cámara nunca se almacenan ni se suben.',
+      'El registro ABCDE, la nota profesional, el contexto de la sesión y la imagen que usted cargó o tomó, guardados en este navegador hasta que descarte el examen. La imagen no se sube sin su acción. Los fotogramas que analiza la guía de la cámara nunca se almacenan ni se suben.',
     travelTitle: 'Viaja al servidor cuando usted pulsa Enviar',
     travelBody:
       'Una copia redimensionada de la imagen, sin ubicación EXIF, junto con el modelo y el modo elegidos. No se envían el registro ABCDE ni la nota.',
@@ -66,7 +66,7 @@ export const copy = {
       'This version is a research prototype. It describes what stays on your device and what travels to the inference server when you request it.',
     stayTitle: 'Stays on your device',
     stayBody:
-      'The ABCDE record, the professional note and the session context. The original image is not uploaded without your action. Camera frames are never stored or uploaded.',
+      'The ABCDE record, the professional note, the session context and the image you loaded or took, kept in this browser until you discard the exam. The image is not uploaded without your action. The frames the camera guide analyses are never stored or uploaded.',
     travelTitle: 'Travels to the server when you press Send',
     travelBody:
       'A resized copy of the image, without EXIF location, together with the chosen model and mode. The ABCDE record and the note are not sent.',

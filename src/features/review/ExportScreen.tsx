@@ -78,7 +78,7 @@ export default function ExportScreen() {
             type="checkbox"
             checked={reviewed}
             onChange={(event) => setReviewed(event.target.checked)}
-            className="size-5 accent-accent"
+            className="size-6 accent-accent"
           />
           {t('ackLabel')}
         </label>

@@ -22,7 +22,7 @@ let sharedRuntime: ExamRuntime | null = null;
 function getSharedRuntime(): ExamRuntime {
   sharedRuntime ??= createExamRuntime({
     storage: createExamStorage(hasIndexedDb() ? createIndexedDbAdapter() : null),
-    onError: (error) => console.warn('[perma] exam storage error', error),
+    onError: (error) => console.warn('[perma] exam storage error', error instanceof Error ? error.name : 'unknown'),
   });
   return sharedRuntime;
 }
