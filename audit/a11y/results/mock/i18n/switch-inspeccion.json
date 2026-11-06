@@ -9,10 +9,10 @@
     "h1": "Dé contexto a la imagen."
   },
   "after": {
-    "htmlLang": "es",
+    "htmlLang": "en",
     "title": "PERMA",
     "h1": "Add context to the image."
   },
-  "documentLangUpdated": false,
+  "documentLangUpdated": true,
   "visibleTextChanged": true
 }

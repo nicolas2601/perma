@@ -36,11 +36,9 @@
   },
   "zoom200Emulated": {
     "viewportWidth": 320,
-    "scrollWidth": 376,
-    "overflowPx": 56,
-    "clipped": [
-      "button:EN"
-    ]
+    "scrollWidth": 320,
+    "overflowPx": 0,
+    "clipped": []
   },
   "liveRegions": [],
   "pageErrors": [],

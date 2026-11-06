@@ -2,33 +2,38 @@
   "route": "/imagen/calidad",
   "tabPresses": 120,
   "reachedBrowserOrEnd": true,
-  "uniqueStops": 6,
+  "uniqueStops": 5,
   "trapCandidates": [],
   "invisibleFocus": [],
   "obscuredFocus": [],
   "backwardJumps": [
     {
-      "step": 8,
+      "step": 7,
       "from": "Continuar a la imagen",
       "to": "Volver"
     },
     {
-      "step": 15,
+      "step": 13,
       "from": "Continuar a la imagen",
       "to": "Volver"
     },
     {
-      "step": 22,
+      "step": 19,
       "from": "Continuar a la imagen",
       "to": "Volver"
     },
     {
-      "step": 29,
+      "step": 25,
       "from": "Continuar a la imagen",
       "to": "Volver"
     },
     {
-      "step": 36,
+      "step": 31,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 37,
       "from": "Continuar a la imagen",
       "to": "Volver"
     },
@@ -38,27 +43,32 @@
       "to": "Volver"
     },
     {
-      "step": 50,
+      "step": 49,
       "from": "Continuar a la imagen",
       "to": "Volver"
     },
     {
-      "step": 57,
+      "step": 55,
       "from": "Continuar a la imagen",
       "to": "Volver"
     },
     {
-      "step": 64,
+      "step": 61,
       "from": "Continuar a la imagen",
       "to": "Volver"
     },
     {
-      "step": 71,
+      "step": 67,
       "from": "Continuar a la imagen",
       "to": "Volver"
     },
     {
-      "step": 78,
+      "step": 73,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 79,
       "from": "Continuar a la imagen",
       "to": "Volver"
     },
@@ -68,46 +78,46 @@
       "to": "Volver"
     },
     {
-      "step": 92,
+      "step": 91,
       "from": "Continuar a la imagen",
       "to": "Volver"
     },
     {
-      "step": 99,
+      "step": 97,
       "from": "Continuar a la imagen",
       "to": "Volver"
     },
     {
-      "step": 106,
+      "step": 103,
       "from": "Continuar a la imagen",
       "to": "Volver"
     },
     {
-      "step": 113,
+      "step": 109,
       "from": "Continuar a la imagen",
       "to": "Volver"
     },
     {
-      "step": 120,
+      "step": 115,
       "from": "Continuar a la imagen",
       "to": "Volver"
     }
   ],
   "firstStops": [
     "button:Volver",
-    "button:Ver guía",
     "button:Idioma: EN",
     "button:Sitio del cuerpoSin registrar",
     "button:Contexto clínico opcionalEdad, duración, síntomas y antecede",
     "button:Continuar a la imagen",
     "button:Volver",
-    "button:Ver guía",
     "button:Idioma: EN",
     "button:Sitio del cuerpoSin registrar",
     "button:Contexto clínico opcionalEdad, duración, síntomas y antecede",
     "button:Continuar a la imagen",
     "button:Volver",
-    "button:Ver guía",
-    "button:Idioma: EN"
+    "button:Idioma: EN",
+    "button:Sitio del cuerpoSin registrar",
+    "button:Contexto clínico opcionalEdad, duración, síntomas y antecede",
+    "button:Continuar a la imagen"
   ]
 }

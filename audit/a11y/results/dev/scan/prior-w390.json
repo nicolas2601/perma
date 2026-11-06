@@ -19,12 +19,12 @@
   },
   "axe": [],
   "targets": {
-    "total": 4,
+    "total": 5,
     "under24": [],
     "under44Count": 0
   },
   "contrast": {
-    "checked": 9,
+    "checked": 11,
     "unverifiable": 0,
     "fails": []
   },

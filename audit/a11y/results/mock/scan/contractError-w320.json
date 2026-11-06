@@ -19,7 +19,7 @@
   },
   "axe": [],
   "targets": {
-    "total": 4,
+    "total": 3,
     "under24": [],
     "under44Count": 0
   },
@@ -36,11 +36,9 @@
   },
   "zoom200Emulated": {
     "viewportWidth": 320,
-    "scrollWidth": 376,
-    "overflowPx": 56,
-    "clipped": [
-      "button:EN"
-    ]
+    "scrollWidth": 359,
+    "overflowPx": 39,
+    "clipped": []
   },
   "liveRegions": [
     {

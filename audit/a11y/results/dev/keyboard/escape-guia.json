@@ -1,6 +1,6 @@
 {
   "route": "/guia",
-  "triggersTested": 2,
+  "triggersTested": 3,
   "results": [
     {
       "trigger": "‹",
@@ -8,6 +8,10 @@
     },
     {
       "trigger": "EN",
+      "opened": false
+    },
+    {
+      "trigger": "Back to workspace",
       "opened": false
     }
   ]

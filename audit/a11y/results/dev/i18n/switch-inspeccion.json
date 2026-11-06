@@ -9,10 +9,10 @@
     "h1": "Imagen de referencia"
   },
   "after": {
-    "htmlLang": "es",
+    "htmlLang": "en",
     "title": "PERMA",
     "h1": "Reference image"
   },
-  "documentLangUpdated": false,
+  "documentLangUpdated": true,
   "visibleTextChanged": true
 }

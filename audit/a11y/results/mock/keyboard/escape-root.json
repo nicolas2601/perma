@@ -1,11 +1,7 @@
 {
   "route": "/",
-  "triggersTested": 9,
+  "triggersTested": 8,
   "results": [
-    {
-      "trigger": "",
-      "opened": false
-    },
     {
       "trigger": "EN",
       "opened": false
@@ -21,7 +17,7 @@
       "focusReturnedToTrigger": true
     },
     {
-      "trigger": "P. Tschandl · CC BY-SA 4.0Reference imag",
+      "trigger": "P. TschandlCC BY-SA 4.0Reference imageEx",
       "opened": false
     },
     {

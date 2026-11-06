@@ -12,7 +12,7 @@
     "colorSchemeMeta": "light",
     "colorSchemeCss": "light",
     "h1": [
-      "Ampliar"
+      "Inspeccionar · Ampliación de pantalla"
     ],
     "main": 1,
     "title": "PERMA"
@@ -24,7 +24,7 @@
     "under44Count": 0
   },
   "contrast": {
-    "checked": 8,
+    "checked": 11,
     "unverifiable": 0,
     "fails": []
   },
@@ -36,13 +36,9 @@
   },
   "zoom200Emulated": {
     "viewportWidth": 320,
-    "scrollWidth": 397,
-    "overflowPx": 77,
-    "clipped": [
-      "button:EN",
-      "button:Volver a la imagen",
-      "span:Volver a la imagen"
-    ]
+    "scrollWidth": 320,
+    "overflowPx": 0,
+    "clipped": []
   },
   "liveRegions": [],
   "pageErrors": [],

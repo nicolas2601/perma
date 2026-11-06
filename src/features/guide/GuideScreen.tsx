@@ -24,7 +24,7 @@ export default function GuideScreen() {
   return (
     <main className="flex h-dvh flex-col bg-canvas">
       <ScreenHeader title={t('guideTitle')} backTo="/" backLabel={t('back')} infoLabel={t('info')} />
-      <div className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
+      <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
         <h2 className="m-0 text-title text-ink">{t('guideHeading')}</h2>
         <p className="m-0 text-body text-ink">{t('guideIntro')}</p>
         <p className="m-0 text-label text-ink">{t('imageAttribution')}</p>

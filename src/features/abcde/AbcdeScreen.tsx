@@ -63,7 +63,7 @@ export default function AbcdeScreen() {
         backLabel={t('back')}
         infoLabel={tInspect('info')}
       />
-      <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
+      <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
         <p className="m-0 text-label text-muted">{t('intro')}</p>
         <nav aria-label={t('navLabel')}>
           <ul className="m-0 grid list-none grid-cols-5 gap-1.5 p-0">

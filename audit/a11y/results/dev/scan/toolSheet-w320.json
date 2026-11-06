@@ -19,12 +19,12 @@
   },
   "axe": [],
   "targets": {
-    "total": 11,
+    "total": 16,
     "under24": [],
     "under44Count": 0
   },
   "contrast": {
-    "checked": 18,
+    "checked": 22,
     "unverifiable": 0,
     "fails": []
   },
@@ -36,14 +36,21 @@
   },
   "zoom200Emulated": {
     "viewportWidth": 320,
-    "scrollWidth": 376,
-    "overflowPx": 56,
+    "scrollWidth": 488,
+    "overflowPx": 168,
     "clipped": [
+      "a:i",
+      "span:i",
       "button:EN",
       "button:Mis observaciones",
       "div:Estado de revisiónSin iniciar",
       "span:Estado de revisión",
-      "span:Sin iniciar"
+      "span:Sin iniciar",
+      "li:Examinar",
+      "button:Examinar",
+      "span:Examinar",
+      "li:Revisión",
+      "button:Revisión"
     ]
   },
   "liveRegions": [],

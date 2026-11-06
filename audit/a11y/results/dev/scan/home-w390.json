@@ -19,12 +19,12 @@
   },
   "axe": [],
   "targets": {
-    "total": 9,
+    "total": 8,
     "under24": [],
     "under44Count": 0
   },
   "contrast": {
-    "checked": 17,
+    "checked": 18,
     "unverifiable": 0,
     "fails": []
   },
@@ -36,10 +36,9 @@
   },
   "zoom200Emulated": {
     "viewportWidth": 390,
-    "scrollWidth": 488,
-    "overflowPx": 98,
+    "scrollWidth": 508,
+    "overflowPx": 118,
     "clipped": [
-      "button:EN",
       "li:Revisión",
       "button:Revisión",
       "span:",
@@ -50,6 +49,7 @@
       "span:Revisión",
       "li:Guía",
       "button:Guía",
+      "span:",
       "span:"
     ]
   },

@@ -1,73 +1,20 @@
 {
   "run": "mock",
-  "generatedAt": "2026-11-06T08:20:18.643Z",
+  "generatedAt": "2026-11-06T10:45:56.139Z",
   "viewportViewCount": 96,
   "axeViolationsByImpact": {
     "critical": 0,
-    "serious": 4,
+    "serious": 0,
     "moderate": 0,
     "minor": 0
   },
-  "axeRows": [
-    {
-      "id": "calibration@w320",
-      "rule": "scrollable-region-focusable",
-      "impact": "serious",
-      "nodes": 1,
-      "target": ".min-h-0",
-      "evidence": "screenshots/mock/calibration-w320.png"
-    },
-    {
-      "id": "calibrationReady@w320",
-      "rule": "scrollable-region-focusable",
-      "impact": "serious",
-      "nodes": 1,
-      "target": ".min-h-0",
-      "evidence": "screenshots/mock/calibrationReady-w320.png"
-    },
-    {
-      "id": "privacy@w320",
-      "rule": "scrollable-region-focusable",
-      "impact": "serious",
-      "nodes": 1,
-      "target": ".min-h-0",
-      "evidence": "screenshots/mock/privacy-w320.png"
-    },
-    {
-      "id": "privacy@w390",
-      "rule": "scrollable-region-focusable",
-      "impact": "serious",
-      "nodes": 1,
-      "target": ".min-h-0",
-      "evidence": "screenshots/mock/privacy-w390.png"
-    }
-  ],
+  "axeRows": [],
   "contrastRows": [],
   "targetRows": [
     {
       "id": "export@w320",
-      "below24NotExempt": 1,
-      "sample": {
-        "selector": "input:",
-        "width": 16.6,
-        "height": 20,
-        "spacingExempt": false
-      }
-    },
-    {
-      "id": "export@w320",
       "under44Advisory": 1,
       "advisory": true
-    },
-    {
-      "id": "export@w390",
-      "below24NotExempt": 1,
-      "sample": {
-        "selector": "input:",
-        "width": 20,
-        "height": 20,
-        "spacingExempt": false
-      }
     },
     {
       "id": "export@w390",
@@ -76,28 +23,8 @@
     },
     {
       "id": "exportOptions@w320",
-      "below24NotExempt": 1,
-      "sample": {
-        "selector": "input:",
-        "width": 16.6,
-        "height": 20,
-        "spacingExempt": false
-      }
-    },
-    {
-      "id": "exportOptions@w320",
       "under44Advisory": 1,
       "advisory": true
-    },
-    {
-      "id": "exportOptions@w390",
-      "below24NotExempt": 1,
-      "sample": {
-        "selector": "input:",
-        "width": 20,
-        "height": 20,
-        "spacingExempt": false
-      }
     },
     {
       "id": "exportOptions@w390",
@@ -109,420 +36,308 @@
   "zoomEmulatedRows": [
     {
       "id": "abcde@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "abcdeB@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "abcdeC@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "abcdeD@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "abcdeE@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "calibration@w320",
-      "overflowPx": 56,
-      "clipped": [
-        "button:EN"
-      ]
+      "overflowPx": 11,
+      "clipped": []
     },
     {
       "id": "calibrationReady@w320",
-      "overflowPx": 56,
-      "clipped": [
-        "button:EN"
-      ]
+      "overflowPx": 11,
+      "clipped": []
     },
     {
       "id": "camera@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "cameraPrimer@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "capture@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "classDetail@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "classes@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "compare@w320",
-      "overflowPx": 56,
-      "clipped": [
-        "button:EN"
-      ]
+      "overflowPx": 11,
+      "clipped": []
     },
     {
       "id": "consent@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "context@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "contextDetails@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "contractError@w320",
-      "overflowPx": 56,
-      "clipped": [
-        "button:EN"
-      ]
+      "overflowPx": 39,
+      "clipped": []
     },
     {
       "id": "discard@w320",
-      "overflowPx": 168,
+      "overflowPx": 188,
       "clipped": [
-        "button:",
-        "span:",
-        "svg:"
+        "button:ProtocoloAlcance y límitesEn estudio. No",
+        "span:Protocolo",
+        "span:Alcance y límites"
       ]
     },
     {
       "id": "discard@w390",
-      "overflowPx": 98,
+      "overflowPx": 118,
       "clipped": [
-        "button:EN",
         "li:Revisión",
-        "button:Revisión"
-      ]
-    },
-    {
-      "id": "error@w320",
-      "overflowPx": 56,
-      "clipped": [
-        "button:EN"
-      ]
-    },
-    {
-      "id": "export@w320",
-      "overflowPx": 56,
-      "clipped": [
-        "button:EN"
-      ]
-    },
-    {
-      "id": "exportDone@w320",
-      "overflowPx": 56,
-      "clipped": [
-        "button:EN"
+        "button:Revisión",
+        "span:"
       ]
     },
     {
       "id": "exportError@w320",
-      "overflowPx": 56,
-      "clipped": [
-        "button:EN"
-      ]
-    },
-    {
-      "id": "exportOptions@w320",
-      "overflowPx": 56,
-      "clipped": [
-        "button:EN"
-      ]
-    },
-    {
-      "id": "fileError@w320",
-      "overflowPx": 56,
-      "clipped": [
-        "button:EN"
-      ]
+      "overflowPx": 52,
+      "clipped": []
     },
     {
       "id": "gallery@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
-      ]
-    },
-    {
-      "id": "guide@w320",
-      "overflowPx": 56,
-      "clipped": [
-        "button:EN"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "home@w320",
-      "overflowPx": 168,
+      "overflowPx": 188,
       "clipped": [
-        "button:",
-        "span:",
-        "svg:"
+        "button:ProtocoloAlcance y límitesEn estudio. No",
+        "span:Protocolo",
+        "span:Alcance y límites"
       ]
     },
     {
       "id": "home@w390",
-      "overflowPx": 98,
+      "overflowPx": 118,
       "clipped": [
-        "button:EN",
         "li:Revisión",
-        "button:Revisión"
+        "button:Revisión",
+        "span:"
       ]
     },
     {
       "id": "modelDetails@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "notesSheet@w320",
-      "overflowPx": 56,
-      "clipped": [
-        "button:EN"
-      ]
-    },
-    {
-      "id": "offline@w320",
-      "overflowPx": 56,
-      "clipped": [
-        "button:EN"
-      ]
-    },
-    {
-      "id": "original@w320",
-      "overflowPx": 56,
-      "clipped": [
-        "button:EN"
-      ]
+      "overflowPx": 11,
+      "clipped": []
     },
     {
       "id": "permission@w320",
-      "overflowPx": 56,
-      "clipped": [
-        "button:EN"
-      ]
-    },
-    {
-      "id": "prior@w320",
-      "overflowPx": 56,
-      "clipped": [
-        "button:EN"
-      ]
-    },
-    {
-      "id": "privacy@w320",
-      "overflowPx": 56,
-      "clipped": [
-        "button:EN"
-      ]
+      "overflowPx": 11,
+      "clipped": []
     },
     {
       "id": "processing@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "quality@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "qualityIssue@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "rateLimit@w320",
-      "overflowPx": 56,
-      "clipped": [
-        "button:EN"
-      ]
+      "overflowPx": 25,
+      "clipped": []
     },
     {
       "id": "result@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "scope@w320",
-      "overflowPx": 168,
+      "overflowPx": 188,
       "clipped": [
-        "button:",
-        "span:",
-        "svg:"
+        "button:ProtocoloAlcance y límitesEn estudio. No",
+        "span:Protocolo",
+        "span:Alcance y límites"
       ]
     },
     {
       "id": "scope@w390",
-      "overflowPx": 98,
+      "overflowPx": 118,
       "clipped": [
-        "button:EN",
         "li:Revisión",
-        "button:Revisión"
+        "button:Revisión",
+        "span:"
       ]
     },
     {
       "id": "siteSheet@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "stopWaiting@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
-      ]
-    },
-    {
-      "id": "summary@w320",
-      "overflowPx": 56,
-      "clipped": [
-        "button:EN"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "timeout@w320",
-      "overflowPx": 56,
-      "clipped": [
-        "button:EN"
-      ]
+      "overflowPx": 40,
+      "clipped": []
     },
     {
       "id": "toolSheet@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
+        "svg:",
+        "path:"
       ]
     },
     {
       "id": "viewer@w320",
-      "overflowPx": 56,
+      "overflowPx": 30,
       "clipped": [
-        "button:EN",
         "span:",
-        "svg:"
-      ]
-    },
-    {
-      "id": "zoom@w320",
-      "overflowPx": 77,
-      "clipped": [
-        "button:EN",
-        "button:Volver a la imagen",
-        "span:Volver a la imagen"
-      ]
-    },
-    {
-      "id": "zoom@w390",
-      "overflowPx": 7,
-      "clipped": [
-        "button:Volver a la imagen",
-        "span:Volver a la imagen"
+        "svg:",
+        "path:"
       ]
     }
   ],
@@ -1014,7 +829,7 @@
       "route": "/inspeccion/original",
       "finalPath": "/inspeccion/original",
       "status": 200,
-      "h1": "Imagen original"
+      "h1": "Inspeccionar · Original"
     },
     {
       "view": "original",
@@ -1022,7 +837,7 @@
       "route": "/inspeccion/original",
       "finalPath": "/inspeccion/original",
       "status": 200,
-      "h1": "Imagen original"
+      "h1": "Inspeccionar · Original"
     },
     {
       "view": "permission",
@@ -1280,7 +1095,7 @@
       "route": "/inspeccion/zoom",
       "finalPath": "/inspeccion/zoom",
       "status": 200,
-      "h1": "Ampliar"
+      "h1": "Inspeccionar · Ampliación de pantalla"
     },
     {
       "view": "zoom",
@@ -1288,57 +1103,12 @@
       "route": "/inspeccion/zoom",
       "finalPath": "/inspeccion/zoom",
       "status": 200,
-      "h1": "Ampliar"
+      "h1": "Inspeccionar · Ampliación de pantalla"
     }
   ],
   "keyboardRows": [
     {
       "route": "/contexto",
-      "uniqueStops": 6,
-      "trapCandidates": 0,
-      "invisibleFocus": 0,
-      "obscuredFocus": 0,
-      "backwardJumps": 17,
-      "reachedEnd": true
-    },
-    {
-      "route": "/envio",
-      "uniqueStops": 6,
-      "trapCandidates": 0,
-      "invisibleFocus": 0,
-      "obscuredFocus": 0,
-      "backwardJumps": 17,
-      "reachedEnd": true
-    },
-    {
-      "route": "/envio/procesando",
-      "uniqueStops": 6,
-      "trapCandidates": 0,
-      "invisibleFocus": 0,
-      "obscuredFocus": 0,
-      "backwardJumps": 17,
-      "reachedEnd": true
-    },
-    {
-      "route": "/examen/abcde",
-      "uniqueStops": 6,
-      "trapCandidates": 0,
-      "invisibleFocus": 0,
-      "obscuredFocus": 0,
-      "backwardJumps": 17,
-      "reachedEnd": true
-    },
-    {
-      "route": "/examen/comparar",
-      "uniqueStops": 7,
-      "trapCandidates": 0,
-      "invisibleFocus": 0,
-      "obscuredFocus": 0,
-      "backwardJumps": 14,
-      "reachedEnd": true
-    },
-    {
-      "route": "/guia",
       "uniqueStops": 5,
       "trapCandidates": 0,
       "invisibleFocus": 0,
@@ -1347,75 +1117,120 @@
       "reachedEnd": true
     },
     {
-      "route": "/imagen",
-      "uniqueStops": 6,
+      "route": "/envio",
+      "uniqueStops": 5,
       "trapCandidates": 0,
       "invisibleFocus": 0,
       "obscuredFocus": 0,
-      "backwardJumps": 17,
+      "backwardJumps": 19,
+      "reachedEnd": true
+    },
+    {
+      "route": "/envio/procesando",
+      "uniqueStops": 5,
+      "trapCandidates": 0,
+      "invisibleFocus": 0,
+      "obscuredFocus": 0,
+      "backwardJumps": 19,
+      "reachedEnd": true
+    },
+    {
+      "route": "/examen/abcde",
+      "uniqueStops": 5,
+      "trapCandidates": 0,
+      "invisibleFocus": 0,
+      "obscuredFocus": 0,
+      "backwardJumps": 19,
+      "reachedEnd": true
+    },
+    {
+      "route": "/examen/comparar",
+      "uniqueStops": 8,
+      "trapCandidates": 0,
+      "invisibleFocus": 0,
+      "obscuredFocus": 0,
+      "backwardJumps": 13,
+      "reachedEnd": true
+    },
+    {
+      "route": "/guia",
+      "uniqueStops": 7,
+      "trapCandidates": 0,
+      "invisibleFocus": 0,
+      "obscuredFocus": 0,
+      "backwardJumps": 14,
+      "reachedEnd": true
+    },
+    {
+      "route": "/imagen",
+      "uniqueStops": 5,
+      "trapCandidates": 0,
+      "invisibleFocus": 0,
+      "obscuredFocus": 0,
+      "backwardJumps": 19,
       "reachedEnd": true
     },
     {
       "route": "/imagen/calidad",
-      "uniqueStops": 6,
+      "uniqueStops": 5,
       "trapCandidates": 0,
       "invisibleFocus": 0,
       "obscuredFocus": 0,
-      "backwardJumps": 17,
+      "backwardJumps": 19,
       "reachedEnd": true
     },
     {
       "route": "/inspeccion",
-      "uniqueStops": 6,
+      "uniqueStops": 5,
       "trapCandidates": 0,
       "invisibleFocus": 0,
       "obscuredFocus": 0,
-      "backwardJumps": 17,
+      "backwardJumps": 19,
       "reachedEnd": true
     },
     {
       "route": "/resultado",
-      "uniqueStops": 6,
+      "uniqueStops": 5,
       "trapCandidates": 0,
       "invisibleFocus": 0,
       "obscuredFocus": 0,
-      "backwardJumps": 17,
+      "backwardJumps": 19,
       "reachedEnd": true
     },
     {
       "route": "/resultado/clases",
-      "uniqueStops": 6,
+      "uniqueStops": 5,
       "trapCandidates": 0,
       "invisibleFocus": 0,
       "obscuredFocus": 0,
-      "backwardJumps": 17,
+      "backwardJumps": 19,
       "reachedEnd": true
     },
     {
       "route": "/revision",
-      "uniqueStops": 6,
+      "uniqueStops": 7,
       "trapCandidates": 0,
       "invisibleFocus": 0,
       "obscuredFocus": 0,
-      "backwardJumps": 17,
+      "backwardJumps": 14,
       "reachedEnd": true
     },
     {
       "route": "/revision/exportar",
-      "uniqueStops": 6,
+      "uniqueStops": 7,
       "trapCandidates": 0,
       "invisibleFocus": 0,
       "obscuredFocus": 0,
-      "backwardJumps": 17,
+      "backwardJumps": 14,
       "reachedEnd": true
     },
     {
       "route": "/",
-      "uniqueStops": 9,
+      "uniqueStops": 8,
       "trapCandidates": 0,
       "invisibleFocus": 0,
       "obscuredFocus": 0,
-      "backwardJumps": 23,
+      "backwardJumps": 27,
       "reachedEnd": true
     }
   ],
@@ -1427,11 +1242,6 @@
     },
     {
       "route": "/contexto",
-      "trigger": "",
-      "opened": false
-    },
-    {
-      "route": "/contexto",
       "trigger": "EN",
       "opened": false
     },
@@ -1452,11 +1262,6 @@
     {
       "route": "/contexto",
       "trigger": "Continue to image",
-      "opened": false
-    },
-    {
-      "route": "/envio",
-      "trigger": "",
       "opened": false
     },
     {
@@ -1495,11 +1300,6 @@
     },
     {
       "route": "/envio/procesando",
-      "trigger": "",
-      "opened": false
-    },
-    {
-      "route": "/envio/procesando",
       "trigger": "EN",
       "opened": false
     },
@@ -1520,11 +1320,6 @@
     {
       "route": "/envio/procesando",
       "trigger": "Continue to image",
-      "opened": false
-    },
-    {
-      "route": "/examen/abcde",
-      "trigger": "",
       "opened": false
     },
     {
@@ -1599,8 +1394,8 @@
       "opened": false
     },
     {
-      "route": "/imagen",
-      "trigger": "",
+      "route": "/guia",
+      "trigger": "Back to workspace",
       "opened": false
     },
     {
@@ -1639,11 +1434,6 @@
     },
     {
       "route": "/imagen/calidad",
-      "trigger": "",
-      "opened": false
-    },
-    {
-      "route": "/imagen/calidad",
       "trigger": "EN",
       "opened": false
     },
@@ -1664,11 +1454,6 @@
     {
       "route": "/imagen/calidad",
       "trigger": "Continue to image",
-      "opened": false
-    },
-    {
-      "route": "/inspeccion",
-      "trigger": "",
       "opened": false
     },
     {
@@ -1707,11 +1492,6 @@
     },
     {
       "route": "/resultado",
-      "trigger": "",
-      "opened": false
-    },
-    {
-      "route": "/resultado",
       "trigger": "EN",
       "opened": false
     },
@@ -1732,11 +1512,6 @@
     {
       "route": "/resultado",
       "trigger": "Continue to image",
-      "opened": false
-    },
-    {
-      "route": "/resultado/clases",
-      "trigger": "",
       "opened": false
     },
     {
@@ -1812,11 +1587,6 @@
     },
     {
       "route": "/",
-      "trigger": "",
-      "opened": false
-    },
-    {
-      "route": "/",
       "trigger": "EN",
       "opened": false
     },
@@ -1834,7 +1604,7 @@
     },
     {
       "route": "/",
-      "trigger": "P. Tschandl · CC BY-SA 4.0Reference imag",
+      "trigger": "P. TschandlCC BY-SA 4.0Reference imageEx",
       "opened": false
     },
     {
@@ -2195,8 +1965,8 @@
       "found": true,
       "target": "en",
       "docLangBefore": "es",
-      "docLangAfter": "es",
-      "documentLangUpdated": false,
+      "docLangAfter": "en",
+      "documentLangUpdated": true,
       "visibleTextChanged": true
     },
     {
@@ -2204,8 +1974,8 @@
       "found": true,
       "target": "en",
       "docLangBefore": "es",
-      "docLangAfter": "es",
-      "documentLangUpdated": false,
+      "docLangAfter": "en",
+      "documentLangUpdated": true,
       "visibleTextChanged": true
     },
     {
@@ -2213,8 +1983,8 @@
       "found": true,
       "target": "en",
       "docLangBefore": "es",
-      "docLangAfter": "es",
-      "documentLangUpdated": false,
+      "docLangAfter": "en",
+      "documentLangUpdated": true,
       "visibleTextChanged": true
     },
     {
@@ -2222,8 +1992,8 @@
       "found": true,
       "target": "en",
       "docLangBefore": "es",
-      "docLangAfter": "es",
-      "documentLangUpdated": false,
+      "docLangAfter": "en",
+      "documentLangUpdated": true,
       "visibleTextChanged": true
     },
     {
@@ -2231,8 +2001,8 @@
       "found": true,
       "target": "en",
       "docLangBefore": "es",
-      "docLangAfter": "es",
-      "documentLangUpdated": false,
+      "docLangAfter": "en",
+      "documentLangUpdated": true,
       "visibleTextChanged": true
     },
     {
@@ -2240,8 +2010,8 @@
       "found": true,
       "target": "en",
       "docLangBefore": "es",
-      "docLangAfter": "es",
-      "documentLangUpdated": false,
+      "docLangAfter": "en",
+      "documentLangUpdated": true,
       "visibleTextChanged": true
     }
   ],

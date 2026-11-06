@@ -2,64 +2,50 @@
   "route": "/inspeccion",
   "tabPresses": 120,
   "reachedBrowserOrEnd": true,
-  "uniqueStops": 10,
+  "uniqueStops": 15,
   "trapCandidates": [],
   "invisibleFocus": [],
   "obscuredFocus": [],
   "backwardJumps": [
     {
-      "step": 12,
-      "from": "Registrar en ABCDE",
+      "step": 17,
+      "from": "Guía",
       "to": "Volver"
     },
     {
-      "step": 23,
-      "from": "Registrar en ABCDE",
+      "step": 33,
+      "from": "Guía",
       "to": "Volver"
     },
     {
-      "step": 34,
-      "from": "Registrar en ABCDE",
+      "step": 49,
+      "from": "Guía",
       "to": "Volver"
     },
     {
-      "step": 45,
-      "from": "Registrar en ABCDE",
+      "step": 65,
+      "from": "Guía",
       "to": "Volver"
     },
     {
-      "step": 56,
-      "from": "Registrar en ABCDE",
+      "step": 81,
+      "from": "Guía",
       "to": "Volver"
     },
     {
-      "step": 67,
-      "from": "Registrar en ABCDE",
+      "step": 97,
+      "from": "Guía",
       "to": "Volver"
     },
     {
-      "step": 78,
-      "from": "Registrar en ABCDE",
-      "to": "Volver"
-    },
-    {
-      "step": 89,
-      "from": "Registrar en ABCDE",
-      "to": "Volver"
-    },
-    {
-      "step": 100,
-      "from": "Registrar en ABCDE",
-      "to": "Volver"
-    },
-    {
-      "step": 111,
-      "from": "Registrar en ABCDE",
+      "step": 113,
+      "from": "Guía",
       "to": "Volver"
     }
   ],
   "firstStops": [
     "button:Volver",
+    "button:Más herramientas de imagen",
     "a:Alcance y métodos",
     "button:Cambiar a inglés",
     "button:Imagen",
@@ -69,10 +55,9 @@
     "button:Capas",
     "button:Info",
     "button:Registrar en ABCDE",
-    "button:Volver",
-    "a:Alcance y métodos",
-    "button:Cambiar a inglés",
-    "button:Imagen",
-    "div:Mire más de cerca.Referencia pública · Color originalP. Tsch"
+    "button:Escritorio",
+    "button:Examinar",
+    "button:Revisión",
+    "button:Guía"
   ]
 }

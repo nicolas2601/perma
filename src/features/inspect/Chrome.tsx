@@ -19,7 +19,7 @@ type ScreenHeaderProps = {
 export function ScreenHeader({ title, backTo, backLabel, infoTo = '/guia', infoLabel, trailing }: ScreenHeaderProps) {
   const navigate = useNavigate();
   return (
-    <header className="flex h-15 items-center gap-2 bg-surface px-5">
+    <header className="flex min-h-15 flex-wrap items-center gap-2 bg-surface px-5 py-1">
       <IconButton
         label={backLabel}
         icon={<span aria-hidden="true" className="text-section">‹</span>}

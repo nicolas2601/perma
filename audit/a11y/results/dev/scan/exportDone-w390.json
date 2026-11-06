@@ -41,8 +41,6 @@
     "clipped": []
   },
   "liveRegions": [],
-  "pageErrors": [
-    "Transition was skipped. New ViewTransition started"
-  ],
+  "pageErrors": [],
   "screenshot": "screenshots/dev/exportDone-w390.png"
 }

@@ -1,5 +1,6 @@
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
+import basicSsl from '@vitejs/plugin-basic-ssl';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import { fileURLToPath } from 'node:url';
@@ -21,6 +22,8 @@ function preloadLatinFont(): Plugin {
 export default defineConfig({
   resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
   server: { proxy: { '/api': { target: API_ORIGIN, changeOrigin: true, secure: true } } },
+  // Same-origin /api for `vite preview` (LAN demos): the backend sends no CORS headers for other origins.
+  preview: { proxy: { '/api': { target: API_ORIGIN, changeOrigin: true, secure: true } } },
   build: {
     target: 'es2023',
     rolldownOptions: {
@@ -32,6 +35,8 @@ export default defineConfig({
   plugins: [
     react(),
     preloadLatinFont(),
+    // Self-signed HTTPS for LAN demos only: phones need a secure context for camera and service worker.
+    ...(process.env.LAN_HTTPS === '1' ? [basicSsl()] : []),
     tailwindcss(),
     VitePWA({
       registerType: 'prompt',

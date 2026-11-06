@@ -1,11 +1,7 @@
 {
   "route": "/imagen/calidad",
-  "triggersTested": 6,
+  "triggersTested": 5,
   "results": [
-    {
-      "trigger": "",
-      "opened": false
-    },
     {
       "trigger": "",
       "opened": false

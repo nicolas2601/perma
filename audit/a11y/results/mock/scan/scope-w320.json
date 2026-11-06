@@ -19,12 +19,12 @@
   },
   "axe": [],
   "targets": {
-    "total": 9,
+    "total": 8,
     "under24": [],
     "under44Count": 0
   },
   "contrast": {
-    "checked": 17,
+    "checked": 18,
     "unverifiable": 0,
     "fails": []
   },
@@ -36,21 +36,21 @@
   },
   "zoom200Emulated": {
     "viewportWidth": 320,
-    "scrollWidth": 488,
-    "overflowPx": 168,
+    "scrollWidth": 508,
+    "overflowPx": 188,
     "clipped": [
-      "button:",
-      "span:",
-      "svg:",
-      "circle:",
-      "button:EN",
       "button:ProtocoloAlcance y límitesEn estudio. No",
       "span:Protocolo",
       "span:Alcance y límites",
       "span:En estudio. No diagnostica.",
       "li:Examinar",
       "button:Examinar",
-      "li:Revisión"
+      "span:Examinar",
+      "li:Revisión",
+      "button:Revisión",
+      "span:",
+      "span:",
+      "svg:"
     ]
   },
   "liveRegions": [],

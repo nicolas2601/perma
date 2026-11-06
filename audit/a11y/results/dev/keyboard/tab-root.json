@@ -2,90 +2,100 @@
   "route": "/",
   "tabPresses": 120,
   "reachedBrowserOrEnd": true,
-  "uniqueStops": 9,
+  "uniqueStops": 8,
   "trapCandidates": [],
   "invisibleFocus": [],
   "obscuredFocus": [],
   "backwardJumps": [
     {
-      "step": 4,
+      "step": 3,
       "from": "Nuevo examen",
       "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
     },
     {
-      "step": 11,
+      "step": 10,
       "from": "Guía",
-      "to": "Ver guía"
+      "to": "Idioma: EN"
     },
     {
-      "step": 14,
+      "step": 12,
       "from": "Nuevo examen",
       "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
+    },
+    {
+      "step": 19,
+      "from": "Guía",
+      "to": "Idioma: EN"
     },
     {
       "step": 21,
-      "from": "Guía",
-      "to": "Ver guía"
-    },
-    {
-      "step": 24,
       "from": "Nuevo examen",
       "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
     },
     {
-      "step": 31,
+      "step": 28,
       "from": "Guía",
-      "to": "Ver guía"
+      "to": "Idioma: EN"
     },
     {
-      "step": 34,
+      "step": 30,
       "from": "Nuevo examen",
       "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
     },
     {
-      "step": 41,
+      "step": 37,
       "from": "Guía",
-      "to": "Ver guía"
+      "to": "Idioma: EN"
     },
     {
-      "step": 44,
+      "step": 39,
       "from": "Nuevo examen",
       "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
     },
     {
-      "step": 51,
+      "step": 46,
       "from": "Guía",
-      "to": "Ver guía"
+      "to": "Idioma: EN"
     },
     {
-      "step": 54,
+      "step": 48,
       "from": "Nuevo examen",
       "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
     },
     {
-      "step": 61,
+      "step": 55,
       "from": "Guía",
-      "to": "Ver guía"
+      "to": "Idioma: EN"
+    },
+    {
+      "step": 57,
+      "from": "Nuevo examen",
+      "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
     },
     {
       "step": 64,
+      "from": "Guía",
+      "to": "Idioma: EN"
+    },
+    {
+      "step": 66,
       "from": "Nuevo examen",
       "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
     },
     {
-      "step": 71,
+      "step": 73,
       "from": "Guía",
-      "to": "Ver guía"
+      "to": "Idioma: EN"
     },
     {
-      "step": 74,
+      "step": 75,
       "from": "Nuevo examen",
       "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
     },
     {
-      "step": 81,
+      "step": 82,
       "from": "Guía",
-      "to": "Ver guía"
+      "to": "Idioma: EN"
     },
     {
       "step": 84,
@@ -95,49 +105,59 @@
     {
       "step": 91,
       "from": "Guía",
-      "to": "Ver guía"
+      "to": "Idioma: EN"
     },
     {
-      "step": 94,
+      "step": 93,
       "from": "Nuevo examen",
       "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
     },
     {
-      "step": 101,
+      "step": 100,
       "from": "Guía",
-      "to": "Ver guía"
+      "to": "Idioma: EN"
     },
     {
-      "step": 104,
+      "step": 102,
       "from": "Nuevo examen",
       "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
+    },
+    {
+      "step": 109,
+      "from": "Guía",
+      "to": "Idioma: EN"
     },
     {
       "step": 111,
-      "from": "Guía",
-      "to": "Ver guía"
+      "from": "Nuevo examen",
+      "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
     },
     {
-      "step": 114,
+      "step": 118,
+      "from": "Guía",
+      "to": "Idioma: EN"
+    },
+    {
+      "step": 120,
       "from": "Nuevo examen",
       "to": "ProtocoloAlcance y límitesEn estudio. No diagnostica."
     }
   ],
   "firstStops": [
-    "button:Ver guía",
     "button:Idioma: EN",
     "button:Nuevo examen",
     "button:ProtocoloAlcance y límitesEn estudio. No diagnostica.",
-    "button:P. Tschandl · CC BY-SA 4.0Imagen de referenciaExplorar el es",
+    "button:P. TschandlCC BY-SA 4.0Imagen de referenciaExplorar el espac",
     "button:Escritorio",
     "button:Examinar",
     "button:Revisión",
     "button:Guía",
-    "button:Ver guía",
     "button:Idioma: EN",
     "button:Nuevo examen",
     "button:ProtocoloAlcance y límitesEn estudio. No diagnostica.",
-    "button:P. Tschandl · CC BY-SA 4.0Imagen de referenciaExplorar el es",
-    "button:Escritorio"
+    "button:P. TschandlCC BY-SA 4.0Imagen de referenciaExplorar el espac",
+    "button:Escritorio",
+    "button:Examinar",
+    "button:Revisión"
   ]
 }

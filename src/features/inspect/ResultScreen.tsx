@@ -22,7 +22,7 @@ export default function ResultScreen() {
   return (
     <main className="flex h-dvh flex-col bg-canvas">
       <ScreenHeader title={t('resultTitle')} backTo="/" backLabel={t('back')} infoLabel={t('info')} />
-      <div className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
+      <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
         {simulated ? (
           <div className="flex flex-col gap-2">
             <Badge tone="simulated">{t('mockBadge')}</Badge>

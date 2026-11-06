@@ -1,6 +1,6 @@
 {
   "route": "/examen/abcde",
-  "triggersTested": 18,
+  "triggersTested": 25,
   "results": [
     {
       "trigger": "‹",
@@ -72,6 +72,34 @@
     },
     {
       "trigger": "One colour",
+      "opened": false
+    },
+    {
+      "trigger": "Two colours",
+      "opened": false
+    },
+    {
+      "trigger": "Three or more colours",
+      "opened": false
+    },
+    {
+      "trigger": "Not evaluable",
+      "opened": false
+    },
+    {
+      "trigger": "DDiameterNot assessed",
+      "opened": false
+    },
+    {
+      "trigger": "Over 6 mm — manual",
+      "opened": false
+    },
+    {
+      "trigger": "6 mm or less — manual",
+      "opened": false
+    },
+    {
+      "trigger": "No physical measurement",
       "opened": false
     }
   ]

@@ -27,7 +27,7 @@ export default function SummaryScreen() {
   return (
     <main className="flex h-dvh flex-col bg-canvas">
       <ScreenHeader title={t('summaryTitle')} backTo="/examen/comparar" backLabel={t('back')} infoLabel={tInspect('info')} />
-      <div className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
+      <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
         <h2 className="m-0 text-title text-ink">{t('summaryHeading')}</h2>
         <p className="m-0 text-body text-ink">{t('summaryIntro')}</p>
         <section className="flex flex-col gap-2 rounded-tile border border-solid border-white/80 bg-surface p-4">

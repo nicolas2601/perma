@@ -19,7 +19,7 @@
   },
   "axe": [],
   "targets": {
-    "total": 6,
+    "total": 5,
     "under24": [],
     "under44Count": 0
   },
@@ -41,9 +41,6 @@
     "clipped": []
   },
   "liveRegions": [],
-  "pageErrors": [
-    "Transition was skipped. New ViewTransition started",
-    "Transition was skipped. New ViewTransition started"
-  ],
+  "pageErrors": [],
   "screenshot": "screenshots/dev/stopWaiting-w390.png"
 }

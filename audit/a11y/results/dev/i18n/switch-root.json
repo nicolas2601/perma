@@ -9,10 +9,10 @@
     "h1": "Empiece con contexto."
   },
   "after": {
-    "htmlLang": "es",
+    "htmlLang": "en",
     "title": "PERMA",
     "h1": "Start with context."
   },
-  "documentLangUpdated": false,
+  "documentLangUpdated": true,
   "visibleTextChanged": true
 }

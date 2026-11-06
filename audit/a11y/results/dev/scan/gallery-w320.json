@@ -19,7 +19,7 @@
   },
   "axe": [],
   "targets": {
-    "total": 6,
+    "total": 5,
     "under24": [],
     "under44Count": 0
   },
@@ -36,18 +36,15 @@
   },
   "zoom200Emulated": {
     "viewportWidth": 320,
-    "scrollWidth": 376,
-    "overflowPx": 56,
+    "scrollWidth": 350,
+    "overflowPx": 30,
     "clipped": [
-      "button:EN",
       "span:",
       "svg:",
       "path:"
     ]
   },
   "liveRegions": [],
-  "pageErrors": [
-    "Transition was skipped. New ViewTransition started"
-  ],
+  "pageErrors": [],
   "screenshot": "screenshots/dev/gallery-w320.png"
 }

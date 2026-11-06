@@ -12,7 +12,7 @@
     "colorSchemeMeta": "light",
     "colorSchemeCss": "light",
     "h1": [
-      "Imagen original"
+      "Inspeccionar · Original"
     ],
     "main": 1,
     "title": "PERMA"
@@ -24,7 +24,7 @@
     "under44Count": 0
   },
   "contrast": {
-    "checked": 6,
+    "checked": 9,
     "unverifiable": 0,
     "fails": []
   },
@@ -36,11 +36,9 @@
   },
   "zoom200Emulated": {
     "viewportWidth": 320,
-    "scrollWidth": 376,
-    "overflowPx": 56,
-    "clipped": [
-      "button:EN"
-    ]
+    "scrollWidth": 320,
+    "overflowPx": 0,
+    "clipped": []
   },
   "liveRegions": [],
   "pageErrors": [],

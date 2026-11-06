@@ -1,10 +1,16 @@
 {
   "route": "/inspeccion",
-  "triggersTested": 10,
+  "triggersTested": 15,
   "results": [
     {
       "trigger": "‹",
       "opened": false
+    },
+    {
+      "trigger": "",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
     },
     {
       "trigger": "EN",
@@ -44,6 +50,22 @@
     },
     {
       "trigger": "Record in ABCDE",
+      "opened": false
+    },
+    {
+      "trigger": "Desk",
+      "opened": false
+    },
+    {
+      "trigger": "Examine",
+      "opened": false
+    },
+    {
+      "trigger": "Review",
+      "opened": false
+    },
+    {
+      "trigger": "Guide",
       "opened": false
     }
   ]

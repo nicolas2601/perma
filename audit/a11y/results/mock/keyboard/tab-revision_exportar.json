@@ -2,43 +2,38 @@
   "route": "/revision/exportar",
   "tabPresses": 120,
   "reachedBrowserOrEnd": true,
-  "uniqueStops": 6,
+  "uniqueStops": 7,
   "trapCandidates": [],
   "invisibleFocus": [],
   "obscuredFocus": [],
   "backwardJumps": [
     {
-      "step": 8,
+      "step": 9,
       "from": "",
       "to": "Volver"
     },
     {
-      "step": 15,
+      "step": 17,
       "from": "",
       "to": "Volver"
     },
     {
-      "step": 22,
+      "step": 25,
       "from": "",
       "to": "Volver"
     },
     {
-      "step": 29,
+      "step": 33,
       "from": "",
       "to": "Volver"
     },
     {
-      "step": 36,
+      "step": 41,
       "from": "",
       "to": "Volver"
     },
     {
-      "step": 43,
-      "from": "",
-      "to": "Volver"
-    },
-    {
-      "step": 50,
+      "step": 49,
       "from": "",
       "to": "Volver"
     },
@@ -48,47 +43,37 @@
       "to": "Volver"
     },
     {
-      "step": 64,
+      "step": 65,
       "from": "",
       "to": "Volver"
     },
     {
-      "step": 71,
+      "step": 73,
       "from": "",
       "to": "Volver"
     },
     {
-      "step": 78,
+      "step": 81,
       "from": "",
       "to": "Volver"
     },
     {
-      "step": 85,
+      "step": 89,
       "from": "",
       "to": "Volver"
     },
     {
-      "step": 92,
+      "step": 97,
       "from": "",
       "to": "Volver"
     },
     {
-      "step": 99,
-      "from": "",
-      "to": "Volver"
-    },
-    {
-      "step": 106,
+      "step": 105,
       "from": "",
       "to": "Volver"
     },
     {
       "step": 113,
-      "from": "",
-      "to": "Volver"
-    },
-    {
-      "step": 120,
       "from": "",
       "to": "Volver"
     }
@@ -97,17 +82,17 @@
     "button:Volver",
     "a:Alcance y métodos",
     "button:Cambiar a inglés",
+    "div:Revise antes de exportar.Vista previa del registro que se de",
     "button:Opciones de exportación",
     "pre:Vista previa del archivo JSON",
     "input:",
     "button:Volver",
     "a:Alcance y métodos",
     "button:Cambiar a inglés",
+    "div:Revise antes de exportar.Vista previa del registro que se de",
     "button:Opciones de exportación",
     "pre:Vista previa del archivo JSON",
     "input:",
-    "button:Volver",
-    "a:Alcance y métodos",
-    "button:Cambiar a inglés"
+    "button:Volver"
   ]
 }

@@ -55,7 +55,7 @@ export default function ExportScreen() {
   return (
     <main className="flex h-dvh flex-col bg-canvas">
       <ScreenHeader title={t('exportHeader')} backTo="/revision" backLabel={t('back')} infoLabel={tInspect('info')} />
-      <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
+      <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
         <h2 className="m-0 text-title text-ink">{t('exportTitle')}</h2>
         <p className="m-0 text-body text-ink">{t('exportIntro')}</p>
         {result ? <ExperimentalNotice /> : null}
@@ -78,7 +78,7 @@ export default function ExportScreen() {
             type="checkbox"
             checked={reviewed}
             onChange={(event) => setReviewed(event.target.checked)}
-            className="size-6 accent-accent"
+            className="size-6 shrink-0 accent-accent"
           />
           {t('ackLabel')}
         </label>

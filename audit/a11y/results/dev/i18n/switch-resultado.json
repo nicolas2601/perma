@@ -9,10 +9,10 @@
     "h1": "Salida del modelo"
   },
   "after": {
-    "htmlLang": "es",
+    "htmlLang": "en",
     "title": "PERMA",
     "h1": "Model output"
   },
-  "documentLangUpdated": false,
+  "documentLangUpdated": true,
   "visibleTextChanged": true
 }

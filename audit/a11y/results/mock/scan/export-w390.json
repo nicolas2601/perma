@@ -20,14 +20,7 @@
   "axe": [],
   "targets": {
     "total": 5,
-    "under24": [
-      {
-        "selector": "input:",
-        "width": 20,
-        "height": 20,
-        "spacingExempt": false
-      }
-    ],
+    "under24": [],
     "under44Count": 1
   },
   "contrast": {

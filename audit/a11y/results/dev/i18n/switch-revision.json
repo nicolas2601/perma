@@ -9,10 +9,10 @@
     "h1": "Revisión · Sesión"
   },
   "after": {
-    "htmlLang": "es",
+    "htmlLang": "en",
     "title": "PERMA",
     "h1": "Review · Session"
   },
-  "documentLangUpdated": false,
+  "documentLangUpdated": true,
   "visibleTextChanged": true
 }
