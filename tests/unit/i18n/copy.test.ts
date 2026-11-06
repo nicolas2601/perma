@@ -16,8 +16,8 @@ describe('copy registry', () => {
     const merged = buildCopyRegistry({
       '/src/features/camera/copy.ts': feature({ 'camera.title': 'Cámara' }, { 'camera.title': 'Camera' }),
     });
-    expect(merged.es['camera.title']).toBe('Cámara');
-    expect(merged.en['camera.title']).toBe('Camera');
+    expect(merged.es['camera.camera.title']).toBe('Cámara');
+    expect(merged.en['camera.camera.title']).toBe('Camera');
     expect(merged.es['core.notice.experimental']).toBe(coreCopy.es['core.notice.experimental']);
   });
 
@@ -40,13 +40,20 @@ describe('copy registry', () => {
     );
   });
 
-  it('rejects a key declared by two features', () => {
+  it('namespaces feature keys so two features can reuse the same key', () => {
+    const merged = buildCopyRegistry({
+      '/src/features/a/copy.ts': feature({ back: 'a' }, { back: 'a' }),
+      '/src/features/b/copy.ts': feature({ back: 'b' }, { back: 'b' }),
+    });
+    expect(merged.es['a.back']).toBe('a');
+    expect(merged.es['b.back']).toBe('b');
+  });
+
+  it('rejects a feature key that collides with a core key', () => {
+    const [coreKey] = Object.keys(coreCopy.es);
     expect(() =>
-      buildCopyRegistry({
-        '/src/features/a/copy.ts': feature({ 'shared.key': 'a' }, { 'shared.key': 'a' }),
-        '/src/features/b/copy.ts': feature({ 'shared.key': 'b' }, { 'shared.key': 'b' }),
-      }),
-    ).toThrow(/duplicate key "shared.key"/);
+      buildCopyRegistry({ '/src/features/': feature({ [coreKey as string]: 'x' }, { [coreKey as string]: 'x' }) }),
+    ).toThrow(/duplicate key/);
   });
 
   it('keeps ES and EN key sets identical in core copy', () => {
@@ -54,7 +61,7 @@ describe('copy registry', () => {
   });
 
   it('keeps ES and EN key sets identical for every real feature copy file', () => {
-    const modules = import.meta.glob('/src/features/*/copy.ts', { eager: true });
+    const modules = import.meta.glob('/src/features/**/copy.ts', { eager: true });
     for (const [path, module] of Object.entries(modules)) {
       const { copy } = module as { copy: { es: object; en: object } };
       expect(Object.keys(copy.en).sort(), path).toEqual(Object.keys(copy.es).sort());
