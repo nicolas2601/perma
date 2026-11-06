@@ -1,4 +1,3 @@
-import { z } from 'zod';
 import { coreCopy, type CoreCopyKey } from './coreCopy';
 import type { CopyTable, FeatureCopy, Locale } from './contract';
 
@@ -24,10 +23,10 @@ export class CopyContractError extends Error {
   }
 }
 
-const copyTableSchema = z.record(z.string(), z.string());
-const featureCopySchema = z.object({
-  copy: z.object({ es: copyTableSchema, en: copyTableSchema }),
-});
+const isTable = (value: unknown): value is CopyTable =>
+  typeof value === 'object' &&
+  value !== null &&
+  Object.values(value).every((item) => typeof item === 'string');
 
 /**
  * Merges core copy with every feature copy module. Each feature exports
@@ -47,10 +46,12 @@ export function buildCopyRegistry(
   return dictionary;
 }
 
-function readFeatureCopy(path: string, module: unknown): z.infer<typeof featureCopySchema> {
-  const parsed = featureCopySchema.safeParse(module);
-  if (!parsed.success) throw new CopyContractError(path, 'expected export `copy` with es and en tables');
-  return parsed.data;
+function readFeatureCopy(path: string, module: unknown): { copy: FeatureCopy } {
+  const copy = (module as { copy?: { es?: unknown; en?: unknown } } | null)?.copy;
+  if (!copy || !isTable(copy.es) || !isTable(copy.en)) {
+    throw new CopyContractError(path, 'expected export `copy` with es and en tables');
+  }
+  return { copy: { es: copy.es, en: copy.en } };
 }
 
 function assertSameKeys(path: string, copy: FeatureCopy): void {

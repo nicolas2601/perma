@@ -1,4 +1,4 @@
-import { motion, type HTMLMotionProps } from 'motion/react';
+import { m, type HTMLMotionProps } from 'motion/react';
 import type { ReactNode } from 'react';
 import { cx } from './cx';
 import { usePressMotion } from './motion';
@@ -33,7 +33,7 @@ export function IconButton({
 }: IconButtonProps) {
   const press = usePressMotion(disabled);
   return (
-    <motion.button
+    <m.button
       {...rest}
       type={type}
       aria-label={label}
@@ -47,6 +47,6 @@ export function IconButton({
       className={cx(BASE, TONE_CLASSES[tone], className)}
     >
       {icon}
-    </motion.button>
+    </m.button>
   );
 }

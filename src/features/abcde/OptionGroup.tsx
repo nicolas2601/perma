@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { m } from 'motion/react';
 import type { AbcdeCriterion } from '@/core/storage/types';
 import { cx } from '@/ui';
 import { usePressScale } from '@/motion';
@@ -32,7 +32,7 @@ export function OptionGroup({ criterion, name, selected, onSelect, t }: OptionGr
 function OptionButton({ checked, label, onSelect }: { checked: boolean; label: string; onSelect: () => void }) {
   const press = usePressScale(false);
   return (
-    <motion.button
+    <m.button
       type="button"
       role="radio"
       aria-checked={checked}
@@ -54,6 +54,6 @@ function OptionButton({ checked, label, onSelect }: { checked: boolean; label: s
         {checked ? <span className="size-2 rounded-full bg-on-accent" /> : null}
       </span>
       <span className="text-body-medium text-ink">{label}</span>
-    </motion.button>
+    </m.button>
   );
 }

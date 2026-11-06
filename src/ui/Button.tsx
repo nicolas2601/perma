@@ -1,4 +1,4 @@
-import { motion, type HTMLMotionProps } from 'motion/react';
+import { m, type HTMLMotionProps } from 'motion/react';
 import type { ReactNode } from 'react';
 import { cx } from './cx';
 import { usePressMotion } from './motion';
@@ -53,7 +53,7 @@ export function Button({
   const inert = disabled || loading;
   const press = usePressMotion(inert);
   return (
-    <motion.button
+    <m.button
       {...rest}
       type={type}
       disabled={disabled}
@@ -69,6 +69,6 @@ export function Button({
     >
       {loading ? <Spinner /> : null}
       <span>{children}</span>
-    </motion.button>
+    </m.button>
   );
 }

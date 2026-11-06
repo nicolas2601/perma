@@ -12,7 +12,7 @@
     "format": "prettier --write .",
     "test": "vitest run",
     "e2e": "playwright test",
-    "size": "size-limit"
+    "size": "node scripts/measure-initial.mjs"
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.3.0",

@@ -6,7 +6,7 @@ export interface PressScaleProps {
   readonly transition: Transition;
 }
 
-/** Props for a motion.button press. Disabled controls get no tap target and no scale. */
+/** Props for a m.button press. Disabled controls get no tap target and no scale. */
 export function usePressScale(disabled: boolean): PressScaleProps {
   const reduce = reduceFromPreference(useReducedMotion());
   const feedback = resolvePressFeedback({ disabled, reducedMotion: reduce });

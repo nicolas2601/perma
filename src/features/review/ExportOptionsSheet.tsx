@@ -2,7 +2,7 @@ import { Sheet, cx } from '@/ui';
 import type { ExportFormat } from '@/core/export/types';
 import { useT } from '@/core/i18n/I18nProvider';
 import { usePressScale } from '@/motion';
-import { motion } from 'motion/react';
+import { m } from 'motion/react';
 
 type ExportOptionsSheetProps = {
   open: boolean;
@@ -58,7 +58,7 @@ type FormatOptionProps = {
 function FormatOption({ checked, label, hint, selectedLabel, onSelect }: FormatOptionProps) {
   const press = usePressScale(false);
   return (
-    <motion.button
+    <m.button
       type="button"
       role="radio"
       aria-checked={checked}
@@ -73,6 +73,6 @@ function FormatOption({ checked, label, hint, selectedLabel, onSelect }: FormatO
       <span className="text-body-medium text-ink">{label}</span>
       <span className="text-label text-muted">{hint}</span>
       {checked ? <span className="text-caption text-accent">{selectedLabel}</span> : null}
-    </motion.button>
+    </m.button>
   );
 }

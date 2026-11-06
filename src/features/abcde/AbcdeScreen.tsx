@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'motion/react';
+import { m } from 'motion/react';
 import { Button, cx } from '@/ui';
 import { useNavigate, useSearch } from '@/app/router';
 import { useExam, useExamDispatch } from '@/core/exam/react';
@@ -135,7 +135,7 @@ type CriterionTabProps = {
 function CriterionTab({ criterion, answered, current, active, onSelect }: CriterionTabProps) {
   const press = usePressScale(false);
   return (
-    <motion.button
+    <m.button
       type="button"
       aria-current={current ? 'true' : undefined}
       onClick={onSelect}
@@ -148,6 +148,6 @@ function CriterionTab({ criterion, answered, current, active, onSelect }: Criter
     >
       {active ? <NavIndicator activeId={criterion} /> : null}
       <span className="relative">{criterion}</span>
-    </motion.button>
+    </m.button>
   );
 }

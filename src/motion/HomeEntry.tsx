@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'motion/react';
+import { m, useReducedMotion } from 'motion/react';
 import type { ReactNode } from 'react';
 import { homeEntryVariants, reduceFromPreference } from '../core/motion';
 
@@ -10,14 +10,14 @@ export function HomeEntry({ children }: { children: ReactNode }) {
   const reduce = reduceFromPreference(useReducedMotion());
   const { container } = homeEntryVariants(reduce);
   return (
-    <motion.div initial="hidden" animate="show" variants={container}>
+    <m.div initial="hidden" animate="show" variants={container}>
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
 export function HomeEntryItem({ children }: { children: ReactNode }) {
   const reduce = reduceFromPreference(useReducedMotion());
   const { item } = homeEntryVariants(reduce);
-  return <motion.div variants={item}>{children}</motion.div>;
+  return <m.div variants={item}>{children}</m.div>;
 }

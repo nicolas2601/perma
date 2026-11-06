@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'motion/react';
+import { m, useReducedMotion } from 'motion/react';
 import type { ReactNode } from 'react';
 import { msToSeconds, planRouteTransition, reduceFromPreference, EASE_OUT } from '../core/motion';
 
@@ -11,12 +11,12 @@ export function RouteFade({ children }: { children: ReactNode }) {
   const reduce = reduceFromPreference(useReducedMotion());
   const { durationMs } = planRouteTransition({ reducedMotion: reduce });
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: msToSeconds(durationMs), ease: EASE_OUT }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

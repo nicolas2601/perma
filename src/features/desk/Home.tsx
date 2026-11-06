@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, useReducedMotion, type Variants } from 'motion/react';
+import { m, useReducedMotion, type Variants } from 'motion/react';
 import { useNavigate } from '@/app/router';
 import { useExam, useExamDispatch } from '@/core/exam/react';
 import { useT } from '@/core/i18n/I18nProvider';
@@ -96,12 +96,12 @@ export default function Home() {
         />
       }
     >
-      <motion.div variants={entryVariants(reduce)} initial="hidden" animate="show" className="flex flex-col gap-5">
-        <motion.div variants={entryItem(reduce)} className="flex items-center gap-3">
+      <m.div variants={entryVariants(reduce)} initial="hidden" animate="show" className="flex flex-col gap-5">
+        <m.div variants={entryItem(reduce)} className="flex items-center gap-3">
           <h1 className="m-0 min-w-0 flex-1 text-title text-ink">{t('headline')}</h1>
           <img src={geometricArt} alt="" width={168} height={152} className="h-auto w-32 shrink-0" />
-        </motion.div>
-        <motion.div variants={entryItem(reduce)} className="grid h-[270px] grid-cols-[1fr_auto] gap-3">
+        </m.div>
+        <m.div variants={entryItem(reduce)} className="grid h-[270px] grid-cols-[1fr_auto] gap-3">
           <Card tone="surface" className="gap-3 p-4">
             <h2 className="m-0 text-section text-ink">{t('prepareTitle')}</h2>
             <p className="m-0 text-label text-muted">{t('prepareBody')}</p>
@@ -119,11 +119,11 @@ export default function Home() {
             <span className="text-caption text-muted">{t('protocolScope')}</span>
             <span className="text-label text-ink">{t('protocolStatus')}</span>
           </button>
-        </motion.div>
-        <motion.div variants={entryItem(reduce)}>
+        </m.div>
+        <m.div variants={entryItem(reduce)}>
           <ReferenceCard />
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
       <ScopeSheet open={scopeOpen} onOpenChange={setScopeOpen} />
       <DiscardSheet
         open={discardOpen}

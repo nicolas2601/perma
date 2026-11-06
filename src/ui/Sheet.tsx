@@ -1,5 +1,5 @@
 import * as DialogPrimitive from '@radix-ui/react-dialog';
-import { AnimatePresence, motion, useDragControls, useReducedMotion, type PanInfo } from 'motion/react';
+import { AnimatePresence, m, useDragControls, useReducedMotion, type PanInfo } from 'motion/react';
 import { useLayoutEffect, useRef, type ReactNode } from 'react';
 import { CloseIcon } from './icons';
 import { IconButton } from './IconButton';
@@ -56,7 +56,7 @@ export function Sheet({ open, onOpenChange, title, description, closeLabel, chil
           {open ? (
             <>
               <DialogPrimitive.Overlay asChild forceMount>
-                <motion.div
+                <m.div
                   className="fixed inset-0 z-40 bg-scrim"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1, transition: overlayTransition }}
@@ -71,7 +71,7 @@ export function Sheet({ open, onOpenChange, title, description, closeLabel, chil
                   returnFocusRef.current?.focus();
                 }}
               >
-                <motion.div
+                <m.div
                   className="fixed inset-x-0 bottom-0 z-50 flex max-h-[85dvh] flex-col rounded-t-sheet bg-surface pb-[env(safe-area-inset-bottom)] text-ink outline-none"
                   initial={reduce ? { opacity: 0 } : { y: OFFSCREEN_Y }}
                   animate={reduce ? { opacity: 1, transition: enter } : { y: 0, transition: enter }}
@@ -106,7 +106,7 @@ export function Sheet({ open, onOpenChange, title, description, closeLabel, chil
                     {description ?? title}
                   </DialogPrimitive.Description>
                   <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-5">{children}</div>
-                </motion.div>
+                </m.div>
               </DialogPrimitive.Content>
             </>
           ) : null}

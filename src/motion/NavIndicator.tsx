@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'motion/react';
+import { m, useReducedMotion } from 'motion/react';
 import { indicatorSpring, msToSeconds, MOTION_MS, reduceFromPreference } from '../core/motion';
 
 export const NAV_INDICATOR_LAYOUT_ID = 'nav-indicator';
@@ -26,7 +26,7 @@ export function NavIndicator({ activeId }: { activeId: string }) {
   const className = 'absolute inset-0 rounded-full bg-accent/10';
   if (mode.kind === 'fade') {
     return (
-      <motion.span
+      <m.span
         key={activeId}
         aria-hidden
         className={className}
@@ -36,5 +36,5 @@ export function NavIndicator({ activeId }: { activeId: string }) {
       />
     );
   }
-  return <motion.span layoutId={mode.layoutId} aria-hidden className={className} transition={indicatorSpring} />;
+  return <m.span layoutId={mode.layoutId} aria-hidden className={className} transition={indicatorSpring} />;
 }

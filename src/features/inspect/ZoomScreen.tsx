@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react';
-import { AnimatePresence, motion, useReducedMotion, type MotionValue } from 'motion/react';
+import { AnimatePresence, m, useReducedMotion, type MotionValue } from 'motion/react';
 import { Button } from '@/ui';
 import { reducedTransition } from '@/ui/motion';
 import { useNavigate } from '@/app/router';
@@ -31,7 +31,7 @@ export default function ZoomScreen() {
       <ScreenHeader title={t('zoomTitle')} backTo="/inspeccion" backLabel={t('back')} infoLabel={t('info')} />
       <div ref={viewportRef} {...handlers} className="relative min-h-0 flex-1 touch-none overflow-hidden bg-surface">
         {shown ? (
-          <motion.img
+          <m.img
             src={shown}
             alt={reference ? t('imageAltReference') : t('imageAltSession')}
             draggable={false}
@@ -89,7 +89,7 @@ function ModeLabel({ zoomed, fitLabel, zoomLabel }: { zoomed: boolean; fitLabel:
   return (
     <span className="relative inline-grid min-w-16 text-body-medium text-ink">
       <AnimatePresence initial={false}>
-        <motion.span
+        <m.span
           key={label}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -98,7 +98,7 @@ function ModeLabel({ zoomed, fitLabel, zoomLabel }: { zoomed: boolean; fitLabel:
           className="col-start-1 row-start-1"
         >
           {label}
-        </motion.span>
+        </m.span>
       </AnimatePresence>
     </span>
   );
