@@ -55,39 +55,46 @@ export default function ExportScreen() {
   };
 
   return (
-    <main className="flex h-dvh flex-col bg-canvas">
+    <main className="flex h-dvh flex-col bg-canvas lg:h-auto lg:min-h-dvh">
       <ScreenHeader title={t('exportHeader')} backTo="/revision" backLabel={t('back')} infoLabel={tInspect('info')} />
-      <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
-        <div className="flex">
-          <Chip tint={PHASE_TINT.revision}>{tInspect('stepReview')}</Chip>
+      <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overscroll-contain px-5 pb-5 pt-3 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-x-8 lg:overflow-visible lg:px-8 lg:pb-8">
+        {/* Mobile keeps the reading order (options, preview, acknowledgement) through `order`; desktop puts the preview left and the controls right. */}
+        <div className="contents lg:col-start-2 lg:row-start-1 lg:flex lg:flex-col lg:gap-4">
+          <div className="flex">
+            <Chip tint={PHASE_TINT.revision}>{tInspect('stepReview')}</Chip>
+          </div>
+          <h2 className="m-0 text-title text-ink">{t('exportTitle')}</h2>
+          <p className="m-0 text-body text-ink">{t('exportIntro')}</p>
+          {result ? <ExperimentalNotice /> : null}
+          <Button variant="secondary" fullWidth onClick={() => setOptionsOpen(true)}>
+            {t('exportOptions')}
+          </Button>
+          <label className="order-2 flex min-h-13 items-center gap-3 text-body text-ink">
+            <input
+              type="checkbox"
+              checked={reviewed}
+              onChange={(event) => setReviewed(event.target.checked)}
+              className="size-6 shrink-0 accent-accent"
+            />
+            {t('ackLabel')}
+          </label>
+          {!reviewed ? (
+            <div className="order-2">
+              <StatusLine message={t('ackRequired')} tone="info" />
+            </div>
+          ) : null}
         </div>
-        <h2 className="m-0 text-title text-ink">{t('exportTitle')}</h2>
-        <p className="m-0 text-body text-ink">{t('exportIntro')}</p>
-        {result ? <ExperimentalNotice /> : null}
-        <Button variant="secondary" fullWidth onClick={() => setOptionsOpen(true)}>
-          {t('exportOptions')}
-        </Button>
-        <figure className="m-0 flex flex-col gap-1.5">
+        <figure className="order-1 m-0 flex flex-col gap-1.5 lg:sticky lg:top-6 lg:order-none lg:col-start-1 lg:row-start-1 lg:self-start">
           <figcaption className="text-label text-muted">{t('exportPreviewLabel')}</figcaption>
           <pre
             tabIndex={0}
             aria-label={t('exportPreviewLabel')}
-            className="m-0 max-h-64 overflow-auto rounded-tile border border-solid border-soft-line bg-surface p-3 text-caption text-ink"
+            className="m-0 max-h-64 overflow-auto rounded-tile border border-solid border-soft-line bg-surface p-3 text-caption text-ink lg:max-h-[40dvh]"
           >
             {preview}
           </pre>
           {format === 'pdf' ? <p className="m-0 text-caption text-muted">{t('exportPdfPreviewNote')}</p> : null}
         </figure>
-        <label className="flex min-h-13 items-center gap-3 text-body text-ink">
-          <input
-            type="checkbox"
-            checked={reviewed}
-            onChange={(event) => setReviewed(event.target.checked)}
-            className="size-6 shrink-0 accent-accent"
-          />
-          {t('ackLabel')}
-        </label>
-        {!reviewed ? <StatusLine message={t('ackRequired')} tone="info" /> : null}
       </div>
       <ActionDock>
         <Button fullWidth disabled={!reviewed || busy} loading={busy} onClick={exportNow}>

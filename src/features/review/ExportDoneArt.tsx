@@ -12,7 +12,7 @@ export function ExportDoneArt() {
   return (
     <div
       aria-hidden="true"
-      className="flex justify-center [&_svg]:h-30 [&_svg]:w-auto"
+      className="flex justify-center [&_svg]:h-30 [&_svg]:w-auto lg:[&_svg]:h-40"
       dangerouslySetInnerHTML={{ __html: ANIMATED_MARKUP }}
     />
   );
