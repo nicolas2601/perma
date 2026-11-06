@@ -1,6 +1,35 @@
+import type { Tint } from './tints';
+
 export type SystemLocale = 'es' | 'en';
 
+export type UpliftCopy = {
+  sectionChips: string;
+  sectionTiles: string;
+  sectionStepper: string;
+  sectionHeadings: string;
+  sectionEmpty: string;
+  sectionDraw: string;
+  sectionCardVariants: string;
+  tintNames: Record<Tint, string>;
+  selectable: string;
+  stepLabels: Record<'contexto' | 'imagen' | 'analisis' | 'resultado' | 'observaciones' | 'revision', string>;
+  stepperLabel: string;
+  eyebrow: string;
+  headingTitle: string;
+  tileBody: string;
+  emptyTitle: string;
+  emptyBody: string;
+  emptyAction: string;
+  drawLabel: string;
+  replay: string;
+  cardOutline: string;
+  cardSoft: string;
+  cardRaised: string;
+  cardInteractive: string;
+};
+
 export type SystemCopy = {
+  uplift: UpliftCopy;
   title: string;
   languageLabel: string;
   navLabel: string;
@@ -14,7 +43,7 @@ export type SystemCopy = {
   sectionNav: string;
   sectionScores: string;
   sectionFeedback: string;
-  variants: { primary: string; secondary: string; quiet: string; danger: string };
+  variants: { primary: string; secondary: string; quiet: string; danger: string; soft: string };
   states: { default: string; pressed: string; disabled: string; loading: string };
   iconLabel: string;
   focusDemo: string;
@@ -61,7 +90,7 @@ const ES: SystemCopy = {
   sectionNav: 'Navegación',
   sectionScores: 'Puntajes crudos',
   sectionFeedback: 'Estado y archivo',
-  variants: { primary: 'Principal', secondary: 'Secundario', quiet: 'Discreto', danger: 'Peligro' },
+  variants: { primary: 'Principal', secondary: 'Secundario', quiet: 'Discreto', danger: 'Peligro', soft: 'Suave' },
   states: { default: 'Reposo', pressed: 'Presionado', disabled: 'Deshabilitado', loading: 'Cargando' },
   iconLabel: 'Opciones de la imagen',
   focusDemo: 'Foco',
@@ -98,6 +127,38 @@ const ES: SystemCopy = {
   dropButton: 'Elegir archivo',
   dropReceived: (count) => `Archivos recibidos: ${count}`,
   loadingDemo: 'Cargando',
+  uplift: {
+    sectionChips: 'Etiquetas',
+    sectionTiles: 'Mosaico e iconos',
+    sectionStepper: 'Recorrido del examen',
+    sectionHeadings: 'Encabezados',
+    sectionEmpty: 'Estado vacío',
+    sectionDraw: 'Confirmación',
+    sectionCardVariants: 'Variantes de tarjeta',
+    tintNames: { mint: 'Menta', sky: 'Cielo', butter: 'Mantequilla', blush: 'Rubor', lilac: 'Lila' },
+    selectable: 'Seleccionable',
+    stepLabels: {
+      contexto: 'Contexto',
+      imagen: 'Imagen',
+      analisis: 'Análisis',
+      resultado: 'Resultado',
+      observaciones: 'Observaciones',
+      revision: 'Revisión',
+    },
+    stepperLabel: 'Recorrido del examen',
+    eyebrow: 'Paso 2 de 6',
+    headingTitle: 'Imagen',
+    tileBody: 'Texto breve de la fase, sin estados ni puntajes.',
+    emptyTitle: 'Todavía no hay observaciones.',
+    emptyBody: 'Las observaciones aparecen aquí cuando se registran.',
+    emptyAction: 'Registrar observación',
+    drawLabel: 'Exportación completada',
+    replay: 'Repetir animación',
+    cardOutline: 'Contorno suave',
+    cardSoft: 'Tinte',
+    cardRaised: 'Elevada',
+    cardInteractive: 'Interactiva',
+  },
 };
 
 const EN: SystemCopy = {
@@ -114,7 +175,7 @@ const EN: SystemCopy = {
   sectionNav: 'Navigation',
   sectionScores: 'Raw scores',
   sectionFeedback: 'Status and file',
-  variants: { primary: 'Primary', secondary: 'Secondary', quiet: 'Quiet', danger: 'Danger' },
+  variants: { primary: 'Primary', secondary: 'Secondary', quiet: 'Quiet', danger: 'Danger', soft: 'Soft' },
   states: { default: 'Default', pressed: 'Pressed', disabled: 'Disabled', loading: 'Loading' },
   iconLabel: 'Image options',
   focusDemo: 'Focus',
@@ -151,6 +212,38 @@ const EN: SystemCopy = {
   dropButton: 'Choose file',
   dropReceived: (count) => `Files received: ${count}`,
   loadingDemo: 'Loading',
+  uplift: {
+    sectionChips: 'Labels',
+    sectionTiles: 'Tiles and icons',
+    sectionStepper: 'Exam journey',
+    sectionHeadings: 'Headings',
+    sectionEmpty: 'Empty state',
+    sectionDraw: 'Confirmation',
+    sectionCardVariants: 'Card variants',
+    tintNames: { mint: 'Mint', sky: 'Sky', butter: 'Butter', blush: 'Blush', lilac: 'Lilac' },
+    selectable: 'Selectable',
+    stepLabels: {
+      contexto: 'Context',
+      imagen: 'Image',
+      analisis: 'Analysis',
+      resultado: 'Result',
+      observaciones: 'Observations',
+      revision: 'Review',
+    },
+    stepperLabel: 'Exam journey',
+    eyebrow: 'Step 2 of 6',
+    headingTitle: 'Image',
+    tileBody: 'Short phase text, with no states or scores.',
+    emptyTitle: 'No observations yet.',
+    emptyBody: 'Observations appear here once recorded.',
+    emptyAction: 'Record observation',
+    drawLabel: 'Export completed',
+    replay: 'Replay animation',
+    cardOutline: 'Soft outline',
+    cardSoft: 'Tint',
+    cardRaised: 'Raised',
+    cardInteractive: 'Interactive',
+  },
 };
 
 export const SYSTEM_COPY: Record<SystemLocale, SystemCopy> = { es: ES, en: EN };

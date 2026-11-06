@@ -22,7 +22,7 @@ export function Section({ title, children }: { title: string; children: ReactNod
   );
 }
 
-const VARIANTS: readonly ButtonVariant[] = ['primary', 'secondary', 'quiet', 'danger'];
+const VARIANTS: readonly ButtonVariant[] = ['primary', 'secondary', 'quiet', 'danger', 'soft'];
 
 export function ButtonSpecimens({ copy }: { copy: SystemCopy }) {
   return (
