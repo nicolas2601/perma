@@ -54,10 +54,13 @@ export function Rail() {
   const t = useT('desk');
   const navigate = useNavigate();
   const { location } = useRouter();
+  // A pending request is never left silently behind navigation (architecture section 5): no rail while waiting.
+  const waiting = location.path.startsWith('/envio/procesando');
   const { locale, setLocale } = useI18n();
   const progress = useProgress();
   const currentNav = activeNav(location.path);
   const currentStep = railStepOf(location.path);
+  if (waiting) return null;
   return (
     <aside
       aria-label={t('navLabel')}
