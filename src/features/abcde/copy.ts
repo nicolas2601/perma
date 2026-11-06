@@ -49,7 +49,14 @@ export const copy = {
       'Las marcas visibles por sí solas no verifican las unidades, la perspectiva ni la geometría de adquisición.',
     calibrationWithoutTitle: 'Sin calibración',
     calibrationWithoutBody: 'Registre Sin medición física. No convierta píxeles a milímetros.',
-    calibrationAction: 'Ir al criterio D',
+    calibrationAction: 'Ver lista de verificación de referencia',
+    refCardHint: 'Abrir detalles',
+    refPhysicalTitle: 'Requisitos de referencia física',
+    refPhysicalBody:
+      'Una medición manual solo se registra con una referencia física verificada en el mismo plano de la lesión. Sin verificación, use Sin medición física.',
+    refChangeTitle: 'Comparación con imagen anterior',
+    refChangeBody:
+      'Sin una imagen anterior real y su contexto de adquisición no hay comparación automática. Registre solo el cambio que se reporta.',
     readyTitle: 'Mis observaciones · Referencia',
     readyHeading: 'Lista de verificación de referencia',
     readyIntro: 'Ejemplo de documentación, no una calibración exitosa.',
@@ -105,7 +112,14 @@ export const copy = {
       'Visible markings alone do not verify units, perspective or acquisition geometry.',
     calibrationWithoutTitle: 'Without calibration',
     calibrationWithoutBody: 'Record No physical measurement. Do not convert pixels to millimetres.',
-    calibrationAction: 'Go to criterion D',
+    calibrationAction: 'View the reference checklist',
+    refCardHint: 'Open details',
+    refPhysicalTitle: 'Physical reference requirements',
+    refPhysicalBody:
+      'A manual measurement is only recorded with a physical reference verified in the same plane as the lesion. Without verification, use No physical measurement.',
+    refChangeTitle: 'Comparison with earlier image',
+    refChangeBody:
+      'Without a real earlier image and its acquisition context there is no automatic comparison. Record only the change that is reported.',
     readyTitle: 'My observations · Reference',
     readyHeading: 'Reference checklist',
     readyIntro: 'Documentation example, not a successful calibration.',
