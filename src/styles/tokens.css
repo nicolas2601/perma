@@ -25,7 +25,21 @@
   --r-nav: 12px;
   --r-tile: 14px;
   --r-sheet: 20px;
+  --r-card: 16px;
+  --r-blob: 14px;
+  /* Soft tints for navigation and category identity only. Never model output meaning. Each deep tone passes 4.5:1 on its tint (docs/design-uplift.md). */
+  --tint-mint: #dcf1ea;
+  --deep-mint: #0b6b5a;
+  --tint-sky: #dcebf7;
+  --deep-sky: #1f5f93;
+  --tint-butter: #fcefc9;
+  --deep-butter: #8a5a00;
+  --tint-blush: #fbe3de;
+  --deep-blush: #a2412f;
+  --tint-lilac: #e8e3f7;
+  --deep-lilac: #5b3fa0;
   --motion-press: 120ms;
+  --motion-card: 140ms;
   --motion-expand: 220ms;
   --motion-sheet: 240ms;
   --motion-reduced: 100ms;
@@ -42,6 +56,23 @@
   --radius-nav: var(--r-nav);
   --radius-tile: var(--r-tile);
   --radius-sheet: var(--r-sheet);
+  --radius-card: var(--r-card);
+  --radius-blob: var(--r-blob);
+  --color-tint-mint: var(--tint-mint);
+  --color-deep-mint: var(--deep-mint);
+  --color-tint-sky: var(--tint-sky);
+  --color-deep-sky: var(--deep-sky);
+  --color-tint-butter: var(--tint-butter);
+  --color-deep-butter: var(--deep-butter);
+  --color-tint-blush: var(--tint-blush);
+  --color-deep-blush: var(--deep-blush);
+  --color-tint-lilac: var(--tint-lilac);
+  --color-deep-lilac: var(--deep-lilac);
+  --shadow-raised: 0 1px 2px rgb(31 43 42 / 0.06), 0 4px 12px rgb(31 43 42 / 0.05);
+  --shadow-key: inset 0 1px 0 rgb(255 255 255 / 0.18), 0 1px 1px rgb(0 67 79 / 0.2);
+  --shadow-key-pressed: inset 0 2px 3px rgb(0 40 48 / 0.28);
+  --animate-perma-draw-check: perma-draw-check 320ms var(--ease-perma-out) both;
+  --animate-perma-fade: perma-fade var(--motion-reduced) var(--ease-perma-out) both;
   --text-title: 28px;
   --text-title--line-height: 34px;
   --text-title--font-weight: 600;
@@ -107,4 +138,15 @@ button, a, [role='button'] { touch-action: manipulation; }
 @keyframes perma-accordion-up {
   from { height: var(--radix-accordion-content-height); }
   to { height: 0; }
+}
+
+/* Pathed SVG with pathLength=1 and dasharray "1 1": offset 1 hides the stroke, 0 shows it whole. */
+@keyframes perma-draw-check {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes perma-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
