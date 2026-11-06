@@ -99,7 +99,7 @@ export function OutputPanel({ result, locale }: { result: InferenceResult; local
           </li>
         ))}
       </ul>
-      <Link to="/resultado" className="text-label text-accent outline-offset-2">
+      <Link to="/resultado" className="inline-flex min-h-11 items-center text-label text-accent outline-offset-2">
         {t('viewAllScores')}
       </Link>
     </div>
