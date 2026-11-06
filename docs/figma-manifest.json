@@ -1,0 +1,448 @@
+{
+ "figmaFile": "L2ld6aykwGET520sEfskjg",
+ "page": "141:2245",
+ "views": [
+  {
+   "nodeId": "141:2341",
+   "phase": "00 \u00b7 Start",
+   "view": "home",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2397",
+   "phase": "00 \u00b7 Start",
+   "view": "scope",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2420",
+   "phase": "00 \u00b7 Start",
+   "view": "discard",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2444",
+   "phase": "01 \u00b7 Context",
+   "view": "context",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2468",
+   "phase": "01 \u00b7 Context",
+   "view": "contextDetails",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2490",
+   "phase": "01 \u00b7 Context",
+   "view": "siteSheet",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2525",
+   "phase": "02 \u00b7 Image",
+   "view": "capture",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2551",
+   "phase": "02 \u00b7 Image",
+   "view": "cameraPrimer",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2577",
+   "phase": "02 \u00b7 Image",
+   "view": "camera",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2602",
+   "phase": "02 \u00b7 Image",
+   "view": "gallery",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2627",
+   "phase": "02 \u00b7 Image",
+   "view": "quality",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2658",
+   "phase": "02 \u00b7 Image",
+   "view": "qualityIssue",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2685",
+   "phase": "08 \u00b7 Recovery",
+   "view": "fileError",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2705",
+   "phase": "08 \u00b7 Recovery",
+   "view": "exportError",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2722",
+   "phase": "08 \u00b7 Recovery",
+   "view": "permission",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2745",
+   "phase": "08 \u00b7 Recovery",
+   "view": "offline",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2768",
+   "phase": "08 \u00b7 Recovery",
+   "view": "error",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2788",
+   "phase": "08 \u00b7 Recovery",
+   "view": "timeout",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2805",
+   "phase": "08 \u00b7 Recovery",
+   "view": "contractError",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2828",
+   "phase": "08 \u00b7 Recovery",
+   "view": "rateLimit",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2847",
+   "phase": "03 \u00b7 Analysis",
+   "view": "consent",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2876",
+   "phase": "03 \u00b7 Analysis",
+   "view": "processing",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2902",
+   "phase": "03 \u00b7 Analysis",
+   "view": "stopWaiting",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2926",
+   "phase": "04 \u00b7 Result",
+   "view": "result",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:2968",
+   "phase": "04 \u00b7 Result",
+   "view": "classes",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3041",
+   "phase": "04 \u00b7 Result",
+   "view": "classDetail",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3068",
+   "phase": "04 \u00b7 Result",
+   "view": "modelDetails",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3102",
+   "phase": "05 \u00b7 Inspection",
+   "view": "viewer",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3177",
+   "phase": "05 \u00b7 Inspection",
+   "view": "original",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3199",
+   "phase": "05 \u00b7 Inspection",
+   "view": "zoom",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3219",
+   "phase": "05 \u00b7 Inspection",
+   "view": "toolSheet",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3252",
+   "phase": "06 \u00b7 ABCDE",
+   "view": "abcde",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3292",
+   "phase": "06 \u00b7 ABCDE",
+   "view": "abcdeB",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3331",
+   "phase": "06 \u00b7 ABCDE",
+   "view": "abcdeC",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3371",
+   "phase": "06 \u00b7 ABCDE",
+   "view": "abcdeD",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3413",
+   "phase": "06 \u00b7 ABCDE",
+   "view": "abcdeE",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3455",
+   "phase": "06 \u00b7 ABCDE",
+   "view": "calibration",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3480",
+   "phase": "06 \u00b7 ABCDE",
+   "view": "calibrationReady",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3508",
+   "phase": "06 \u00b7 ABCDE",
+   "view": "prior",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3531",
+   "phase": "06 \u00b7 ABCDE",
+   "view": "compare",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3554",
+   "phase": "06 \u00b7 ABCDE",
+   "view": "notesSheet",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3581",
+   "phase": "07 \u00b7 Export",
+   "view": "summary",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3633",
+   "phase": "07 \u00b7 Export",
+   "view": "export",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3760",
+   "phase": "07 \u00b7 Export",
+   "view": "exportOptions",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3782",
+   "phase": "07 \u00b7 Export",
+   "view": "exportDone",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3807",
+   "phase": "09 \u00b7 Reference",
+   "view": "guide",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3841",
+   "phase": "09 \u00b7 Reference",
+   "view": "privacy",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  },
+  {
+   "nodeId": "141:3869",
+   "phase": "10 \u00b7 Research",
+   "view": "tone",
+   "route": null,
+   "state": null,
+   "test": null,
+   "reason": null
+  }
+ ],
+ "extra": [
+  {
+   "nodeId": "328:285",
+   "view": "abcdeSheet"
+  },
+  {
+   "nodeId": "331:276",
+   "view": "homeArt"
+  }
+ ]
+}
