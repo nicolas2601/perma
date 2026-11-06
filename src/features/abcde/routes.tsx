@@ -5,4 +5,5 @@ import { lazyScreen } from '@/features/inspect/lazyRoute';
 export const abcdeRoutes: RouteDef[] = [
   { path: '/examen/abcde', component: lazyScreen(() => import('./AbcdeScreen')) },
   { path: '/examen/calibracion', component: lazyScreen(() => import('./CalibrationScreen')) },
+  { path: '/examen/calibracion/lista', component: lazyScreen(() => import('./CalibrationReadyScreen')) },
 ];

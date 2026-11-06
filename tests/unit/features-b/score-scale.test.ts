@@ -2,7 +2,17 @@ import { describe, expect, it } from 'vitest';
 import { formatRawScore } from '@/ui';
 import { toRawScore, InvalidScoreError } from '@/ui/score';
 import { rankClasses, CLASS_INFO, isClassCode } from '@/features/inspect/classes';
-import { MOCK_SCORES, mockResult } from '@/features/inspect/fakeStore';
+import type { ClassCode } from '@/core/inference/types';
+
+const SCORES: Record<ClassCode, number> = {
+  nv: 0.61,
+  bkl: 0.15,
+  mel: 0.09,
+  bcc: 0.06,
+  akiec: 0.04,
+  vasc: 0.03,
+  df: 0.02,
+};
 
 describe('raw score scale', () => {
   it('formats decimals in both locales and never as a percentage', () => {
@@ -20,16 +30,10 @@ describe('raw score scale', () => {
   });
 
   it('ranks classes from highest to lowest raw score', () => {
-    const ranked = rankClasses(MOCK_SCORES);
+    const ranked = rankClasses(SCORES);
     expect(ranked[0]).toBe('nv');
     expect(ranked[ranked.length - 1]).toBe('df');
     expect(ranked).toHaveLength(7);
-  });
-
-  it('keeps the synthetic mock scores on the 0-1 scale and summing to 1', () => {
-    const values = Object.values(mockResult().scores);
-    expect(values.every((v) => v >= 0 && v <= 1)).toBe(true);
-    expect(values.reduce((a, b) => a + b, 0)).toBeCloseTo(1, 10);
   });
 
   it('validates class codes from route params', () => {

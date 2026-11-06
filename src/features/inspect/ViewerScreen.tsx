@@ -1,31 +1,23 @@
 import { useState } from 'react';
 import { Tabs, type TabItem } from '@/ui';
 import { useNavigate, useSearch } from '@/app/router';
-import { useExam, useT } from './api';
+import { useExam } from '@/core/exam/react';
+import { useI18n, useT } from '@/core/i18n/I18nProvider';
 import { ScreenHeader } from './Chrome';
-import { copy } from './copy';
 import { useObjectUrl } from './useImageSource';
 import { useResultGuard } from './guards';
 import { ImagePanel, ObservationsPanel, OutputPanel } from './ViewerPanels';
 import { ToolSheet, type ToolName } from './ToolSheet';
-import { viewerCopy } from './viewerCopy';
-
-const TABS = ['imagen', 'salida', 'observaciones'] as const;
-type TabValue = (typeof TABS)[number];
-const DEFAULT_TAB: TabValue = 'imagen';
-
-/** Unknown or missing `tab` values fall back to the image view (edge validation). */
-export function parseTab(raw: string | null): TabValue {
-  return (TABS as readonly string[]).includes(raw ?? '') ? (raw as TabValue) : DEFAULT_TAB;
-}
+import { parseTab } from './viewerTab';
 
 export default function ViewerScreen() {
-  const t = useT(viewerCopy);
-  const tCommon = useT(copy);
+  const t = useT('inspect');
   const navigate = useNavigate();
   const search = useSearch();
-  const { image, record } = useExam();
+  const image = useExam((state) => state.image);
+  const record = useExam((state) => state.record);
   const result = useResultGuard();
+  const { locale } = useI18n();
   const src = useObjectUrl(image);
   const [tool, setTool] = useState<ToolName>('info');
   const [toolOpen, setToolOpen] = useState(false);
@@ -44,7 +36,7 @@ export default function ViewerScreen() {
     {
       value: 'salida',
       label: t('tabOutput'),
-      panel: <OutputPanel result={result} />,
+      panel: <OutputPanel result={result} locale={locale} />,
     },
     {
       value: 'observaciones',
@@ -53,9 +45,9 @@ export default function ViewerScreen() {
     },
   ];
   return (
-    <main className="flex min-h-dvh flex-col bg-canvas">
-      <ScreenHeader title={t('viewerTitle')} backTo="/resultado" backLabel={tCommon('back')} infoLabel={tCommon('info')} />
-      <div className="flex-1 overflow-y-auto overscroll-contain px-5 pb-5 pt-2">
+    <main className="flex h-dvh flex-col bg-canvas">
+      <ScreenHeader title={t('viewerTitle')} backTo="/resultado" backLabel={t('back')} infoLabel={t('info')} />
+      <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-5 pt-2">
         <Tabs
           label={t('viewerTabsLabel')}
           items={items}

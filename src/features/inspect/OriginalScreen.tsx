@@ -1,22 +1,21 @@
 import { Button } from '@/ui';
 import { useNavigate } from '@/app/router';
-import { useExam, useT } from './api';
+import { useExam } from '@/core/exam/react';
+import { useT } from '@/core/i18n/I18nProvider';
 import { ActionDock, ScreenHeader } from './Chrome';
-import { copy } from './copy';
 import { useObjectUrl, isReferenceImage, PUBLIC_REFERENCE_URL } from './useImageSource';
-import { viewerCopy } from './viewerCopy';
 
 /** Unmodified original, fit to the screen. No filters, overlays or cropping. */
 export default function OriginalScreen() {
-  const t = useT(viewerCopy);
-  const tCommon = useT(copy);
+  const t = useT('inspect');
+  const tCommon = t;
   const navigate = useNavigate();
-  const { image } = useExam();
+  const image = useExam((state) => state.image);
   const src = useObjectUrl(image);
   const reference = isReferenceImage(image);
   const shown = src ?? (reference ? PUBLIC_REFERENCE_URL : null);
   return (
-    <main className="flex min-h-dvh flex-col bg-canvas">
+    <main className="flex h-dvh flex-col bg-canvas">
       <ScreenHeader title={t('originalTitle')} backTo="/inspeccion" backLabel={tCommon('back')} infoLabel={tCommon('info')} />
       <div className="flex flex-1 flex-col gap-2 px-5 pb-5 pt-3">
         {shown ? (

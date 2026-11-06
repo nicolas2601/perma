@@ -7,6 +7,7 @@ export const CRITERIA: readonly AbcdeCriterion[] = ['A', 'B', 'C', 'D', 'E'];
  * Option values per criterion (17 in total, from Figma frames 141:3252..141:3413).
  * Unanswered criteria are ABSENT from the record and render as "Sin evaluar".
  * "not-evaluable" is an explicit answer distinct from unanswered.
+ * Writes go through the exam reducer (ABCDE_SET); this module only reads and lists.
  */
 export const ABCDE_OPTIONS: Readonly<Record<AbcdeCriterion, readonly string[]>> = {
   A: ['symmetric', 'asymmetric-one-axis', 'asymmetric-two-axes', 'not-evaluable'],
@@ -31,24 +32,4 @@ export function criterionValue(record: ExamRecord, criterion: AbcdeCriterion): s
 
 export function answeredCount(record: ExamRecord): number {
   return CRITERIA.filter((criterion) => criterionValue(record, criterion) !== null).length;
-}
-
-/**
- * Pure record update. `value: null` clears the criterion back to unanswered.
- * Only a real change bumps `registryVersion`, which is what invalidates the export ack.
- * Throws on an option that does not belong to the criterion (validated at the edge).
- */
-export function setCriterion(
-  record: ExamRecord,
-  criterion: AbcdeCriterion,
-  value: string | null,
-): ExamRecord {
-  if (value !== null && !isOptionOf(criterion, value)) {
-    throw new RangeError(`Unknown ABCDE option "${value}" for criterion ${criterion}`);
-  }
-  if (criterionValue(record, criterion) === value) return record;
-  const abcde = { ...record.abcde };
-  if (value === null) delete abcde[criterion];
-  else abcde[criterion] = value;
-  return { ...record, abcde, registryVersion: record.registryVersion + 1 };
 }

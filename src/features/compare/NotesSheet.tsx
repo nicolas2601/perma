@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Sheet, StatusLine } from '@/ui';
-import { useExamDispatch, useT } from './api';
-import { copy } from './copy';
+import { useExamDispatch } from '@/core/exam/react';
+import { useT } from '@/core/i18n/I18nProvider';
 import { MAX_NOTE_LENGTH, noteAtLimit, normalizeNote } from './note';
 
 type NotesSheetProps = {
@@ -14,7 +14,7 @@ type Feedback = { message: string; tone: 'info' | 'success' };
 
 /** Professional note editor. The stored note is shown back immediately after saving. */
 export function NotesSheet({ open, onOpenChange, note }: NotesSheetProps) {
-  const t = useT(copy);
+  const t = useT('compare');
   const dispatch = useExamDispatch();
   const [draft, setDraft] = useState(note);
   const [feedback, setFeedback] = useState<Feedback | null>(null);

@@ -1,24 +1,27 @@
 import { Button, Badge } from '@/ui';
 import { useNavigate } from '@/app/router';
-import { ActionDock, ExperimentalNotice, ScreenHeader } from '@/features/inspect/Chrome';
-import { copy as inspectCopy } from '@/features/inspect/copy';
+import { useExam } from '@/core/exam/react';
+import { useT } from '@/core/i18n/I18nProvider';
 import { CRITERIA, criterionValue } from '@/features/abcde/logic';
-import { CRITERION_TITLE_KEY, copy as abcdeCopy, optionKey } from '@/features/abcde/copy';
-import { useExam, useT } from './api';
-import { copy } from './copy';
+import { CRITERION_TITLE_KEY, optionKey } from '@/features/abcde/copy';
+import { ExperimentalNotice, ScreenHeader, ActionDock } from '@/features/inspect/Chrome';
+import { useFlowSync } from '@/features/inspect/flowSync';
 import { reviewSource } from './reviewSource';
 
 /** Session summary: context, manual observations, note and model output, with the export entry point. */
 export default function SummaryScreen() {
-  const t = useT(copy);
-  const tAbcde = useT(abcdeCopy);
-  const tInspect = useT(inspectCopy);
+  const t = useT('review');
+  const tAbcde = useT('abcde');
+  const tInspect = useT('inspect');
   const navigate = useNavigate();
-  const { record, result, image } = useExam();
+  const record = useExam((state) => state.record);
+  const result = useExam((state) => state.result);
+  const image = useExam((state) => state.image);
+  useFlowSync('exporting');
   return (
-    <main className="flex min-h-dvh flex-col bg-canvas">
+    <main className="flex h-dvh flex-col bg-canvas">
       <ScreenHeader title={t('summaryTitle')} backTo="/examen/comparar" backLabel={t('back')} infoLabel={tInspect('info')} />
-      <div className="flex flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
+      <div className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
         <h2 className="m-0 text-title text-ink">{t('summaryHeading')}</h2>
         <p className="m-0 text-body text-ink">{t('summaryIntro')}</p>
         <section className="flex flex-col gap-2 rounded-tile border border-solid border-white/80 bg-surface p-4">

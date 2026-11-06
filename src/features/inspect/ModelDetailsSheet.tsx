@@ -1,7 +1,6 @@
 import type { InferenceResult } from '@/core/inference/types';
 import { Sheet } from '@/ui';
-import { useT } from './api';
-import { copy } from './copy';
+import { useT } from '@/core/i18n/I18nProvider';
 
 type ModelDetailsSheetProps = {
   open: boolean;
@@ -20,7 +19,7 @@ function Field({ label, value }: { label: string; value: string }) {
 
 /** Model identity from the status payload, or the explicit mock label. Never invented. */
 export function ModelDetailsSheet({ open, onOpenChange, result }: ModelDetailsSheetProps) {
-  const t = useT(copy);
+  const t = useT('inspect');
   const { identity } = result;
   const verified =
     identity.sha256Verified === null ? t('notAvailable') : identity.sha256Verified ? t('verifiedYes') : t('verifiedNo');

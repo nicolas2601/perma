@@ -1,29 +1,30 @@
 import { useState } from 'react';
 import { Button } from '@/ui';
 import { useNavigate } from '@/app/router';
+import { useExam } from '@/core/exam/react';
+import { useT } from '@/core/i18n/I18nProvider';
 import { ActionDock, ScreenHeader } from '@/features/inspect/Chrome';
-import { copy as inspectCopy } from '@/features/inspect/copy';
-import { useExam, useT } from './api';
-import { copy } from './copy';
+import { useFlowSync } from '@/features/inspect/flowSync';
 import { NotesSheet } from './NotesSheet';
 
 /** Compare with context. Comparison stays unavailable until a real earlier source exists. */
 export default function CompareScreen() {
-  const t = useT(copy);
-  const tInspect = useT(inspectCopy);
+  const t = useT('compare');
+  const tInspect = useT('inspect');
   const navigate = useNavigate();
-  const { record } = useExam();
+  const record = useExam((state) => state.record);
+  useFlowSync('compare');
   const [noteOpen, setNoteOpen] = useState(false);
   const hasNote = record.note.length > 0;
   return (
-    <main className="flex min-h-dvh flex-col bg-canvas">
+    <main className="flex h-dvh flex-col bg-canvas">
       <ScreenHeader
         title={t('compareTitle')}
         backTo="/examen/abcde"
         backLabel={t('back')}
         infoLabel={tInspect('info')}
       />
-      <div className="flex flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
+      <div className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
         <h2 className="m-0 text-title text-ink">{t('compareHeading')}</h2>
         <p className="m-0 text-body text-ink">{t('compareBody')}</p>
         <section className="flex flex-col gap-1.5">

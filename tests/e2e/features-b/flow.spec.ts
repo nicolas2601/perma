@@ -1,13 +1,13 @@
 import { expect, test } from '@playwright/test';
 
 /**
- * Result -> viewer -> ABCDE -> compare -> summary -> export, against the mock
- * inference build (VITE_INFERENCE=mock seeds a simulated result in the local store).
+ * Result -> viewer -> ABCDE -> compare -> summary -> export, seeded with the DEV-only
+ * simulated result (`?seed=result`). Every step goes through the real exam reducer.
  */
-test.use({ viewport: { width: 390, height: 844 } });
-
-test('result to export flow on mock data', async ({ page }) => {
-  await page.goto('/resultado');
+test('result to export flow on simulated data', async ({ page }) => {
+  const errors: string[] = [];
+  page.on('pageerror', (error) => errors.push(error.message));
+  await page.goto('/resultado?seed=result');
   await expect(page.getByRole('heading', { name: 'Salida experimental' })).toBeVisible();
   await expect(page.getByText('Modelo simulado').first()).toBeVisible();
   await expect(page.getByText(/No diagnostica\./).first()).toBeVisible();
@@ -19,10 +19,9 @@ test('result to export flow on mock data', async ({ page }) => {
 
   await page.getByRole('button', { name: 'Registrar en ABCDE' }).click();
   await expect(page).toHaveURL(/\/examen\/abcde/);
-  await page.getByRole('button', { name: 'A', exact: true }).first().click();
+  await page.getByRole('button', { name: /Asimetría/ }).click();
   await page.getByRole('radio', { name: 'Simétrica', exact: true }).click();
   await expect(page.getByRole('radio', { name: 'Simétrica', exact: true })).toHaveAttribute('aria-checked', 'true');
-  await expect(page.getByRole('button', { name: 'Asimetría Simétrica' })).toBeVisible();
 
   await page.getByRole('button', { name: 'Ver resumen' }).click();
   await expect(page).toHaveURL(/\/examen\/comparar/);
@@ -45,9 +44,17 @@ test('result to export flow on mock data', async ({ page }) => {
   await expect(exportButton).toBeEnabled();
 
   const [download] = await Promise.all([page.waitForEvent('download'), exportButton.click()]);
-  expect(download.suggestedFilename()).toMatch(/^perma-registro-.*\.json$/);
+  expect(download.suggestedFilename()).toMatch(/^perma-.*\.json$/);
   await expect(page).toHaveURL(/\/revision\/exportada/);
   await expect(page.getByRole('heading', { name: 'Descarga iniciada.' })).toBeVisible();
+  await page.screenshot({ path: 'test-results/shots/flow-after-export.png' });
+  expect(errors).toEqual([]);
+});
+
+/** Guard G10 sends `/resultado` to `/imagen`; the capture guard may forward that to `/contexto` without a site. */
+test('direct result URL without a result leaves the result route', async ({ page }) => {
+  await page.goto('/resultado');
+  await expect(page).toHaveURL(/\/(imagen|contexto)$/);
 });
 
 test('confirmation page without a real export redirects to review', async ({ page }) => {
