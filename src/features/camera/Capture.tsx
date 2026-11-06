@@ -14,7 +14,7 @@ import { StatusLine } from '@/ui/StatusLine';
 import { cx } from '@/ui/cx';
 
 const OPTION_CLASS =
-  'flex min-h-13 w-full cursor-pointer flex-col items-start gap-1 rounded-tile border border-solid border-line bg-surface px-4 py-3 text-left text-ink outline-offset-2';
+  'flex min-h-20 w-full cursor-pointer flex-col items-start gap-1 rounded-tile border border-solid border-line bg-surface px-4 py-3 text-left text-ink outline-offset-2';
 
 function OptionBody({ title, hint }: { title: string; hint: string }) {
   return (

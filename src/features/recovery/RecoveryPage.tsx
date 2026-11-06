@@ -1,6 +1,6 @@
 import { useNavigate } from '@/app/router';
 import type { RecoveryMode } from '@/core/exam/commands';
-import { useExamDispatch } from '@/core/exam/react';
+import { useExam, useExamDispatch } from '@/core/exam/react';
 import { useT } from '@/core/i18n/I18nProvider';
 import type { RecoveryScenario } from '@/core/inference/types';
 import { AppShell } from '@/features/desk/AppShell';
@@ -11,6 +11,7 @@ import {
   QUALITY_PATH,
 } from '@/features/desk/recoveryPaths';
 import { Button } from '@/ui/Button';
+import { ImageDetailRow } from './ImageDetailRow';
 
 interface RecoveryAction {
   path: string;
@@ -64,6 +65,7 @@ export function RecoveryPage({ scenario }: RecoveryPageProps) {
   const t = useT('recovery');
   const navigate = useNavigate();
   const dispatch = useExamDispatch();
+  const imageName = useExam((s) => s.image?.name ?? null);
   const targets = RECOVERY_TARGETS[scenario];
   const go = (action: RecoveryAction) => {
     dispatch({ type: 'RECOVER', scenario, mode: action.mode });
@@ -84,6 +86,9 @@ export function RecoveryPage({ scenario }: RecoveryPageProps) {
           <p className="m-0 text-label text-muted">{t(`${scenario}.text${n}`)}</p>
         </section>
       ))}
+      {scenario === 'server-error' && imageName !== null ? (
+        <ImageDetailRow title={t('server-error.detailTitle')} hint={t('server-error.detailHint')} fileLabel={t('server-error.detailFile')} fileName={imageName} />
+      ) : null}
       <div className="mt-auto flex flex-col gap-2 pt-4">
         <Button fullWidth onClick={() => go(targets.primary)}>
           {t(`${scenario}.primary`)}

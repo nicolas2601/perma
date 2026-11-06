@@ -54,7 +54,7 @@ export default function Consent() {
         {isSample ? <p className="m-0 text-caption text-muted">{t('attribution')}</p> : null}
       </Card>
       <div className="flex flex-col gap-2">
-        <label className="flex min-h-13 cursor-pointer items-center gap-3 rounded-tile border border-solid border-line bg-surface px-4 py-3 text-body text-ink">
+        <label className="flex min-h-16 cursor-pointer items-center gap-3 rounded-tile border border-solid border-line bg-surface px-4 py-3 text-body text-ink">
           <input
             type="checkbox"
             checked={consented}
@@ -68,7 +68,7 @@ export default function Consent() {
       <button
         type="button"
         onClick={() => setPrivacyOpen(true)}
-        className="flex min-h-13 w-full flex-col items-start justify-center rounded-tile border border-solid border-line bg-surface px-4 py-3 text-left text-ink outline-offset-2"
+        className="flex min-h-16 w-full flex-col items-start justify-center rounded-tile border border-solid border-line bg-surface px-4 py-3 text-left text-ink outline-offset-2"
       >
         <span className="text-body text-ink">{t('privacyTitle')}</span>
         <span className="text-caption text-muted">{t('privacyHint')}</span>

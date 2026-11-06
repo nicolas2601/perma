@@ -121,15 +121,18 @@ export default function Processing() {
       </button>
       <Sheet open={stopOpen} onOpenChange={setStopOpen} title={t('waitStopSheetTitle')} closeLabel={t('close')}>
         <div className="flex flex-col gap-4">
+          <h2 className="m-0 text-title text-ink">{t('waitStopHeading')}</h2>
           <p className="m-0 text-body text-ink">{t('waitStopSheetBody')}</p>
-          <div className="flex flex-col gap-2">
-            <Button variant="secondary" fullWidth onClick={() => setStopOpen(false)}>
-              {t('waitStopCancel')}
-            </Button>
-            <Button variant="danger" fullWidth onClick={confirmStop}>
-              {t('waitStopConfirm')}
-            </Button>
-          </div>
+          <button
+            type="button"
+            onClick={() => setStopOpen(false)}
+            className="flex min-h-14 w-full items-center rounded-tile border border-solid border-line bg-surface px-4 py-3 text-left text-body text-ink outline-offset-2"
+          >
+            {t('waitStopKeep')}
+          </button>
+          <Button fullWidth onClick={confirmStop}>
+            {t('waitStopConfirm')}
+          </Button>
         </div>
       </Sheet>
     </AppShell>
