@@ -35,3 +35,8 @@ Independent read-only reviews run against `develop`, then fixed by the lead. Raw
 - Figma differences kept on purpose: ABCDE is one accordion sheet (brief decision), export is JSON/PDF (Figma shows TXT), prototype-only labels excluded, `contextDetails` five selects and `siteSheet` option list skipped (no data model for them).
 - `base` and `tta` returned identical scores for one image on B71; the UI does not present them as different. Backend question for Pau.
 - Camera blur classifier is OFF: its acceptance gate failed (false alerts 5.9% vs 5% limit); the shipped advisor uses deterministic rules (sensitivity 0.78, false alerts 3.9% on the synthetic battery). Evidence is synthetic only.
+
+## Web (desktop and tablet) pass, 2026-11-06
+- Frame: left rail from 1024 px (brand, sections, six-step journey with done states derived from the record, ES/EN, notice), centered column up to 1080 px, bottom sheets become centered dialogs, tablet 768-1023 keeps the mobile layout in a 640 px column. Mobile below 768 px was kept pixel-identical (26-route screenshot diff against a baseline; two routes differ only by timestamps in the JSON preview).
+- QA at 1440x900, 1280x800, 1024x768, 768x1024 and 390x844: no horizontal overflow, no page errors. e2e flows: 54/54 pass on mobile-390 and desktop-1280 (CSV default, language switch via rail on desktop). a11y (axe wcag2a/aa/22aa, production-like build): 0 critical, 0 serious, 0 moderate; no target below 24 px; no keyboard traps; Escape returns focus. One transient contrast hit appeared only on the dev server under load (mid-fade frame) and not in the production build.
+- Not measured: real phones and desktops other than headless Chromium, screen readers, real browser zoom.
