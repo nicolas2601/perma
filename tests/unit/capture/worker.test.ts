@@ -43,26 +43,28 @@ function setup() {
   return { client, fake, clock, outcomes, deadline, taskId };
 }
 
+const OK_STATUS = { focus: 'ok', light: 'ok', distance: 'ok' } as const;
+
 describe('worker client: one pending task', () => {
   it('refuses a second frame while busy, so frames are dropped instead of queued', () => {
     const { client, fake } = setup();
-    expect(client.post(pixelsOf(), EDGE, EDGE, 'none')).toBe(true);
-    expect(client.post(pixelsOf(), EDGE, EDGE, 'none')).toBe(false);
+    expect(client.post(pixelsOf(), EDGE, EDGE)).toBe(true);
+    expect(client.post(pixelsOf(), EDGE, EDGE)).toBe(false);
     expect(fake.posted).toHaveLength(1);
   });
 
   it('transfers the pixel buffer instead of copying it', () => {
     const { client, fake } = setup();
     const pixels = pixelsOf();
-    client.post(pixels, EDGE, EDGE, 'none');
+    client.post(pixels, EDGE, EDGE);
     expect(fake.posted[0]?.transfer).toEqual([pixels]);
   });
 
   it('delivers the reply of the pending task and frees the slot', () => {
     const { client, fake, outcomes, taskId } = setup();
-    client.post(pixelsOf(), EDGE, EDGE, 'none');
-    fake.deliver({ kind: 'reading', id: taskId(), candidate: 'hold-still', abstained: false });
-    expect(outcomes).toEqual([{ kind: 'reading', candidate: 'hold-still', abstained: false }]);
+    client.post(pixelsOf(), EDGE, EDGE);
+    fake.deliver({ kind: 'reading', id: taskId(), candidate: 'hold-still', abstained: false, status: OK_STATUS });
+    expect(outcomes).toEqual([{ kind: 'reading', candidate: 'hold-still', abstained: false, status: OK_STATUS }]);
     expect(client.busy).toBe(false);
   });
 });
@@ -70,17 +72,17 @@ describe('worker client: one pending task', () => {
 describe('worker client: deadline', () => {
   it('terminates the worker and reports the deadline once when no reply arrives in time', () => {
     const { client, fake, clock, deadline } = setup();
-    client.post(pixelsOf(), EDGE, EDGE, 'none');
+    client.post(pixelsOf(), EDGE, EDGE);
     clock.fire();
     expect(fake.terminate).toHaveBeenCalledTimes(1);
     expect(deadline).toHaveBeenCalledTimes(1);
-    expect(client.post(pixelsOf(), EDGE, EDGE, 'none')).toBe(false);
+    expect(client.post(pixelsOf(), EDGE, EDGE)).toBe(false);
   });
 
   it('clears the deadline when the reply arrives in time', () => {
     const { client, fake, clock, deadline, taskId } = setup();
-    client.post(pixelsOf(), EDGE, EDGE, 'none');
-    fake.deliver({ kind: 'reading', id: taskId(), candidate: 'none', abstained: false });
+    client.post(pixelsOf(), EDGE, EDGE);
+    fake.deliver({ kind: 'reading', id: taskId(), candidate: 'none', abstained: false, status: OK_STATUS });
     clock.fire();
     expect(deadline).not.toHaveBeenCalled();
     expect(fake.terminate).not.toHaveBeenCalled();
@@ -90,44 +92,44 @@ describe('worker client: deadline', () => {
 describe('worker client: stale and invalid replies', () => {
   it('ignores a reply whose id is not the pending one', () => {
     const { client, fake, outcomes, taskId } = setup();
-    client.post(pixelsOf(), EDGE, EDGE, 'none');
-    fake.deliver({ kind: 'reading', id: taskId() + 100, candidate: 'closer', abstained: false });
+    client.post(pixelsOf(), EDGE, EDGE);
+    fake.deliver({ kind: 'reading', id: taskId() + 100, candidate: 'closer', abstained: false, status: OK_STATUS });
     expect(outcomes).toEqual([]);
     expect(client.busy).toBe(true);
   });
 
   it('ignores malformed replies', () => {
     const { client, fake, outcomes } = setup();
-    client.post(pixelsOf(), EDGE, EDGE, 'none');
-    fake.deliver({ kind: 'reading', id: 1, candidate: 'not-an-advice', abstained: false });
+    client.post(pixelsOf(), EDGE, EDGE);
+    fake.deliver({ kind: 'reading', id: 1, candidate: 'not-an-advice', abstained: false, status: OK_STATUS });
     fake.deliver('garbage');
     expect(outcomes).toEqual([]);
   });
 
   it('reports a typed failure for the pending task', () => {
     const { client, fake, outcomes, taskId } = setup();
-    client.post(pixelsOf(), EDGE, EDGE, 'none');
+    client.post(pixelsOf(), EDGE, EDGE);
     fake.deliver({ kind: 'failure', id: taskId(), code: 'invalid-frame' });
     expect(outcomes).toEqual([{ kind: 'failure' }]);
   });
 
   it('after close, nothing is posted and late replies are ignored', () => {
     const { client, fake, outcomes, taskId } = setup();
-    client.post(pixelsOf(), EDGE, EDGE, 'none');
+    client.post(pixelsOf(), EDGE, EDGE);
     client.close();
-    fake.deliver({ kind: 'reading', id: taskId(), candidate: 'closer', abstained: false });
+    fake.deliver({ kind: 'reading', id: taskId(), candidate: 'closer', abstained: false, status: OK_STATUS });
     expect(outcomes).toEqual([]);
-    expect(client.post(pixelsOf(), EDGE, EDGE, 'none')).toBe(false);
+    expect(client.post(pixelsOf(), EDGE, EDGE)).toBe(false);
   });
 });
 
 describe('worker handler (inside the worker)', () => {
   const analyze = (pixels: ArrayBuffer, width = EDGE, height = EDGE, id = 1) =>
-    ({ kind: 'analyze', id, width, height, active: 'none', pixels });
+    ({ kind: 'analyze', id, width, height, pixels });
 
   it('analyzes a valid frame and answers with a candidate', () => {
     const handle = createWorkerHandler();
-    expect(handle(analyze(pixelsOf()))).toMatchObject({ kind: 'reading', id: 1, abstained: false });
+    expect(handle(analyze(pixelsOf()))).toMatchObject({ kind: 'reading', id: 1, abstained: false, status: OK_STATUS });
   });
 
   it('rejects a buffer that does not match its geometry (invalid buffer)', () => {

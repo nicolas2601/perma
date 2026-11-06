@@ -9,7 +9,9 @@ import type { WorkerPort } from '@/core/capture/worker-client';
 import type { Advice } from '@/core/capture/types';
 import { createRef } from 'react';
 
-const FORBIDDEN = /blur|borros|desenfoque detectado|aprobad|approved|detected|detectad/i;
+/** Claims the guide must never make: detection of blur, or approval of the image. Hedged wording is fine. */
+const FORBIDDEN = /detectad|detected|aprobad|approved|calidad (?:buena|aprobada)|quality (?:is )?(?:approved|good)/i;
+const OK_STATUS = { focus: 'ok', light: 'ok', distance: 'ok' } as const;
 
 afterEach(() => {
   vi.restoreAllMocks();
@@ -26,15 +28,20 @@ describe('feature copy', () => {
     }
   });
 
+  it('hedges the focus line ("parece"): it never states that blur was detected', () => {
+    expect(copy.es['advice.check-focus']).toMatch(/parece/i);
+    expect(copy.en['advice.check-focus']).toMatch(/looks/i);
+  });
+
   it('has one line for every advice id that can be shown', () => {
-    const ids = ['closer', 'more-light', 'avoid-glare', 'hold-still', 'center-area', 'check-focus'] as const;
+    const ids = ['less-light', 'more-light', 'avoid-glare', 'hold-still', 'closer', 'farther', 'center-area', 'check-focus'] as const;
     for (const id of ids) expect(copy.es[`advice.${id}`]).toBeTruthy();
     for (const id of ids) expect(copy.en[`advice.${id}`]).toBeTruthy();
   });
 });
 
 describe('GuideOverlay', () => {
-  const automatic = (id: Advice['id']): Advice => ({ id, abstained: false, mode: 'automatic' });
+  const automatic = (id: Advice['id'], status = OK_STATUS): Advice => ({ id, abstained: false, mode: 'automatic', status });
 
   it('renders the Spanish advice line by default locale', () => {
     render(<GuideOverlay advice={automatic('more-light')} locale="es" />);
@@ -53,7 +60,7 @@ describe('GuideOverlay', () => {
   });
 
   it('shows the static manual line when the pipeline degraded', () => {
-    render(<GuideOverlay advice={{ id: 'none', abstained: false, mode: 'manual' }} locale="en" />);
+    render(<GuideOverlay advice={{ id: 'none', abstained: false, mode: 'manual', status: { focus: 'sin-dato', light: 'sin-dato', distance: 'sin-dato' } }} locale="en" />);
     expect(screen.getByRole('status')).toHaveTextContent(copy.en['guide.manual']);
   });
 
@@ -101,6 +108,30 @@ describe('GuideOverlay', () => {
     const { rerender } = render(<GuideOverlay advice={automatic('closer')} locale="es" vibrate />);
     rerender(<GuideOverlay advice={automatic('closer')} locale="es" vibrate />);
     expect(vibrate).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('GuideOverlay status chips', () => {
+  const chipOf = (key: string) => document.querySelector(`[data-chip="${key}"]`);
+
+  it('renders three chips with a state word each (icon and text, not colour alone)', () => {
+    render(<GuideOverlay advice={{ id: 'check-focus', abstained: false, mode: 'automatic', status: { focus: 'revisar', light: 'ok', distance: 'sin-dato' } }} locale="es" />);
+    expect(chipOf('focus')).toHaveTextContent('Enfoque: Revisar');
+    expect(chipOf('light')).toHaveTextContent('Luz: Sin alerta');
+    expect(chipOf('distance')).toHaveTextContent('Distancia: Sin dato');
+    expect(chipOf('focus')?.querySelector('svg')).toHaveAttribute('aria-hidden', 'true');
+  });
+
+  it('shows no data on every chip before the first advice', () => {
+    render(<GuideOverlay advice={null} locale="en" />);
+    for (const key of ['focus', 'light', 'distance']) expect(chipOf(key)).toHaveAttribute('data-state', 'sin-dato');
+  });
+
+  it('chips are not live regions: only the advice sentence announces', () => {
+    render(<GuideOverlay advice={{ id: 'closer', abstained: false, mode: 'automatic', status: OK_STATUS }} locale="en" />);
+    const live = document.querySelectorAll('[aria-live]');
+    expect(live).toHaveLength(1);
+    expect(live[0]).toBe(screen.getByRole('status'));
   });
 });
 

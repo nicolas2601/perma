@@ -69,15 +69,43 @@ function blurPass(src: Float64Array, radius: number, horizontal: boolean): Float
   return out;
 }
 
-export function shifted(luma: Float64Array, dx: number): Float64Array {
+/** Translates the plane by (dx, dy) whole pixels, clamping at the edges (a camera pan). */
+export function translated(luma: Float64Array, dx: number, dy = 0): Float64Array {
   const out = new Float64Array(luma.length);
   for (let y = 0; y < EDGE; y++) {
     for (let x = 0; x < EDGE; x++) {
       const sx = Math.min(EDGE - 1, Math.max(0, x - dx));
-      out[y * EDGE + x] = luma[y * EDGE + sx] ?? 0;
+      const sy = Math.min(EDGE - 1, Math.max(0, y - dy));
+      out[y * EDGE + x] = luma[sy * EDGE + sx] ?? 0;
     }
   }
   return out;
+}
+
+export function shifted(luma: Float64Array, dx: number): Float64Array {
+  return translated(luma, dx, 0);
+}
+
+/**
+ * Hand-held path: one integer step per frame with |step| in [min, max] (Euclidean), kept within `bound` of the
+ * rest position. Deterministic for a seed.
+ */
+export function handHeldPath(frames: number, min: number, max: number, bound: number, seed = 3): Array<[number, number]> {
+  const random = rng(seed);
+  const path: Array<[number, number]> = [[0, 0]];
+  let x = 0;
+  let y = 0;
+  while (path.length < frames) {
+    const dx = Math.round((random() * 2 - 1) * max);
+    const dy = Math.round((random() * 2 - 1) * max);
+    const length = Math.hypot(dx, dy);
+    if (length < min || length > max) continue;
+    if (Math.abs(x + dx) > bound || Math.abs(y + dy) > bound) continue;
+    x += dx;
+    y += dy;
+    path.push([x, y]);
+  }
+  return path;
 }
 
 export const mapLuma = (luma: Float64Array, fn: (v: number, i: number) => number): Float64Array =>

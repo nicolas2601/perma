@@ -1,5 +1,5 @@
 import { parseWorkerOutbound } from './protocol';
-import type { AdviceId } from './types';
+import type { AdviceId, GuideStatus } from './types';
 
 /** Minimal worker surface, so the client runs with a real Worker in the browser and a fake in tests. */
 export interface WorkerPort {
@@ -9,7 +9,7 @@ export interface WorkerPort {
 }
 
 export type WorkerOutcome =
-  | { readonly kind: 'reading'; readonly candidate: AdviceId; readonly abstained: boolean }
+  | { readonly kind: 'reading'; readonly candidate: AdviceId; readonly abstained: boolean; readonly status: GuideStatus }
   | { readonly kind: 'failure' };
 
 export interface TimerPort {
@@ -47,11 +47,11 @@ export class WorkerClient {
   }
 
   /** Sends one analysis task. Returns false (frame dropped) when busy or closed. */
-  post(pixels: ArrayBuffer, width: number, height: number, active: AdviceId): boolean {
+  post(pixels: ArrayBuffer, width: number, height: number): boolean {
     if (this.closed || this.pendingId !== null) return false;
     const id = this.nextId++;
     this.pendingId = id;
-    this.options.port.postMessage({ kind: 'analyze', id, width, height, active, pixels }, [pixels]);
+    this.options.port.postMessage({ kind: 'analyze', id, width, height, pixels }, [pixels]);
     this.deadline = this.options.timers.setTimeout(() => this.expire(id), this.options.deadlineMs);
     return true;
   }
@@ -78,7 +78,7 @@ export class WorkerClient {
     if (!reply || this.closed || reply.id !== this.pendingId) return;
     this.clearPending();
     this.options.onOutcome(reply.kind === 'reading'
-      ? { kind: 'reading', candidate: reply.candidate, abstained: reply.abstained }
+      ? { kind: 'reading', candidate: reply.candidate, abstained: reply.abstained, status: reply.status }
       : { kind: 'failure' });
   }
 

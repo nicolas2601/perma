@@ -3,7 +3,7 @@ import { AdvicePolicy } from './advice-policy';
 import { captureGuideCrop, createOffscreenSampleCanvas, createVideoFrameScheduler, type FrameScheduler, type SampleCanvas } from './frame-sampler';
 import { loadBlurHead, type BlurHeadLoad } from './model-loader';
 import { WorkerClient, type WorkerOutcome, type WorkerPort, type TimerPort } from './worker-client';
-import type { Advice, AdviceId, CaptureAdvisor } from './types';
+import { NO_DATA_STATUS, type Advice, type AdviceId, type CaptureAdvisor, type GuideStatus } from './types';
 
 export interface CaptureAdvisorOptions {
   /** Creates the analysis worker. The browser adapter wraps `new Worker(...)`; tests inject a fake. */
@@ -15,6 +15,8 @@ export interface CaptureAdvisorOptions {
   readonly timers?: TimerPort;
   readonly targetFps?: number;
   readonly deadlineMs?: number;
+  /** Diagnostics only: every analyzed frame's raw candidate, before stability. Never shown to the user. */
+  readonly onCandidate?: (candidate: AdviceId, abstained: boolean) => void;
 }
 
 type AdviceListener = (advice: Advice) => void;
@@ -24,7 +26,14 @@ const defaultTimers: TimerPort = {
   clearTimeout: handle => globalThis.clearTimeout(handle as ReturnType<typeof setTimeout>),
 };
 
-const MANUAL_ADVICE: Advice = { id: 'none', abstained: false, mode: 'manual' };
+/** Share of the nominal frame interval that may elapse before the next analysis is due. */
+const MIN_INTERVAL_TOLERANCE = 0.85;
+
+const MANUAL_ADVICE: Advice = { id: 'none', abstained: false, mode: 'manual', status: NO_DATA_STATUS };
+
+function sameStatus(a: GuideStatus, b: GuideStatus): boolean {
+  return a.focus === b.focus && a.light === b.light && a.distance === b.distance;
+}
 
 /**
  * Live capture advice. Frames are sampled at most TARGET_FPS, dropped while the worker is busy, and
@@ -53,10 +62,13 @@ class AdvisorRuntime {
   private mode: 'automatic' | 'manual' = 'automatic';
   private engineName = 'rules';
   private video: HTMLVideoElement | null = null;
+  private status: GuideStatus = NO_DATA_STATUS;
 
   constructor(options: CaptureAdvisorOptions) {
     this.options = options;
-    this.minIntervalMs = 1000 / (options.targetFps ?? TARGET_FPS);
+    // Frames arrive on a jittered clock; a strict 1000/fps gate would skip a frame on every late arrival.
+    // The 15% tolerance keeps the analysis rate at the target without ever exceeding it by more than that.
+    this.minIntervalMs = (1000 / (options.targetFps ?? TARGET_FPS)) * MIN_INTERVAL_TOLERANCE;
     this.timers = options.timers ?? defaultTimers;
     this.now = options.now ?? (() => performance.now());
   }
@@ -85,6 +97,7 @@ class AdvisorRuntime {
     this.mode = 'automatic';
     this.failures = 0;
     this.lastSentAt = Number.NEGATIVE_INFINITY;
+    this.status = NO_DATA_STATUS;
     this.canvas = (this.options.createSampleCanvas ?? createOffscreenSampleCanvas)();
     if (!this.canvas) return this.degrade();
     this.client = this.openClient();
@@ -120,7 +133,7 @@ class AdvisorRuntime {
     if (now - this.lastSentAt < this.minIntervalMs) return;
     const pixels = this.canvas ? captureGuideCrop(this.canvas, video) : null;
     if (!pixels) return;
-    if (client.post(pixels, ANALYSIS_EDGE, ANALYSIS_EDGE, this.policy.current)) this.lastSentAt = now;
+    if (client.post(pixels, ANALYSIS_EDGE, ANALYSIS_EDGE)) this.lastSentAt = now;
   }
 
   private receive(outcome: WorkerOutcome): void {
@@ -130,12 +143,16 @@ class AdvisorRuntime {
       return;
     }
     this.failures = 0;
-    this.publishCandidate(outcome.candidate, outcome.abstained);
+    this.publishCandidate(outcome.candidate, outcome.abstained, outcome.status);
   }
 
-  private publishCandidate(candidate: AdviceId, abstained: boolean): void {
-    const changed = this.policy.observe(candidate);
-    if (changed !== null) this.emit({ id: changed, abstained, mode: 'automatic' });
+  private publishCandidate(candidate: AdviceId, abstained: boolean, status: GuideStatus): void {
+    this.options.onCandidate?.(candidate, abstained);
+    const changed = this.policy.observe(candidate, this.now());
+    const statusChanged = !sameStatus(status, this.status);
+    this.status = status;
+    if (changed === null && !statusChanged) return;
+    this.emit({ id: this.policy.current, abstained, mode: 'automatic', status });
   }
 
   private degrade(): void {

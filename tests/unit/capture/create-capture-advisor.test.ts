@@ -7,6 +7,8 @@ import type { BlurHeadLoad } from '@/core/capture/model-loader';
 import { texturedLuma, toFrame } from './fixtures';
 
 const VIDEO = { videoWidth: 640, videoHeight: 480 } as unknown as HTMLVideoElement;
+const OK_STATUS = { focus: 'ok', light: 'ok', distance: 'ok' };
+const SIN_DATO = { focus: 'sin-dato', light: 'sin-dato', distance: 'sin-dato' };
 
 class FakeWorker implements WorkerPort {
   readonly posted: { message: { kind: string; id?: number }; transfer?: Transferable[] }[] = [];
@@ -30,8 +32,8 @@ class FakeWorker implements WorkerPort {
   lastTaskId(): number {
     return this.analyses().at(-1)?.id ?? -1;
   }
-  readingFor(candidate: string, abstained = false, id = this.lastTaskId()): unknown {
-    return { kind: 'reading', id, candidate, abstained };
+  readingFor(candidate: string, abstained = false, id = this.lastTaskId(), status = OK_STATUS): unknown {
+    return { kind: 'reading', id, candidate, abstained, status };
   }
 }
 
@@ -91,11 +93,24 @@ describe('capture advisor: sampling and stability', () => {
     await settle();
     h.frame();
     h.worker.reply(h.worker.readingFor('hold-still'));
-    expect(h.emitted).toEqual([]);
+    expect(h.emitted.map(a => a.id)).not.toContain('hold-still');
     h.advanceMs(200);
     h.frame();
     h.worker.reply(h.worker.readingFor('hold-still'));
-    expect(h.emitted).toEqual([{ id: 'hold-still', abstained: false, mode: 'automatic' }]);
+    expect(h.emitted.at(-1)).toEqual({ id: 'hold-still', abstained: false, mode: 'automatic', status: OK_STATUS });
+  });
+
+  it('publishes chip states on their own, without changing the advice', async () => {
+    const h = harness();
+    h.advisor.start(VIDEO);
+    await settle();
+    h.frame();
+    h.worker.reply(h.worker.readingFor('none'));
+    expect(h.emitted.at(-1)).toEqual({ id: 'none', abstained: false, mode: 'automatic', status: OK_STATUS });
+    h.advanceMs(200);
+    h.frame();
+    h.worker.reply(h.worker.readingFor('none', false, undefined, SIN_DATO));
+    expect(h.emitted.at(-1)).toEqual({ id: 'none', abstained: false, mode: 'automatic', status: SIN_DATO });
   });
 
   it('drops frames while the worker is busy (one pending task)', async () => {
@@ -150,7 +165,7 @@ describe('capture advisor: degradation to manual', () => {
     h.frame();
     h.runTimers(1500);
     expect(h.worker.terminated).toBe(1);
-    expect(h.emitted).toEqual([{ id: 'none', abstained: false, mode: 'manual' }]);
+    expect(h.emitted.at(-1)).toEqual({ id: 'none', abstained: false, mode: 'manual', status: SIN_DATO });
     h.advanceMs(500);
     h.frame();
     expect(h.worker.analyses()).toHaveLength(1);
@@ -165,7 +180,7 @@ describe('capture advisor: degradation to manual', () => {
       h.frame();
       h.worker.reply({ kind: 'failure', id: h.worker.lastTaskId(), code: 'invalid-frame' });
     }
-    expect(h.emitted).toEqual([{ id: 'none', abstained: false, mode: 'manual' }]);
+    expect(h.emitted.at(-1)).toEqual({ id: 'none', abstained: false, mode: 'manual', status: SIN_DATO });
   });
 
   it('a single failure does not degrade', async () => {
@@ -181,7 +196,7 @@ describe('capture advisor: degradation to manual', () => {
   it('degrades when the sample surface is unavailable', () => {
     const h = harness({ createSampleCanvas: () => null });
     h.advisor.start(VIDEO);
-    expect(h.emitted).toEqual([{ id: 'none', abstained: false, mode: 'manual' }]);
+    expect(h.emitted.at(-1)).toEqual({ id: 'none', abstained: false, mode: 'manual', status: SIN_DATO });
   });
 });
 

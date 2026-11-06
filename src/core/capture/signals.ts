@@ -1,18 +1,26 @@
 import {
-  CONTENT_CONTRAST,
   CONTENT_MIN_FRACTION,
+  CONTENT_RELATIVE,
   CONTENT_TRIM_HIGH,
   CONTENT_TRIM_LOW,
+  MIN_GRADIENT,
+  MIN_LUMA_VARIANCE,
   MOTION_GRID,
   SPECULAR_LUMA,
 } from './constants';
 import { medianLuma } from './luma';
 
 export interface ContentRegion {
-  /** Larger side of the trimmed content span, as a share of the frame. */
+  /** Larger side of the trimmed content span, as a share of the crop. */
   readonly sizeFraction: number;
-  /** Largest distance of the content centre from the frame centre, per axis, as a share of the frame. */
+  /** Largest distance of the content centre from the crop centre, per axis, as a share of the crop. */
   readonly offset: number;
+}
+
+/** Zero-mean, gain-invariant grid of the frame, with the mean neighbour difference used to normalise motion. */
+export interface RelativeGrid {
+  readonly values: Float64Array;
+  readonly gradient: number;
 }
 
 interface FloodState {
@@ -58,8 +66,8 @@ export function largestSpecularFraction(luma: Float64Array, width: number, heigh
   return best / total;
 }
 
-/** Laplacian variance over the interior: low values mean little detail (a smooth or defocused frame). */
-export function laplacianVariance(luma: Float64Array, width: number, height: number): number {
+/** Laplacian variance over the interior: a sharp frame has large second differences. */
+function laplacianVariance(luma: Float64Array, width: number, height: number): number {
   let sum = 0;
   let squares = 0;
   let count = 0;
@@ -73,6 +81,26 @@ export function laplacianVariance(luma: Float64Array, width: number, height: num
     }
   }
   return squares / count - (sum / count) ** 2;
+}
+
+function lumaVariance(luma: Float64Array): number {
+  let sum = 0;
+  let squares = 0;
+  for (const value of luma) {
+    sum += value;
+    squares += value * value;
+  }
+  return squares / luma.length - (sum / luma.length) ** 2;
+}
+
+/**
+ * Focus as detail relative to scene contrast: Laplacian variance divided by luma variance. Both scale with
+ * the square of the exposure gain, so dimming or brightening does not move the ratio. Null for flat frames.
+ */
+export function focusRatio(luma: Float64Array, width: number, height: number): number | null {
+  const variance = lumaVariance(luma);
+  if (variance < MIN_LUMA_VARIANCE) return null;
+  return laplacianVariance(luma, width, height) / variance;
 }
 
 /** Index where the cumulative count first reaches `target`; used for trimmed spans. */
@@ -93,17 +121,18 @@ function trimmedSpan(histogram: Uint32Array, total: number): { start: number; en
 }
 
 /**
- * Framing of the content: pixels that differ from the median background, measured by a trimmed span.
- * Heuristic only (not a lesion detector). Returns null when there is no clear content.
+ * Framing of the content: pixels that differ from the median background by a relative amount, measured by a
+ * trimmed span. Heuristic only (not a lesion detector). Null when there is no clear content.
  */
 export function contentRegion(luma: Float64Array, width: number, height: number): ContentRegion | null {
-  const background = medianLuma(luma);
+  const background = Math.max(1, medianLuma(luma));
+  const limit = CONTENT_RELATIVE * background;
   const columns = new Uint32Array(width);
   const rows = new Uint32Array(height);
   let count = 0;
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
-      if (Math.abs((luma[y * width + x] ?? 0) - background) < CONTENT_CONTRAST) continue;
+      if (Math.abs((luma[y * width + x] ?? 0) - background) <= limit) continue;
       columns[x] = (columns[x] ?? 0) + 1;
       rows[y] = (rows[y] ?? 0) + 1;
       count++;
@@ -122,11 +151,14 @@ export function contentRegion(luma: Float64Array, width: number, height: number)
   };
 }
 
-/** Mean luma per cell of a MOTION_GRID x MOTION_GRID grid (block average, remainder dropped). */
-export function motionGrid(luma: Float64Array, width: number, height: number): Float64Array {
+/**
+ * Relative grid: cell means divided by the frame mean, minus one. A uniform exposure or white-balance change
+ * (a gain) leaves it unchanged, so auto-exposure drift is not mistaken for camera motion.
+ */
+export function relativeGrid(luma: Float64Array, width: number, height: number): RelativeGrid {
   const block = Math.floor(width / MOTION_GRID);
   const blockRows = Math.floor(height / MOTION_GRID);
-  const grid = new Float64Array(MOTION_GRID * MOTION_GRID);
+  const cells = new Float64Array(MOTION_GRID * MOTION_GRID);
   const area = block * blockRows;
   for (let gy = 0; gy < MOTION_GRID; gy++) {
     for (let gx = 0; gx < MOTION_GRID; gx++) {
@@ -134,15 +166,44 @@ export function motionGrid(luma: Float64Array, width: number, height: number): F
       for (let by = 0; by < blockRows; by++) {
         for (let bx = 0; bx < block; bx++) sum += luma[(gy * blockRows + by) * width + gx * block + bx] ?? 0;
       }
-      grid[gy * MOTION_GRID + gx] = sum / area;
+      cells[gy * MOTION_GRID + gx] = sum / area;
     }
   }
-  return grid;
+  let mean = 0;
+  for (const value of cells) mean += value;
+  mean = Math.max(1, mean / cells.length);
+  const values = cells.map(value => value / mean - 1);
+  return { values, gradient: meanNeighbourDifference(values) };
 }
 
-/** Mean absolute grid difference between two consecutive analyzed frames (luma units). */
-export function motionBetween(current: Float64Array, previous: Float64Array): number {
+function meanNeighbourDifference(values: Float64Array): number {
   let sum = 0;
-  for (let i = 0; i < current.length; i++) sum += Math.abs((current[i] ?? 0) - (previous[i] ?? 0));
-  return sum / current.length;
+  let count = 0;
+  for (let y = 0; y < MOTION_GRID; y++) {
+    for (let x = 0; x < MOTION_GRID; x++) {
+      const i = y * MOTION_GRID + x;
+      if (x < MOTION_GRID - 1) {
+        sum += Math.abs((values[i + 1] ?? 0) - (values[i] ?? 0));
+        count++;
+      }
+      if (y < MOTION_GRID - 1) {
+        sum += Math.abs((values[i + MOTION_GRID] ?? 0) - (values[i] ?? 0));
+        count++;
+      }
+    }
+  }
+  return sum / count;
+}
+
+/**
+ * Camera shift between two analysed frames, in grid cells, normalised by the structure of the current frame.
+ * Mean absolute change of the relative grid divided by its mean neighbour difference: a translation scales
+ * with the frame's own detail, so a soft or dark frame needs a larger shift to read the same. Null when the
+ * frame has too little structure to measure.
+ */
+export function shiftCells(current: RelativeGrid, previous: Float64Array): number | null {
+  if (current.gradient < MIN_GRADIENT) return null;
+  let sum = 0;
+  for (let i = 0; i < current.values.length; i++) sum += Math.abs((current.values[i] ?? 0) - (previous[i] ?? 0));
+  return sum / current.values.length / current.gradient;
 }
