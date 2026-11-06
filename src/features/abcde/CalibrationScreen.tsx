@@ -29,7 +29,7 @@ export default function CalibrationScreen() {
         </section>
       </div>
       <ActionDock>
-        <Button fullWidth onClick={() => navigate('/examen/abcde?criterio=d')}>
+        <Button fullWidth onClick={() => navigate('/examen/calibracion/lista')}>
           {t('calibrationAction')}
         </Button>
       </ActionDock>

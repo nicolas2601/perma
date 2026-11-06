@@ -11,10 +11,12 @@ type ScreenHeaderProps = {
   /** Route of the scope/methods control. */
   infoTo?: string;
   infoLabel: string;
+  /** Optional screen action placed before the info control (e.g. the viewer tools menu). */
+  trailing?: ReactNode;
 };
 
 /** Top bar shared by the result, viewer, ABCDE, compare, review and guide screens. */
-export function ScreenHeader({ title, backTo, backLabel, infoTo = '/guia', infoLabel }: ScreenHeaderProps) {
+export function ScreenHeader({ title, backTo, backLabel, infoTo = '/guia', infoLabel, trailing }: ScreenHeaderProps) {
   const navigate = useNavigate();
   return (
     <header className="flex h-15 items-center gap-2 bg-surface px-5">
@@ -24,6 +26,7 @@ export function ScreenHeader({ title, backTo, backLabel, infoTo = '/guia', infoL
         onClick={() => navigate(backTo)}
       />
       <h1 className="m-0 min-w-0 flex-1 text-header font-medium text-ink">{title}</h1>
+      {trailing}
       <Link
         to={infoTo}
         aria-label={infoLabel}

@@ -11,6 +11,7 @@ import { useFlowSync } from '@/features/inspect/flowSync';
 import { CRITERIA, criterionValue, answeredCount } from './logic';
 import { OptionGroup } from './OptionGroup';
 import { AbcdeRow } from './AbcdeRow';
+import { ReferenceCard } from './ReferenceCard';
 import { parseCriterionParam, rowId } from './criterionParam';
 import { CRITERION_DESC_KEY, CRITERION_TITLE_KEY } from './copy';
 
@@ -104,6 +105,7 @@ export default function AbcdeScreen() {
                   t={t}
                   onSelect={(next) => dispatch({ type: 'ABCDE_SET', criterion, value: next })}
                 />
+                <ReferenceCard criterion={criterion} />
               </AbcdeRow>
             );
           })}

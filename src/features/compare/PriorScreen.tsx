@@ -21,11 +21,19 @@ export default function PriorScreen() {
         <p className="m-0 text-body text-ink">{t('priorBody')}</p>
         <div className="flex flex-col gap-1 rounded-tile border border-solid border-white/80 bg-surface p-4">
           <span className="text-body-medium text-ink">{t('priorCardTitle')}</span>
-          <span className="text-header text-muted">{t('priorCardBody')}</span>
+          <span className="text-label text-muted">{t('priorCardBody')}</span>
         </div>
+        <button
+          type="button"
+          onClick={() => navigate('/examen/abcde?criterio=e')}
+          className="flex w-full flex-col gap-0.5 rounded-tile border border-solid border-line bg-surface p-4 text-left outline-offset-2"
+        >
+          <span className="text-body-medium text-ink">{t('priorCardAction')}</span>
+          <span className="text-label text-muted">{t('priorRequirementsHint')}</span>
+        </button>
       </div>
       <ActionDock>
-        <Button fullWidth variant="secondary" onClick={() => navigate('/examen/comparar')}>
+        <Button fullWidth onClick={() => navigate('/examen/comparar')}>
           {t('dockBack')}
         </Button>
       </ActionDock>
