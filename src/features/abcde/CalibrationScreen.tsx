@@ -9,14 +9,14 @@ export default function CalibrationScreen() {
   const tInspect = useT('inspect');
   const navigate = useNavigate();
   return (
-    <main className="flex h-dvh flex-col bg-canvas">
+    <main className="flex h-dvh flex-col bg-canvas lg:h-auto lg:min-h-dvh lg:mx-auto lg:w-full lg:max-w-3xl">
       <ScreenHeader
         title={t('calibrationTitle')}
         backTo="/examen/abcde"
         backLabel={t('back')}
         infoLabel={tInspect('info')}
       />
-      <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
+      <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3 lg:overflow-visible lg:px-8 lg:pb-8">
         <h2 className="m-0 text-title text-ink">{t('calibrationHeading')}</h2>
         <p className="m-0 text-body text-ink">{t('calibrationBody')}</p>
         <section className="flex flex-col gap-1.5">

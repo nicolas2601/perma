@@ -26,9 +26,9 @@ export default function ExportDoneScreen() {
   if (!current || lastExport === null) return null;
   const fileName = buildFilename(recordId, new Date(lastExport.at), lastExport.format);
   return (
-    <main className="flex h-dvh flex-col bg-canvas">
+    <main className="flex h-dvh flex-col bg-canvas lg:h-auto lg:min-h-dvh lg:mx-auto lg:w-full lg:max-w-3xl">
       <ScreenHeader title={t('exportDoneHeader')} backTo="/revision" backLabel={t('back')} infoLabel={tInspect('info')} />
-      <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
+      <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overscroll-contain px-5 pb-5 pt-3 lg:overflow-visible lg:px-8 lg:pb-8">
         <div className="flex">
           <Chip tint={PHASE_TINT.revision}>{tInspect('stepReview')}</Chip>
         </div>
@@ -47,11 +47,11 @@ export default function ExportDoneScreen() {
       </div>
       <ActionDock>
         <div className="flex gap-2">
-          <Button variant="secondary" className="flex-1" onClick={() => navigate('/revision')}>
+          <Button variant="secondary" className="flex-1 lg:min-w-52" onClick={() => navigate('/revision')}>
             {t('exportDoneBack')}
           </Button>
           <Button
-            className="flex-1"
+            className="flex-1 lg:min-w-52"
             onClick={() => {
               dispatch({ type: 'NEW_RECORD' });
               navigate('/');

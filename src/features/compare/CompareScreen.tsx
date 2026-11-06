@@ -21,14 +21,14 @@ export default function CompareScreen() {
   const [noteOpen, setNoteOpen] = useState(false);
   const hasNote = record.note.length > 0;
   return (
-    <main className="flex h-dvh flex-col bg-canvas">
+    <main className="flex h-dvh flex-col bg-canvas lg:h-auto lg:min-h-dvh lg:mx-auto lg:w-full lg:max-w-3xl">
       <ScreenHeader
         title={t('compareTitle')}
         backTo="/examen/abcde"
         backLabel={t('back')}
         infoLabel={tInspect('info')}
       />
-      <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
+      <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3 lg:overflow-visible lg:px-8 lg:pb-8">
         <section className="flex flex-col items-start gap-2.5">
           <Chip tint={OBSERVATION_TINT}>{tInspect('stepObservations')}</Chip>
           <h2 className="m-0 text-title text-ink">{t('compareHeading')}</h2>
@@ -61,10 +61,10 @@ export default function CompareScreen() {
       </div>
       <ActionDock>
         <div className="flex gap-2">
-          <Button variant="secondary" className="flex-1" onClick={() => navigate('/examen/abcde')}>
+          <Button variant="secondary" className="flex-1 lg:min-w-52" onClick={() => navigate('/examen/abcde')}>
             {t('dockBack')}
           </Button>
-          <Button className="flex-1" onClick={() => navigate('/revision')}>
+          <Button className="flex-1 lg:min-w-52" onClick={() => navigate('/revision')}>
             {t('dockNext')}
           </Button>
         </div>

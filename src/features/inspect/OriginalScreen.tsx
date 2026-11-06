@@ -14,9 +14,9 @@ export default function OriginalScreen() {
   const reference = isReferenceImage(image);
   const shown = src ?? (reference ? PUBLIC_REFERENCE_URL : null);
   return (
-    <main className="flex h-dvh flex-col bg-canvas">
+    <main className="flex h-dvh flex-col bg-canvas lg:h-auto lg:min-h-dvh">
       <ScreenHeader title={t('originalHeader')} backTo="/inspeccion" backLabel={t('back')} infoLabel={t('info')} />
-      <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
+      <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overscroll-contain px-5 pb-5 pt-3 lg:overflow-visible lg:px-8 lg:pb-8">
         <h2 className="m-0 text-title text-ink">{t('originalHeading')}</h2>
         <p className="m-0 text-body text-ink">{reference ? t('originalIntroReference') : t('originalIntroSession')}</p>
         <figure className="m-0 flex flex-col overflow-hidden rounded-tile bg-surface">
@@ -25,7 +25,7 @@ export default function OriginalScreen() {
               src={shown}
               alt={reference ? t('imageAltReference') : t('imageAltSession')}
               decoding="async"
-              className="block h-80 w-full object-contain"
+              className="block h-80 w-full object-contain lg:h-[calc(100dvh-160px)]"
             />
           ) : (
             <p className="m-0 p-4 text-label text-muted">{t('unavailableImage')}</p>

@@ -6,7 +6,7 @@ import { useI18n, useT } from '@/core/i18n/I18nProvider';
 import { ScreenHeader } from './Chrome';
 import { useObjectUrl } from './useImageSource';
 import { useResultGuard } from './guards';
-import { ImagePanel, ObservationsPanel, OutputPanel } from './ViewerPanels';
+import { ImagePanel, ObservationsPanel, OutputPanel, ViewerStage } from './ViewerPanels';
 import { ToolSheet, type ToolName } from './ToolSheet';
 import { ViewerNav } from './ViewerNav';
 import { MoreIcon } from './toolIcons';
@@ -53,7 +53,7 @@ export default function ViewerScreen() {
     <IconButton label={t('toolsMenuLabel')} onClick={() => openTool('menu')} icon={<MoreIcon />} />
   );
   return (
-    <main className="flex h-dvh flex-col bg-canvas">
+    <main className="flex h-dvh flex-col bg-canvas lg:h-auto lg:min-h-dvh">
       <ScreenHeader
         title={t('viewerTitle')}
         backTo="/resultado"
@@ -61,17 +61,20 @@ export default function ViewerScreen() {
         infoLabel={t('info')}
         trailing={toolsButton}
       />
-      <div tabIndex={0} className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-28 pt-2">
-        <div className="mb-3 flex">
-          <Chip tint={PHASE_TINT.observaciones}>{t('stepObservations')}</Chip>
-        </div>
-        <div className={TAB_LIST_CLASS}>
-          <Tabs
-            label={t('viewerTabsLabel')}
-            items={items}
-            value={tab}
-            onValueChange={(next) => navigate(`/inspeccion?tab=${next}`, { replace: true })}
-          />
+      <div tabIndex={0} className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-28 pt-2 lg:grid lg:grid-cols-[minmax(0,1fr)_23.75rem] lg:items-start lg:gap-x-8 lg:overflow-visible lg:px-8 lg:pb-10">
+        <ViewerStage src={src} image={image} onOpenTool={openTool} />
+        <div>
+          <div className="mb-3 flex">
+            <Chip tint={PHASE_TINT.observaciones}>{t('stepObservations')}</Chip>
+          </div>
+          <div className={TAB_LIST_CLASS}>
+            <Tabs
+              label={t('viewerTabsLabel')}
+              items={items}
+              value={tab}
+              onValueChange={(next) => navigate(`/inspeccion?tab=${next}`, { replace: true })}
+            />
+          </div>
         </div>
       </div>
       <ViewerNav />
