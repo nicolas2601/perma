@@ -32,7 +32,7 @@ export function readRouteTransitionEnv(): RouteTransitionEnv {
   const doc = document as Document & ViewTransitionDocument;
   return {
     reducedMotion: prefersReducedMotion(),
-    startViewTransition: doc.startViewTransition ? (update) => void doc.startViewTransition?.(update) : undefined,
+    startViewTransition: doc.startViewTransition ? (update) => swallowSkipped(doc.startViewTransition?.(update)) : undefined,
   };
 }
 
@@ -42,4 +42,13 @@ export function runRouteTransition(update: () => void, env: RouteTransitionEnv =
   if (plan.kind === 'view-transition' && env.startViewTransition) env.startViewTransition(update);
   else update();
   return plan;
+}
+
+/** A skipped transition (rapid navigation) rejects its promises with AbortError; that is not an app error. */
+function swallowSkipped(transition: unknown): void {
+  if (typeof transition !== 'object' || transition === null) return;
+  const { ready, finished, updateCallbackDone } = transition as Record<string, unknown>;
+  for (const promise of [ready, finished, updateCallbackDone]) {
+    if (promise instanceof Promise) promise.catch(() => undefined);
+  }
 }
