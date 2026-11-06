@@ -11,7 +11,7 @@ import { BODY_SITE_KEYS, ClinicalContextSheet, SITE_LABEL_KEY, SiteSheet, type B
 import { CAPTURE_PATH, DESK_PATH } from './recoveryPaths';
 
 const FIELD_CLASS =
-  'flex min-h-13 w-full flex-col items-start justify-center gap-1 rounded-tile border border-solid border-line bg-surface px-4 py-3 text-left text-ink outline-offset-2';
+  'flex min-h-14 w-full flex-col items-start justify-center gap-1 rounded-card bg-surface px-4 py-3 text-left text-ink shadow-raised outline-offset-2';
 
 function isBodySite(value: string | null): value is BodySiteKey {
   return value !== null && (BODY_SITE_KEYS as readonly string[]).includes(value);

@@ -7,6 +7,8 @@ import { FloatingNav, type NavItem } from '@/ui/FloatingNav';
 import { IconButton } from '@/ui/IconButton';
 import { cx } from '@/ui/cx';
 import { Glyph } from './Glyph';
+import { JourneyProgress } from './JourneyProgress';
+import { journeyStepId } from './journey';
 import { CAPTURE_PATH, DESK_PATH, GUIDE_PATH, REVIEW_PATH } from './recoveryPaths';
 
 /** Rendered size of the brand mark in the top bar (CSS size-8 = 32 px); kept in sync with the class below. */
@@ -65,6 +67,7 @@ export function AppShell({ title, onBack, headerAction, showNav = true, children
   const { location } = useRouter();
   const navItems = useNavItems();
   const navId = activeNavId(location.path);
+  const journey = journeyStepId(location.path);
   return (
     <div className="flex min-h-dvh flex-col bg-canvas text-ink">
       <header className="sticky top-0 z-30 flex flex-wrap items-center gap-2 bg-canvas px-5 pt-[env(safe-area-inset-top)] pb-3">
@@ -81,7 +84,10 @@ export function AppShell({ title, onBack, headerAction, showNav = true, children
         {headerAction}
         <LanguageSwitch />
       </header>
-      <main className={cx('flex flex-1 flex-col gap-5 px-5', showNav ? 'pb-28' : 'pb-8')}>{children}</main>
+      <main className={cx('flex flex-1 flex-col gap-5 px-5', showNav ? 'pb-28' : 'pb-8')}>
+        {journey ? <JourneyProgress current={journey} /> : null}
+        {children}
+      </main>
       {showNav ? (
         <nav className="fixed inset-x-0 bottom-0 z-30 px-5 pb-[calc(env(safe-area-inset-bottom)+12px)]">
           <FloatingNav label={t('navLabel')} items={navItems} currentId={navId ?? ''} onNavigate={(id) => navigate(id)} />

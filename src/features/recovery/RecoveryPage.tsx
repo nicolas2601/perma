@@ -1,4 +1,5 @@
 import { useNavigate } from '@/app/router';
+import { illustrationUrl, type IllustrationName } from '@/assets/illustrations';
 import type { RecoveryMode } from '@/core/exam/commands';
 import { useExam, useExamDispatch } from '@/core/exam/react';
 import { useT } from '@/core/i18n/I18nProvider';
@@ -44,6 +45,18 @@ export const RECOVERY_TARGETS: Record<RecoveryScenario, RecoveryTargets> = {
   },
 };
 
+/** Spot illustration per scenario. Decorative: the page title already states the problem. */
+const RECOVERY_ART: Record<RecoveryScenario, IllustrationName> = {
+  'file-unavailable': 'fileProblem',
+  permission: 'permissionCamera',
+  offline: 'offline',
+  'server-error': 'serverProblem',
+  timeout: 'waitingResponse',
+  'invalid-response': 'serverProblem',
+  'rate-limit': 'waitingResponse',
+  'export-unavailable': 'serverProblem',
+};
+
 /** Number of heading/text pairs each page shows (keys in recovery/copy.ts). */
 const SECTION_COUNT: Record<RecoveryScenario, number> = {
   'file-unavailable': 1,
@@ -78,6 +91,14 @@ export function RecoveryPage({ scenario }: RecoveryPageProps) {
       <p role="alert" className="sr-only">
         {t(`${scenario}.title`)}
       </p>
+      <img
+        src={illustrationUrl(RECOVERY_ART[scenario])}
+        alt=""
+        width={160}
+        height={120}
+        decoding="async"
+        className="h-auto w-40 self-center"
+      />
       <h1 className="m-0 text-title text-ink">{t(`${scenario}.title`)}</h1>
       <p className="m-0 text-body text-ink">{t(`${scenario}.body`)}</p>
       {sectionIndexes.map((n) => (

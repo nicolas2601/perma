@@ -11,7 +11,7 @@ export interface ImageDetailRowProps {
 export function ImageDetailRow({ title, hint, fileLabel, fileName }: ImageDetailRowProps) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="flex flex-col rounded-tile border border-solid border-line bg-surface">
+    <div className="flex flex-col overflow-hidden rounded-card bg-surface shadow-raised">
       <button
         type="button"
         aria-expanded={open}
@@ -22,7 +22,7 @@ export function ImageDetailRow({ title, hint, fileLabel, fileName }: ImageDetail
         <span className="text-caption text-muted">{hint}</span>
       </button>
       {open ? (
-        <p className="m-0 border-t border-solid border-soft-line px-4 py-3 text-label text-muted">
+        <p className="m-0 bg-subtle px-4 py-3 text-label text-muted">
           {fileLabel}: {fileName}
         </p>
       ) : null}

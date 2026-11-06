@@ -12,7 +12,11 @@ import {
   RECOVERY_PATHS,
   RESULT_PATH,
 } from '@/features/desk/recoveryPaths';
+import { illustrationUrl } from '@/assets/illustrations';
+import { Glyph } from '@/features/desk/Glyph';
 import { Button } from '@/ui/Button';
+import { IconBlob } from '@/ui/IconBlob';
+import { ChevronDownIcon, CloseIcon } from '@/ui/icons';
 import { Sheet } from '@/ui/Sheet';
 import { StatusLine } from '@/ui/StatusLine';
 import {
@@ -97,6 +101,7 @@ export default function Processing() {
     <AppShell title={t('waitShellTitle')} onBack={openStop} showNav={false}>
       <h1 className="m-0 text-title text-ink">{t('waitTitle')}</h1>
       <p className="m-0 text-body text-ink">{t('waitBody')}</p>
+      <img src={illustrationUrl('waitingResponse')} alt="" width={160} height={120} decoding="async" className="h-auto w-40 self-center" />
       <div className="flex items-center gap-3">
         <Spinner />
         <div className="min-w-0 flex-1">
@@ -114,10 +119,18 @@ export default function Processing() {
       <button
         type="button"
         onClick={openStop}
-        className="grid min-h-13 w-full justify-items-start content-center rounded-tile border border-solid border-line bg-surface px-4 py-3 text-left text-ink outline-offset-2"
+        className="grid min-h-16 w-full grid-cols-[auto_1fr_auto] items-center gap-3 rounded-card bg-surface px-4 py-3 text-left text-ink shadow-raised outline-offset-2 transition-transform duration-(--motion-card) ease-perma-out active:scale-[0.98] motion-reduce:active:scale-100"
       >
-        <span className="text-body text-ink">{t('waitStop')}</span>
-        <span className="text-caption text-muted">{t('waitStopHint')}</span>
+        <IconBlob tint="butter">
+          <CloseIcon />
+        </IconBlob>
+        <span className="flex min-w-0 flex-col gap-1">
+          <span className="text-body text-ink">{t('waitStop')}</span>
+          <span className="text-caption text-muted">{t('waitStopHint')}</span>
+        </span>
+        <Glyph className="size-5 -rotate-90 text-muted">
+          <ChevronDownIcon />
+        </Glyph>
       </button>
       <Sheet open={stopOpen} onOpenChange={setStopOpen} title={t('waitStopSheetTitle')} closeLabel={t('close')}>
         <div className="flex flex-col gap-4">
@@ -126,7 +139,7 @@ export default function Processing() {
           <button
             type="button"
             onClick={() => setStopOpen(false)}
-            className="flex min-h-14 w-full items-center rounded-tile border border-solid border-line bg-surface px-4 py-3 text-left text-body text-ink outline-offset-2"
+            className="flex min-h-14 w-full items-center rounded-card bg-subtle px-4 py-3 text-left text-body text-ink outline-offset-2"
           >
             {t('waitStopKeep')}
           </button>
