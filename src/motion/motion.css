@@ -1,0 +1,70 @@
+/*
+ * Global motion contract. Numbers mirror src/core/motion/tokens.ts (keep in sync).
+ * Rules: transition-property is always explicit (never "all"); only transform and opacity move;
+ * no ease-in on entries; nothing scales from 0.
+ */
+
+:root {
+  --motion-press: 140ms;
+  --motion-route: 220ms;
+  --motion-sheet: 240ms;
+  --motion-sheet-exit: 120ms;
+  --motion-accordion: 200ms;
+  --motion-fade: 100ms;
+  --motion-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --motion-press-scale: 0.97;
+}
+
+/* Press: scale(0.97) on :active only, enabled controls only. */
+.perma-press {
+  transition-property: transform, opacity, background-color;
+  transition-duration: var(--motion-press);
+  transition-timing-function: var(--motion-ease-out);
+}
+
+.perma-press:active:not(:disabled, [aria-disabled='true']) {
+  transform: scale(var(--motion-press-scale));
+}
+
+/* Hover visuals only for fine pointers that really hover. */
+@media (hover: hover) and (pointer: fine) {
+  .perma-press:hover:not(:disabled, [aria-disabled='true']) {
+    background-color: var(--color-subtle);
+  }
+}
+
+/* Accordion height: grid-template-rows 0fr to 1fr. The row value is set inline by AccordionBody. */
+.perma-accordion-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition-property: grid-template-rows;
+  transition-duration: var(--motion-accordion);
+  transition-timing-function: var(--motion-ease-out);
+}
+
+.perma-accordion-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Route transitions (document.startViewTransition). Reduced motion sets the duration to 100 ms. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--motion-route);
+  animation-timing-function: var(--motion-ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-press: 100ms;
+    --motion-route: 100ms;
+    --motion-sheet: 100ms;
+    --motion-sheet-exit: 100ms;
+    --motion-accordion: 100ms;
+    --motion-press-scale: 1;
+  }
+
+  [data-motion='move'] {
+    transform: none !important;
+  }
+}
