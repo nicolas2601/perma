@@ -65,12 +65,13 @@ function ReferenceCard() {
             className="h-auto w-full rounded-chip object-contain"
           />
         </picture>
-        <span className="text-caption text-muted">{t('referenceCredit')}</span>
+        <span className="text-caption text-muted">{t('referenceAuthor')}</span>
+        <span className="whitespace-nowrap text-caption text-muted">{t('referenceLicense')}</span>
       </span>
       <span className="flex min-w-0 flex-1 flex-col gap-2">
-        <span className="text-body text-ink">{t('referenceTitle')}</span>
-        <span className="text-caption text-muted">{t('referenceExplore')}</span>
-        <span className="text-caption text-muted">{t('referenceNote')}</span>
+        <span className="text-section text-ink">{t('referenceTitle')}</span>
+        <span className="text-label text-muted">{t('referenceExplore')}</span>
+        <span className="text-label text-muted">{t('referenceNote')}</span>
       </span>
     </button>
   );
@@ -84,6 +85,15 @@ export default function Home() {
   const dispatch = useExamDispatch();
   const [scopeOpen, setScopeOpen] = useState(false);
   const [discardOpen, setDiscardOpen] = useState(false);
+  const [continueToContext, setContinueToContext] = useState(false);
+  const openNewExam = () => {
+    if (!hasRecord) {
+      navigate(CONTEXT_PATH);
+      return;
+    }
+    setContinueToContext(true);
+    setDiscardOpen(true);
+  };
   return (
     <AppShell
       title={t('brand')}
@@ -91,21 +101,24 @@ export default function Home() {
         <IconButton
           label={t('discardAction')}
           disabled={!hasRecord}
-          onClick={() => setDiscardOpen(true)}
+          onClick={() => {
+            setContinueToContext(false);
+            setDiscardOpen(true);
+          }}
           icon={<img src={moreIcon} alt="" className="size-5" />}
         />
       }
     >
       <m.div variants={entryVariants(reduce)} initial="hidden" animate="show" className="flex flex-col gap-5">
         <m.div variants={entryItem(reduce)} className="flex items-center gap-3">
-          <h1 className="m-0 min-w-0 flex-1 text-title text-ink">{t('headline')}</h1>
-          <img src={geometricArt} alt="" width={168} height={152} className="h-auto w-32 shrink-0" />
+          <h1 className="m-0 min-w-0 max-w-36 flex-1 text-title text-ink">{t('headline')}</h1>
+          <img src={geometricArt} alt="" width={160} height={150} className="h-auto w-40 shrink-0" />
         </m.div>
         <m.div variants={entryItem(reduce)} className="grid h-[270px] grid-cols-[1fr_auto] gap-3">
           <Card tone="surface" className="gap-3 p-4">
             <h2 className="m-0 text-section text-ink">{t('prepareTitle')}</h2>
             <p className="m-0 text-label text-muted">{t('prepareBody')}</p>
-            <Button fullWidth onClick={() => navigate(CONTEXT_PATH)}>
+            <Button fullWidth className="min-h-14" onClick={openNewExam}>
               {t('newExam')}
             </Button>
           </Card>
@@ -115,8 +128,8 @@ export default function Home() {
             className="flex w-32 cursor-pointer flex-col gap-2 rounded-tile border border-solid border-surface bg-subtle p-3 text-left text-ink outline-offset-2"
           >
             <Glyph className="size-5"><BookIcon /></Glyph>
-            <span className="text-body text-ink">{t('protocolTitle')}</span>
-            <span className="text-caption text-muted">{t('protocolScope')}</span>
+            <span className="text-section text-ink">{t('protocolTitle')}</span>
+            <span className="text-label text-muted">{t('protocolScope')}</span>
             <span className="text-label text-ink">{t('protocolStatus')}</span>
           </button>
         </m.div>
@@ -131,6 +144,7 @@ export default function Home() {
         onConfirm={() => {
           dispatch({ type: 'DISCARD_RECORD' });
           setDiscardOpen(false);
+          if (continueToContext) navigate(CONTEXT_PATH);
         }}
       />
     </AppShell>

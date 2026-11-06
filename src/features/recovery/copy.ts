@@ -38,6 +38,9 @@ export const copy = {
     'server-error.body':
       'Escenario de error del servidor. No muestre puntajes anteriores como si fueran una respuesta nueva. Conserve la imagen y el contexto actuales para un reintento deliberado.',
     'server-error.primary': 'Revise antes de reintentar',
+    'server-error.detailTitle': 'Revisar la imagen',
+    'server-error.detailHint': 'Abrir detalles',
+    'server-error.detailFile': 'Archivo',
 
     'timeout.shell': 'Finalización no confirmada',
     'timeout.title': 'No se confirmó la finalización.',
@@ -100,6 +103,9 @@ export const copy = {
     'server-error.body':
       'Server error scenario. Do not show earlier scores as if they were a new response. Keep the current image and context for a deliberate retry.',
     'server-error.primary': 'Review before retrying',
+    'server-error.detailTitle': 'Review the image',
+    'server-error.detailHint': 'Open details',
+    'server-error.detailFile': 'File',
 
     'timeout.shell': 'Completion not confirmed',
     'timeout.title': 'Completion could not be confirmed.',

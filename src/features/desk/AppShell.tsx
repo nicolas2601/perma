@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { useNavigate, useRouter } from '@/app/router';
 import { useI18n, useT } from '@/core/i18n/I18nProvider';
-import { BookIcon, ChevronDownIcon, FileIcon, HomeIcon, InfoIcon, ScanIcon } from '@/ui/icons';
+import { BookIcon, ChevronDownIcon, FileIcon, HomeIcon, ScanIcon } from '@/ui/icons';
 import { FloatingNav, type NavItem } from '@/ui/FloatingNav';
 import { IconButton } from '@/ui/IconButton';
 import { cx } from '@/ui/cx';
@@ -77,7 +77,6 @@ export function AppShell({ title, onBack, headerAction, showNav = true, children
         )}
         <p className="m-0 min-w-0 flex-1 text-header text-muted">{title}</p>
         {headerAction}
-        <IconButton label={t('info')} onClick={() => navigate(GUIDE_PATH)} icon={<Glyph className="size-5"><InfoIcon /></Glyph>} />
         <LanguageSwitch />
       </header>
       <main className={cx('flex flex-1 flex-col gap-5 px-5', showNav ? 'pb-28' : 'pb-8')}>{children}</main>

@@ -28,11 +28,12 @@ export const copy = {
     waitStop: 'Detener espera',
     waitStopHint: 'Abrir detalles',
     waitStatus: 'Esperando respuesta del servicio.',
-    waitStopSheetTitle: 'Detener la espera',
+    waitStopSheetTitle: '¿Detener espera?',
+    waitStopHeading: '¿Salir de la vista de espera?',
     waitStopSheetBody:
-      'Se deja de esperar la respuesta. La imagen y el contexto se conservan. Si el servicio responde después, su respuesta se descarta. Para enviar de nuevo, vuelva a confirmar la autorización.',
-    waitStopConfirm: 'Detener la espera',
-    waitStopCancel: 'Seguir esperando',
+      'Salir de esta pantalla no demuestra que se haya cancelado el procesamiento en el servidor. El prototipo no tiene una solicitud en curso.',
+    waitStopConfirm: 'Volver a la revisión de imagen',
+    waitStopKeep: 'Conservar la vista de espera',
   },
   en: {
     shellTitle: 'Model output · Submission',
@@ -59,10 +60,11 @@ export const copy = {
     waitStop: 'Stop waiting',
     waitStopHint: 'Open details',
     waitStatus: 'Waiting for the service response.',
-    waitStopSheetTitle: 'Stop waiting',
+    waitStopSheetTitle: 'Stop waiting?',
+    waitStopHeading: 'Leave the waiting view?',
     waitStopSheetBody:
-      'The response is no longer awaited. The image and context are kept. If the service answers later, that response is discarded. To send again, confirm authorisation once more.',
-    waitStopConfirm: 'Stop waiting',
-    waitStopCancel: 'Keep waiting',
+      'Leaving this screen does not show that processing was cancelled on the server. The prototype has no request in progress.',
+    waitStopConfirm: 'Back to image review',
+    waitStopKeep: 'Keep the waiting view',
   },
 } as const;
