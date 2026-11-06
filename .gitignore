@@ -11,3 +11,4 @@ dist-e2e
 .lighthouseci
 pnpm-lock.yaml
 pnpm-workspace.yaml
+.claude/worktrees
