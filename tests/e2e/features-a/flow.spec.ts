@@ -51,6 +51,6 @@ test.describe('features-A flow', () => {
 
   test('recovery pages announce the failure as an alert', async ({ page }) => {
     await page.goto('/recuperacion/limite');
-    await expect(page.getByRole('alert')).toContainText('Se alcanzó el límite de solicitudes.');
+    await expect(page.getByRole('alert')).toContainText('El servicio está limitando las solicitudes.');
   });
 });
