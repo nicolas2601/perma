@@ -62,4 +62,29 @@ describe('Button', () => {
     const button = screen.getByRole('button', { name: 'Revisar' });
     expect(button).toHaveAttribute('data-pressed', 'true');
   });
+
+  it('soft variant uses the requested tint pair and defaults to sky', () => {
+    const { rerender } = render(<Button variant="soft">Explorar</Button>);
+
+    const button = screen.getByRole('button', { name: 'Explorar' });
+    expect(button).toHaveAttribute('data-variant', 'soft');
+    expect(button.className).toContain('bg-tint-sky');
+    expect(button.className).toContain('text-deep-sky');
+
+    rerender(
+      <Button variant="soft" tint="lilac">
+        Explorar
+      </Button>,
+    );
+    expect(screen.getByRole('button', { name: 'Explorar' }).className).toContain('bg-tint-lilac');
+  });
+
+  it('primary keeps a flat teal fill with the inner highlight and pressed depth', () => {
+    render(<Button>Continuar</Button>);
+
+    const className = screen.getByRole('button', { name: 'Continuar' }).className;
+    expect(className).toContain('bg-accent');
+    expect(className).toContain('shadow-key');
+    expect(className).toContain('enabled:active:shadow-key-pressed');
+  });
 });

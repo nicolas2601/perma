@@ -13,6 +13,15 @@ import {
   TabsSpecimen,
 } from './SystemSections';
 import type { StatusTone } from './StatusLine';
+import {
+  CardVariantSpecimens,
+  ChipSpecimens,
+  DrawSpecimen,
+  EmptySpecimen,
+  HeadingSpecimen,
+  StepperSpecimen,
+  TileSpecimens,
+} from './SystemSectionsUplift';
 import { SYSTEM_COPY, type SystemLocale } from './systemCopy';
 
 const LOCALE_OPTIONS = [
@@ -36,7 +45,7 @@ export function SystemPage() {
   const copy = SYSTEM_COPY[locale];
 
   return (
-    <main className="mx-auto flex min-h-dvh w-full max-w-[390px] flex-col gap-8 bg-canvas p-5 pb-24 text-ink">
+    <main className="mx-auto flex min-h-dvh w-full max-w-[390px] flex-col gap-8 bg-canvas p-5 pb-24 text-ink md:max-w-[760px]">
       <header className="flex items-center justify-between gap-3">
         <h1 className="m-0 text-title text-ink">{copy.title}</h1>
         <SegmentedControl
@@ -55,6 +64,34 @@ export function SystemPage() {
 
       <Section title={copy.sectionCards}>
         <CardSpecimens copy={copy} />
+      </Section>
+
+      <Section title={copy.uplift.sectionCardVariants}>
+        <CardVariantSpecimens copy={copy} />
+      </Section>
+
+      <Section title={copy.uplift.sectionTiles}>
+        <TileSpecimens copy={copy} />
+      </Section>
+
+      <Section title={copy.uplift.sectionChips}>
+        <ChipSpecimens copy={copy} />
+      </Section>
+
+      <Section title={copy.uplift.sectionHeadings}>
+        <HeadingSpecimen copy={copy} />
+      </Section>
+
+      <Section title={copy.uplift.sectionStepper}>
+        <StepperSpecimen copy={copy} />
+      </Section>
+
+      <Section title={copy.uplift.sectionEmpty}>
+        <EmptySpecimen copy={copy} />
+      </Section>
+
+      <Section title={copy.uplift.sectionDraw}>
+        <DrawSpecimen copy={copy} />
       </Section>
 
       <Section title={copy.sectionTabs}>
