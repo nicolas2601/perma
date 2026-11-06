@@ -10,7 +10,7 @@ export function DesktopFrame({ children }: { children: ReactNode }) {
     <>
       <Rail />
       <div className="lg:pl-66">
-        <div className="mx-auto w-full lg:max-w-270">{children}</div>
+        <div className="mx-auto w-full md:max-w-160 lg:max-w-270">{children}</div>
       </div>
     </>
   );

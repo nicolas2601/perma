@@ -49,7 +49,7 @@ export function Card({ tone = 'surface', variant, tint = 'neutral', interactive 
       data-tint={variant === 'soft' ? tint : undefined}
       type={Tag === 'button' ? 'button' : undefined}
       className={cx(
-        'flex flex-col gap-2 overflow-hidden',
+        'flex shrink-0 flex-col gap-2 overflow-hidden',
         surfaceClasses(variant, tone, tint),
         interactive && INTERACTIVE_CLASSES,
         className,

@@ -89,7 +89,7 @@ export function AppShell({ title, onBack, headerAction, showNav = true, children
         {children}
       </main>
       {showNav ? (
-        <nav className="fixed inset-x-0 bottom-0 z-30 lg:hidden px-5 pb-[calc(env(safe-area-inset-bottom)+12px)]">
+        <nav className="fixed inset-x-0 bottom-0 z-30 md:inset-x-auto md:left-1/2 md:w-160 md:-translate-x-1/2 lg:hidden px-5 pb-[calc(env(safe-area-inset-bottom)+12px)]">
           <FloatingNav label={t('navLabel')} items={navItems} currentId={navId ?? ''} onNavigate={(id) => navigate(id)} />
         </nav>
       ) : null}
