@@ -7,6 +7,12 @@ import { CRITERION_TITLE_KEY, optionKey } from '@/features/abcde/copy';
 import { ExperimentalNotice, ScreenHeader, ActionDock } from '@/features/inspect/Chrome';
 import { useFlowSync } from '@/features/inspect/flowSync';
 import { reviewSource } from './reviewSource';
+import { siteCopyKey } from './siteLabel';
+
+function siteText(code: string | null, t: (key: string) => string): string {
+  const key = siteCopyKey(code);
+  return key === null ? t('notRecorded') : t(key);
+}
 
 /** Session summary: context, manual observations, note and model output, with the export entry point. */
 export default function SummaryScreen() {
@@ -26,7 +32,7 @@ export default function SummaryScreen() {
         <p className="m-0 text-body text-ink">{t('summaryIntro')}</p>
         <section className="flex flex-col gap-2 rounded-tile border border-solid border-white/80 bg-surface p-4">
           <h3 className="m-0 text-section text-ink">{t('contextTitle')}</h3>
-          <Field label={t('bodySiteLabel')} value={record.bodySite ?? t('notRecorded')} />
+          <Field label={t('bodySiteLabel')} value={siteText(record.bodySite, t)} />
           <Field label={t('modalityLabel')} value={reviewSource(image, t)} />
         </section>
         <section className="flex flex-col gap-2">
