@@ -5,6 +5,7 @@ import { createServer } from 'vite';
 
 const ROOT = fileURLToPath(new URL('../../', import.meta.url));
 const CORE_MODULES = [
+  'advice-policy',
   'blur-features',
   'blur-model',
   'constants',
@@ -12,6 +13,7 @@ const CORE_MODULES = [
   'frame-pipeline',
   'luma',
   'rules',
+  'signals',
   'worker-handler',
 ];
 

@@ -1,4 +1,6 @@
-// Evaluates the deterministic capture rules (no blur head, no motion) on the R2 synthetic battery.
+// Evaluates the deterministic capture rules (no blur head) on the R2 synthetic battery, one still frame per
+// fixture held for ENTER_FRAMES + 1 readings (a rule needs its dwell to switch on). Inter-frame motion cannot be
+// scored on a single-frame battery; see replay-bins.mjs for the sequence fixtures.
 // Usage: node scripts/camera/evaluate-rules.mjs   (JSON report to stdout; writes nothing)
 import { buildBattery, SPEC } from '../bench/synthetic-battery.mjs';
 import { loadCore } from './load-core.mjs';
@@ -30,11 +32,15 @@ async function main() {
   const { core, close } = await loadCore();
   try {
     const { FramePipeline } = core['frame-pipeline'];
-    const { chooseCandidate } = core.rules;
+    const { RuleEngine } = core.rules;
+    const { ENTER_FRAMES } = core.constants;
     const counts = {};
     for (const frame of buildBattery({ edge: EDGE })) {
       const reading = new FramePipeline().analyze({ width: EDGE, height: EDGE, rgba: frame.rgba });
-      tally(counts, frame.category, frame.expect, chooseCandidate(reading, 'none'));
+      const engine = new RuleEngine();
+      let verdict = null;
+      for (let i = 0; i <= ENTER_FRAMES; i++) verdict = engine.observe(reading);
+      tally(counts, frame.category, frame.expect, verdict.candidate);
     }
     const perCategory = summarize(counts);
     const positives = SPEC.filter(s => s.expect !== 'center').map(s => s.name);
@@ -46,7 +52,7 @@ async function main() {
     };
     const report = {
       edge: EDGE,
-      note: 'Rules only (no blur head, no inter-frame motion). Single-frame battery.',
+      note: 'Rules only (no blur head, no inter-frame motion). Single-frame battery, held for ENTER_FRAMES + 1 readings.',
       sensitivityAnyAlert: share(positives, 'alertRate'),
       falseAlertRateOnCleanFrames: share(negatives, 'alertRate'),
       correctAdviceOnPositives: share(positives, 'correctAdviceRate'),

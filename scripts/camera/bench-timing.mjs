@@ -59,9 +59,9 @@ async function main() {
       return handler({ kind: 'analyze', id: ++id, width: edge, height: edge, active: 'none', pixels });
     };
     const { FramePipeline } = core['frame-pipeline'];
-    const { chooseCandidate } = core.rules;
-    // Fresh pipeline per frame: unrelated battery frames must not be compared as motion.
-    const measure = frame => chooseCandidate(new FramePipeline().analyze({ width: edge, height: edge, rgba: frame.rgba }), 'none');
+    const { RuleEngine } = core.rules;
+    // Fresh pipeline and engine per frame: unrelated battery frames must not be compared as motion or dwell.
+    const measure = frame => new RuleEngine().observe(new FramePipeline().analyze({ width: edge, height: edge, rgba: frame.rgba })).candidate;
     const report = {
       environment: { node: process.version, cpu: cpus()[0]?.model ?? 'unknown', cores: cpus().length, throttling: 'not applied' },
       edge,
