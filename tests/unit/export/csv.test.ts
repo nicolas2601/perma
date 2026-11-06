@@ -57,7 +57,7 @@ describe('CSV export', () => {
   });
 
   it('downloads a text/csv file only after the Blob exists', async () => {
-    const download = vi.fn((_blob: Blob, _filename: string) => true);
+    const download = vi.fn((blob: Blob, filename: string) => blob.size > 0 && filename.length > 0);
     const deps: ExportDeps = { t: es, now: () => exportedAt, renderPdf: vi.fn(), download };
     const result = await exportRecord('csv', snapshot(), deps);
     expect(result.ok).toBe(true);
