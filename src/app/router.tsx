@@ -42,7 +42,7 @@ export function matchRoute(pattern: string, path: string): Record<string, string
   return params;
 }
 
-export function Router({ routes, fallback, children }: { routes: RouteDef[]; fallback: ComponentType; children?: ReactNode }) {
+export function Router({ routes, fallback, frame: Frame, children }: { routes: RouteDef[]; fallback: ComponentType; frame?: ComponentType<{ children: ReactNode }>; children?: ReactNode }) {
   const [location, setLocation] = useState<Location>(readLocation);
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export function Router({ routes, fallback, children }: { routes: RouteDef[]; fal
   const Screen = active?.component ?? fallback;
   return (
     <RouterContext.Provider value={value}>
-      <Screen />
+      {Frame ? <Frame><Screen /></Frame> : <Screen />}
       {children}
     </RouterContext.Provider>
   );

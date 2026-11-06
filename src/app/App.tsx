@@ -1,5 +1,6 @@
 import { MotionProvider } from '@/core/motion';
 import { AppProviders } from './providers';
+import { DesktopFrame } from './DesktopFrame';
 import { Router, useRouter } from './router';
 import { routes } from './routes';
 import { UpdatePrompt } from './pwa/UpdatePrompt';
@@ -21,7 +22,7 @@ export function App() {
   return (
     <AppProviders>
       <MotionProvider>
-        <Router routes={routes} fallback={NotFound}>
+        <Router routes={routes} fallback={NotFound} frame={DesktopFrame}>
           <Shell />
         </Router>
       </MotionProvider>

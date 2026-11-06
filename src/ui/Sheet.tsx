@@ -72,7 +72,7 @@ export function Sheet({ open, onOpenChange, title, description, closeLabel, chil
                 }}
               >
                 <m.div
-                  className="fixed inset-x-0 bottom-0 z-50 flex max-h-[85dvh] flex-col rounded-t-sheet bg-surface pb-[env(safe-area-inset-bottom)] text-ink outline-none"
+                  className="fixed inset-x-0 bottom-0 z-50 flex max-h-[85dvh] flex-col rounded-t-sheet bg-surface pb-[env(safe-area-inset-bottom)] text-ink outline-none lg:inset-x-auto lg:bottom-auto lg:left-1/2 lg:top-1/2 lg:w-[min(32rem,calc(100vw-4rem))] lg:max-h-[80dvh] lg:-translate-x-1/2 lg:-translate-y-1/2 lg:rounded-sheet lg:shadow-[0_24px_64px_rgb(31_43_42/0.22)]"
                   initial={reduce ? { opacity: 0 } : { y: OFFSCREEN_Y }}
                   animate={reduce ? { opacity: 1, transition: enter } : { y: 0, transition: enter }}
                   exit={reduce ? { opacity: 0, transition: exit } : { y: OFFSCREEN_Y, transition: exit }}

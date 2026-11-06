@@ -70,7 +70,7 @@ export function AppShell({ title, onBack, headerAction, showNav = true, children
   const journey = journeyStepId(location.path);
   return (
     <div className="flex min-h-dvh flex-col bg-canvas text-ink">
-      <header className="sticky top-0 z-30 flex flex-wrap items-center gap-2 bg-canvas px-5 pt-[env(safe-area-inset-top)] pb-3">
+      <header className="sticky top-0 z-30 flex flex-wrap items-center gap-2 bg-canvas px-5 lg:px-10 lg:pt-6 pt-[env(safe-area-inset-top)] pb-3">
         {onBack ? (
           <IconButton
             label={t('back')}
@@ -78,18 +78,18 @@ export function AppShell({ title, onBack, headerAction, showNav = true, children
             icon={<Glyph className="size-5 rotate-90"><ChevronDownIcon /></Glyph>}
           />
         ) : (
-          <img src={markUrl} alt="PERMA" width={BRAND_MARK_PX} height={BRAND_MARK_PX} decoding="async" className="m-2 size-8 shrink-0" />
+          <img src={markUrl} alt="PERMA" width={BRAND_MARK_PX} height={BRAND_MARK_PX} decoding="async" className="m-2 size-8 shrink-0 lg:hidden" />
         )}
-        <p className="m-0 min-w-0 flex-1 text-header text-muted">{title}</p>
+        <p className="m-0 min-w-0 flex-1 text-header text-muted lg:text-section lg:text-ink">{title}</p>
         {headerAction}
-        <LanguageSwitch />
+        <span className="lg:hidden"><LanguageSwitch /></span>
       </header>
-      <main className={cx('flex flex-1 flex-col gap-5 px-5', showNav ? 'pb-28' : 'pb-8')}>
-        {journey ? <JourneyProgress current={journey} /> : null}
+      <main className={cx('flex flex-1 flex-col gap-5 px-5 lg:gap-8 lg:px-10 lg:pt-4', showNav ? 'pb-28 lg:pb-10' : 'pb-8')}>
+        {journey ? <div className="lg:hidden"><JourneyProgress current={journey} /></div> : null}
         {children}
       </main>
       {showNav ? (
-        <nav className="fixed inset-x-0 bottom-0 z-30 px-5 pb-[calc(env(safe-area-inset-bottom)+12px)]">
+        <nav className="fixed inset-x-0 bottom-0 z-30 lg:hidden px-5 pb-[calc(env(safe-area-inset-bottom)+12px)]">
           <FloatingNav label={t('navLabel')} items={navItems} currentId={navId ?? ''} onNavigate={(id) => navigate(id)} />
         </nav>
       ) : null}

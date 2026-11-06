@@ -15,6 +15,7 @@ import referenceWebp from '@/assets/images/reference-tschandl-300.webp';
 import moreIcon from '@/assets/icons/more.svg';
 import { AppShell } from './AppShell';
 import { DiscardSheet, OptionsSheet, ScopeSheet } from './HomeSheets';
+import { HomeJourney } from './HomeJourney';
 import { CONTEXT_PATH, GALLERY_PATH, GUIDE_PATH } from './recoveryPaths';
 
 const ENTRY_STAGGER_S = 0.08;
@@ -122,26 +123,29 @@ export default function Home() {
         />
       }
     >
-      <m.div variants={entryVariants(reduce)} initial="hidden" animate="show" className="flex flex-col gap-5">
-        <m.div variants={entryItem(reduce)} className="flex items-center gap-3">
-          <h1 className="m-0 min-w-0 max-w-36 flex-1 text-title text-ink">{t('headline')}</h1>
-          <img src={geometricArt} alt="" width={160} height={150} className="h-auto w-40 shrink-0" />
+      <m.div variants={entryVariants(reduce)} initial="hidden" animate="show" className="flex flex-col gap-5 lg:gap-10">
+        <m.div variants={entryItem(reduce)} className="flex items-center gap-3 lg:justify-between lg:gap-10 lg:rounded-[28px] lg:bg-tint-mint lg:p-10">
+          <div className="flex min-w-0 flex-1 flex-col gap-4">
+            <h1 className="m-0 min-w-0 max-w-36 text-title text-ink lg:max-w-md lg:text-[48px] lg:leading-[54px]">{t('headline')}</h1>
+            <p className="m-0 hidden max-w-md text-body text-ink/80 lg:block">{t('homeLead')}</p>
+          </div>
+          <img src={geometricArt} alt="" width={160} height={150} className="h-auto w-40 shrink-0 lg:w-72" />
         </m.div>
-        <m.div variants={entryItem(reduce)} className="grid h-[270px] grid-cols-[1fr_auto] gap-3">
-          <Card variant="raised" className="gap-3 p-4">
+        <m.div variants={entryItem(reduce)} className="grid h-[270px] grid-cols-[1fr_auto] gap-3 lg:h-auto lg:grid-cols-[1.7fr_1fr] lg:gap-6">
+          <Card variant="raised" className="gap-3 p-4 lg:gap-4 lg:p-8">
             <IconBlob tint="mint" size={48}>
               <ScanIcon />
             </IconBlob>
             <h2 className="m-0 text-section text-ink">{t('prepareTitle')}</h2>
             <p className="m-0 text-label text-muted">{t('prepareBody')}</p>
-            <Button fullWidth className="min-h-14" onClick={openNewExam}>
+            <Button fullWidth className="min-h-14 lg:w-auto lg:self-start lg:px-10" onClick={openNewExam}>
               {t('newExam')}
             </Button>
           </Card>
           <button
             type="button"
             onClick={() => setScopeOpen(true)}
-            className="grid w-32 cursor-pointer content-start gap-2 rounded-card bg-tint-sky p-3 text-left text-ink outline-offset-2 active:scale-[0.98] motion-reduce:active:scale-100 transition-transform duration-(--motion-card) ease-perma-out"
+            className="grid w-32 cursor-pointer content-start gap-2 lg:w-auto lg:gap-3 lg:p-6 rounded-card bg-tint-sky p-3 text-left text-ink outline-offset-2 active:scale-[0.98] motion-reduce:active:scale-100 transition-transform duration-(--motion-card) ease-perma-out"
           >
             <IconBlob tint="sky" tone="surface">
               <BookIcon />
@@ -155,6 +159,7 @@ export default function Home() {
           <ReferenceCard />
         </m.div>
       </m.div>
+      <HomeJourney />
       <OptionsSheet
         open={menuOpen}
         onOpenChange={setMenuOpen}

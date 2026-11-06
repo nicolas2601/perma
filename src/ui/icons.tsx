@@ -81,3 +81,19 @@ export function InfoIcon(props: IconProps) {
     </Svg>
   );
 }
+
+export function PlusIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M12 5v14M5 12h14" />
+    </Svg>
+  );
+}
+
+export function LayersIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="m12 3 9 5-9 5-9-5zM3 13l9 5 9-5" />
+    </Svg>
+  );
+}
