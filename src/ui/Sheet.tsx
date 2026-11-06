@@ -88,9 +88,9 @@ export function Sheet({ open, onOpenChange, title, description, closeLabel, chil
                   <div
                     data-drag-handle
                     onPointerDown={(event) => dragControls.start(event)}
-                    className="flex h-11 w-full shrink-0 touch-none cursor-grab items-center justify-center"
+                    className="flex h-11 w-full shrink-0 touch-none cursor-grab items-center justify-center lg:h-4 lg:cursor-default"
                   >
-                    <span aria-hidden="true" className="h-1 w-9 rounded-full bg-line" />
+                    <span aria-hidden="true" className="h-1 w-9 rounded-full bg-line lg:hidden" />
                   </div>
                   <div className="flex shrink-0 items-start gap-2 px-5 pb-2">
                     <DialogPrimitive.Title className="m-0 min-w-0 flex-1 pt-2 text-section text-ink">
