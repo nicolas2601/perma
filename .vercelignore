@@ -1,0 +1,7 @@
+.claude
+audit
+test-results
+node_modules
+dist-e2e
+.lighthouseci
+perma-*.png
