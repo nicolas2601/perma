@@ -19,7 +19,7 @@ export function ReferenceCard({ criterion }: ReferenceCardProps) {
   const keys = REFERENCE_CARD_KEYS[criterion];
   if (!keys) return null;
   return (
-    <div className="flex flex-col rounded-tile border border-solid border-line bg-surface p-4">
+    <div className="flex flex-col rounded-card bg-subtle p-4">
       <button
         type="button"
         aria-expanded={expanded}

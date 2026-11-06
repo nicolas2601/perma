@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { IconButton, Notice, cx } from '@/ui';
 import { Link, useNavigate } from '@/app/router';
 import { useI18n, useT } from '@/core/i18n/I18nProvider';
+import { InfoGlyphIcon } from './toolIcons';
 
 type ScreenHeaderProps = {
   title: string;
@@ -25,14 +26,14 @@ export function ScreenHeader({ title, backTo, backLabel, infoTo = '/guia', infoL
         icon={<span aria-hidden="true" className="text-section">‹</span>}
         onClick={() => navigate(backTo)}
       />
-      <h1 className="m-0 min-w-0 flex-1 text-header font-medium text-ink">{title}</h1>
+      <h1 className="m-0 min-w-0 flex-1 truncate text-header font-medium text-ink">{title}</h1>
       {trailing}
       <Link
         to={infoTo}
         aria-label={infoLabel}
         className="inline-flex size-12 shrink-0 items-center justify-center rounded-control border border-solid border-line bg-surface text-section text-muted outline-offset-2"
       >
-        <span aria-hidden="true">i</span>
+        <InfoGlyphIcon />
       </Link>
       <LanguageSwitch />
     </header>

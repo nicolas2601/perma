@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
-import { Button } from '@/ui';
+import { Button, Chip, DrawCheck, PHASE_TINT } from '@/ui';
 import { useNavigate } from '@/app/router';
 import { useExam, useExamDispatch } from '@/core/exam/react';
 import { isAckValid } from '@/core/exam/state';
 import { buildFilename } from '@/core/export/exportRecord';
 import { useT } from '@/core/i18n/I18nProvider';
 import { ActionDock, ScreenHeader } from '@/features/inspect/Chrome';
+import { ExportDoneArt } from './ExportDoneArt';
 
 /**
  * Acknowledgement page. It only exists for a download that started and whose review
@@ -28,12 +29,19 @@ export default function ExportDoneScreen() {
     <main className="flex h-dvh flex-col bg-canvas">
       <ScreenHeader title={t('exportDoneHeader')} backTo="/revision" backLabel={t('back')} infoLabel={tInspect('info')} />
       <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
+        <div className="flex">
+          <Chip tint={PHASE_TINT.revision}>{tInspect('stepReview')}</Chip>
+        </div>
+        <ExportDoneArt />
         <h2 className="m-0 text-title text-ink">{t('exportDoneTitle')}</h2>
         <p className="m-0 text-body text-ink">{t('exportDoneBody')}</p>
-        <dl className="m-0 flex flex-col gap-2 rounded-tile border border-solid border-white/80 bg-surface p-4">
+        <dl className="m-0 flex flex-col gap-2 rounded-card bg-surface p-4 shadow-raised">
           <div className="flex flex-col gap-0.5">
             <dt className="text-caption text-muted">{t('exportDoneFile')}</dt>
-            <dd className="m-0 break-all text-body-medium text-ink">{fileName}</dd>
+            <dd className="m-0 flex items-center gap-2 break-all text-body-medium text-ink">
+              <DrawCheck size={20} />
+              <span>{fileName}</span>
+            </dd>
           </div>
         </dl>
       </div>

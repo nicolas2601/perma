@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IconButton, Tabs, type TabItem } from '@/ui';
+import { Chip, IconButton, PHASE_TINT, Tabs, type TabItem } from '@/ui';
 import { useNavigate, useSearch } from '@/app/router';
 import { useExam } from '@/core/exam/react';
 import { useI18n, useT } from '@/core/i18n/I18nProvider';
@@ -12,8 +12,8 @@ import { ViewerNav } from './ViewerNav';
 import { MoreIcon } from './toolIcons';
 import { parseTab } from './viewerTab';
 
-/** Tab labels stay on one line at 390 px: smaller type and no side padding, copy unchanged. */
-const TAB_LIST_CLASS = '[&_[role=tab]]:whitespace-nowrap [&_[role=tab]]:px-0 [&_[role=tab]]:text-caption';
+/** Smaller type and no side padding, copy unchanged. Labels stay on one line at 390 px and may wrap at 320 px, with a gap so they never touch. */
+const TAB_LIST_CLASS = '[&_[role=tablist]]:gap-2 [&_[role=tab]]:px-0 [&_[role=tab]]:text-caption';
 
 export default function ViewerScreen() {
   const t = useT('inspect');
@@ -62,6 +62,9 @@ export default function ViewerScreen() {
         trailing={toolsButton}
       />
       <div tabIndex={0} className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-28 pt-2">
+        <div className="mb-3 flex">
+          <Chip tint={PHASE_TINT.observaciones}>{t('stepObservations')}</Chip>
+        </div>
         <div className={TAB_LIST_CLASS}>
           <Tabs
             label={t('viewerTabsLabel')}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { m } from 'motion/react';
-import { Button, cx } from '@/ui';
+import { Button, Chip, PHASE_TINT, cx } from '@/ui';
 import { useNavigate, useSearch } from '@/app/router';
 import { useExam, useExamDispatch } from '@/core/exam/react';
 import { useT } from '@/core/i18n/I18nProvider';
@@ -64,6 +64,9 @@ export default function AbcdeScreen() {
         infoLabel={tInspect('info')}
       />
       <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
+        <div className="flex">
+          <Chip tint={PHASE_TINT.observaciones}>{tInspect('stepObservations')}</Chip>
+        </div>
         <p className="m-0 text-label text-muted">{t('intro')}</p>
         <nav aria-label={t('navLabel')}>
           <ul className="m-0 grid list-none grid-cols-5 gap-1.5 p-0">

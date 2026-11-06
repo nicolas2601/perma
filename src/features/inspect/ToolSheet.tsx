@@ -1,8 +1,11 @@
+import type { ReactNode } from 'react';
 import type { ExamImage } from '@/core/exam/contract';
-import { Button, Sheet } from '@/ui';
+import { Button, PHASE_TINT, Sheet } from '@/ui';
 import { useNavigate } from '@/app/router';
 import { useT } from '@/core/i18n/I18nProvider';
+import { ActionRow } from './ActionRow';
 import { isReferenceImage } from './useImageSource';
+import { ExpandIcon, InfoGlyphIcon, LayersIcon, PlusIcon } from './toolIcons';
 
 const ZOOM_ROUTE = '/inspeccion/zoom';
 
@@ -28,10 +31,10 @@ export function ToolSheet({ open, tool, image, onOpenChange, onSelect }: ToolShe
       {tool === 'menu' ? (
         <div className="flex flex-col gap-2.5 text-ink">
           <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
-            <ToolRow title={t('toolFit')} hint={t('toolFitHint')} onClick={close} />
-            <ToolRow title={t('toolZoom')} hint={t('toolZoomHint')} onClick={() => navigate(ZOOM_ROUTE)} />
-            <ToolRow title={t('toolLayers')} hint={t('toolLayersHint')} onClick={() => onSelect('layers')} />
-            <ToolRow title={t('toolInfo')} hint={t('toolInfoHint')} onClick={() => onSelect('info')} />
+            <ToolRow icon={<ExpandIcon />} title={t('toolFit')} hint={t('toolFitHint')} onClick={close} />
+            <ToolRow icon={<PlusIcon />} title={t('toolZoom')} hint={t('toolZoomHint')} onClick={() => navigate(ZOOM_ROUTE)} />
+            <ToolRow icon={<LayersIcon />} title={t('toolLayers')} hint={t('toolLayersHint')} onClick={() => onSelect('layers')} />
+            <ToolRow icon={<InfoGlyphIcon />} title={t('toolInfo')} hint={t('toolInfoHint')} onClick={() => onSelect('info')} />
           </ul>
           <Button fullWidth variant="secondary" onClick={close}>
             {t('backToImage')}
@@ -60,17 +63,13 @@ function sourceText(image: ExamImage | null, t: (key: string) => string): string
   return isReferenceImage(image) ? t('referenceCaption') : (image?.name ?? '');
 }
 
-function ToolRow({ title, hint, onClick }: { title: string; hint: string; onClick: () => void }) {
+type ToolRowProps = { icon: ReactNode; title: string; hint: string; onClick: () => void };
+
+/** Tool entry: raised white card with a blush icon blob (observation phase identity, not a large surface). */
+function ToolRow({ icon, title, hint, onClick }: ToolRowProps) {
   return (
     <li>
-      <button
-        type="button"
-        onClick={onClick}
-        className="grid min-h-14 w-full gap-0.5 rounded-tile border border-solid border-line bg-surface p-4 text-left outline-offset-2"
-      >
-        <span className="text-body-medium text-ink">{title}</span>
-        <span className="text-label text-muted">{hint}</span>
-      </button>
+      <ActionRow variant="raised" tint={PHASE_TINT.observaciones} icon={icon} title={title} hint={hint} onClick={onClick} />
     </li>
   );
 }
