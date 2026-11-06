@@ -1,15 +1,31 @@
 import type { ExamRecord } from '@/core/storage/types';
 import type { ExamImage, ExamState } from './contract';
+import { normalizeClinicalContext } from './clinicalContext';
 
 /** Fields that count as record content. Language, consent and lastExport are excluded on purpose. */
 function canonicalContent(record: ExamRecord): string {
   const abcde = Object.fromEntries(Object.entries(record.abcde).sort(([a], [b]) => a.localeCompare(b)));
+  const clinical = record.clinicalContext === undefined ? null : normalizeClinicalContext(record.clinicalContext) ?? null;
   return JSON.stringify({
     bodySite: record.bodySite,
     abcde,
     note: record.note,
     priorImageId: record.priorImageId,
+    clinicalContext: clinical,
   });
+}
+
+/** True when the record holds anything the user typed or captured (drives the Home delete action). */
+export function hasRecordContent(state: ExamState): boolean {
+  const { record } = state;
+  return (
+    state.image !== null ||
+    record.bodySite !== null ||
+    record.note.trim() !== '' ||
+    Object.keys(record.abcde).length > 0 ||
+    record.clinicalContext !== undefined ||
+    record.priorImageId !== null
+  );
 }
 
 export function sameContent(a: ExamRecord, b: ExamRecord): boolean {

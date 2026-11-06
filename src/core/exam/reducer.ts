@@ -12,6 +12,7 @@ import {
   loadImage,
   resultOk,
   send,
+  setClinicalContext,
   setConsent,
   setCriterion,
   setNote,
@@ -29,6 +30,8 @@ export function examReducer(state: ExamState, command: ExamCommand, clock: ExamC
   switch (command.type) {
     case 'SET_SITE':
       return setSite(state, command.site);
+    case 'SET_CLINICAL_CONTEXT':
+      return setClinicalContext(state, command.context);
     case 'START_CAPTURE':
       return startCapture(state);
     case 'IMAGE_LOADED':

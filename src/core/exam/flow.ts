@@ -1,14 +1,20 @@
 import type { InferenceResult } from '@/core/inference/types';
-import type { AbcdeCriterion } from '@/core/storage/types';
+import type { AbcdeCriterion, ClinicalContext } from '@/core/storage/types';
+import { isClinicalContext } from '@/core/storage/schema';
 import type { ExamClock } from './clock';
 import type { ExamImage, ExamPhase, ExamState } from './contract';
 import { changeImage, changeRecord, sameContent } from './content';
+import { normalizeClinicalContext } from './clinicalContext';
 import { createInitialState } from './state';
 import { BACK_TARGET, FORWARD_TRANSITION } from './tables';
 
 const CAPTURE_INPUT_PHASES: ReadonlySet<ExamPhase> = new Set(['contextSet', 'capturing', 'reviewing']);
 const EDITABLE_ABCDE_PHASES: ReadonlySet<ExamPhase> = new Set(['abcde', 'exported']);
 const NOTE_EDITABLE_PHASES: ReadonlySet<ExamPhase> = new Set(['compare', 'exported']);
+/** Context is never sent to the model, so it can change anywhere except while a request or export is in flight. */
+const CONTEXT_EDITABLE_PHASES: ReadonlySet<ExamPhase> = new Set([
+  'idle', 'contextSet', 'capturing', 'reviewing', 'result', 'inspecting', 'abcde', 'compare', 'exported',
+]);
 
 export function withPhase(state: ExamState, phase: ExamPhase): ExamState {
   return state.phase === phase ? state : { ...state, phase };
@@ -87,6 +93,17 @@ export function setCriterion(
 }
 
 /**
+ * Saves or clears the optional clinical context. Invalid input is ignored. Content
+ * changes bump the record version (ack invalidation); saving the same content does not.
+ */
+export function setClinicalContext(state: ExamState, input: ClinicalContext | null): ExamState {
+  if (!CONTEXT_EDITABLE_PHASES.has(state.phase)) return state;
+  if (input === null) return changeRecord(state, { clinicalContext: undefined });
+  if (!isClinicalContext(input)) return state;
+  return changeRecord(state, { clinicalContext: normalizeClinicalContext(input) });
+}
+
+/**
  * Editing after export is allowed on purpose: it is the only way the ack can be
  * invalidated (G5). The phase stays "exported" and the user must export again.
  */
@@ -116,9 +133,16 @@ export function freshRecord(state: ExamState, clock: ExamClock): ExamState {
   return createInitialState(clock, state.record.registryVersion + 1);
 }
 
-/** G12: clears image, ABCDE, note and ack in one transition. Reference pages never reach here. */
+/** G12: clears image, ABCDE, note, clinical context and ack in one transition. Reference pages never reach here. */
 export function discardRecord(state: ExamState): ExamState {
-  const record = { ...state.record, abcde: {}, note: '', bodySite: null, priorImageId: null };
+  const record = {
+    ...state.record,
+    abcde: {},
+    note: '',
+    bodySite: null,
+    priorImageId: null,
+    clinicalContext: undefined,
+  };
   const changed = !sameContent(state.record, record) || state.image !== null;
   return {
     ...state,
