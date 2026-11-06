@@ -7,8 +7,11 @@ import { isLowResolution, measureImage } from '@/features/desk/imageSource';
 import { useGuard } from '@/features/desk/useGuard';
 import { CAPTURE_PATH, CONSENT_PATH, RECOVERY_PATHS } from '@/features/desk/recoveryPaths';
 import { useObjectUrl } from '@/features/desk/useObjectUrl';
+import { Glyph } from '@/features/desk/Glyph';
 import { Button } from '@/ui/Button';
 import { Card } from '@/ui/Card';
+import { IconBlob } from '@/ui/IconBlob';
+import { ChevronDownIcon, InfoIcon } from '@/ui/icons';
 import { Sheet } from '@/ui/Sheet';
 import { StatusLine } from '@/ui/StatusLine';
 
@@ -72,13 +75,13 @@ export default function Quality() {
     <AppShell title={t('qualityShell')} onBack={discard} showNav={false}>
       <h1 className="m-0 text-title text-ink">{t('qualityTitle')}</h1>
       <p className="m-0 text-body text-ink">{t('qualityBody')}</p>
-      <Card className="items-center gap-2 p-3">
+      <Card variant="raised" className="items-center gap-2 p-3">
         {previewUrl ? (
           <img src={previewUrl} alt="" decoding="async" className="max-h-72 w-auto max-w-full rounded-chip object-contain" />
         ) : null}
         {image.origin === 'sample' ? <p className="m-0 self-start text-caption text-muted">{t('galleryAttribution')}</p> : null}
       </Card>
-      <Card className="gap-1 p-3">
+      <Card variant="soft" className="gap-1 p-3">
         <p className="m-0 text-body-medium text-ink">{t('qualityDecision')}</p>
         <p className="m-0 text-label text-muted">{t('qualityDecisionBody')}</p>
       </Card>
@@ -87,10 +90,18 @@ export default function Quality() {
         <button
           type="button"
           onClick={() => setIssueOpen(true)}
-          className="grid min-h-13 w-full justify-items-start content-center rounded-tile border border-solid border-line bg-surface px-4 py-3 text-left text-ink outline-offset-2"
+          className="grid min-h-14 w-full grid-cols-[auto_1fr_auto] items-center gap-3 rounded-card bg-surface px-4 py-3 text-left text-ink shadow-raised outline-offset-2 transition-transform duration-(--motion-card) ease-perma-out active:scale-[0.98] motion-reduce:active:scale-100"
         >
-          <span className="text-body text-ink">{t('qualityIssueTitle')}</span>
-          <span className="text-caption text-muted">{t('qualityIssueOpen')}</span>
+          <IconBlob tint="sky">
+            <InfoIcon />
+          </IconBlob>
+          <span className="flex min-w-0 flex-col gap-1">
+            <span className="text-body text-ink">{t('qualityIssueTitle')}</span>
+            <span className="text-caption text-muted">{t('qualityIssueOpen')}</span>
+          </span>
+          <Glyph className="size-5 -rotate-90 text-muted">
+            <ChevronDownIcon />
+          </Glyph>
         </button>
       ) : null}
       {size !== null && !lowResolution ? <StatusLine message={t('qualityNoIssues')} tone="success" /> : null}

@@ -30,7 +30,7 @@ export default function Gallery() {
     <AppShell title={t('galleryShell')} onBack={back} showNav={false}>
       <h1 className="m-0 text-title text-ink">{t('galleryTitle')}</h1>
       <p className="m-0 text-body text-ink">{t('galleryBody')}</p>
-      <Card className="items-center gap-2 p-3">
+      <Card variant="raised" className="items-center gap-2 p-3">
         <img
           src={referenceWebp}
           width={SAMPLE_WIDTH_PX}
@@ -41,7 +41,7 @@ export default function Gallery() {
         />
         <p className="m-0 self-start text-caption text-muted">{t('galleryAttribution')}</p>
       </Card>
-      <Card className="gap-1 p-3">
+      <Card variant="soft" className="gap-1 p-3">
         <p className="m-0 text-body text-ink">{t('galleryFileName')}</p>
         <p className="m-0 text-caption text-muted">{t('galleryFileMeta')}</p>
       </Card>

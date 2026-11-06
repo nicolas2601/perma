@@ -6,9 +6,9 @@ import { useExam, useExamDispatch } from '@/core/exam/react';
 import { useT } from '@/core/i18n/I18nProvider';
 import { Button } from '@/ui/Button';
 import { Card } from '@/ui/Card';
+import { IconBlob } from '@/ui/IconBlob';
 import { IconButton } from '@/ui/IconButton';
-import { BookIcon } from '@/ui/icons';
-import { Glyph } from './Glyph';
+import { BookIcon, ScanIcon } from '@/ui/icons';
 import geometricArt from '@/assets/brand/perma-geometric-welcome.svg';
 import referenceAvif from '@/assets/images/reference-tschandl-300.avif';
 import referenceWebp from '@/assets/images/reference-tschandl-300.webp';
@@ -51,7 +51,7 @@ function ReferenceCard() {
     <button
       type="button"
       onClick={() => navigate(GALLERY_PATH)}
-      className="flex w-full cursor-pointer gap-3 rounded-tile border border-solid border-surface bg-surface p-3 text-left text-ink outline-offset-2"
+      className="flex w-full cursor-pointer gap-3 rounded-card border border-solid border-soft-line bg-surface p-3 text-left text-ink shadow-raised outline-offset-2 active:scale-[0.98] motion-reduce:active:scale-100 transition-transform duration-(--motion-card) ease-perma-out"
     >
       <span className="flex w-28 shrink-0 flex-col gap-1">
         <picture>
@@ -128,7 +128,10 @@ export default function Home() {
           <img src={geometricArt} alt="" width={160} height={150} className="h-auto w-40 shrink-0" />
         </m.div>
         <m.div variants={entryItem(reduce)} className="grid h-[270px] grid-cols-[1fr_auto] gap-3">
-          <Card tone="surface" className="gap-3 p-4">
+          <Card variant="raised" className="gap-3 p-4">
+            <IconBlob tint="mint" size={48}>
+              <ScanIcon />
+            </IconBlob>
             <h2 className="m-0 text-section text-ink">{t('prepareTitle')}</h2>
             <p className="m-0 text-label text-muted">{t('prepareBody')}</p>
             <Button fullWidth className="min-h-14" onClick={openNewExam}>
@@ -138,9 +141,11 @@ export default function Home() {
           <button
             type="button"
             onClick={() => setScopeOpen(true)}
-            className="grid w-32 cursor-pointer gap-2 rounded-tile border border-solid border-surface bg-subtle p-3 text-left text-ink outline-offset-2"
+            className="grid w-32 cursor-pointer content-start gap-2 rounded-card bg-tint-sky p-3 text-left text-ink outline-offset-2 active:scale-[0.98] motion-reduce:active:scale-100 transition-transform duration-(--motion-card) ease-perma-out"
           >
-            <Glyph className="size-5"><BookIcon /></Glyph>
+            <IconBlob tint="sky" tone="surface">
+              <BookIcon />
+            </IconBlob>
             <span className="text-section text-ink">{t('protocolTitle')}</span>
             <span className="text-label text-muted">{t('protocolScope')}</span>
             <span className="text-label text-ink">{t('protocolStatus')}</span>

@@ -1,7 +1,12 @@
+import type { ReactNode } from 'react';
 import { Button } from '@/ui/Button';
 import { Sheet } from '@/ui/Sheet';
+import { IconBlob } from '@/ui/IconBlob';
+import { CloseIcon, FileIcon, BookIcon, ChevronDownIcon, InfoIcon } from '@/ui/icons';
 import { useI18n, useT } from '@/core/i18n/I18nProvider';
 import type { Locale } from '@/core/i18n/contract';
+import type { Tint } from '@/ui/tints';
+import { Glyph } from './Glyph';
 
 export interface HomeSheetProps {
   open: boolean;
@@ -9,7 +14,7 @@ export interface HomeSheetProps {
 }
 
 const OPTION_ROW =
-  'flex min-h-14 w-full cursor-pointer items-center justify-between gap-3 rounded-tile border border-solid border-line bg-surface px-4 py-3 text-left text-body text-ink outline-offset-2 disabled:cursor-not-allowed disabled:border-soft-line disabled:bg-disabled-surface disabled:text-disabled-text';
+  'grid min-h-14 w-full cursor-pointer grid-cols-[auto_1fr_auto] items-center gap-3 rounded-card bg-subtle px-3 py-3 text-left text-body text-ink outline-offset-2 transition-transform duration-(--motion-card) ease-perma-out active:scale-[0.98] motion-reduce:active:scale-100 disabled:cursor-not-allowed disabled:bg-disabled-surface disabled:text-disabled-text';
 
 export interface OptionsSheetProps extends HomeSheetProps {
   /** Delete is offered only when the record holds something to erase. */
@@ -20,6 +25,8 @@ export interface OptionsSheetProps extends HomeSheetProps {
 }
 
 interface OptionRowProps {
+  tint: Tint;
+  icon: ReactNode;
   label: string;
   value?: string;
   disabled?: boolean;
@@ -27,14 +34,23 @@ interface OptionRowProps {
   onClick: () => void;
 }
 
-function OptionRow({ label, value, disabled = false, hint, onClick }: OptionRowProps) {
+/** Tappable menu row: identity tint on the blob, label and optional value, chevron on the right. */
+function OptionRow({ tint, icon, label, value, disabled = false, hint, onClick }: OptionRowProps) {
   return (
     <button type="button" className={OPTION_ROW} disabled={disabled} onClick={onClick}>
+      <IconBlob tint={tint} tone="surface">
+        {icon}
+      </IconBlob>
       <span className="flex min-w-0 flex-col gap-0.5">
         <span>{label}</span>
         {hint ? <span className="text-caption text-muted">{hint}</span> : null}
       </span>
-      {value ? <span className="shrink-0 text-label text-muted">{value}</span> : null}
+      <span className="flex items-center gap-2">
+        {value ? <span className="text-label text-muted">{value}</span> : null}
+        <Glyph className="size-5 -rotate-90 text-muted">
+          <ChevronDownIcon />
+        </Glyph>
+      </span>
     </button>
   );
 }
@@ -48,14 +64,18 @@ export function OptionsSheet({ open, onOpenChange, hasContent, onScope, onGuide,
   return (
     <Sheet open={open} onOpenChange={onOpenChange} title={t('menuTitle')} closeLabel={t('close')}>
       <div className="flex flex-col gap-3">
-        <OptionRow label={t('scopeTitle')} onClick={onScope} />
+        <OptionRow tint="sky" icon={<InfoIcon />} label={t('scopeTitle')} onClick={onScope} />
         <OptionRow
+          tint="lilac"
+          icon={<FileIcon />}
           label={t('languageLabel')}
           value={tFull(`core.locale.${locale}`)}
           onClick={() => setLocale(next)}
         />
-        <OptionRow label={t('menuGuide')} onClick={onGuide} />
+        <OptionRow tint="mint" icon={<BookIcon />} label={t('menuGuide')} onClick={onGuide} />
         <OptionRow
+          tint="blush"
+          icon={<CloseIcon />}
           label={t('menuDelete')}
           disabled={!hasContent}
           hint={hasContent ? undefined : t('menuDeleteHint')}
@@ -93,7 +113,7 @@ export function DiscardSheet({ open, onOpenChange, onConfirm }: DiscardSheetProp
         <button
           type="button"
           onClick={() => onOpenChange(false)}
-          className="grid min-h-14 w-full cursor-pointer justify-items-start content-center gap-1 rounded-tile border border-solid border-line bg-surface px-4 py-3 text-left text-ink outline-offset-2"
+          className="grid min-h-14 w-full cursor-pointer justify-items-start content-center gap-1 rounded-card bg-subtle px-4 py-3 text-left text-ink outline-offset-2"
         >
           <span className="text-body text-ink">{t('discardKeep')}</span>
           <span className="text-caption text-muted">{t('discardKeepBody')}</span>
