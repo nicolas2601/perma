@@ -16,20 +16,20 @@ export default function CalibrationReadyScreen() {
   const tInspect = useT('inspect');
   const navigate = useNavigate();
   return (
-    <main className="flex h-dvh flex-col bg-canvas">
-      <header className="flex min-h-15 flex-wrap items-center gap-2 bg-surface px-5 py-1">
+    <main className="flex h-dvh flex-col bg-canvas lg:h-auto lg:min-h-dvh lg:mx-auto lg:w-full lg:max-w-3xl">
+      <header className="flex min-h-15 flex-wrap items-center gap-2 bg-surface px-5 py-1 lg:bg-canvas lg:px-8 lg:pb-2 lg:pt-6">
         <IconButton label={tInspect('close')} icon={<CloseIcon className="size-6" />} onClick={() => navigate('/examen/abcde')} />
-        <h1 className="m-0 min-w-0 flex-1 text-header font-medium text-ink">{t('readyTitle')}</h1>
+        <h1 className="m-0 min-w-0 flex-1 text-header font-medium text-ink lg:text-section lg:font-semibold">{t('readyTitle')}</h1>
         <Link
           to="/guia"
           aria-label={tInspect('info')}
-          className="inline-flex size-12 shrink-0 items-center justify-center rounded-control border border-solid border-line bg-surface text-section text-muted outline-offset-2"
+          className="inline-flex size-12 shrink-0 items-center justify-center rounded-control border border-solid border-line bg-surface text-section text-muted outline-offset-2 lg:hidden"
         >
           <span aria-hidden="true">i</span>
         </Link>
-        <LanguageSwitch />
+        <LanguageSwitch className="lg:hidden" />
       </header>
-      <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
+      <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3 lg:overflow-visible lg:px-8 lg:pb-8">
         <h2 className="m-0 text-title text-ink">{t('readyHeading')}</h2>
         <p className="m-0 text-body text-ink">{t('readyIntro')}</p>
         {CHECKLIST.map((item) => (
