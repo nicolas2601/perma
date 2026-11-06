@@ -1,4 +1,5 @@
 import { Button } from '@/ui';
+import { illustrationUrl } from '@/assets/illustrations';
 import { useNavigate } from '@/app/router';
 import { ActionDock, ScreenHeader } from '@/features/inspect/Chrome';
 import { useT } from '@/core/i18n/I18nProvider';
@@ -20,6 +21,14 @@ export default function PrivacyScreen() {
     <main className="flex h-dvh flex-col bg-canvas">
       <ScreenHeader title={t('privacyTitle')} backTo="/guia" backLabel={t('back')} infoLabel={t('info')} />
       <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
+        <img
+          src={illustrationUrl('consentPrivacy')}
+          alt=""
+          width={120}
+          height={90}
+          decoding="async"
+          className="h-24 w-auto self-start"
+        />
         <h2 className="m-0 text-title text-ink">{t('privacyHeading')}</h2>
         <p className="m-0 text-body text-ink">{t('privacyIntro')}</p>
         {SECTIONS.map((section) => (
