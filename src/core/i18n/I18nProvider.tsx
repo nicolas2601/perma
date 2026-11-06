@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from 'react';
 import type { Locale } from './contract';
-import { copyRegistry, translate, type CopyDictionary, type CopyKey } from './registry';
+import { copyRegistry, qualify, translate, type CopyDictionary, type CopyKey } from './registry';
 import {
   browserLocalStorage,
   detectLocale,
@@ -12,6 +12,7 @@ export interface I18nValue {
   locale: Locale;
   setLocale(locale: Locale): void;
   t: (key: CopyKey) => string;
+  dictionary: CopyDictionary;
 }
 
 const I18nContext = createContext<I18nValue | null>(null);
@@ -50,6 +51,7 @@ export function I18nProvider({
       locale,
       setLocale,
       t: (key) => translate(dictionary, locale, key),
+      dictionary,
     }),
     [dictionary, locale, setLocale],
   );
@@ -63,6 +65,15 @@ export function useI18n(): I18nValue {
   return value;
 }
 
-export function useT(): I18nValue['t'] {
-  return useI18n().t;
+/** `useT('compare')` resolves `compare.<key>` first, then the bare core key. */
+export function useT(namespace = ''): (key: string) => string {
+  const { locale, dictionary } = useI18n();
+  return useCallback(
+    (key: string) => {
+      const qualified = qualify(namespace, key);
+      const hit = dictionary[locale][qualified] ?? dictionary.es[qualified];
+      return hit ?? translate(dictionary, locale, key);
+    },
+    [dictionary, locale, namespace],
+  );
 }

@@ -5,6 +5,16 @@ import type { CopyTable, FeatureCopy, Locale } from './contract';
 /** Typed from the core ES table. Feature keys join this union as their tables are typed. */
 export type CopyKey = CoreCopyKey;
 
+/** `/src/features/camera/guide/copy.ts` -> `camera.guide`; keys become `camera.guide.<key>`. */
+export function namespaceOf(path: string): string {
+  const match = /\/src\/features\/(.+)\/copy\.ts$/.exec(path);
+  return match ? (match[1] as string).replaceAll('/', '.') : '';
+}
+
+export function qualify(namespace: string, key: string): string {
+  return namespace ? `${namespace}.${key}` : key;
+}
+
 export type CopyDictionary = Record<Locale, CopyTable>;
 
 export class CopyContractError extends Error {
@@ -32,7 +42,7 @@ export function buildCopyRegistry(
   for (const [path, module] of Object.entries(modules)) {
     const { copy } = readFeatureCopy(path, module);
     assertSameKeys(path, copy);
-    mergeInto(dictionary, path, copy);
+    mergeInto(dictionary, path, namespaced(namespaceOf(path), copy));
   }
   return dictionary;
 }
@@ -56,6 +66,13 @@ function assertSameKeys(path: string, copy: FeatureCopy): void {
   }
 }
 
+function namespaced(namespace: string, copy: FeatureCopy): FeatureCopy {
+  if (!namespace) return copy;
+  const prefix = (table: CopyTable): CopyTable =>
+    Object.fromEntries(Object.entries(table).map(([key, value]) => [qualify(namespace, key), value]));
+  return { es: prefix(copy.es), en: prefix(copy.en) };
+}
+
 function mergeInto(dictionary: CopyDictionary, path: string, copy: FeatureCopy): void {
   for (const key of Object.keys(copy.es)) {
     if (key in dictionary.es) throw new CopyContractError(path, `duplicate key "${key}"`);
@@ -65,10 +82,10 @@ function mergeInto(dictionary: CopyDictionary, path: string, copy: FeatureCopy):
 }
 
 /** Lookup with explicit fallback: locale, then Spanish (the default), then the key itself. */
-export function translate(dictionary: CopyDictionary, locale: Locale, key: CopyKey): string {
+export function translate(dictionary: CopyDictionary, locale: Locale, key: string): string {
   return dictionary[locale][key] ?? dictionary.es[key] ?? key;
 }
 
 export const copyRegistry: CopyDictionary = buildCopyRegistry(
-  import.meta.glob('/src/features/*/copy.ts', { eager: true }),
+  import.meta.glob('/src/features/**/copy.ts', { eager: true }),
 );

@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type AnchorHTMLAttributes, type ComponentType, type ReactNode } from 'react';
 import { flushSync } from 'react-dom';
+import { runRouteTransition } from '@/core/motion/viewTransition';
 
 export interface RouteDef {
   /** Path pattern, supports `:param` segments. */
@@ -41,10 +42,6 @@ export function matchRoute(pattern: string, path: string): Record<string, string
   return params;
 }
 
-function prefersReducedMotion(): boolean {
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-}
-
 export function Router({ routes, fallback, children }: { routes: RouteDef[]; fallback: ComponentType; children?: ReactNode }) {
   const [location, setLocation] = useState<Location>(readLocation);
 
@@ -60,9 +57,7 @@ export function Router({ routes, fallback, children }: { routes: RouteDef[]; fal
       else window.history.pushState(null, '', to);
       flushSync(() => setLocation(readLocation()));
     };
-    const doc = document as Document & { startViewTransition?: (cb: () => void) => unknown };
-    if (doc.startViewTransition && !prefersReducedMotion()) doc.startViewTransition(apply);
-    else apply();
+    runRouteTransition(apply);
   }, []);
 
   const value = useMemo<RouterValue>(() => {
