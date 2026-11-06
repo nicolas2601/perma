@@ -1,4 +1,5 @@
 import type { ExamImage } from '@/core/exam/contract';
+import { stripExifLocation } from '@/core/storage/exif';
 
 export const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp'] as const;
 export const MAX_FILE_BYTES = 10 * 1024 * 1024;
@@ -78,7 +79,10 @@ async function resizeForUpload(decoded: DecodedImage): Promise<Blob> {
   });
 }
 
-/** Validates, decodes and prepares an image for the exam record. Throws ImageRejectedError. */
+/**
+ * Validates, decodes and prepares an image for the exam record. Throws ImageRejectedError.
+ * The upload copy additionally goes through stripExifLocation (defense in depth on top of the re-encode).
+ */
 export async function prepareExamImage(
   original: Blob,
   meta: { name: string; origin: ExamImage['origin'] },
@@ -86,6 +90,6 @@ export async function prepareExamImage(
   validateImageFile({ type: original.type, size: original.size });
   const decoded = await decode(original);
   checkMegapixels(decoded.width, decoded.height);
-  const upload = await resizeForUpload(decoded);
+  const upload = await stripExifLocation(await resizeForUpload(decoded));
   return { original, upload, name: meta.name, origin: meta.origin };
 }

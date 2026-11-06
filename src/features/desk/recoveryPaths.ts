@@ -21,3 +21,6 @@ export const PROCESSING_PATH = '/envio/procesando';
 export const RESULT_PATH = '/resultado';
 export const CONTEXT_PATH = '/contexto';
 export const DESK_PATH = '/';
+export const REVIEW_PATH = '/revision';
+export const GUIDE_PATH = '/guia';
+export const EXPORT_COMPARE_PATH = '/examen/comparar';

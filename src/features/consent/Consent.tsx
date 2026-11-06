@@ -1,43 +1,54 @@
 import { useState } from 'react';
 import { useNavigate } from '@/app/router';
+import { useExam, useExamDispatch } from '@/core/exam/react';
+import { useT } from '@/core/i18n/I18nProvider';
 import { AppShell } from '@/features/desk/AppShell';
+import { useGuard } from '@/features/desk/useGuard';
+import { CONSENT_STAGE_PHASES } from '@/features/desk/guardPhases';
 import { CAPTURE_PATH, PROCESSING_PATH, QUALITY_PATH, RECOVERY_PATHS } from '@/features/desk/recoveryPaths';
-import { useExam, useExamDispatch, useGuard, useT } from '@/features/desk/api';
 import { useObjectUrl } from '@/features/desk/useObjectUrl';
 import { Button } from '@/ui/Button';
 import { Sheet } from '@/ui/Sheet';
 import { Card } from '@/ui/Card';
-import { consentCopy } from './copy';
 
 export default function Consent() {
-  const t = useT(consentCopy);
+  const t = useT('consent');
   const navigate = useNavigate();
   const dispatch = useExamDispatch();
+  const phase = useExam((s) => s.phase);
   const image = useExam((s) => s.image);
   const consented = useExam((s) => s.consented);
   const [privacyOpen, setPrivacyOpen] = useState(false);
-  useGuard(image !== null, CAPTURE_PATH);
+  useGuard(image !== null && CONSENT_STAGE_PHASES.has(phase), image ? QUALITY_PATH : CAPTURE_PATH);
   const previewUrl = useObjectUrl(image?.upload ?? null);
   if (!image) return null;
 
   const isSample = image.origin === 'sample';
 
+  const back = () => {
+    dispatch({ type: 'BACK' });
+    navigate(QUALITY_PATH);
+  };
+
+  const canSend = consented && phase === 'consenting';
   const send = () => {
-    if (!consented) return;
+    if (!canSend) return;
     if (navigator.onLine === false) {
+      dispatch({ type: 'FAULT', scenario: 'offline' });
       navigate(RECOVERY_PATHS.offline);
       return;
     }
-    navigate(PROCESSING_PATH);
+    dispatch({ type: 'SEND' });
+    navigate(`${PROCESSING_PATH}${window.location.search}`);
   };
 
   return (
-    <AppShell title={t('shellTitle')} onBack={() => navigate(QUALITY_PATH)} showNav={false}>
+    <AppShell title={t('shellTitle')} onBack={back} showNav={false}>
       <h1 className="m-0 text-title text-ink">{t('title')}</h1>
       <p className="m-0 text-body text-ink">{t('body')}</p>
       <Card className="items-center gap-2 p-3">
         {previewUrl ? (
-          <img src={previewUrl} alt="" decoding="async" className="max-h-64 w-auto max-w-full rounded-chip object-contain" />
+          <img src={previewUrl} alt="" decoding="async" className="max-h-40 w-auto max-w-full rounded-chip object-contain" />
         ) : null}
         <p className="m-0 text-caption text-muted">{isSample ? t('sampleCaption') : t('imageCaption')}</p>
         {isSample ? <p className="m-0 text-caption text-muted">{t('attribution')}</p> : null}
@@ -63,7 +74,7 @@ export default function Consent() {
         <span className="text-caption text-muted">{t('privacyHint')}</span>
       </button>
       <div className="mt-auto pt-4">
-        <Button fullWidth disabled={!consented} onClick={send}>
+        <Button fullWidth disabled={!canSend} onClick={send}>
           {t('send')}
         </Button>
       </div>

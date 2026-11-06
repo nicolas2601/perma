@@ -1,4 +1,8 @@
-export const consentCopy = {
+/**
+ * Visible copy for the consent and processing screens (namespace `consent`).
+ * Processing keys carry the `wait` prefix so they never collide with consent keys.
+ */
+export const copy = {
   es: {
     shellTitle: 'Salida del modelo · Envío',
     title: 'Sepa qué envía.',
@@ -13,9 +17,22 @@ export const consentCopy = {
     privacyBody:
       'La imagen sale del dispositivo sólo cuando usted pulsa Enviar. Los fotogramas de cámara no se guardan ni se suben desde la aplicación. El servicio de análisis trata la imagen según sus propias condiciones; esta pantalla no las verifica.',
     send: 'Enviar para análisis',
-    back: 'Volver',
     close: 'Cerrar',
-    sheetLabel: 'Detalles tratamiento de datos',
+    waitShellTitle: 'Salida del modelo · En espera',
+    waitTitle: 'Esperando una respuesta',
+    waitBody: 'Su imagen y el contexto permanecen aquí.',
+    waitContextTitle: 'Su contexto permanece aquí',
+    waitContextBody: 'No reenvíe mientras haya una solicitud real pendiente. El diseño impide envíos duplicados.',
+    waitNoProgressTitle: 'Sin progreso inventado',
+    waitNoProgressBody: 'El servicio no ofrece una estimación del porcentaje completado.',
+    waitStop: 'Detener espera',
+    waitStopHint: 'Abrir detalles',
+    waitStatus: 'Esperando respuesta del servicio.',
+    waitStopSheetTitle: 'Detener la espera',
+    waitStopSheetBody:
+      'Se deja de esperar la respuesta. La imagen y el contexto se conservan. Si el servicio responde después, su respuesta se descarta. Para enviar de nuevo, vuelva a confirmar la autorización.',
+    waitStopConfirm: 'Detener la espera',
+    waitStopCancel: 'Seguir esperando',
   },
   en: {
     shellTitle: 'Model output · Submission',
@@ -31,47 +48,21 @@ export const consentCopy = {
     privacyBody:
       'The image leaves the device only when you press Send. Camera frames are not stored or uploaded by the app. The analysis service handles the image under its own terms; this screen does not verify them.',
     send: 'Send for analysis',
-    back: 'Back',
     close: 'Close',
-    sheetLabel: 'Data handling details',
-  },
-} as const;
-
-export const processingCopy = {
-  es: {
-    shellTitle: 'Salida del modelo · En espera',
-    title: 'Esperando una respuesta',
-    body: 'Su imagen y el contexto permanecen aquí.',
-    contextTitle: 'Su contexto permanece aquí',
-    contextBody: 'No reenvíe mientras haya una solicitud real pendiente. El diseño impide envíos duplicados.',
-    noProgressTitle: 'Sin progreso inventado',
-    noProgressBody: 'El servicio no ofrece una estimación del porcentaje completado.',
-    stop: 'Detener espera',
-    stopHint: 'Abrir detalles',
-    statusWaiting: 'Esperando respuesta del servicio.',
-    stopSheetTitle: 'Detener la espera',
-    stopSheetBody:
-      'Se deja de esperar la respuesta. La imagen y el contexto se conservan. Si el servicio responde después, su respuesta se descarta. Para enviar de nuevo, vuelva a confirmar la autorización.',
-    stopConfirm: 'Detener la espera',
-    stopCancel: 'Seguir esperando',
-    close: 'Cerrar',
-  },
-  en: {
-    shellTitle: 'Model output · Waiting',
-    title: 'Waiting for a response',
-    body: 'Your image and context stay here.',
-    contextTitle: 'Your context stays here',
-    contextBody: 'Do not resubmit while a real request is pending. The design prevents duplicate sends.',
-    noProgressTitle: 'No invented progress',
-    noProgressBody: 'The service does not provide an estimate of percentage completed.',
-    stop: 'Stop waiting',
-    stopHint: 'Open details',
-    statusWaiting: 'Waiting for the service response.',
-    stopSheetTitle: 'Stop waiting',
-    stopSheetBody:
+    waitShellTitle: 'Model output · Waiting',
+    waitTitle: 'Waiting for a response',
+    waitBody: 'Your image and context stay here.',
+    waitContextTitle: 'Your context stays here',
+    waitContextBody: 'Do not resubmit while a real request is pending. The design prevents duplicate sends.',
+    waitNoProgressTitle: 'No invented progress',
+    waitNoProgressBody: 'The service does not provide an estimate of percentage completed.',
+    waitStop: 'Stop waiting',
+    waitStopHint: 'Open details',
+    waitStatus: 'Waiting for the service response.',
+    waitStopSheetTitle: 'Stop waiting',
+    waitStopSheetBody:
       'The response is no longer awaited. The image and context are kept. If the service answers later, that response is discarded. To send again, confirm authorisation once more.',
-    stopConfirm: 'Stop waiting',
-    stopCancel: 'Keep waiting',
-    close: 'Close',
+    waitStopConfirm: 'Stop waiting',
+    waitStopCancel: 'Keep waiting',
   },
 } as const;

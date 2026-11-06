@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { motion, useReducedMotion, type Variants } from 'motion/react';
 import { useNavigate } from '@/app/router';
+import { useExam, useExamDispatch } from '@/core/exam/react';
+import { useT } from '@/core/i18n/I18nProvider';
 import { Button } from '@/ui/Button';
 import { Card } from '@/ui/Card';
 import { IconButton } from '@/ui/IconButton';
@@ -12,9 +14,7 @@ import referenceWebp from '@/assets/images/reference-tschandl-300.webp';
 import moreIcon from '@/assets/icons/more.svg';
 import { AppShell } from './AppShell';
 import { DiscardSheet, ScopeSheet } from './HomeSheets';
-import { homeCopy, shellCopy } from './copy';
-import { useExam, useExamDispatch, useT } from './api';
-import { CONTEXT_PATH } from './recoveryPaths';
+import { CONTEXT_PATH, GALLERY_PATH } from './recoveryPaths';
 
 const ENTRY_STAGGER_S = 0.08;
 const ENTRY_OFFSET_PX = 12;
@@ -44,12 +44,12 @@ function entryItem(reduce: boolean): Variants {
 }
 
 function ReferenceCard() {
-  const t = useT(homeCopy);
+  const t = useT('desk');
   const navigate = useNavigate();
   return (
     <button
       type="button"
-      onClick={() => navigate('/imagen/muestras')}
+      onClick={() => navigate(GALLERY_PATH)}
       className="flex w-full cursor-pointer gap-3 rounded-tile border border-solid border-surface bg-surface p-3 text-left text-ink outline-offset-2"
     >
       <span className="flex w-28 shrink-0 flex-col gap-1">
@@ -65,7 +65,7 @@ function ReferenceCard() {
             className="h-auto w-full rounded-chip object-contain"
           />
         </picture>
-        <span className="text-caption text-muted">{t('attribution')}</span>
+        <span className="text-caption text-muted">{t('referenceCredit')}</span>
       </span>
       <span className="flex min-w-0 flex-1 flex-col gap-2">
         <span className="text-body text-ink">{t('referenceTitle')}</span>
@@ -77,17 +77,16 @@ function ReferenceCard() {
 }
 
 export default function Home() {
-  const t = useT(homeCopy);
-  const shell = useT(shellCopy);
+  const t = useT('desk');
   const navigate = useNavigate();
   const reduce = useReducedMotion() ?? false;
-  const hasRecord = useExam((s) => s.image !== null || s.contextSaved);
+  const hasRecord = useExam((s) => s.phase !== 'idle' || s.image !== null);
   const dispatch = useExamDispatch();
   const [scopeOpen, setScopeOpen] = useState(false);
   const [discardOpen, setDiscardOpen] = useState(false);
   return (
     <AppShell
-      title={shell('brand')}
+      title={t('brand')}
       headerAction={
         <IconButton
           label={t('discardAction')}

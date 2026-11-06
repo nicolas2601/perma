@@ -1,13 +1,12 @@
 import type { ReactNode } from 'react';
 import { useNavigate, useRouter } from '@/app/router';
+import { useI18n, useT } from '@/core/i18n/I18nProvider';
 import { BookIcon, ChevronDownIcon, FileIcon, HomeIcon, InfoIcon, ScanIcon } from '@/ui/icons';
 import { FloatingNav, type NavItem } from '@/ui/FloatingNav';
 import { IconButton } from '@/ui/IconButton';
 import { cx } from '@/ui/cx';
 import { Glyph } from './Glyph';
-import { shellCopy } from './copy';
-import { useExam, useExamDispatch, useT } from './api';
-import { CAPTURE_PATH, DESK_PATH } from './recoveryPaths';
+import { CAPTURE_PATH, DESK_PATH, GUIDE_PATH, REVIEW_PATH } from './recoveryPaths';
 
 export interface AppShellProps {
   title: string;
@@ -19,9 +18,6 @@ export interface AppShellProps {
   children: ReactNode;
 }
 
-const REVIEW_PATH = '/revision';
-const GUIDE_PATH = '/guia';
-
 /** Maps the current path to the nav entry it belongs to. */
 export function activeNavId(path: string): string | undefined {
   if (path === DESK_PATH || path === '/contexto') return DESK_PATH;
@@ -32,7 +28,7 @@ export function activeNavId(path: string): string | undefined {
 }
 
 function useNavItems(): NavItem[] {
-  const t = useT(shellCopy);
+  const t = useT('desk');
   return [
     { id: DESK_PATH, label: t('navDesk'), icon: <Glyph className="size-5"><HomeIcon /></Glyph> },
     { id: CAPTURE_PATH, label: t('navInspect'), icon: <Glyph className="size-5"><ScanIcon /></Glyph> },
@@ -42,16 +38,15 @@ function useNavItems(): NavItem[] {
 }
 
 function LanguageSwitch() {
-  const t = useT(shellCopy);
-  const locale = useExam((state) => state.locale);
-  const dispatch = useExamDispatch();
+  const t = useT('desk');
+  const { locale, setLocale } = useI18n();
   const target = locale === 'es' ? 'en' : 'es';
   return (
     <button
       type="button"
       lang={target}
       aria-label={`${t('languageLabel')}: ${t('languageSwitch')}`}
-      onClick={() => dispatch({ type: 'SET_LOCALE', locale: target })}
+      onClick={() => setLocale(target)}
       className="min-h-12 min-w-12 rounded-control border border-solid border-line bg-surface px-3 text-header font-medium text-ink outline-offset-2"
     >
       {t('languageSwitch')}
@@ -61,7 +56,7 @@ function LanguageSwitch() {
 
 /** Shared page frame: top bar with back, title, guide and language; floating glass nav. */
 export function AppShell({ title, onBack, headerAction, showNav = true, children }: AppShellProps) {
-  const t = useT(shellCopy);
+  const t = useT('desk');
   const navigate = useNavigate();
   const { location } = useRouter();
   const navItems = useNavItems();
@@ -76,7 +71,9 @@ export function AppShell({ title, onBack, headerAction, showNav = true, children
             icon={<Glyph className="size-5 rotate-90"><ChevronDownIcon /></Glyph>}
           />
         ) : (
-          <Glyph className="size-12"><ScanIcon /></Glyph>
+          <span className="flex size-12 shrink-0 items-center justify-center rounded-control bg-subtle">
+            <Glyph className="size-6"><ScanIcon /></Glyph>
+          </span>
         )}
         <p className="m-0 min-w-0 flex-1 text-header text-muted">{title}</p>
         {headerAction}

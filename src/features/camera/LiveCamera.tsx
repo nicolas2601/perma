@@ -1,33 +1,41 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from '@/app/router';
+import { useExamDispatch } from '@/core/exam/react';
+import { useI18n, useT } from '@/core/i18n/I18nProvider';
+import { useCaptureAdvice } from '@/features/camera/guide/useCaptureAdvice';
+import { GuideOverlay } from '@/features/camera/guide/GuideOverlay';
 import { AppShell } from '@/features/desk/AppShell';
 import { prepareExamImage } from '@/features/desk/imageFile';
 import { CameraDeniedError, captureFrame, openCamera, stopStream } from '@/features/desk/cameraStream';
-import { CAPTURE_PATH, CONTEXT_PATH, QUALITY_PATH, RECOVERY_PATHS } from '@/features/desk/recoveryPaths';
-import { readMockScenario } from '@/features/desk/mockScenario';
-import { cameraCopy } from '@/features/desk/copy';
-import { useExamDispatch, useExam, useGuard, useT } from '@/features/desk/api';
+import { isMockFault } from '@/features/desk/mockFault';
+import { useCaptureStage } from '@/features/desk/useCaptureStage';
+import { CAPTURE_PATH, QUALITY_PATH, RECOVERY_PATHS } from '@/features/desk/recoveryPaths';
 import { Button } from '@/ui/Button';
 import { StatusLine } from '@/ui/StatusLine';
 
 const CAPTURE_FILENAME = 'camera-capture.jpg';
 
-/** Permission state for the mock contract: `?mock=permission` denies the camera without prompting. */
+/** `?mock=permission` (mock build only) denies the camera without prompting. */
 function requestCamera(search: string): Promise<MediaStream> {
-  if (readMockScenario(search) === 'permission') return Promise.reject(new CameraDeniedError());
+  if (isMockFault(search, 'permission')) return Promise.reject(new CameraDeniedError());
   return openCamera();
 }
 
+/**
+ * Live framing guide plus the shutter. The shutter is gated only by the stream and
+ * an in-flight capture, never by the guide: advice is optional guidance.
+ */
 export default function LiveCamera() {
-  const t = useT(cameraCopy);
+  const t = useT('camera');
+  const { locale } = useI18n();
   const navigate = useNavigate();
   const dispatch = useExamDispatch();
-  const contextSaved = useExam((s) => s.contextSaved);
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const [ready, setReady] = useState(false);
   const [busy, setBusy] = useState(false);
-  useGuard(contextSaved, CONTEXT_PATH);
+  useCaptureStage();
+  const advice = useCaptureAdvice(videoRef);
 
   useEffect(() => {
     let cancelled = false;
@@ -43,7 +51,9 @@ export default function LiveCamera() {
         setReady(true);
       },
       () => {
-        if (!cancelled) navigate(RECOVERY_PATHS.permission);
+        if (cancelled) return;
+        dispatch({ type: 'FAULT', scenario: 'permission' });
+        navigate(RECOVERY_PATHS.permission);
       },
     );
     return () => {
@@ -51,7 +61,7 @@ export default function LiveCamera() {
       stopStream(streamRef.current);
       streamRef.current = null;
     };
-  }, [navigate]);
+  }, [dispatch, navigate]);
 
   const shoot = async () => {
     const video = videoRef.current;
@@ -65,6 +75,7 @@ export default function LiveCamera() {
       dispatch({ type: 'IMAGE_LOADED', image });
       navigate(QUALITY_PATH);
     } catch {
+      dispatch({ type: 'FAULT', scenario: 'file-unavailable' });
       navigate(RECOVERY_PATHS['file-unavailable']);
     } finally {
       setBusy(false);
@@ -84,9 +95,9 @@ export default function LiveCamera() {
           aria-label={t('liveTitle')}
           className="size-full object-cover"
         />
-        <p className="absolute inset-x-3 bottom-3 m-0 rounded-chip bg-surface p-2 text-caption text-ink">
-          {t('guideSlot')}
-        </p>
+        <div className="absolute inset-0">
+          <GuideOverlay advice={advice} locale={locale} />
+        </div>
       </div>
       {ready ? null : <StatusLine message={t('starting')} tone="info" />}
       <div className="mt-auto pt-4">

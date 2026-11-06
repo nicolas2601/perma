@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from '@/app/router';
+import { useExam, useExamDispatch } from '@/core/exam/react';
+import { useT } from '@/core/i18n/I18nProvider';
 import { Button } from '@/ui/Button';
 import { ChevronDownIcon } from '@/ui/icons';
 import { Glyph } from './Glyph';
 import { AppShell } from './AppShell';
 import { BODY_SITE_KEYS, ContextDetailsSheet, SITE_LABEL_KEY, SiteSheet, type BodySiteKey } from './ContextSheets';
-import { contextCopy } from './copy';
-import { useExam, useExamDispatch, useT } from './api';
 import { CAPTURE_PATH, DESK_PATH } from './recoveryPaths';
 
 const FIELD_CLASS =
@@ -17,10 +17,10 @@ function isBodySite(value: string | null): value is BodySiteKey {
 }
 
 export default function Context() {
-  const t = useT(contextCopy);
+  const t = useT('desk');
   const navigate = useNavigate();
   const dispatch = useExamDispatch();
-  const storedSite = useExam((s) => s.bodySite);
+  const storedSite = useExam((s) => s.record.bodySite);
   const [site, setSite] = useState<BodySiteKey | null>(isBodySite(storedSite) ? storedSite : null);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [siteOpen, setSiteOpen] = useState(false);
@@ -28,13 +28,12 @@ export default function Context() {
 
   const save = () => {
     dispatch({ type: 'SET_SITE', site });
-    dispatch({ type: 'CONTEXT_SAVED' });
     navigate(CAPTURE_PATH);
   };
 
   return (
-    <AppShell title={t('modalityValue')} onBack={() => navigate(DESK_PATH)} showNav={false}>
-      <h1 className="m-0 text-title text-ink">{t('headline')}</h1>
+    <AppShell title={t('contextShell')} onBack={() => navigate(DESK_PATH)} showNav={false}>
+      <h1 className="m-0 text-title text-ink">{t('contextHeadline')}</h1>
       <p className="m-0 text-body text-muted">{t('intro')}</p>
       <div className="flex flex-col gap-3">
         <div className={FIELD_CLASS}>

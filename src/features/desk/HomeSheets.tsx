@@ -1,7 +1,6 @@
 import { Button } from '@/ui/Button';
 import { Sheet } from '@/ui/Sheet';
-import { homeCopy } from './copy';
-import { useT } from './api';
+import { useT } from '@/core/i18n/I18nProvider';
 
 export interface HomeSheetProps {
   open: boolean;
@@ -10,7 +9,7 @@ export interface HomeSheetProps {
 
 /** Scope of the prototype (Protocol card and "Ver alcance" menu item). */
 export function ScopeSheet({ open, onOpenChange }: HomeSheetProps) {
-  const t = useT(homeCopy);
+  const t = useT('desk');
   return (
     <Sheet open={open} onOpenChange={onOpenChange} title={t('scopeTitle')} closeLabel={t('close')}>
       <div className="flex flex-col gap-4 text-body text-ink">
@@ -27,7 +26,7 @@ export interface DiscardSheetProps extends HomeSheetProps {
 
 /** Destructive confirm: the safe action (cancel) is first in the focus order. */
 export function DiscardSheet({ open, onOpenChange, onConfirm }: DiscardSheetProps) {
-  const t = useT(homeCopy);
+  const t = useT('desk');
   return (
     <Sheet open={open} onOpenChange={onOpenChange} title={t('discardTitle')} closeLabel={t('close')}>
       <div className="flex flex-col gap-4">

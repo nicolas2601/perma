@@ -1,7 +1,7 @@
 import { Sheet } from '@/ui/Sheet';
 import { cx } from '@/ui/cx';
-import { contextCopy } from './copy';
-import { useT } from './api';
+import { useT } from '@/core/i18n/I18nProvider';
+import { copy } from './copy';
 
 export const BODY_SITE_KEYS = ['face', 'scalp', 'trunk', 'upperLimb', 'lowerLimb'] as const;
 export type BodySiteKey = (typeof BODY_SITE_KEYS)[number];
@@ -12,7 +12,7 @@ export const SITE_LABEL_KEY = {
   trunk: 'siteTrunk',
   upperLimb: 'siteUpperLimb',
   lowerLimb: 'siteLowerLimb',
-} as const satisfies Record<BodySiteKey, keyof (typeof contextCopy)['es']>;
+} as const satisfies Record<BodySiteKey, keyof (typeof copy)['es']>;
 
 interface SheetBase {
   open: boolean;
@@ -20,7 +20,7 @@ interface SheetBase {
 }
 
 export function ContextDetailsSheet({ open, onOpenChange }: SheetBase) {
-  const t = useT(contextCopy);
+  const t = useT('desk');
   return (
     <Sheet open={open} onOpenChange={onOpenChange} title={t('contextDetailsTitle')} closeLabel={t('close')}>
       <p className="m-0 text-body text-ink">{t('contextDetailsBody')}</p>
@@ -35,7 +35,7 @@ export interface SiteSheetProps extends SheetBase {
 
 /** Fixed site list (architecture section 2). Selecting closes the sheet. */
 export function SiteSheet({ open, onOpenChange, selected, onSelect }: SiteSheetProps) {
-  const t = useT(contextCopy);
+  const t = useT('desk');
   const choose = (site: BodySiteKey | null) => {
     onSelect(site);
     onOpenChange(false);
