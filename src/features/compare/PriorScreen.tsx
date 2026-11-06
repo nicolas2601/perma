@@ -1,7 +1,13 @@
-import { Button } from '@/ui';
+import { Button, Card, EmptyState } from '@/ui';
 import { useNavigate } from '@/app/router';
 import { useT } from '@/core/i18n/I18nProvider';
+import { illustrationUrl } from '@/assets/illustrations';
 import { ActionDock, ScreenHeader } from '@/features/inspect/Chrome';
+import { ActionRow } from '@/features/inspect/ActionRow';
+import { PlusIcon } from '@/features/inspect/toolIcons';
+
+const ART_WIDTH = 160;
+const ART_HEIGHT = 120;
 
 /** Earlier-image empty state (Figma 141:3508). Nothing is fabricated when no prior source exists. */
 export default function PriorScreen() {
@@ -17,20 +23,32 @@ export default function PriorScreen() {
         infoLabel={tInspect('info')}
       />
       <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3">
-        <h2 className="m-0 text-title text-ink">{t('priorHeading')}</h2>
-        <p className="m-0 text-body text-ink">{t('priorBody')}</p>
-        <div className="flex flex-col gap-1 rounded-tile border border-solid border-white/80 bg-surface p-4">
-          <span className="text-body-medium text-ink">{t('priorCardTitle')}</span>
-          <span className="text-label text-muted">{t('priorCardBody')}</span>
-        </div>
-        <button
-          type="button"
-          onClick={() => navigate('/examen/abcde?criterio=e')}
-          className="grid w-full gap-0.5 rounded-tile border border-solid border-line bg-surface p-4 text-left outline-offset-2"
-        >
-          <span className="text-body-medium text-ink">{t('priorCardAction')}</span>
-          <span className="text-label text-muted">{t('priorRequirementsHint')}</span>
-        </button>
+        <EmptyState
+          titleAs="h2"
+          art={
+            <img
+              src={illustrationUrl('emptyCompare')}
+              alt=""
+              width={ART_WIDTH}
+              height={ART_HEIGHT}
+              decoding="async"
+              className="h-30 w-auto"
+            />
+          }
+          title={t('priorHeading')}
+          body={t('priorBody')}
+        />
+        <Card variant="raised" className="shrink-0">
+          <p className="m-0 text-label text-muted">{t('priorCardBody')}</p>
+        </Card>
+        <ActionRow
+          variant="raised"
+          tint="blush"
+          icon={<PlusIcon />}
+          title={t('priorCardAction')}
+          hint={t('priorRequirementsHint')}
+          to="/examen/abcde?criterio=e"
+        />
       </div>
       <ActionDock>
         <Button fullWidth onClick={() => navigate('/examen/comparar')}>

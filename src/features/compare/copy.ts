@@ -1,7 +1,7 @@
 /** Compare, note and prior-image copy. */
 export const copy = {
   es: {
-    compareTitle: 'Mis observaciones · Comparar',
+    compareTitle: 'Comparar',
     compareHeading: 'Compare con contexto.',
     compareBody: 'La comparación no está disponible hasta que se proporcione una fuente anterior. No se ha medido la evolución.',
     requiredTitle: 'Obligatorio',
@@ -28,14 +28,14 @@ export const copy = {
     dockNext: 'Revisar la sesión',
     dockBack: 'Volver a evolución',
     priorTitle: 'Comparación anterior',
-    priorHeading: 'No se suministró una imagen anterior.',
+    priorHeading: 'Se requiere una fuente anterior.',
     priorBody: 'La comparación requiere una fuente anterior real y un contexto de adquisición conocido. Este prototipo no fabricará una segunda imagen clínica.',
     priorRequirementsHint: 'Abrir detalles',
     navInfo: 'Alcance y métodos',
     back: 'Volver',
   },
   en: {
-    compareTitle: 'My observations · Compare',
+    compareTitle: 'Compare',
     compareHeading: 'Compare with context.',
     compareBody: 'Comparison is not available until an earlier source is provided. Evolution has not been measured.',
     requiredTitle: 'Required',
@@ -62,7 +62,7 @@ export const copy = {
     dockNext: 'Review the session',
     dockBack: 'Back to evolution',
     priorTitle: 'Earlier comparison',
-    priorHeading: 'No earlier image was supplied.',
+    priorHeading: 'An earlier source is required.',
     priorBody: 'Comparison requires a real earlier source and a known acquisition context. This prototype will not fabricate a second clinical image.',
     priorRequirementsHint: 'Open details',
     navInfo: 'Scope and methods',
