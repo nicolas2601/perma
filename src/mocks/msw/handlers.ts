@@ -9,10 +9,15 @@ const SUCCESS_BY_MODE: Record<string, FixtureName> = {
 
 /** Default happy-path handlers, all backed by the captured fixtures. */
 export const inferenceHandlers = [
-  http.get('/api/status', () => HttpResponse.json(fixtureJson('status'))),
+  http.get('/api/status', () => HttpResponse.json(fixtureJson('mocoStatus'))),
   http.get('/api/report', () => HttpResponse.json(fixtureJson('report'))),
   http.post('/api/predict', ({ request }) => {
-    const mode = new URL(request.url).searchParams.get('mode') ?? 'base';
+    const url = new URL(request.url);
+    const mode = url.searchParams.get('mode') ?? 'base';
+    if (url.searchParams.get('model') === 'MOCO_HAM7') {
+      if (mode === 'tta') return HttpResponse.json({ error: { code: 'UNSUPPORTED_INFERENCE_MODE' } }, { status: 422 });
+      return HttpResponse.json(fixtureJson('mocoPredict'));
+    }
     return HttpResponse.json(fixtureJson(SUCCESS_BY_MODE[mode] ?? 'predictBase'));
   }),
 ];

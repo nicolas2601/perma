@@ -36,6 +36,21 @@ export default defineConfig({
       use: { viewport: { width: 320, height: 568 }, deviceScaleFactor: 1 },
     },
     {
+      name: 'w1440',
+      testMatch: /(scan|keyboard|i18n)\.spec\.ts/,
+      use: { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 },
+    },
+    {
+      name: 'w1024',
+      testMatch: /scan\.spec\.ts/,
+      use: { viewport: { width: 1024, height: 768 }, deviceScaleFactor: 1 },
+    },
+    {
+      name: 'w768',
+      testMatch: /scan\.spec\.ts/,
+      use: { viewport: { width: 768, height: 1024 }, deviceScaleFactor: 1 },
+    },
+    {
       name: 'w390-reduced',
       testMatch: /motion\.spec\.ts/,
       use: {

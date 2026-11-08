@@ -30,11 +30,11 @@ describe('CSV export', () => {
     expect(csvCell('normal')).toBe('normal');
   });
 
-  it('is a tidy table: BOM, semicolon header, one row per fact, 7 raw scores without percentages', () => {
+  it('is a tidy table: BOM, semicolon header, one row per fact, 7 relative scores without percentages', () => {
     const rows = buildCsvRows(snapshot(), exportedAt, es);
     const text = serializeCsv(rows, es);
     expect(text.startsWith(CSV_BOM + 'Sección;Campo;Valor;Nota\r\n')).toBe(true);
-    const scoreRows = rows.filter((row) => row[0] === 'Puntajes crudos');
+    const scoreRows = rows.filter((row) => row[0] === 'Puntajes relativos del modelo');
     expect(scoreRows).toHaveLength(7);
     for (const row of scoreRows) {
       expect(row[2]).toMatch(/^0\.\d{4}$|^1\.0000$/);
@@ -47,13 +47,13 @@ describe('CSV export', () => {
   it('labels simulated output and keeps the experimental notice', () => {
     const text = serializeCsv(buildCsvRows(snapshot(), exportedAt, es), es);
     expect(text).toContain('Valores simulados');
-    expect(text).toContain('No diagnostica');
+    expect(text).toContain('No reemplaza la valoración clínica ni emite diagnósticos');
   });
 
   it('translates headers and sections to English', () => {
     const text = serializeCsv(buildCsvRows(snapshot(), exportedAt, en), en);
     expect(text).toContain('Section;Field;Value;Note');
-    expect(text).toContain('Raw scores');
+    expect(text).toContain('Relative model scores');
   });
 
   it('downloads a text/csv file only after the Blob exists', async () => {

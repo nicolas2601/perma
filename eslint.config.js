@@ -4,7 +4,7 @@ import hooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 
 export default tseslint.config(
-  { ignores: ['dist', 'node_modules', 'fixtures', 'playwright-report', 'test-results', 'dev-dist', 'dist-e2e', '.claude', '.lighthouseci', 'audit'] },
+  { ignores: ['dist', 'node_modules', 'fixtures', 'playwright-report', 'test-results', 'dev-dist', 'dist-e2e', '.claude', '.lighthouseci', '.vercel', 'audit'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   { files: ['scripts/**/*.{mjs,js}', '*.config.js'], languageOptions: { globals: { ...globals.node } } },

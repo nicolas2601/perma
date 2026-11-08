@@ -1,4 +1,5 @@
 import {
+  LIVE_MODEL_KEYS,
   apiErrorBodySchema,
   isServingReady,
   parseOrInvalid,
@@ -32,7 +33,7 @@ export interface LiveClientOptions {
   isOnline?: () => boolean;
 }
 
-const LIVE_MODELS: readonly ModelId[] = ['A71', 'B71'];
+const LIVE_MODELS: readonly ModelId[] = LIVE_MODEL_KEYS;
 
 /** Same-origin client for /api/status and /api/predict. No retries: the shared research API is never hammered. */
 export class LiveInferenceClient implements InferenceClient {
@@ -53,7 +54,7 @@ export class LiveInferenceClient implements InferenceClient {
   async status(signal?: AbortSignal): Promise<ModelIdentity> {
     const status = await performRequest(
       this.transport,
-      '/api/status',
+      `/api/status?model=${this.options.defaultModel}`,
       { method: 'GET' },
       (response) => this.readStatus(response),
       signal,
@@ -86,6 +87,9 @@ export class LiveInferenceClient implements InferenceClient {
   private async readStatus(response: Response): Promise<StatusResponse> {
     await this.assertOk(response);
     const status = parseOrInvalid(statusSchema, await readJson(response), 'status');
+    if (status.model_key !== this.options.defaultModel) {
+      throw new InferenceError('invalid-response', `Requested ${this.options.defaultModel}, server answered ${status.model_key}`);
+    }
     if (!isServingReady(status)) {
       throw new InferenceError('server-error', `Model not ready: ${status.reason}`);
     }

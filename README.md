@@ -1,8 +1,10 @@
 # PERMA
 
-Mobile PWA for image-assisted dermatology research exams. Experimental: the model returns raw scores. It does not diagnose and it is not clinically validated.
+Mobile PWA for image-assisted dermatology research. The model returns relative category scores, not a person's probability of disease. It does not replace clinical assessment and is not clinically validated.
 
-Persistent notice shown in the app: "Prototipo experimental de investigación. Los puntajes no son probabilidades clínicas. No diagnostica."
+Persistent research notice: "Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos."
+
+The current live integration is `MOCO_HAM7`, a seven-category research classifier evaluated on HAM dermoscopy development data. Ordinary smartphone photographs are not equivalent to dermoscopy. Camera or file selection does not establish image suitability, diagnostic validity, or a safe clinical decision. The API also exposes a separate PAD6 head, but this frontend does not implement its six-category contract; it must not be selected or relabeled silently.
 
 ## Requirements
 
@@ -23,7 +25,7 @@ bun run preview         # serves the last build from dist/ (needs bun run build 
 VITE_INFERENCE=mock bun run dev
 ```
 
-Planned: the mock client belongs to the `src/core/inference` module, which is not in this branch yet. Until it lands, the flag has no effect. Every simulated value must carry the badge "Modelo simulado" and must never be exported as a real result.
+The mock client in `src/core/inference` generates local demonstration values without analyzing the submitted image. Simulated output carries the "Modelo simulado" badge and retains its mock provenance in exports. Use mock mode for deterministic flow tests, never as a fallback for failed live inference.
 
 ## Build, test, quality
 
@@ -45,7 +47,7 @@ bun run typecheck && bun run lint && bun run test
 bun run build && node scripts/check-no-msw-in-dist.mjs && bun run size
 ```
 
-Known state: `tests/e2e/` has no specs yet, so `bun run e2e` exits 1 with "No tests found". This is intentional until the first specs land.
+Flow specifications live in `tests/e2e/flows/`. The flow runner uses a mock build in `/tmp`, leaving the production build and shared inference API untouched. Browser emulation does not replace testing on a physical phone.
 
 ## Environment variables
 
@@ -53,15 +55,17 @@ Vite embeds only `VITE_*` variables in the client bundle. Everything in a `.env*
 
 | Variable | Default | Purpose |
 | --- | --- | --- |
-| `VITE_INFERENCE` | `live` | `live` calls the backend; `mock` uses simulated values (planned, see above) |
-| `VITE_DEFAULT_MODEL` | `B71` | Model selected first in the UI (`A71` or `B71`) |
+| `VITE_INFERENCE` | `live` | `live` calls the configured research backend; `mock` uses explicitly simulated values |
+| `VITE_DEFAULT_MODEL` | `MOCO_HAM7` | Only supported live model. Legacy A71/B71 and `next` are mock-only; invalid live choices fail rather than silently switching models. |
 | `VITE_API_ORIGIN` | `https://derm.nicolasmoreno.site` | Dev-proxy target for `/api` |
 
 Gotcha: `vite.config.ts` reads `process.env.VITE_API_ORIGIN`, not the `.env` files. To change the proxy target, export it in the shell: `VITE_API_ORIGIN=https://other.example bun run dev`. Copy `.env.example` to `.env.local` for the other two variables.
 
 ## Deploy
 
-Nothing is deployed from this repository yet. Examples live in `deploy/` and are not applied:
+The existing Vercel project is `perma`, served at `https://perma.tikno.pro`. The root `vercel.json` builds live inference, proxies `/api/*` to the configured research backend, and applies security/cache headers. Do not deploy mock bundles or cache API responses.
+
+Additional hosting examples remain in `deploy/`:
 
 - `public/_headers`: security headers and cache policy for static hosts (Cloudflare Pages / Netlify syntax). Copied into `dist/`.
 - `deploy/nginx/perma.conf.example`: static files plus `/api` reverse proxy.
@@ -69,6 +73,12 @@ Nothing is deployed from this repository yet. Examples live in `deploy/` and are
 - `deploy/cloudflare/worker-api-proxy.js.example`: Worker that proxies `/api/*` and serves assets.
 
 The `/api` proxy must keep the browser on the same origin (`connect-src 'self'`) and must never cache responses. See `docs/security.md`.
+
+## Reading a result
+
+The workflow records the user's context, prepares an image locally, asks for authorization before sending it, requests the research model's output, and lets the user add observations and export a record. Image preparation is not lesion segmentation or a diagnostic quality check. The seven scores describe how HAM7 distributes its output across known categories; even a high score does not confirm or rule out a condition. The model can still assign a category to an unfamiliar image.
+
+Records and image snapshots are stored locally in this browser's IndexedDB. The image selected for inference is also sent to the configured server when the user confirms sending. Do not infer a server retention/deletion guarantee from the local storage policy, and do not describe a research record as a patient consultation or a medical record.
 
 ## Documentation
 

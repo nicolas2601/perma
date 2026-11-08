@@ -5,6 +5,8 @@ import { copy as cameraCopy } from '@/features/camera/copy';
 import { copy as deskCopy } from '@/features/desk/copy';
 import { copy as consentCopy } from '@/features/consent/copy';
 import { copy as recoveryCopy } from '@/features/recovery/copy';
+import { copy as inspectCopy } from '@/features/inspect/copy';
+import { copy as guideCopy } from '@/features/guide/copy';
 import { RECOVERY_PATHS, CAMERA_PATH, CAPTURE_PATH, CONSENT_PATH, PROCESSING_PATH, QUALITY_PATH } from '@/features/desk/recoveryPaths';
 import { RECOVERY_TARGETS } from '@/features/recovery/RecoveryPage';
 import { activeNavId } from '@/features/desk/AppShell';
@@ -32,7 +34,7 @@ describe('feature copy modules', () => {
   it('merges every feature into the registry under its namespace, without collisions', () => {
     expect(copyRegistry.es['desk.headline']).toBe('Empiece con contexto.');
     expect(copyRegistry.en['desk.headline']).toBe('Start with context.');
-    expect(copyRegistry.es['consent.title']).toBe('Sepa qué envía.');
+    expect(copyRegistry.es['consent.title']).toBe('Revise antes de enviar.');
     expect(copyRegistry.es['consent.waitTitle']).toBe('Esperando una respuesta');
     expect(copyRegistry.es['recovery.rate-limit.title']).toBe('El servicio está limitando las solicitudes.');
     expect(copyRegistry.es['camera.captureTitle']).toBe('Muestre la imagen.');
@@ -49,6 +51,16 @@ describe('feature copy modules', () => {
   it('never ships Figma prototype labels as production copy (O5)', () => {
     const all = JSON.stringify([consentCopy, deskCopy]);
     expect(all).not.toMatch(/escenario de procesamiento|resultado ficticio|Abrir escenario/i);
+  });
+
+  it('explains research scores and the live image task without inventing guarantees', () => {
+    expect(inspectCopy.es.experimentalNotice).toContain('ni emite diagnósticos');
+    expect(inspectCopy.es.resultIntro).toContain('no indican la probabilidad de tener una enfermedad');
+    expect(guideCopy.es.evidenceBody).toContain('HAM7');
+    expect(guideCopy.es.evidenceBody).toContain('No incluye SCC');
+    expect(guideCopy.es.licencesBody).not.toContain('entrenado con datos sintéticos');
+    expect(consentCopy.es.waitStopSheetBody).toContain('no confirma que el servidor');
+    expect(consentCopy.es.waitStopSheetBody).not.toContain('no tiene una solicitud en curso');
   });
 });
 
