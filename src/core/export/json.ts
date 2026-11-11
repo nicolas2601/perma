@@ -2,9 +2,10 @@ import type { ClinicalContext, ExamRecord } from '@/core/storage/types';
 import type { InferenceResult } from '@/core/inference/types';
 import { normalizeClinicalContext, qualified } from '@/core/exam/clinicalContext';
 import { UNANSWERED_VALUE, type ExportSnapshot, type Translate } from './types';
+import { photometryForExport, segmentationForExport, type PhotometryExport, type SegmentationExport } from './explainabilityExport';
 
 export const EXPORT_FORMAT_ID = 'perma-exam-record';
-export const EXPORT_SCHEMA_VERSION = 1;
+export const EXPORT_SCHEMA_VERSION = 2;
 const CRITERIA = ['A', 'B', 'C', 'D', 'E'] as const;
 const JSON_INDENT = 2;
 
@@ -32,6 +33,9 @@ export interface JsonExportDocument {
     /** Raw experimental scores. Not probabilities. */
     scores: InferenceResult['scores'];
     warnings: string[];
+    /** Live results only; null for simulated output. Never includes the mask or the contour. */
+    photometry: PhotometryExport | null;
+    segmentation: SegmentationExport | null;
   } | null;
   /** User-typed context. Not interpreted by the model and not used in any score. */
   userSuppliedContext: UserSuppliedContextJson;
@@ -98,6 +102,8 @@ function resultPayload(result: InferenceResult): NonNullable<JsonExportDocument[
     identity: result.identity,
     scores: result.scores,
     warnings: result.warnings,
+    photometry: photometryForExport(result),
+    segmentation: segmentationForExport(result),
   };
 }
 

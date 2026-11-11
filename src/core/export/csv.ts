@@ -1,6 +1,7 @@
 import { CLASS_CODES } from '@/core/inference/types';
 import { normalizeClinicalContext } from '@/core/exam/clinicalContext';
 import { UNANSWERED_VALUE, type ExportSnapshot, type Translate } from './types';
+import { photometryForExport } from './explainabilityExport';
 
 /**
  * Tidy long-format CSV for spreadsheets (Excel, Google Sheets, pandas):
@@ -32,7 +33,13 @@ export function buildCsvRows(snapshot: ExportSnapshot, exportedAt: Date, t: Tran
     [exam, t('core.export.image'), image === null ? t('core.export.noImage') : t(`core.csv.origin.${image.origin}`), ''],
     [exam, t('core.csv.notice'), t('core.notice.experimental'), ''],
   ];
-  rows.push(...contextRows(snapshot, t), ...modelRows(snapshot, t), ...scoreRows(snapshot, t), ...abcdeRows(snapshot, t));
+  rows.push(
+    ...contextRows(snapshot, t),
+    ...modelRows(snapshot, t),
+    ...photometryRows(snapshot, t),
+    ...scoreRows(snapshot, t),
+    ...abcdeRows(snapshot, t),
+  );
   rows.push([t('core.export.note'), t('core.export.note'), record.note.trim() === '' ? t('core.csv.notRecorded') : record.note, '']);
   return rows;
 }
@@ -61,6 +68,26 @@ function modelRows({ result }: ExportSnapshot, t: Translate): Row[] {
     [section, t('core.csv.recipe'), result.identity.recipe ?? '', ''],
     [section, t('core.csv.release'), result.identity.release ?? '', ''],
     [section, t('core.csv.sha'), result.identity.sha256 ?? '', ''],
+  ];
+}
+
+const ITA_DEGREE_DECIMALS = 1;
+
+function photometryRows({ result }: ExportSnapshot, t: Translate): Row[] {
+  if (result === null) return [];
+  const photometry = photometryForExport(result);
+  if (photometry === null) return [];
+  const section = t('core.csv.sectionPhotometry');
+  const note = t('core.csv.itaNote');
+  if (photometry.status === 'unavailable') {
+    return [[section, t('core.csv.photometryStatus'), t(`core.csv.photometryReason.${photometry.reason}`), note]];
+  }
+  const category = photometry.itaCategory === null ? t('core.csv.itaNotDeterminable') : t(`core.csv.itaCategory.${photometry.itaCategory}`);
+  return [
+    [section, t('core.csv.ita'), photometry.itaDeg === null ? '' : photometry.itaDeg.toFixed(ITA_DEGREE_DECIMALS), note],
+    [section, t('core.csv.itaCategory'), category, note],
+    [section, t('core.csv.medianL'), photometry.medianL.toFixed(ITA_DEGREE_DECIMALS), ''],
+    [section, t('core.csv.medianB'), photometry.medianB.toFixed(ITA_DEGREE_DECIMALS), ''],
   ];
 }
 
