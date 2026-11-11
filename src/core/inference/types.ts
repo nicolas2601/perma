@@ -25,6 +25,8 @@ export interface InferenceResult {
   /** Present only on analyze responses. Optional so predict-only results stay valid. */
   segmentation?: SegmentationResult;
   photometry?: PhotometryResult;
+  /** Ties the in-memory mask to this exact analysis (see storage/maskRecord.ts). */
+  analysisId?: string;
 }
 
 export type RecoveryScenario =
@@ -81,8 +83,8 @@ export type SegmentationResult =
       imageHeight: number;
       maskWidth: number;
       maskHeight: number;
-      /** In-memory only: never persisted or exported. */
-      maskPngBase64: string;
+      /** In-memory only. Absent after reload until restored from the mask side record; never exported. */
+      maskPngBase64?: string;
       contour: ContourPoint[];
       areaFraction: number;
       threshold: number;

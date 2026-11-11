@@ -61,4 +61,12 @@ export interface ExamStorageAdapter {
   load(): Promise<StoredExam | null>;
   save(snapshot: StoredExam): Promise<void>;
   clear(): Promise<void>;
+  /** Side record with the lesion mask. Never inside the exam JSON. null removes it. */
+  saveMask(mask: AnalysisMask | null): Promise<void>;
+  loadMask(): Promise<AnalysisMask | null>;
+}
+
+export interface AnalysisMask {
+  analysisId: string;
+  maskPngBase64: string;
 }

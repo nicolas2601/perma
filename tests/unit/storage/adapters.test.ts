@@ -64,6 +64,12 @@ function failingAdapter(name: string): ExamStorageAdapter {
     clear: vi.fn(async () => {
       throw error;
     }),
+    saveMask: vi.fn(async () => {
+      throw error;
+    }),
+    loadMask: vi.fn(async () => {
+      throw error;
+    }),
   };
 }
 
@@ -153,6 +159,8 @@ describe('exam storage fallback', () => {
       },
       save: async () => undefined,
       clear: async () => undefined,
+      saveMask: async () => undefined,
+      loadMask: async () => null,
     };
     const storage = createExamStorage(primary);
     await storage.load();

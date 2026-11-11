@@ -90,7 +90,37 @@ function isResult(value: unknown): boolean {
   return (
     oneOf(['live', 'mock'], value.source) &&
     typeof value.model === 'string' &&
-    Object.values(value.scores).every((score) => typeof score === 'number' && Number.isFinite(score))
+    Object.values(value.scores).every((score) => typeof score === 'number' && Number.isFinite(score)) &&
+    (value.analysisId === undefined || typeof value.analysisId === 'string') &&
+    (value.segmentation === undefined || isSegmentation(value.segmentation)) &&
+    (value.photometry === undefined || isPhotometry(value.photometry))
+  );
+}
+
+const finiteNumber = (value: unknown): boolean => typeof value === 'number' && Number.isFinite(value);
+
+/** Records saved before explainability have neither field; both are optional and never carry the mask. */
+function isSegmentation(value: unknown): boolean {
+  if (!isObject(value)) return false;
+  if (value.status === 'unavailable') return typeof value.reason === 'string';
+  return (
+    value.status === 'ok' &&
+    finiteNumber(value.imageWidth) &&
+    finiteNumber(value.imageHeight) &&
+    finiteNumber(value.areaFraction) &&
+    Array.isArray(value.contour) &&
+    value.contour.every((point) => Array.isArray(point) && point.length === 2 && point.every(finiteNumber))
+  );
+}
+
+function isPhotometry(value: unknown): boolean {
+  if (!isObject(value)) return false;
+  if (value.status === 'unavailable') return typeof value.reason === 'string';
+  return (
+    oneOf(['ok', 'indeterminate'], value.status) &&
+    finiteNumber(value.medianL) &&
+    finiteNumber(value.medianB) &&
+    (value.itaDeg === null || finiteNumber(value.itaDeg))
   );
 }
 
