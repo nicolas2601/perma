@@ -1,4 +1,5 @@
 import { getInferenceClient, InferenceError } from '@/core/inference';
+import { analyzeWith } from '@/core/inference/analyzeFlow';
 import type { InferenceResult, RecoveryScenario } from '@/core/inference/types';
 
 /** Failures the processing state can enter (architecture section 3, FAULT_SOURCES). */
@@ -41,7 +42,7 @@ export function isAnalysisInFlight(): boolean {
   return inFlight !== null;
 }
 
-/** One predict call through the app-wide client (VITE_INFERENCE; `?mock=` applies only to the mock build). */
-export function predictImage(file: Blob, signal: AbortSignal): Promise<InferenceResult> {
-  return getInferenceClient().predict({ file, signal });
+/** One analysis through the app-wide client (VITE_INFERENCE; `?mock=` applies only to the mock build). */
+export function analyzeImage(file: Blob, signal: AbortSignal): Promise<InferenceResult> {
+  return analyzeWith(getInferenceClient(), file, signal);
 }
