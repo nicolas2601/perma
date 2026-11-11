@@ -27,7 +27,6 @@ const segmentationIdentitySchema = z.object({
   run: z.string().min(1),
   release: z.string().min(1),
   model_sha256: z.string().regex(SHA256_HEX),
-  supervision: z.string().min(1),
   input_size: positiveInt,
 });
 
@@ -160,7 +159,6 @@ function toSegmentation(seg: WireSegmentation): SegmentationResult {
       run: seg.identity.run,
       release: seg.identity.release,
       modelSha256: seg.identity.model_sha256,
-      supervision: seg.identity.supervision,
       inputSize: seg.identity.input_size,
     },
   };

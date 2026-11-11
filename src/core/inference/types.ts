@@ -65,7 +65,6 @@ export interface SegmentationIdentity {
   run: string;
   release: string;
   modelSha256: string;
-  supervision: string;
   inputSize: number;
 }
 

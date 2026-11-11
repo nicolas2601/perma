@@ -32,7 +32,6 @@ const IDENTITY = {
   run: 'abl0xx-ima-s01',
   release: 'v10.2.0',
   model_sha256: 'b'.repeat(64),
-  supervision: 'semi-supervised (synthetic test fixture)',
   input_size: 224,
 };
 

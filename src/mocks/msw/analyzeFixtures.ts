@@ -14,7 +14,6 @@ const SYNTHETIC_IDENTITY = {
   run: 'synthetic-run',
   release: 'synthetic',
   model_sha256: 'b'.repeat(64),
-  supervision: 'synthetic test fixture (not captured)',
   input_size: 224,
 };
 
