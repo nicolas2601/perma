@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { Button, cx } from '@/ui';
 import { Link, useNavigate } from '@/app/router';
 import type { ExamImage } from '@/core/exam/contract';
@@ -13,6 +14,7 @@ import { ScoreCard } from './ScoreCard';
 import { isReferenceImage, PUBLIC_REFERENCE_URL } from './useImageSource';
 import { ExpandIcon, InfoGlyphIcon, LayersIcon, PlusIcon } from './toolIcons';
 import { Tile } from './Tile';
+import { ContourLayer } from './explain/ContourOverlay';
 
 type ToolName = 'layers' | 'info';
 
@@ -22,23 +24,28 @@ type ImageFigureProps = {
   className?: string;
   /** Desktop height of the picture; the mobile height is fixed. */
   imageClassName?: string;
+  /** Optional layer drawn above the unaltered picture (the model contour). */
+  overlay?: ReactNode;
 };
 
 const DESKTOP_IMAGE_HEIGHT = 'lg:h-[70dvh]';
 
 /** The original image, unmodified (no mask, no heatmap, no filter). Shared by the mobile tab and the desktop stage. */
-export function ImageFigure({ src, reference, className, imageClassName = DESKTOP_IMAGE_HEIGHT }: ImageFigureProps) {
+export function ImageFigure({ src, reference, className, imageClassName = DESKTOP_IMAGE_HEIGHT, overlay }: ImageFigureProps) {
   const t = useT('inspect');
   const shown = src ?? (reference ? PUBLIC_REFERENCE_URL : null);
   return (
     <figure className={cx('m-0 flex flex-col overflow-hidden rounded-tile bg-surface lg:bg-subtle', className)}>
       {shown ? (
-        <img
-          src={shown}
-          alt={reference ? t('imageAltReference') : t('imageAltSession')}
-          decoding="async"
-          className={cx('block h-65 w-full object-contain', imageClassName)}
-        />
+        <div className={cx('relative h-65 w-full', imageClassName)}>
+          <img
+            src={shown}
+            alt={reference ? t('imageAltReference') : t('imageAltSession')}
+            decoding="async"
+            className="block h-full w-full object-contain"
+          />
+          {overlay}
+        </div>
       ) : (
         <p className="m-0 p-4 text-label text-muted">{t('unavailableImage')}</p>
       )}
@@ -86,14 +93,15 @@ export function ImageToolbar({ onOpenTool, className }: ImageToolbarProps) {
 type ViewerStageProps = {
   src: string | null;
   image: ExamImage | null;
+  result: InferenceResult;
   onOpenTool: (tool: ToolName) => void;
 };
 
 /** Desktop only (lg): the image stays on the left whatever tab is open, with its tools under it. */
-export function ViewerStage({ src, image, onOpenTool }: ViewerStageProps) {
+export function ViewerStage({ src, image, result, onOpenTool }: ViewerStageProps) {
   return (
     <div className="hidden lg:sticky lg:top-6 lg:flex lg:flex-col lg:gap-3 lg:self-start">
-      <ImageFigure src={src} reference={isReferenceImage(image)} />
+      <ImageFigure src={src} reference={isReferenceImage(image)} overlay={<ContourLayer result={result} />} />
       <ImageToolbar onOpenTool={onOpenTool} />
     </div>
   );
@@ -103,17 +111,18 @@ type ImagePanelProps = {
   src: string | null;
   image: ExamImage | null;
   record: ExamRecord;
+  result: InferenceResult;
   onOpenTool: (tool: ToolName) => void;
 };
 
 /** Unmodified image plus the floating tools (mobile). On desktop the stage shows them instead. */
-export function ImagePanel({ src, image, record, onOpenTool }: ImagePanelProps) {
+export function ImagePanel({ src, image, record, result, onOpenTool }: ImagePanelProps) {
   const t = useT('inspect');
   const navigate = useNavigate();
   return (
     <div className="flex flex-col gap-3">
       <h2 className="m-0 text-title text-ink">{t('imageHeading')}</h2>
-      <ImageFigure src={src} reference={isReferenceImage(image)} className="lg:hidden" />
+      <ImageFigure src={src} reference={isReferenceImage(image)} className="lg:hidden" overlay={<ContourLayer result={result} />} />
       <ImageToolbar onOpenTool={onOpenTool} className="lg:hidden" />
       <div className="grid grid-cols-[1fr_7rem] gap-3">
         <div className="flex flex-col gap-3 rounded-tile bg-ink p-3 text-on-accent">

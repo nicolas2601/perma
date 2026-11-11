@@ -7,6 +7,7 @@ import { ScreenHeader } from './Chrome';
 import { useObjectUrl } from './useImageSource';
 import { useResultGuard } from './guards';
 import { ImagePanel, ObservationsPanel, OutputPanel, ViewerStage } from './ViewerPanels';
+import { ToneAudit } from './explain/ToneAudit';
 import { ToolSheet, type ToolName } from './ToolSheet';
 import { ViewerNav } from './ViewerNav';
 import { MoreIcon } from './toolIcons';
@@ -36,7 +37,7 @@ export default function ViewerScreen() {
     {
       value: 'imagen',
       label: t('tabImage'),
-      panel: <ImagePanel src={src} image={image} record={record} onOpenTool={openTool} />,
+      panel: <ImagePanel src={src} image={image} record={record} result={result} onOpenTool={openTool} />,
     },
     {
       value: 'salida',
@@ -47,6 +48,11 @@ export default function ViewerScreen() {
       value: 'observaciones',
       label: t('tabObservations'),
       panel: <ObservationsPanel record={record} />,
+    },
+    {
+      value: 'auditoria',
+      label: t('tabAudit'),
+      panel: image ? <ToneAudit result={result} file={image.upload} src={src} /> : null,
     },
   ];
   const toolsButton = (
@@ -62,7 +68,7 @@ export default function ViewerScreen() {
         trailing={toolsButton}
       />
       <div tabIndex={0} className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-28 pt-2 lg:grid lg:grid-cols-[minmax(0,1fr)_23.75rem] lg:items-start lg:gap-x-8 lg:overflow-visible lg:px-8 lg:pb-10">
-        <ViewerStage src={src} image={image} onOpenTool={openTool} />
+        <ViewerStage src={src} image={image} result={result} onOpenTool={openTool} />
         <div>
           <div className="mb-3 flex">
             <Chip tint={PHASE_TINT.observaciones}>{t('stepObservations')}</Chip>

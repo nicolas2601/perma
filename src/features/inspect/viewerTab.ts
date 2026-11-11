@@ -1,4 +1,4 @@
-export const VIEWER_TABS = ['imagen', 'salida', 'observaciones'] as const;
+export const VIEWER_TABS = ['imagen', 'salida', 'observaciones', 'auditoria'] as const;
 export type ViewerTab = (typeof VIEWER_TABS)[number];
 const DEFAULT_TAB: ViewerTab = 'imagen';
 

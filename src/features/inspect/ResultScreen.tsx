@@ -1,3 +1,6 @@
+import { ContourLayer } from './explain/ContourOverlay';
+import { ContourSwitch } from './explain/ContourSwitch';
+import { PhotometryCard } from './explain/PhotometryCard';
 import { useState } from 'react';
 import { Badge, Button, Card, Chip, Notice, PHASE_TINT } from '@/ui';
 import { useExam } from '@/core/exam/react';
@@ -38,7 +41,12 @@ export default function ResultScreen() {
       <div tabIndex={0} className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain px-5 pb-5 pt-3 lg:grid lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:items-start lg:gap-x-8 lg:gap-y-0 lg:overflow-visible lg:px-8 lg:pb-8">
         <div className="contents lg:sticky lg:top-6 lg:col-start-1 lg:flex lg:flex-col lg:gap-4 lg:self-start lg:rounded-card lg:bg-surface lg:p-4 lg:shadow-raised">
           <div className="hidden lg:block">
-            <ImageFigure src={src} reference={isReferenceImage(image)} imageClassName="lg:h-[42dvh]" />
+            <ImageFigure
+              src={src}
+              reference={isReferenceImage(image)}
+              imageClassName="lg:h-[42dvh]"
+              overlay={<ContourLayer result={result} />}
+            />
           </div>
           {simulated ? (
             <div className="flex flex-col gap-2">
@@ -58,6 +66,10 @@ export default function ResultScreen() {
               <ScoreCard key={code} code={code} score={result.scores[code]} locale={locale} to="/resultado/clases" />
             ))}
           </section>
+          <Card variant="raised" className="shrink-0">
+            <ContourSwitch result={result} />
+          </Card>
+          <PhotometryCard photometry={result.photometry} locale={locale} />
           <Card variant="raised" className="shrink-0">
             <p className="m-0 text-body-medium text-ink">{t('noCalibratedRisk')}</p>
             <p className="m-0 text-header text-muted">{t('noCalibratedRiskBody')}</p>
