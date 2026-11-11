@@ -1,6 +1,6 @@
 import type { ExamCommand } from '@/core/exam/commands';
 import type { ExamImage } from '@/core/exam/contract';
-import type { ClassCode, InferenceResult } from '@/core/inference/types';
+import type { InferenceResult } from '@/core/inference/types';
 import { PUBLIC_REFERENCE_URL } from './useImageSource';
 
 /**
@@ -8,34 +8,27 @@ import { PUBLIC_REFERENCE_URL } from './useImageSource';
  * It loads through real commands, so the reducer rules still apply. The result is
  * a simulated mock (source "mock", badge "Modelo simulado") and is never a real output.
  */
+const DEV_SEED_WARNING = 'simulated-model';
 export const SEED_PARAM = 'seed';
 export const SEED_RESULT = 'result';
 const SEED_SITE = 'face';
 const SEED_IMAGE_NAME = 'referencia-publica.webp';
 
-const MOCK_SCORES: Readonly<Record<ClassCode, number>> = {
-  nv: 0.61,
-  bkl: 0.15,
-  mel: 0.09,
-  bcc: 0.06,
-  akiec: 0.04,
-  vasc: 0.03,
-  df: 0.02,
-};
-
-export const DEV_MOCK_RESULT: InferenceResult = {
-  source: 'mock',
-  model: 'B71',
-  mode: 'base',
-  identity: { modelId: 'B71 (simulado)', sha256: null, sha256Verified: null, recipe: null, release: null },
-  scores: { ...MOCK_SCORES },
-  latencyMs: 0,
-  warnings: [],
-};
-
-/** True only in dev builds and only when the URL asks for the result seed. */
 export function devSeedRequested(search: string): boolean {
   return import.meta.env.DEV && new URLSearchParams(search).get(SEED_PARAM) === SEED_RESULT;
+}
+
+/**
+ * The result comes from the captured MOCO_HAM7 predict replay (mock builds only). Without a capture there
+ * is no result to seed, so the caller seeds nothing instead of inventing one.
+ */
+export async function loadDevSeedResult(): Promise<InferenceResult | null> {
+  const { loadPredictMocoBaseCapture } = await import('@/core/inference/captures');
+  const capture = await loadPredictMocoBaseCapture();
+  if (capture === null) return null;
+  const { parseOrInvalid, predictResponseSchema, toInferenceResult } = await import('@/core/inference/contract');
+  const body = parseOrInvalid(predictResponseSchema, capture, 'dev-seed');
+  return { ...toInferenceResult(body, 0), source: 'mock', warnings: [DEV_SEED_WARNING] };
 }
 
 async function fetchSampleImage(): Promise<ExamImage> {
@@ -46,6 +39,8 @@ async function fetchSampleImage(): Promise<ExamImage> {
 
 /** Command chain idle -> result. Each step is a legal transition of the reducer. */
 export async function seedResultCommands(): Promise<ExamCommand[]> {
+  const result = await loadDevSeedResult();
+  if (result === null) return [];
   const image = await fetchSampleImage();
   return [
     { type: 'RESET' },
@@ -55,6 +50,6 @@ export async function seedResultCommands(): Promise<ExamCommand[]> {
     { type: 'CONFIRM_IMAGE' },
     { type: 'CONSENT', value: true },
     { type: 'SEND' },
-    { type: 'RESULT_OK', result: DEV_MOCK_RESULT },
+    { type: 'RESULT_OK', result },
   ];
 }
