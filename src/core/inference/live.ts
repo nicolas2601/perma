@@ -37,7 +37,7 @@ import {
 } from './types';
 
 export interface LiveClientOptions {
-  /** Model used when a request omits `model`. */
+  /** The served model (MOCO_HAM7). */
   defaultModel: ModelId;
   timeoutMs?: number;
   fetchImpl?: typeof fetch;
@@ -68,10 +68,7 @@ export class LiveInferenceClient implements InferenceClient {
 
   /** Classification plus model-derived segmentation and photometry. Throws AnalyzeEndpointMissing on 404. */
   async analyze(request: AnalyzeRequest): Promise<InferenceResult> {
-    const model = request.model ?? this.options.defaultModel;
-    if (!LIVE_MODELS.includes(model)) {
-      throw new RangeError(`Model ${model} is not served live`);
-    }
+    const model = this.options.defaultModel;
     const started = performance.now();
     const body = new FormData();
     body.append('file', request.file);
@@ -126,15 +123,11 @@ export class LiveInferenceClient implements InferenceClient {
   }
 
   async predict(request: PredictRequest): Promise<InferenceResult> {
-    const model = request.model ?? this.options.defaultModel;
-    const mode = request.mode ?? 'base';
-    if (!LIVE_MODELS.includes(model)) {
-      throw new RangeError(`Model ${model} is not served live`);
-    }
+    const model = this.options.defaultModel;
     const started = performance.now();
     const body = new FormData();
     body.append('file', request.file);
-    const path = `/api/predict?model=${model}&mode=${mode}`;
+    const path = `/api/predict?model=${model}&mode=base`;
     return performRequest(
       this.transport,
       path,

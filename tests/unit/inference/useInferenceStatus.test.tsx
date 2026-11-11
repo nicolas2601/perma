@@ -41,9 +41,9 @@ describe('useInferenceStatus', () => {
   });
 
   it('uses the mock identity when driven by the mock client', async () => {
-    const client = new MockInferenceClient({ defaultModel: 'A71' });
+    const client = new MockInferenceClient({ defaultModel: 'MOCO_HAM7' });
     const { result } = renderHook(() => useInferenceStatus(client), { wrapper: wrapperFor() });
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
-    expect(result.current.data).toMatchObject({ modelId: 'simulated-A71', sha256Verified: false });
+    expect(result.current.data).toMatchObject({ modelId: 'simulated-MOCO_HAM7', sha256Verified: false });
   });
 });

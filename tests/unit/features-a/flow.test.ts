@@ -16,9 +16,9 @@ const image: ExamImage = {
 
 const result: InferenceResult = {
   source: 'mock',
-  model: 'B71',
+  model: 'MOCO_HAM7',
   mode: 'base',
-  identity: { modelId: 'simulated-B71', sha256: null, sha256Verified: false, recipe: 'simulated', release: null },
+  identity: { modelId: 'simulated-MOCO_HAM7', sha256: null, sha256Verified: false, recipe: 'simulated', release: null },
   scores: { akiec: 0.1, bcc: 0.1, bkl: 0.1, df: 0.1, mel: 0.1, nv: 0.4, vasc: 0.1 },
   latencyMs: 0,
   warnings: ['simulated-model'],

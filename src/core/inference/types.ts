@@ -1,5 +1,7 @@
-export type ModelId = 'MOCO_HAM7' | 'A71' | 'B71' | 'next';
-export type InferenceMode = 'base' | 'tta';
+/** The only model served live. Legacy arms A71/B71 were retired upstream on 2026-11-08. */
+export type ModelId = 'MOCO_HAM7';
+/** The UI exposes no mode switch; single-view inference is the only mode. */
+export type InferenceMode = 'base';
 export type DataSource = 'live' | 'mock';
 
 export const CLASS_CODES = ['akiec', 'bcc', 'bkl', 'df', 'mel', 'nv', 'vasc'] as const;
@@ -35,8 +37,6 @@ export type RecoveryScenario =
 
 export interface PredictRequest {
   file: Blob;
-  model?: ModelId;
-  mode?: InferenceMode;
   signal?: AbortSignal;
 }
 
@@ -119,7 +119,6 @@ export interface ToneSimulation {
 
 export interface AnalyzeRequest {
   file: Blob;
-  model?: ModelId;
   signal?: AbortSignal;
 }
 

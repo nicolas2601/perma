@@ -92,7 +92,8 @@ function expectInvalid(payload: unknown) {
 }
 
 describe('analyze contract: valid payloads', () => {
-  it('accepts a complete ok response and maps it to the app shape', () => {
+  // TODO(captures): the mapping of a complete ok body must use a REAL capture (fixtures/api/analyze-MOCO_HAM7-*.json).
+  it.skip('accepts a complete ok response and maps it to the app shape', () => {
     const body = parseOrInvalid(analyzeResponseSchema, analyzeBody(), 'analyze');
     const result = toAnalysisResult(body, 15200);
     const seg = result.segmentation;

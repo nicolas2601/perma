@@ -26,9 +26,9 @@ export function makeResult(source: InferenceResult['source'] = 'live'): Inferenc
   const scores = Object.fromEntries(CLASS_CODES.map((code) => [code, 0.1])) as Record<ClassCode, number>;
   return {
     source,
-    model: 'A71',
+    model: 'MOCO_HAM7',
     mode: 'base',
-    identity: { modelId: 'A71', sha256: null, sha256Verified: null, recipe: null, release: null },
+    identity: { modelId: 'MOCO_HAM7', sha256: null, sha256Verified: null, recipe: null, release: null },
     scores,
     latencyMs: 120,
     warnings: [],

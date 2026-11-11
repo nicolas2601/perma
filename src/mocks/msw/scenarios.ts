@@ -34,7 +34,7 @@ async function respondWith(scenario: HttpFailureScenario): Promise<Response> {
       return HttpResponse.error();
     case 'timeout':
       await delay('infinite');
-      return HttpResponse.json(fixtureJson('predictBase'));
+      return HttpResponse.json(fixtureJson('mocoPredict'));
     case 'invalid-response':
       return HttpResponse.text('<html>gateway</html>', { status: 200, headers: { 'content-type': 'text/html' } });
   }
