@@ -9,7 +9,7 @@ canvas #f2f5f4, surface #ffffff, ink #1f2b2a, muted #566963, line #7d9692, soft-
 Type: page 28/34 SemiBold, section 20/26, body 16/24, label 14/20 Medium, header 13/18 Medium, caption 12/16. Base spacing 4 px. Focus: 2 px outline, 2 px offset. Touch targets >= 44 px.
 
 ## Rules
-- Original image is never filtered or overlaid; no fabricated mask or heatmap.
+- Original image is never filtered or altered. The model contour is an opt-in layer, OFF by default, drawn above the unaltered original and labelled "Contorno del modelo"; heatmaps remain forbidden.
 - No risk bars, traffic-light colors, animated score counters or fake waits.
 - Persistent notice: "Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos."
 - ES/EN switch keeps the record; only fixed presentation text changes.

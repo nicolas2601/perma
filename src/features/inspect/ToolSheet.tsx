@@ -20,7 +20,7 @@ type ToolSheetProps = {
   onSelect: (tool: ToolName) => void;
 };
 
-/** Image tools sheet ("Herramientas de imagen"). There are no overlays to toggle: the image is unmodified. */
+/** Image tools sheet ("Herramientas de imagen"). The original image is never modified; the optional model contour is drawn above it. */
 export function ToolSheet({ open, tool, image, onOpenChange, onSelect }: ToolSheetProps) {
   const t = useT('inspect');
   const navigate = useNavigate();
