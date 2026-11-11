@@ -10,7 +10,7 @@ export const COPY = {
   sampleCta: 'Usar ejemplo de referencia pública',
   qualityHeadline: 'Revise antes de enviar.',
   reviewSend: 'Revisar envío',
-  consentHeadline: 'Sepa qué envía.',
+  consentHeadline: 'Revise antes de enviar.',
   consentLabel: 'Tengo autorización para enviar esta imagen.',
   sendCta: 'Enviar para análisis',
   stopWait: 'Detener espera',

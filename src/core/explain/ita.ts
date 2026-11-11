@@ -18,7 +18,7 @@ export function itaCategoryLabel(category: ItaCategory, locale: ExplainLocale): 
   return ITA_LABELS[category][locale];
 }
 
-/** One decimal with the locale separator (Spanish: 42,5). Non-finite values are refused, never printed. */
+/** One decimal with the locale separator (Spanish: 1,5 for 1.5). Non-finite values are refused, never printed. */
 export function formatOneDecimal(value: number, locale: ExplainLocale): string {
   if (!Number.isFinite(value)) {
     throw new RangeError(`Value must be finite, received ${value}`);

@@ -1,12 +1,14 @@
 # Model swap runbook
 
-How to point the app at a new inference model (new arm, new release, or a different default). Assumes the backend already serves the new arm; the client cannot make a server arm exist.
+How to point the app at a new inference model (new release, or a new model id). Assumes the backend already serves the new model; the client cannot make a server model exist.
+
+**Current state (2026-11-11):** the only served model is `MOCO_HAM7`. A71 and B71 were retired upstream on 2026-11-08 (predict answers 422) and are no longer part of the client. `ModelId` is `'MOCO_HAM7'`; the UI has no mode switch, so `mode` is always `base`.
 
 ## 0. Decide what changes
 
 | Change | Steps |
 | --- | --- |
-| Default arm only (for example B71 to A71) | Section 4 only. No code change. |
+| Same model, new release or new weights | Sections 2, 3 (identity literals only), 4, 5. |
 | New arm id (for example `C81`) | Sections 1, 2, 3, 4, 5, 6. |
 | Same arm, new release or new weights | Sections 2, 3 (identity literals only), 4, 5. |
 
@@ -46,7 +48,7 @@ The test fixture loader (`src/mocks/msw/fixtures.ts`) imports these exact file n
 
 - Local: set `VITE_DEFAULT_MODEL=<ID>` in `.env` (not committed; `.env` is git-ignored). `.env.example` documents the variable.
 - CI and hosting: set the same variable in the build environment. Never hardcode it in source.
-- The default is currently `B71`, pending Pau's decision on B71 vs A71 (see `docs/api-notes.md`).
+- The default is `MOCO_HAM7`, the only value accepted by `src/core/inference/factory.ts`.
 
 ## 5. Update the identity literals in tests
 
