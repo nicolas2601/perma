@@ -1,6 +1,7 @@
 import {
   CLASS_CODES,
   InferenceError,
+  type AnalyzeRequest,
   type ClassCode,
   type InferenceClient,
   type InferenceResult,
@@ -9,17 +10,27 @@ import {
   type ModelIdentity,
   type PredictRequest,
   type RecoveryScenario,
+  type SimulateToneRequest,
+  type ToneSimulation,
 } from './types';
 import { isFailureScenario, type MockScenario } from './mockScenario';
 import { fnv1a, mulberry32 } from './seededRandom';
+import { isToneStop } from '@/core/explain/toneCache';
+import {
+  SIMULATED_IMAGE_HEIGHT,
+  SIMULATED_IMAGE_WIDTH,
+  shiftPhotometry,
+  simulatedExplainability,
+} from './mockExplain';
 
 export const SIMULATED_WARNING = 'simulated-model';
-const SLOW_MIN_MS = 6_000;
-const SLOW_MAX_MS = 12_000;
+const SLOW_MIN_MS = 14_000;
+const SLOW_MAX_MS = 16_000;
 const FAILURE_DELAY_MS = 600;
 const SCORE_DECIMALS = 6;
 const SCORE_SCALE = 10 ** SCORE_DECIMALS;
 const ENCODER = new TextEncoder();
+const BASE64_CHUNK = 0x8000;
 
 const FAILURE_MESSAGES: Record<RecoveryScenario, string> = {
   permission: 'Simulated: permission denied',
@@ -76,11 +87,45 @@ export class MockInferenceClient implements InferenceClient {
     return simulatedResult(model, mode, random, delayMs);
   }
 
+  /** Simulated classification plus simulated segmentation/photometry. Same failure scenarios as predict. */
+  async analyze(request: AnalyzeRequest): Promise<InferenceResult> {
+    const base = await this.predict(request);
+    const bytes = new Uint8Array(await request.file.arrayBuffer());
+    const { segmentation, photometry } = simulatedExplainability(fnv1a(bytes));
+    return { ...base, segmentation, photometry };
+  }
+
+  /** Simulated tone shift: the image is echoed unchanged; only the photometry moves with ΔL*. */
+  async simulateTone(request: SimulateToneRequest): Promise<ToneSimulation> {
+    if (!isToneStop(request.deltaL)) {
+      throw new RangeError(`Delta ${request.deltaL} is not a tone stop`);
+    }
+    const bytes = new Uint8Array(await request.file.arrayBuffer());
+    const { photometry } = simulatedExplainability(fnv1a(bytes));
+    return {
+      source: 'mock',
+      deltaL: request.deltaL,
+      imageWebpBase64: bytesToBase64(bytes),
+      width: SIMULATED_IMAGE_WIDTH,
+      height: SIMULATED_IMAGE_HEIGHT,
+      clippedFraction: 0,
+      photometry: shiftPhotometry(photometry, request.deltaL),
+    };
+  }
+
   private delayFor(scenario: MockScenario, random: () => number): number {
     if (scenario === 'success') return 0;
     if (scenario === 'slow') return this.options.slowDelayMs ?? seededSlowDelay(random);
     return this.options.failureDelayMs ?? FAILURE_DELAY_MS;
   }
+}
+
+function bytesToBase64(bytes: Uint8Array): string {
+  let binary = '';
+  for (let i = 0; i < bytes.length; i += BASE64_CHUNK) {
+    binary += String.fromCharCode(...bytes.subarray(i, i + BASE64_CHUNK));
+  }
+  return btoa(binary);
 }
 
 function seededSlowDelay(random: () => number): number {

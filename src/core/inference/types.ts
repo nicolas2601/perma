@@ -42,6 +42,8 @@ export interface InferenceClient {
   readonly source: DataSource;
   status(signal?: AbortSignal): Promise<ModelIdentity>;
   predict(request: PredictRequest): Promise<InferenceResult>;
+  analyze(request: AnalyzeRequest): Promise<InferenceResult>;
+  simulateTone(request: SimulateToneRequest): Promise<ToneSimulation>;
 }
 
 export class InferenceError extends Error {
@@ -57,8 +59,10 @@ export type ItaCategory = (typeof ITA_CATEGORIES)[number];
 /** Contour vertex in ORIGINAL image pixel coordinates [x, y]. */
 export type ContourPoint = readonly [number, number];
 
-export type SegmentationUnavailableReason = 'empty_mask' | 'degenerate_mask' | 'segmenter_error';
-export type PhotometryReason = 'no_mask' | 'degenerate_mask' | 'ring_too_small' | 'ita_indeterminate';
+export type SegmentationUnavailableReason = 'empty_mask' | 'degenerate_mask' | 'segmenter_error' | 'endpoint_missing';
+export type SegmentationSource = 'model' | 'mock';
+export type PhotometryReason =
+  | 'no_mask' | 'degenerate_mask' | 'ring_too_small' | 'ita_indeterminate' | 'endpoint_missing';
 
 export interface SegmentationIdentity {
   modelId: string;
@@ -72,7 +76,7 @@ export interface SegmentationIdentity {
 export type SegmentationResult =
   | {
       status: 'ok';
-      source: 'model';
+      source: SegmentationSource;
       imageWidth: number;
       imageHeight: number;
       maskWidth: number;
@@ -84,7 +88,7 @@ export type SegmentationResult =
       threshold: number;
       identity: SegmentationIdentity;
     }
-  | { status: 'unavailable'; source: 'model'; reason: SegmentationUnavailableReason };
+  | { status: 'unavailable'; source: SegmentationSource; reason: SegmentationUnavailableReason };
 
 /** Colorimetric skin measurement from the perilesional ring. Not a Fitzpatrick phototype. */
 export type PhotometryResult =
@@ -108,6 +112,7 @@ export interface ToneSimulation {
   height: number;
   clippedFraction: number;
   photometry: PhotometryResult;
+  source: DataSource;
 }
 
 export interface AnalyzeRequest {

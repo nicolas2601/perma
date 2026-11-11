@@ -193,6 +193,7 @@ export function toAnalysisResult(body: AnalyzeResponse, latencyMs: number): Infe
 /** Maps a validated simulate-tone body to the app shape. Pixels are never inspected here. */
 export function toToneSimulation(body: SimulateToneResponse): ToneSimulation {
   return {
+    source: 'live',
     deltaL: body.delta_l,
     imageWebpBase64: body.image_webp_base64,
     width: body.width,

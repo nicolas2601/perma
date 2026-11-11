@@ -71,13 +71,13 @@ describe('MockInferenceClient: failure scenarios', () => {
 });
 
 describe('MockInferenceClient: slow and abort', () => {
-  it('resolves the slow scenario after a seeded delay between 6 and 12 seconds', async () => {
+  it('resolves the slow scenario after a seeded delay between 14 and 16 seconds', async () => {
     vi.useFakeTimers();
     const pending = make('slow', { failureDelayMs: 0 }).predict({ file: imageBlob('slow-case'), model: 'B71' });
-    await vi.advanceTimersByTimeAsync(12_000);
+    await vi.advanceTimersByTimeAsync(16_000);
     const result = await pending;
-    expect(result.latencyMs).toBeGreaterThanOrEqual(6_000);
-    expect(result.latencyMs).toBeLessThanOrEqual(12_000);
+    expect(result.latencyMs).toBeGreaterThanOrEqual(14_000);
+    expect(result.latencyMs).toBeLessThanOrEqual(16_000);
     expect(result.source).toBe('mock');
   });
 

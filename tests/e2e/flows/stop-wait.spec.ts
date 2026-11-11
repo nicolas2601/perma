@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { COPY, chooseSample, openHome, previewImage, setMockQuery, toCapture, toConsentChecked } from './support';
 
-const SLOW_MAX_MS = 12_000;
+const SLOW_MAX_MS = 16_000;
 const LATE_RESPONSE_MARGIN_MS = 1_000;
 
 test('Detener la espera keeps the image and a late response is discarded', async ({ page }) => {
