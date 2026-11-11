@@ -26,3 +26,12 @@ export function withExplainabilityUnavailable(result: InferenceResult): Inferenc
     photometry: { status: 'unavailable', reason: 'endpoint_missing' },
   };
 }
+
+/** Stamps a fresh id when a mask exists, so the side record can be matched to this exact analysis. */
+export function withAnalysisId(
+  result: InferenceResult,
+  newId: () => string = () => crypto.randomUUID(),
+): InferenceResult {
+  if (result.segmentation?.status !== 'ok') return result;
+  return { ...result, analysisId: newId() };
+}

@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { analyzeWith } from '@/core/inference/analyzeFlow';
+import { analyzeWith, withExplainabilityUnavailable } from '@/core/inference/analyzeFlow';
 import { AnalyzeEndpointMissing } from '@/core/inference/errors';
 import { InferenceError, type InferenceClient, type InferenceResult } from '@/core/inference/types';
 
@@ -61,5 +61,34 @@ describe('analyzeWith: endpoint fallback', () => {
     });
     await expect(analyzeWith(client, FILE)).rejects.toMatchObject({ scenario: 'timeout' });
     expect(client.predict).not.toHaveBeenCalled();
+  });
+});
+
+describe('withAnalysisId: ties the in-memory mask to one analysis', () => {
+  it('stamps an id when segmentation is ok and leaves unavailable results without one', async () => {
+    const { withAnalysisId } = await import('@/core/inference/analyzeFlow');
+    const ok: InferenceResult = {
+      ...predictResult(),
+      segmentation: {
+        status: 'ok',
+        source: 'model',
+        imageWidth: 10,
+        imageHeight: 10,
+        maskWidth: 10,
+        maskHeight: 10,
+        maskPngBase64: 'x',
+        contour: [
+          [1, 1],
+          [2, 1],
+          [2, 2],
+        ],
+        areaFraction: 0.1,
+        threshold: 0.5,
+        identity: { modelId: 'm', run: 'r', release: 'v', modelSha256: 'b'.repeat(64), inputSize: 224 },
+      },
+    };
+    expect(withAnalysisId(ok, () => 'fixed-id').analysisId).toBe('fixed-id');
+    const unavailable = withExplainabilityUnavailable(predictResult());
+    expect(withAnalysisId(unavailable, () => 'fixed-id').analysisId).toBeUndefined();
   });
 });
