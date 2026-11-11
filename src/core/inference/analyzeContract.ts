@@ -5,6 +5,7 @@ import {
   type InferenceResult,
   type PhotometryResult,
   type SegmentationResult,
+  type ToneSimulation,
 } from './types';
 
 export const ANALYZE_SCHEMA = 'dermssl.analyze.v1';
@@ -187,6 +188,18 @@ export function toAnalysisResult(body: AnalyzeResponse, latencyMs: number): Infe
   return {
     ...toInferenceResult(classification, latencyMs),
     segmentation: toSegmentation(body.segmentation),
+    photometry: toPhotometry(body.photometry),
+  };
+}
+
+/** Maps a validated simulate-tone body to the app shape. Pixels are never inspected here. */
+export function toToneSimulation(body: SimulateToneResponse): ToneSimulation {
+  return {
+    deltaL: body.delta_l,
+    imageWebpBase64: body.image_webp_base64,
+    width: body.width,
+    height: body.height,
+    clippedFraction: body.clipped_fraction,
     photometry: toPhotometry(body.photometry),
   };
 }

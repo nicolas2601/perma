@@ -100,3 +100,26 @@ export type PhotometryResult =
       validFraction: number;
     }
   | { status: 'unavailable'; reason: PhotometryReason };
+
+/** Tone-robustness simulation. Always source 'live' (the backend computed it); never persisted or exported. */
+export interface ToneSimulation {
+  deltaL: number;
+  imageWebpBase64: string;
+  width: number;
+  height: number;
+  clippedFraction: number;
+  photometry: PhotometryResult;
+}
+
+export interface AnalyzeRequest {
+  file: Blob;
+  model?: ModelId;
+  signal?: AbortSignal;
+}
+
+export interface SimulateToneRequest {
+  file: Blob;
+  maskPngBase64: string;
+  deltaL: number;
+  signal?: AbortSignal;
+}
