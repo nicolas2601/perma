@@ -8,10 +8,10 @@ export function isToneStop(value: number): value is ToneStop {
   return (TONE_STOPS as readonly number[]).includes(value);
 }
 
-/** Spanish aria-valuetext, e.g. "ΔL* −8 (simulación)". */
-export function toneStopLabel(delta: ToneStop): string {
+/** aria-valuetext, e.g. "ΔL* −8 (simulación)". The suffix comes from copy so ES and EN stay in parity. */
+export function toneStopLabel(delta: ToneStop, suffix = '(simulación)'): string {
   const sign = SIGN_FOR[deltaSign(delta)];
-  return `ΔL* ${sign}${Math.abs(delta)} (simulación)`;
+  return `ΔL* ${sign}${Math.abs(delta)} ${suffix}`;
 }
 
 function deltaSign(delta: number): 'pos' | 'neg' | 'zero' {

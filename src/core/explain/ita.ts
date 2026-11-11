@@ -18,14 +18,18 @@ export function itaCategoryLabel(category: ItaCategory, locale: ExplainLocale): 
   return ITA_LABELS[category][locale];
 }
 
-/** ITA in degrees with one decimal, locale decimal separator. Non-finite values are refused, never printed. */
-export function formatItaDegrees(degrees: number, locale: ExplainLocale): string {
-  if (!Number.isFinite(degrees)) {
-    throw new RangeError(`ITA must be finite, received ${degrees}`);
+/** One decimal with the locale separator (Spanish: 42,5). Non-finite values are refused, never printed. */
+export function formatOneDecimal(value: number, locale: ExplainLocale): string {
+  if (!Number.isFinite(value)) {
+    throw new RangeError(`Value must be finite, received ${value}`);
   }
-  const number = new Intl.NumberFormat(INTL_TAG[locale], {
+  return new Intl.NumberFormat(INTL_TAG[locale], {
     minimumFractionDigits: ITA_DECIMALS,
     maximumFractionDigits: ITA_DECIMALS,
-  }).format(degrees);
-  return `${number}°`;
+  }).format(value);
+}
+
+/** ITA in degrees with one decimal, locale decimal separator. */
+export function formatItaDegrees(degrees: number, locale: ExplainLocale): string {
+  return `${formatOneDecimal(degrees, locale)}°`;
 }
