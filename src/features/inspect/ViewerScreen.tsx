@@ -4,7 +4,7 @@ import { useNavigate, useSearch } from '@/app/router';
 import { useExam } from '@/core/exam/react';
 import { useI18n, useT } from '@/core/i18n/I18nProvider';
 import { ScreenHeader } from './Chrome';
-import { useObjectUrl } from './useImageSource';
+import { isReferenceImage, useObjectUrl } from './useImageSource';
 import { useResultGuard } from './guards';
 import { ImagePanel, ObservationsPanel, OutputPanel, ViewerStage } from './ViewerPanels';
 import { ToneAudit } from './explain/ToneAudit';
@@ -61,7 +61,7 @@ export default function ViewerScreen() {
   return (
     <main className="flex h-dvh flex-col bg-canvas lg:h-auto lg:min-h-dvh">
       <ScreenHeader
-        title={t('viewerTitle')}
+        title={isReferenceImage(image) ? t('viewerTitle') : t('viewerTitleSession')}
         backTo="/resultado"
         backLabel={t('back')}
         infoLabel={t('info')}
