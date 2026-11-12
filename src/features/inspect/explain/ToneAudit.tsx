@@ -99,6 +99,7 @@ export function ToneAudit({ result, file, src }: ToneAuditProps) {
         onChange={(event) => onSlide(event.target.value)}
         className={cx('h-11 w-full accent-accent')}
       />
+      <p className="m-0 text-caption text-ink">{t(TONE_STEP_KEYS[stepIndex] ?? 'toneStep0')}</p>
       <Button fullWidth disabled={mask === undefined || busy} onClick={() => void simulate()}>
         {busy ? t('toneSimulating') : t('toneSimulate')}
       </Button>
@@ -106,8 +107,8 @@ export function ToneAudit({ result, file, src }: ToneAuditProps) {
       {mask === undefined ? <p className="m-0 text-caption text-muted">{t('toneNoMask')}</p> : null}
       {failed ? <p className="m-0 text-caption text-muted">{t('toneFailed')}</p> : null}
       <p className="m-0 text-caption text-ink">
-        {t('toneBefore')}: {before === null ? '—' : formatItaDegrees(before, locale)} · {t('toneAfter')}:{' '}
-        {after === null ? '—' : formatItaDegrees(after, locale)}
+        {t('toneBefore')}: {before === null ? '—' : formatItaDegrees(before, locale)}
+        {showSimulated ? ` · ${t('toneAfter')}: ${after === null ? '—' : formatItaDegrees(after, locale)}` : null}
       </p>
     </div>
   );

@@ -86,4 +86,15 @@ test.describe('explainability layer on the real captured reference image', () =>
     await expect(page.getByText(new RegExp(`ITA después: ${esDecimal(tone.photometry.ita_deg)}°`))).toBeVisible();
     await shot(page, 'audit-after-simulation');
   });
+
+  test('the result shows the photo at a real size on mobile and the switch draws over it', async ({ page }) => {
+    await runToResult(page);
+    const photo = page.locator('figure img').first();
+    await expect(photo).toBeVisible();
+    const box = await photo.boundingBox();
+    expect(box?.width ?? 0).toBeGreaterThan(0);
+    expect(box?.height ?? 0).toBeGreaterThan(0);
+    await page.getByRole('switch', { name: SWITCH_NAME }).click();
+    await expect(page.locator('figure svg[viewBox] polygon').first()).toBeVisible();
+  });
 });
