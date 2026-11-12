@@ -103,7 +103,7 @@ describe('ContourOverlay', () => {
 describe('ContourSwitch', () => {
   it('is off by default and toggles on click', async () => {
     render(withI18n(<ContourSwitch result={resultWith()} />));
-    const sw = screen.getByRole('switch', { name: 'Ver delimitación de la lesión' });
+    const sw = screen.getByRole('switch', { name: 'Mostrar el contorno de la lesión' });
     expect(sw.getAttribute('aria-checked')).toBe('false');
     await userEvent.click(sw);
     expect(sw.getAttribute('aria-checked')).toBe('true');
@@ -115,13 +115,13 @@ describe('ContourSwitch', () => {
     render(withI18n(<ContourSwitch result={result} />));
     const sw = screen.getByRole('switch');
     expect(sw.hasAttribute('disabled')).toBe(true);
-    expect(screen.getByText('No disponible: el análisis no produjo un contorno válido.')).toBeTruthy();
+    expect(screen.getByText('No disponible. El análisis no generó un contorno válido.')).toBeTruthy();
   });
 
   it('explains the endpoint_missing case separately', () => {
     const result = resultWith({ segmentation: { status: 'unavailable', source: 'model', reason: 'endpoint_missing' } });
     render(withI18n(<ContourSwitch result={result} />));
-    expect(screen.getByText('Esta versión del servidor no incluye la delimitación.')).toBeTruthy();
+    expect(screen.getByText('Esta versión del servidor no incluye el contorno.')).toBeTruthy();
   });
 });
 
@@ -129,9 +129,9 @@ describe('PhotometryCard', () => {
   it('shows ITA with a Spanish decimal comma and its category, plus the verbatim note', () => {
     render(withI18n(<PhotometryCard photometry={OK_PHOTOMETRY} locale="es" />));
     expect(screen.getByText('ITA 42,5° · Clara')).toBeTruthy();
-    expect(screen.getByText('L* mediana 63,2 · b* mediana 14,1')).toBeTruthy();
+    expect(screen.getByText('Luminosidad mediana (L*) 63,2 · Eje amarillo-azul mediano (b*) 14,1')).toBeTruthy();
     expect(
-      screen.getByText('Estimación colorimétrica de soporte, no reemplaza la clasificación clínica de fototipo.'),
+      screen.getByText('Es una estimación de color de apoyo. No reemplaza la clasificación clínica del fototipo.'),
     ).toBeTruthy();
   });
 
@@ -144,13 +144,13 @@ describe('PhotometryCard', () => {
       medianB: 3.2,
     };
     render(withI18n(<PhotometryCard photometry={indeterminate} locale="es" />));
-    expect(screen.getByText('ITA no determinable (b* bajo)')).toBeTruthy();
-    expect(screen.getByText(/b\* mediana 3,2/)).toBeTruthy();
+    expect(screen.getByText('No se puede determinar el ITA (b* demasiado bajo)')).toBeTruthy();
+    expect(screen.getByText(/Eje amarillo-azul mediano \(b\*\) 3,2/)).toBeTruthy();
   });
 
   it('shows a reason text when photometry is unavailable', () => {
     render(withI18n(<PhotometryCard photometry={{ status: 'unavailable', reason: 'no_mask' }} locale="es" />));
-    expect(screen.getByText('Fotometría no disponible para esta imagen.')).toBeTruthy();
+    expect(screen.getByText('No hay medición de color disponible para esta imagen.')).toBeTruthy();
   });
 });
 
@@ -185,21 +185,21 @@ describe('ToneAudit', () => {
     renderAudit(resultWith());
     await userEvent.click(screen.getByRole('button', { name: 'Simular' }));
     expect(simulateTone).not.toHaveBeenCalled();
-    expect(screen.getByText('ΔL* 0 muestra la imagen original; no se consulta el servicio.')).toBeTruthy();
+    expect(screen.getByText('Con ΔL* 0 se muestra la imagen original y no se consulta el servidor.')).toBeTruthy();
   });
 
   it('badges the simulated image as a tone simulation', async () => {
     renderAudit(resultWith());
     fireEvent.change(screen.getByRole('slider'), { target: { value: '-8' } });
     await userEvent.click(screen.getByRole('button', { name: 'Simular' }));
-    expect(await screen.findByText('Simulación de tono')).toBeTruthy();
+    expect(await screen.findByText('Simulación de luminosidad')).toBeTruthy();
   });
 
   it('disables simulation with a reason when the mask is not restored after reload', () => {
     renderAudit(resultWith({ segmentation: { ...OK_SEGMENTATION, maskPngBase64: undefined } }));
     expect(screen.getByRole('button', { name: 'Simular' }).hasAttribute('disabled')).toBe(true);
     expect(
-      screen.getByText('La máscara de esta imagen no está guardada. Vuelva a analizar la imagen para simular.'),
+      screen.getByText('No tenemos guardada la zona de la lesión de esta imagen. Vuelva a analizar la imagen para poder simular.'),
     ).toBeTruthy();
   });
 });
