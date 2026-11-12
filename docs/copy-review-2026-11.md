@@ -1,766 +1,770 @@
 # Revisión de copy (noviembre 2026)
 
-Revisión de todo el texto visible de PERMA, pedida por Dr. Karen Sánchez: el texto sonaba a IA, a veces brusco, y tenía frases que solo entendían sus autores. Esta tabla lista cada clave de copy en español, con el texto anterior, el nuevo y el motivo. Las claves y la paridad ES/EN se mantienen; el texto EN es una reescritura natural del nuevo ES.
+Revisión del texto visible de PERMA, pedida por Dr. Karen Sánchez. Columnas: texto anterior (ES), después de la primera pasada (ES) y segunda pasada "v2" (ES): más simple, dirigida a un médico, con vocabulario clínico conocido y sin jerga de ingeniería. Las claves y la paridad ES/EN se mantienen; EN sigue el mismo criterio.
 
-Resumen: 738 claves revisadas, 214 con texto nuevo; el resto se conserva por motivo técnico o porque el texto ya cumplía.
+Restricciones que se conservan: la notificación de investigación queda literal; nunca se afirma probabilidad, riesgo o diagnóstico salvo en negación; ITA se describe como índice de color, no como fototipo; la simulación cambia solo la luminosidad (L*); no se menciona el tipo de supervisión de ningún modelo.
 
-Restricciones que se conservaron: la notificación de investigación queda literal; ningún texto afirma probabilidad, riesgo o diagnóstico salvo en negación; ITA se describe como índice colorimétrico, no como fototipo; la simulación cambia solo la luminosidad (L*); no se menciona el tipo de supervisión de ningún modelo.
+Cambios v2 principales: categorías con nombres clínicos completos; contorno "Contorno de la lesión según el modelo"; ITA y datos técnicos (modelo, versión, huella, configuración) en la sección colapsada "Detalles técnicos (para investigación)"; los pasos de luminosidad van de "Más oscura (2 pasos)" a "Más clara (2 pasos)" con el ΔL* exacto en detalles técnicos.
+Resumen: 738 claves revisadas; 214 con texto nuevo en v1; 13 con cambio adicional en v2.
+
+
+Pendiente para la siguiente pasada: el resto de términos como "puntaje relativo", "salida", "inferencia" y "HAM7" en pantallas principales. La columna v2 marca "=" cuando el texto no cambió en esta pasada.
 
 ## Core, PWA y sistema (group-a)
 
-| Archivo | Clave | Antes (ES) | Después (ES) | Motivo |
-|---|---|---|---|---|
-| src/core/i18n/coreCopy.ts | core.notice.experimental | Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos. | Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos. | kept |
-| src/core/i18n/coreCopy.ts | core.badge.simulated | Modelo simulado | Modelo simulado | kept |
-| src/core/i18n/coreCopy.ts | core.abcde.unanswered | Sin evaluar | Sin evaluar | kept |
-| src/core/i18n/coreCopy.ts | core.source.live | En vivo | En vivo | kept |
-| src/core/i18n/coreCopy.ts | core.source.mock | Modelo simulado | Modelo simulado | kept |
-| src/core/i18n/coreCopy.ts | core.storage.memory | Los datos solo se guardan durante esta sesión. | Los datos solo se guardan durante esta sesión. | kept |
-| src/core/i18n/coreCopy.ts | core.locale.es | Español | Español | kept |
-| src/core/i18n/coreCopy.ts | core.locale.en | English | English | kept |
-| src/core/i18n/coreCopy.ts | core.export.title | Registro de examen | Registro de examen | kept |
-| src/core/i18n/coreCopy.ts | core.export.recordId | Identificador del registro | Identificador del registro | kept |
-| src/core/i18n/coreCopy.ts | core.export.exportedAt | Fecha de exportación | Fecha de exportación | kept |
-| src/core/i18n/coreCopy.ts | core.export.modelSource | Origen del modelo | Origen del modelo | kept |
-| src/core/i18n/coreCopy.ts | core.export.image | Imagen | Imagen | kept |
-| src/core/i18n/coreCopy.ts | core.export.noImage | Sin imagen | Sin imagen | kept |
-| src/core/i18n/coreCopy.ts | core.export.noResult | Sin salida del modelo | Sin salida del modelo | kept |
-| src/core/i18n/coreCopy.ts | core.export.scores | Puntajes relativos del modelo | Puntajes relativos del modelo | kept |
-| src/core/i18n/coreCopy.ts | core.export.observations | Observaciones ABCDE | Observaciones ABCDE | kept |
-| src/core/i18n/coreCopy.ts | core.export.note | Nota | Nota | kept |
-| src/core/i18n/coreCopy.ts | core.export.failed | No se pudo generar el archivo. | No se pudo generar el archivo. | kept |
-| src/core/i18n/coreCopy.ts | core.csv.colSection | Sección | Sección | kept |
-| src/core/i18n/coreCopy.ts | core.csv.colField | Campo | Campo | kept |
-| src/core/i18n/coreCopy.ts | core.csv.colValue | Valor | Valor | kept |
-| src/core/i18n/coreCopy.ts | core.csv.colNote | Nota | Nota | kept |
-| src/core/i18n/coreCopy.ts | core.csv.sectionExam | Examen | Examen | kept |
-| src/core/i18n/coreCopy.ts | core.csv.sectionContext | Contexto suministrado por el usuario | Contexto suministrado por el usuario | kept |
-| src/core/i18n/coreCopy.ts | core.csv.sectionModel | Modelo (salida experimental) | Modelo (salida experimental) | kept |
-| src/core/i18n/coreCopy.ts | core.csv.createdAt | Fecha de creación | Fecha de creación | kept |
-| src/core/i18n/coreCopy.ts | core.csv.bodySite | Zona del cuerpo | Zona del cuerpo | kept |
-| src/core/i18n/coreCopy.ts | core.csv.notRecorded | No registrado | No registrado | kept |
-| src/core/i18n/coreCopy.ts | core.csv.notice | Aviso | Aviso | kept |
-| src/core/i18n/coreCopy.ts | core.csv.contextNotice | Dato escrito por el usuario; el modelo no lo usa ni se interpreta clínicamente. | Dato escrito por el usuario. El modelo no lo utiliza y no se interpreta desde el punto de vista clínico. | changed |
-| src/core/i18n/coreCopy.ts | core.csv.age | Edad (años) | Edad (años) | kept |
-| src/core/i18n/coreCopy.ts | core.csv.duration | Evolución | Evolución | kept |
-| src/core/i18n/coreCopy.ts | core.csv.symptoms | Síntomas suministrados | Síntomas suministrados | kept |
-| src/core/i18n/coreCopy.ts | core.csv.history | Antecedentes | Antecedentes | kept |
-| src/core/i18n/coreCopy.ts | core.csv.model | Modelo | Modelo | kept |
-| src/core/i18n/coreCopy.ts | core.csv.mode | Modo | Modo | kept |
-| src/core/i18n/coreCopy.ts | core.csv.recipe | Receta | Configuración del modelo | changed |
-| src/core/i18n/coreCopy.ts | core.csv.release | Versión | Versión | kept |
-| src/core/i18n/coreCopy.ts | core.csv.sha | SHA-256 del modelo | Huella digital del modelo (SHA-256) | changed |
-| src/core/i18n/coreCopy.ts | core.csv.simulatedNote | Valores simulados: no provienen del modelo real. | Valores simulados: no provienen del modelo real. | kept |
-| src/core/i18n/coreCopy.ts | core.csv.sectionPhotometry | Fotometría de piel (orientativa) | Color de la piel (orientativo) | changed |
-| src/core/i18n/coreCopy.ts | core.csv.ita | ITA (°) | ITA (°) | kept |
-| src/core/i18n/coreCopy.ts | core.csv.itaCategory | Categoría ITA | Categoría ITA | kept |
-| src/core/i18n/coreCopy.ts | core.csv.itaCategory.very_light | Muy clara | Muy clara | kept |
-| src/core/i18n/coreCopy.ts | core.csv.itaCategory.light | Clara | Clara | kept |
-| src/core/i18n/coreCopy.ts | core.csv.itaCategory.intermediate | Intermedia | Intermedia | kept |
-| src/core/i18n/coreCopy.ts | core.csv.itaCategory.tan | Bronceada | Bronceada | kept |
-| src/core/i18n/coreCopy.ts | core.csv.itaCategory.brown | Morena | Morena | kept |
-| src/core/i18n/coreCopy.ts | core.csv.itaCategory.dark | Oscura | Oscura | kept |
-| src/core/i18n/coreCopy.ts | core.csv.itaNotDeterminable | ITA no determinable (b* bajo) | No se puede calcular el ITA (valor b* bajo) | changed |
-| src/core/i18n/coreCopy.ts | core.csv.medianL | L* mediana | Luminosidad mediana (L*) | changed |
-| src/core/i18n/coreCopy.ts | core.csv.medianB | b* mediana | Componente b* mediano (azul a amarillo) | changed |
-| src/core/i18n/coreCopy.ts | core.csv.photometryStatus | Estado de la fotometría | Estado del análisis de color | changed |
-| src/core/i18n/coreCopy.ts | core.csv.photometryReason.endpoint_missing | Análisis de explicabilidad no disponible en el servidor | El servidor no ofrece el análisis de explicación del modelo | changed |
-| src/core/i18n/coreCopy.ts | core.csv.photometryReason.no_mask | Sin máscara de lesión | Sin máscara de lesión | kept |
-| src/core/i18n/coreCopy.ts | core.csv.photometryReason.degenerate_mask | Máscara degenerada | La máscara de la lesión no es válida | changed |
-| src/core/i18n/coreCopy.ts | core.csv.photometryReason.ring_too_small | Anillo de piel insuficiente | No hay suficiente piel alrededor de la lesión | changed |
-| src/core/i18n/coreCopy.ts | core.csv.photometryReason.ita_indeterminate | ITA no determinable (b* bajo) | No se puede calcular el ITA (valor b* bajo) | changed |
-| src/core/i18n/coreCopy.ts | core.csv.itaNote | Estimación colorimétrica de soporte, no reemplaza la clasificación clínica de fototipo. | Es una estimación colorimétrica de apoyo. No es la clasificación clínica del fototipo de piel. | changed |
-| src/core/i18n/coreCopy.ts | core.csv.scoreNote | Puntaje relativo de 0 a 1; no indica la probabilidad de tener una enfermedad. | Puntaje relativo de 0 a 1. No es la probabilidad de que el paciente tenga una enfermedad ni un diagnóstico. | changed |
-| src/core/i18n/coreCopy.ts | core.csv.origin.camera | Cámara | Cámara | kept |
-| src/core/i18n/coreCopy.ts | core.csv.origin.file | Archivo cargado | Archivo cargado | kept |
-| src/core/i18n/coreCopy.ts | core.csv.origin.sample | Imagen de referencia pública | Imagen de referencia pública | kept |
-| src/core/i18n/coreCopy.ts | core.csv.duration.lt1w | Menos de 1 semana | Menos de 1 semana | kept |
-| src/core/i18n/coreCopy.ts | core.csv.duration.1to4w | 1 a 4 semanas | 1 a 4 semanas | kept |
-| src/core/i18n/coreCopy.ts | core.csv.duration.1to6m | 1 a 6 meses | 1 a 6 meses | kept |
-| src/core/i18n/coreCopy.ts | core.csv.duration.gt6m | Más de 6 meses | Más de 6 meses | kept |
-| src/core/i18n/coreCopy.ts | core.csv.duration.unknown | No sabe | No lo sabe | changed |
-| src/core/i18n/coreCopy.ts | core.csv.symptom.itch | Picazón | Picazón | kept |
-| src/core/i18n/coreCopy.ts | core.csv.symptom.pain | Dolor | Dolor | kept |
-| src/core/i18n/coreCopy.ts | core.csv.symptom.bleeding | Sangrado | Sangrado | kept |
-| src/core/i18n/coreCopy.ts | core.csv.symptom.recentChange | Cambio reciente | Cambio reciente | kept |
-| src/core/i18n/coreCopy.ts | core.class.nv | Nevo melanocítico | Nevo melanocítico | kept |
-| src/core/i18n/coreCopy.ts | core.class.bkl | Queratosis benigna | Queratosis benigna | kept |
-| src/core/i18n/coreCopy.ts | core.class.mel | Melanoma | Melanoma | kept |
-| src/core/i18n/coreCopy.ts | core.class.bcc | Carcinoma basocelular | Carcinoma basocelular | kept |
-| src/core/i18n/coreCopy.ts | core.class.akiec | Queratosis actínica / carcinoma intraepidérmico | Queratosis actínica / carcinoma intraepidérmico | kept |
-| src/core/i18n/coreCopy.ts | core.class.vasc | Lesión vascular | Lesión vascular | kept |
-| src/core/i18n/coreCopy.ts | core.class.df | Dermatofibroma | Dermatofibroma | kept |
-| src/app/pwa/copy.ts | regionLabel | Estado de la aplicación | Estado de la aplicación | kept |
-| src/app/pwa/copy.ts | updateReady | Hay una versión nueva de PERMA. | Hay una nueva versión de PERMA disponible. | changed |
-| src/app/pwa/copy.ts | updateBlocked | Hay una versión nueva. Podrá actualizar cuando termine o guarde la revisión en curso. | Hay una versión nueva. Podrá actualizar cuando termine o guarde la revisión en curso. | kept |
-| src/app/pwa/copy.ts | updateApply | Actualizar | Actualizar | kept |
-| src/app/pwa/copy.ts | updateLater | Más tarde | Más tarde | kept |
-| src/app/pwa/copy.ts | offlineReady | PERMA está lista para usarse sin conexión. El análisis de imágenes requiere conexión a la red. | PERMA está lista para usarse sin conexión. El análisis de imágenes requiere conexión a la red. | kept |
-| src/app/pwa/copy.ts | offlineDismiss | Entendido | Entendido | kept |
-| src/ui/systemCopy.ts | title | Sistema PERMA | Sistema de componentes de PERMA | changed |
-| src/ui/systemCopy.ts | languageLabel | Idioma | Idioma | kept |
-| src/ui/systemCopy.ts | navLabel | Navegación principal | Navegación principal | kept |
-| src/ui/systemCopy.ts | noticeLabel | Aviso del prototipo | Aviso del prototipo | kept |
-| src/ui/systemCopy.ts | notice | Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos. | Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos. | kept |
-| src/ui/systemCopy.ts | sectionButtons | Botones | Botones | kept |
-| src/ui/systemCopy.ts | sectionCards | Tarjetas | Tarjetas | kept |
-| src/ui/systemCopy.ts | sectionTabs | Vistas | Vistas | kept |
-| src/ui/systemCopy.ts | sectionAccordion | Criterios ABCDE | Criterios ABCDE | kept |
-| src/ui/systemCopy.ts | sectionSheet | Hoja inferior | Hoja inferior | kept |
-| src/ui/systemCopy.ts | sectionNav | Navegación | Navegación | kept |
-| src/ui/systemCopy.ts | sectionScores | Puntajes relativos | Puntajes relativos | kept |
-| src/ui/systemCopy.ts | sectionFeedback | Estado y archivo | Estado y archivo | kept |
-| src/ui/systemCopy.ts | variants.primary | Principal | Principal | kept |
-| src/ui/systemCopy.ts | variants.secondary | Secundario | Secundario | kept |
-| src/ui/systemCopy.ts | variants.quiet | Discreto | Discreto | kept |
-| src/ui/systemCopy.ts | variants.danger | Peligro | Peligro | kept |
-| src/ui/systemCopy.ts | variants.soft | Suave | Suave | kept |
-| src/ui/systemCopy.ts | states.default | Reposo | Reposo | kept |
-| src/ui/systemCopy.ts | states.pressed | Presionado | Presionado | kept |
-| src/ui/systemCopy.ts | states.disabled | Deshabilitado | Deshabilitado | kept |
-| src/ui/systemCopy.ts | states.loading | Cargando | Cargando | kept |
-| src/ui/systemCopy.ts | iconLabel | Opciones de la imagen | Opciones de la imagen | kept |
-| src/ui/systemCopy.ts | focusDemo | Foco | Foco | kept |
-| src/ui/systemCopy.ts | badgeSimulated | Modelo simulado | Modelo simulado | kept |
-| src/ui/systemCopy.ts | bentoTitle | Prepare una imagen. | Empiece por una imagen. | changed |
-| src/ui/systemCopy.ts | bentoBody | Registre el contexto y sus observaciones. | Puede registrar el contexto y sus observaciones. | changed |
-| src/ui/systemCopy.ts | protocolTitle | Protocolo | Protocolo | kept |
-| src/ui/systemCopy.ts | protocolBody | Alcance y límites | Alcance y límites | kept |
-| src/ui/systemCopy.ts | tabsLabel | Vistas de la imagen | Vistas de la imagen | kept |
-| src/ui/systemCopy.ts | tabs.image | Imagen | Imagen | kept |
-| src/ui/systemCopy.ts | tabs.model | Salida del modelo | Salida del modelo | kept |
-| src/ui/systemCopy.ts | tabs.notes | Mis observaciones | Mis observaciones | kept |
-| src/ui/systemCopy.ts | tabImageBody | Imagen de referencia sin modificar. | Imagen de referencia sin modificar. | kept |
-| src/ui/systemCopy.ts | tabModelBody | Puntajes relativos del modelo experimental. | Puntajes relativos del modelo experimental. | kept |
-| src/ui/systemCopy.ts | tabNotesBody | Sus observaciones se registran aparte. | Sus observaciones se registran aparte. | kept |
-| src/ui/systemCopy.ts | abcdeLabel | Criterios ABCDE | Criterios ABCDE | kept |
-| src/ui/systemCopy.ts | abcdeStatus | Sin evaluar | Sin evaluar | kept |
-| src/ui/systemCopy.ts | criteria.0.letter | A | A | kept |
-| src/ui/systemCopy.ts | criteria.0.title | Asimetría | Asimetría | kept |
-| src/ui/systemCopy.ts | criteria.1.letter | B | B | kept |
-| src/ui/systemCopy.ts | criteria.1.title | Borde | Borde | kept |
-| src/ui/systemCopy.ts | criteria.2.letter | C | C | kept |
-| src/ui/systemCopy.ts | criteria.2.title | Color | Color | kept |
-| src/ui/systemCopy.ts | criteria.3.letter | D | D | kept |
-| src/ui/systemCopy.ts | criteria.3.title | Diámetro | Diámetro | kept |
-| src/ui/systemCopy.ts | criteria.4.letter | E | E | kept |
-| src/ui/systemCopy.ts | criteria.4.title | Evolución | Evolución | kept |
-| src/ui/systemCopy.ts | openSheet | Abrir hoja | Abrir hoja | kept |
-| src/ui/systemCopy.ts | sheetTitle | Sitio del cuerpo | Sitio del cuerpo | kept |
-| src/ui/systemCopy.ts | sheetBody | Elija una ubicación general. No se realiza localización automática. | Elija una ubicación general. No se realiza localización automática. | kept |
-| src/ui/systemCopy.ts | closeSheet | Cerrar | Cerrar | kept |
-| src/ui/systemCopy.ts | navItems.escritorio | Escritorio | Escritorio | kept |
-| src/ui/systemCopy.ts | navItems.examinar | Examinar | Examinar | kept |
-| src/ui/systemCopy.ts | navItems.revision | Revisión | Revisión | kept |
-| src/ui/systemCopy.ts | navItems.guia | Guía | Guía | kept |
-| src/ui/systemCopy.ts | scoreLabel | (index) => `Puntaje ${index}` | (index) => `Puntaje ${index}` | kept |
-| src/ui/systemCopy.ts | scoreAxis | Puntaje relativo de 0 a 1 | Puntaje relativo de 0 a 1 | kept |
-| src/ui/systemCopy.ts | statusDemo | Estado de ejemplo | Estado de ejemplo | kept |
-| src/ui/systemCopy.ts | statusDone | Acción completada. | Acción completada. | kept |
-| src/ui/systemCopy.ts | dropLabel | Seleccione una imagen | Seleccione una imagen | kept |
-| src/ui/systemCopy.ts | dropHint | Arrástrela aquí o use el botón. | Puede arrastrarla aquí o usar el botón. | changed |
-| src/ui/systemCopy.ts | dropButton | Elegir archivo | Elegir archivo | kept |
-| src/ui/systemCopy.ts | dropReceived | (count) => `Archivos recibidos: ${count}` | (count) => `Archivos recibidos: ${count}` | kept |
-| src/ui/systemCopy.ts | loadingDemo | Cargando | Cargando | kept |
-| src/ui/systemCopy.ts | uplift.sectionChips | Etiquetas | Etiquetas | kept |
-| src/ui/systemCopy.ts | uplift.sectionTiles | Mosaico e iconos | Mosaico e iconos | kept |
-| src/ui/systemCopy.ts | uplift.sectionStepper | Recorrido del examen | Recorrido del examen | kept |
-| src/ui/systemCopy.ts | uplift.sectionHeadings | Encabezados | Encabezados | kept |
-| src/ui/systemCopy.ts | uplift.sectionEmpty | Estado vacío | Estado vacío | kept |
-| src/ui/systemCopy.ts | uplift.sectionDraw | Confirmación | Confirmación | kept |
-| src/ui/systemCopy.ts | uplift.sectionCardVariants | Variantes de tarjeta | Variantes de tarjeta | kept |
-| src/ui/systemCopy.ts | uplift.tintNames.mint | Menta | Menta | kept |
-| src/ui/systemCopy.ts | uplift.tintNames.sky | Cielo | Cielo | kept |
-| src/ui/systemCopy.ts | uplift.tintNames.butter | Mantequilla | Mantequilla | kept |
-| src/ui/systemCopy.ts | uplift.tintNames.blush | Rubor | Rubor | kept |
-| src/ui/systemCopy.ts | uplift.tintNames.lilac | Lila | Lila | kept |
-| src/ui/systemCopy.ts | uplift.selectable | Seleccionable | Seleccionable | kept |
-| src/ui/systemCopy.ts | uplift.stepLabels.contexto | Contexto | Contexto | kept |
-| src/ui/systemCopy.ts | uplift.stepLabels.imagen | Imagen | Imagen | kept |
-| src/ui/systemCopy.ts | uplift.stepLabels.analisis | Análisis | Análisis | kept |
-| src/ui/systemCopy.ts | uplift.stepLabels.resultado | Resultado | Resultado | kept |
-| src/ui/systemCopy.ts | uplift.stepLabels.observaciones | Observaciones | Observaciones | kept |
-| src/ui/systemCopy.ts | uplift.stepLabels.revision | Revisión | Revisión | kept |
-| src/ui/systemCopy.ts | uplift.stepperLabel | Recorrido del examen | Recorrido del examen | kept |
-| src/ui/systemCopy.ts | uplift.eyebrow | Paso 2 de 6 | Paso 2 de 6 | kept |
-| src/ui/systemCopy.ts | uplift.headingTitle | Imagen | Imagen | kept |
-| src/ui/systemCopy.ts | uplift.tileBody | Texto breve de la fase, sin estados ni puntajes. | Texto breve de este paso, sin estados ni puntajes. | changed |
-| src/ui/systemCopy.ts | uplift.emptyTitle | Todavía no hay observaciones. | Todavía no hay observaciones. | kept |
-| src/ui/systemCopy.ts | uplift.emptyBody | Las observaciones aparecen aquí cuando se registran. | Las observaciones aparecen aquí cuando se registran. | kept |
-| src/ui/systemCopy.ts | uplift.emptyAction | Registrar observación | Registrar observación | kept |
-| src/ui/systemCopy.ts | uplift.drawLabel | Exportación completada | Exportación completada | kept |
-| src/ui/systemCopy.ts | uplift.replay | Repetir animación | Repetir animación | kept |
-| src/ui/systemCopy.ts | uplift.cardOutline | Contorno suave | Contorno suave | kept |
-| src/ui/systemCopy.ts | uplift.cardSoft | Tinte | Color suave | changed |
-| src/ui/systemCopy.ts | uplift.cardRaised | Elevada | Elevada | kept |
-| src/ui/systemCopy.ts | uplift.cardInteractive | Interactiva | Interactiva | kept |
+| Archivo | Clave | Antes (ES) | Después v1 (ES) | v2 (ES) | Motivo |
+|---|---|---|---|---|---|
+| core/i18n/coreCopy.ts | core.notice.experimental | Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos. | Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos. | = | kept |
+| core/i18n/coreCopy.ts | core.badge.simulated | Modelo simulado | Modelo simulado | = | kept |
+| core/i18n/coreCopy.ts | core.abcde.unanswered | Sin evaluar | Sin evaluar | = | kept |
+| core/i18n/coreCopy.ts | core.source.live | En vivo | En vivo | = | kept |
+| core/i18n/coreCopy.ts | core.source.mock | Modelo simulado | Modelo simulado | = | kept |
+| core/i18n/coreCopy.ts | core.storage.memory | Los datos solo se guardan durante esta sesión. | Los datos solo se guardan durante esta sesión. | = | kept |
+| core/i18n/coreCopy.ts | core.locale.es | Español | Español | = | kept |
+| core/i18n/coreCopy.ts | core.locale.en | English | English | = | kept |
+| core/i18n/coreCopy.ts | core.export.title | Registro de examen | Registro de examen | = | kept |
+| core/i18n/coreCopy.ts | core.export.recordId | Identificador del registro | Identificador del registro | = | kept |
+| core/i18n/coreCopy.ts | core.export.exportedAt | Fecha de exportación | Fecha de exportación | = | kept |
+| core/i18n/coreCopy.ts | core.export.modelSource | Origen del modelo | Origen del modelo | = | kept |
+| core/i18n/coreCopy.ts | core.export.image | Imagen | Imagen | = | kept |
+| core/i18n/coreCopy.ts | core.export.noImage | Sin imagen | Sin imagen | = | kept |
+| core/i18n/coreCopy.ts | core.export.noResult | Sin salida del modelo | Sin salida del modelo | = | kept |
+| core/i18n/coreCopy.ts | core.export.scores | Puntajes relativos del modelo | Puntajes relativos del modelo | = | kept |
+| core/i18n/coreCopy.ts | core.export.observations | Observaciones ABCDE | Observaciones ABCDE | = | kept |
+| core/i18n/coreCopy.ts | core.export.note | Nota | Nota | = | kept |
+| core/i18n/coreCopy.ts | core.export.failed | No se pudo generar el archivo. | No se pudo generar el archivo. | = | kept |
+| core/i18n/coreCopy.ts | core.csv.colSection | Sección | Sección | = | kept |
+| core/i18n/coreCopy.ts | core.csv.colField | Campo | Campo | = | kept |
+| core/i18n/coreCopy.ts | core.csv.colValue | Valor | Valor | = | kept |
+| core/i18n/coreCopy.ts | core.csv.colNote | Nota | Nota | = | kept |
+| core/i18n/coreCopy.ts | core.csv.sectionExam | Examen | Examen | = | kept |
+| core/i18n/coreCopy.ts | core.csv.sectionContext | Contexto suministrado por el usuario | Contexto suministrado por el usuario | = | kept |
+| core/i18n/coreCopy.ts | core.csv.sectionModel | Modelo (salida experimental) | Modelo (salida experimental) | = | kept |
+| core/i18n/coreCopy.ts | core.csv.createdAt | Fecha de creación | Fecha de creación | = | kept |
+| core/i18n/coreCopy.ts | core.csv.bodySite | Zona del cuerpo | Zona del cuerpo | = | kept |
+| core/i18n/coreCopy.ts | core.csv.notRecorded | No registrado | No registrado | = | kept |
+| core/i18n/coreCopy.ts | core.csv.notice | Aviso | Aviso | = | kept |
+| core/i18n/coreCopy.ts | core.csv.contextNotice | Dato escrito por el usuario; el modelo no lo usa ni se interpreta clínicamente. | Dato escrito por el usuario. El modelo no lo utiliza y no se interpreta desde el punto de vista clínico. | = | changed |
+| core/i18n/coreCopy.ts | core.csv.age | Edad (años) | Edad (años) | = | kept |
+| core/i18n/coreCopy.ts | core.csv.duration | Evolución | Evolución | = | kept |
+| core/i18n/coreCopy.ts | core.csv.symptoms | Síntomas suministrados | Síntomas suministrados | = | kept |
+| core/i18n/coreCopy.ts | core.csv.history | Antecedentes | Antecedentes | = | kept |
+| core/i18n/coreCopy.ts | core.csv.model | Modelo | Modelo | = | kept |
+| core/i18n/coreCopy.ts | core.csv.mode | Modo | Modo | = | kept |
+| core/i18n/coreCopy.ts | core.csv.recipe | Receta | Configuración del modelo | = | changed |
+| core/i18n/coreCopy.ts | core.csv.release | Versión | Versión | = | kept |
+| core/i18n/coreCopy.ts | core.csv.sha | SHA-256 del modelo | Huella digital del modelo (SHA-256) | = | changed |
+| core/i18n/coreCopy.ts | core.csv.simulatedNote | Valores simulados: no provienen del modelo real. | Valores simulados: no provienen del modelo real. | = | kept |
+| core/i18n/coreCopy.ts | core.csv.sectionPhotometry | Fotometría de piel (orientativa) | Color de la piel (orientativo) | = | changed |
+| core/i18n/coreCopy.ts | core.csv.ita | ITA (°) | ITA (°) | = | kept |
+| core/i18n/coreCopy.ts | core.csv.itaCategory | Categoría ITA | Categoría ITA | = | kept |
+| core/i18n/coreCopy.ts | core.csv.itaCategory.very_light | Muy clara | Muy clara | = | kept |
+| core/i18n/coreCopy.ts | core.csv.itaCategory.light | Clara | Clara | = | kept |
+| core/i18n/coreCopy.ts | core.csv.itaCategory.intermediate | Intermedia | Intermedia | = | kept |
+| core/i18n/coreCopy.ts | core.csv.itaCategory.tan | Bronceada | Bronceada | = | kept |
+| core/i18n/coreCopy.ts | core.csv.itaCategory.brown | Morena | Morena | = | kept |
+| core/i18n/coreCopy.ts | core.csv.itaCategory.dark | Oscura | Oscura | = | kept |
+| core/i18n/coreCopy.ts | core.csv.itaNotDeterminable | ITA no determinable (b* bajo) | No se puede calcular el ITA (valor b* bajo) | = | changed |
+| core/i18n/coreCopy.ts | core.csv.medianL | L* mediana | Luminosidad mediana (L*) | = | changed |
+| core/i18n/coreCopy.ts | core.csv.medianB | b* mediana | Componente b* mediano (azul a amarillo) | = | changed |
+| core/i18n/coreCopy.ts | core.csv.photometryStatus | Estado de la fotometría | Estado del análisis de color | = | changed |
+| core/i18n/coreCopy.ts | core.csv.photometryReason.endpoint_missing | Análisis de explicabilidad no disponible en el servidor | El servidor no ofrece el análisis de explicación del modelo | = | changed |
+| core/i18n/coreCopy.ts | core.csv.photometryReason.no_mask | Sin máscara de lesión | Sin máscara de lesión | = | kept |
+| core/i18n/coreCopy.ts | core.csv.photometryReason.degenerate_mask | Máscara degenerada | La máscara de la lesión no es válida | = | changed |
+| core/i18n/coreCopy.ts | core.csv.photometryReason.ring_too_small | Anillo de piel insuficiente | No hay suficiente piel alrededor de la lesión | = | changed |
+| core/i18n/coreCopy.ts | core.csv.photometryReason.ita_indeterminate | ITA no determinable (b* bajo) | No se puede calcular el ITA (valor b* bajo) | = | changed |
+| core/i18n/coreCopy.ts | core.csv.itaNote | Estimación colorimétrica de soporte, no reemplaza la clasificación clínica de fototipo. | Es una estimación colorimétrica de apoyo. No es la clasificación clínica del fototipo de piel. | = | changed |
+| core/i18n/coreCopy.ts | core.csv.scoreNote | Puntaje relativo de 0 a 1; no indica la probabilidad de tener una enfermedad. | Puntaje relativo de 0 a 1. No es la probabilidad de que el paciente tenga una enfermedad ni un diagnóstico. | = | changed |
+| core/i18n/coreCopy.ts | core.csv.origin.camera | Cámara | Cámara | = | kept |
+| core/i18n/coreCopy.ts | core.csv.origin.file | Archivo cargado | Archivo cargado | = | kept |
+| core/i18n/coreCopy.ts | core.csv.origin.sample | Imagen de referencia pública | Imagen de referencia pública | = | kept |
+| core/i18n/coreCopy.ts | core.csv.duration.lt1w | Menos de 1 semana | Menos de 1 semana | = | kept |
+| core/i18n/coreCopy.ts | core.csv.duration.1to4w | 1 a 4 semanas | 1 a 4 semanas | = | kept |
+| core/i18n/coreCopy.ts | core.csv.duration.1to6m | 1 a 6 meses | 1 a 6 meses | = | kept |
+| core/i18n/coreCopy.ts | core.csv.duration.gt6m | Más de 6 meses | Más de 6 meses | = | kept |
+| core/i18n/coreCopy.ts | core.csv.duration.unknown | No sabe | No lo sabe | = | changed |
+| core/i18n/coreCopy.ts | core.csv.symptom.itch | Picazón | Picazón | = | kept |
+| core/i18n/coreCopy.ts | core.csv.symptom.pain | Dolor | Dolor | = | kept |
+| core/i18n/coreCopy.ts | core.csv.symptom.bleeding | Sangrado | Sangrado | = | kept |
+| core/i18n/coreCopy.ts | core.csv.symptom.recentChange | Cambio reciente | Cambio reciente | = | kept |
+| core/i18n/coreCopy.ts | core.class.nv | Nevo melanocítico | Nevo melanocítico | Nevus melanocítico | kept |
+| core/i18n/coreCopy.ts | core.class.bkl | Queratosis benigna | Queratosis benigna | Queratosis seborreica o lesión queratósica benigna | kept |
+| core/i18n/coreCopy.ts | core.class.mel | Melanoma | Melanoma | = | kept |
+| core/i18n/coreCopy.ts | core.class.bcc | Carcinoma basocelular | Carcinoma basocelular | = | kept |
+| core/i18n/coreCopy.ts | core.class.akiec | Queratosis actínica / carcinoma intraepidérmico | Queratosis actínica / carcinoma intraepidérmico | Queratosis actínica | kept |
+| core/i18n/coreCopy.ts | core.class.vasc | Lesión vascular | Lesión vascular | = | kept |
+| core/i18n/coreCopy.ts | core.class.df | Dermatofibroma | Dermatofibroma | = | kept |
+| app/pwa/copy.ts | regionLabel | Estado de la aplicación | Estado de la aplicación | = | kept |
+| app/pwa/copy.ts | updateReady | Hay una versión nueva de PERMA. | Hay una nueva versión de PERMA disponible. | = | changed |
+| app/pwa/copy.ts | updateBlocked | Hay una versión nueva. Podrá actualizar cuando termine o guarde la revisión en curso. | Hay una versión nueva. Podrá actualizar cuando termine o guarde la revisión en curso. | = | kept |
+| app/pwa/copy.ts | updateApply | Actualizar | Actualizar | = | kept |
+| app/pwa/copy.ts | updateLater | Más tarde | Más tarde | = | kept |
+| app/pwa/copy.ts | offlineReady | PERMA está lista para usarse sin conexión. El análisis de imágenes requiere conexión a la red. | PERMA está lista para usarse sin conexión. El análisis de imágenes requiere conexión a la red. | = | kept |
+| app/pwa/copy.ts | offlineDismiss | Entendido | Entendido | = | kept |
+| ui/systemCopy.ts | title | Sistema PERMA | Sistema de componentes de PERMA | = | changed |
+| ui/systemCopy.ts | languageLabel | Idioma | Idioma | = | kept |
+| ui/systemCopy.ts | navLabel | Navegación principal | Navegación principal | = | kept |
+| ui/systemCopy.ts | noticeLabel | Aviso del prototipo | Aviso del prototipo | = | kept |
+| ui/systemCopy.ts | notice | Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos. | Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos. | = | kept |
+| ui/systemCopy.ts | sectionButtons | Botones | Botones | = | kept |
+| ui/systemCopy.ts | sectionCards | Tarjetas | Tarjetas | = | kept |
+| ui/systemCopy.ts | sectionTabs | Vistas | Vistas | = | kept |
+| ui/systemCopy.ts | sectionAccordion | Criterios ABCDE | Criterios ABCDE | = | kept |
+| ui/systemCopy.ts | sectionSheet | Hoja inferior | Hoja inferior | = | kept |
+| ui/systemCopy.ts | sectionNav | Navegación | Navegación | = | kept |
+| ui/systemCopy.ts | sectionScores | Puntajes relativos | Puntajes relativos | = | kept |
+| ui/systemCopy.ts | sectionFeedback | Estado y archivo | Estado y archivo | = | kept |
+| ui/systemCopy.ts | variants.primary | Principal | Principal | = | kept |
+| ui/systemCopy.ts | variants.secondary | Secundario | Secundario | = | kept |
+| ui/systemCopy.ts | variants.quiet | Discreto | Discreto | = | kept |
+| ui/systemCopy.ts | variants.danger | Peligro | Peligro | = | kept |
+| ui/systemCopy.ts | variants.soft | Suave | Suave | = | kept |
+| ui/systemCopy.ts | states.default | Reposo | Reposo | = | kept |
+| ui/systemCopy.ts | states.pressed | Presionado | Presionado | = | kept |
+| ui/systemCopy.ts | states.disabled | Deshabilitado | Deshabilitado | = | kept |
+| ui/systemCopy.ts | states.loading | Cargando | Cargando | = | kept |
+| ui/systemCopy.ts | iconLabel | Opciones de la imagen | Opciones de la imagen | = | kept |
+| ui/systemCopy.ts | focusDemo | Foco | Foco | = | kept |
+| ui/systemCopy.ts | badgeSimulated | Modelo simulado | Modelo simulado | = | kept |
+| ui/systemCopy.ts | bentoTitle | Prepare una imagen. | Empiece por una imagen. | = | changed |
+| ui/systemCopy.ts | bentoBody | Registre el contexto y sus observaciones. | Puede registrar el contexto y sus observaciones. | = | changed |
+| ui/systemCopy.ts | protocolTitle | Protocolo | Protocolo | = | kept |
+| ui/systemCopy.ts | protocolBody | Alcance y límites | Alcance y límites | = | kept |
+| ui/systemCopy.ts | tabsLabel | Vistas de la imagen | Vistas de la imagen | = | kept |
+| ui/systemCopy.ts | tabs.image | Imagen | Imagen | = | kept |
+| ui/systemCopy.ts | tabs.model | Salida del modelo | Salida del modelo | = | kept |
+| ui/systemCopy.ts | tabs.notes | Mis observaciones | Mis observaciones | = | kept |
+| ui/systemCopy.ts | tabImageBody | Imagen de referencia sin modificar. | Imagen de referencia sin modificar. | = | kept |
+| ui/systemCopy.ts | tabModelBody | Puntajes relativos del modelo experimental. | Puntajes relativos del modelo experimental. | = | kept |
+| ui/systemCopy.ts | tabNotesBody | Sus observaciones se registran aparte. | Sus observaciones se registran aparte. | = | kept |
+| ui/systemCopy.ts | abcdeLabel | Criterios ABCDE | Criterios ABCDE | = | kept |
+| ui/systemCopy.ts | abcdeStatus | Sin evaluar | Sin evaluar | = | kept |
+| ui/systemCopy.ts | criteria.0.letter | A | A | = | kept |
+| ui/systemCopy.ts | criteria.0.title | Asimetría | Asimetría | = | kept |
+| ui/systemCopy.ts | criteria.1.letter | B | B | = | kept |
+| ui/systemCopy.ts | criteria.1.title | Borde | Borde | = | kept |
+| ui/systemCopy.ts | criteria.2.letter | C | C | = | kept |
+| ui/systemCopy.ts | criteria.2.title | Color | Color | = | kept |
+| ui/systemCopy.ts | criteria.3.letter | D | D | = | kept |
+| ui/systemCopy.ts | criteria.3.title | Diámetro | Diámetro | = | kept |
+| ui/systemCopy.ts | criteria.4.letter | E | E | = | kept |
+| ui/systemCopy.ts | criteria.4.title | Evolución | Evolución | = | kept |
+| ui/systemCopy.ts | openSheet | Abrir hoja | Abrir hoja | = | kept |
+| ui/systemCopy.ts | sheetTitle | Sitio del cuerpo | Sitio del cuerpo | = | kept |
+| ui/systemCopy.ts | sheetBody | Elija una ubicación general. No se realiza localización automática. | Elija una ubicación general. No se realiza localización automática. | = | kept |
+| ui/systemCopy.ts | closeSheet | Cerrar | Cerrar | = | kept |
+| ui/systemCopy.ts | navItems.escritorio | Escritorio | Escritorio | = | kept |
+| ui/systemCopy.ts | navItems.examinar | Examinar | Examinar | = | kept |
+| ui/systemCopy.ts | navItems.revision | Revisión | Revisión | = | kept |
+| ui/systemCopy.ts | navItems.guia | Guía | Guía | = | kept |
+| ui/systemCopy.ts | scoreLabel | (index) => `Puntaje ${index}` | (index) => `Puntaje ${index}` | = | kept |
+| ui/systemCopy.ts | scoreAxis | Puntaje relativo de 0 a 1 | Puntaje relativo de 0 a 1 | = | kept |
+| ui/systemCopy.ts | statusDemo | Estado de ejemplo | Estado de ejemplo | = | kept |
+| ui/systemCopy.ts | statusDone | Acción completada. | Acción completada. | = | kept |
+| ui/systemCopy.ts | dropLabel | Seleccione una imagen | Seleccione una imagen | = | kept |
+| ui/systemCopy.ts | dropHint | Arrástrela aquí o use el botón. | Puede arrastrarla aquí o usar el botón. | = | changed |
+| ui/systemCopy.ts | dropButton | Elegir archivo | Elegir archivo | = | kept |
+| ui/systemCopy.ts | dropReceived | (count) => `Archivos recibidos: ${count}` | (count) => `Archivos recibidos: ${count}` | = | kept |
+| ui/systemCopy.ts | loadingDemo | Cargando | Cargando | = | kept |
+| ui/systemCopy.ts | uplift.sectionChips | Etiquetas | Etiquetas | = | kept |
+| ui/systemCopy.ts | uplift.sectionTiles | Mosaico e iconos | Mosaico e iconos | = | kept |
+| ui/systemCopy.ts | uplift.sectionStepper | Recorrido del examen | Recorrido del examen | = | kept |
+| ui/systemCopy.ts | uplift.sectionHeadings | Encabezados | Encabezados | = | kept |
+| ui/systemCopy.ts | uplift.sectionEmpty | Estado vacío | Estado vacío | = | kept |
+| ui/systemCopy.ts | uplift.sectionDraw | Confirmación | Confirmación | = | kept |
+| ui/systemCopy.ts | uplift.sectionCardVariants | Variantes de tarjeta | Variantes de tarjeta | = | kept |
+| ui/systemCopy.ts | uplift.tintNames.mint | Menta | Menta | = | kept |
+| ui/systemCopy.ts | uplift.tintNames.sky | Cielo | Cielo | = | kept |
+| ui/systemCopy.ts | uplift.tintNames.butter | Mantequilla | Mantequilla | = | kept |
+| ui/systemCopy.ts | uplift.tintNames.blush | Rubor | Rubor | = | kept |
+| ui/systemCopy.ts | uplift.tintNames.lilac | Lila | Lila | = | kept |
+| ui/systemCopy.ts | uplift.selectable | Seleccionable | Seleccionable | = | kept |
+| ui/systemCopy.ts | uplift.stepLabels.contexto | Contexto | Contexto | = | kept |
+| ui/systemCopy.ts | uplift.stepLabels.imagen | Imagen | Imagen | = | kept |
+| ui/systemCopy.ts | uplift.stepLabels.analisis | Análisis | Análisis | = | kept |
+| ui/systemCopy.ts | uplift.stepLabels.resultado | Resultado | Resultado | = | kept |
+| ui/systemCopy.ts | uplift.stepLabels.observaciones | Observaciones | Observaciones | = | kept |
+| ui/systemCopy.ts | uplift.stepLabels.revision | Revisión | Revisión | = | kept |
+| ui/systemCopy.ts | uplift.stepperLabel | Recorrido del examen | Recorrido del examen | = | kept |
+| ui/systemCopy.ts | uplift.eyebrow | Paso 2 de 6 | Paso 2 de 6 | = | kept |
+| ui/systemCopy.ts | uplift.headingTitle | Imagen | Imagen | = | kept |
+| ui/systemCopy.ts | uplift.tileBody | Texto breve de la fase, sin estados ni puntajes. | Texto breve de este paso, sin estados ni puntajes. | = | changed |
+| ui/systemCopy.ts | uplift.emptyTitle | Todavía no hay observaciones. | Todavía no hay observaciones. | = | kept |
+| ui/systemCopy.ts | uplift.emptyBody | Las observaciones aparecen aquí cuando se registran. | Las observaciones aparecen aquí cuando se registran. | = | kept |
+| ui/systemCopy.ts | uplift.emptyAction | Registrar observación | Registrar observación | = | kept |
+| ui/systemCopy.ts | uplift.drawLabel | Exportación completada | Exportación completada | = | kept |
+| ui/systemCopy.ts | uplift.replay | Repetir animación | Repetir animación | = | kept |
+| ui/systemCopy.ts | uplift.cardOutline | Contorno suave | Contorno suave | = | kept |
+| ui/systemCopy.ts | uplift.cardSoft | Tinte | Color suave | = | changed |
+| ui/systemCopy.ts | uplift.cardRaised | Elevada | Elevada | = | kept |
+| ui/systemCopy.ts | uplift.cardInteractive | Interactiva | Interactiva | = | kept |
 
 ## Inicio, guía y cámara (group-b)
 
-| Archivo | Clave | Antes (ES) | Después (ES) | Motivo |
-|---|---|---|---|---|
-| src/features/desk/copy.ts | back | Volver | Volver | kept |
-| src/features/desk/copy.ts | languageSwitch | EN | EN | kept |
-| src/features/desk/copy.ts | languageLabel | Idioma | Idioma | kept |
-| src/features/desk/copy.ts | navLabel | Navegación principal | Navegación principal | kept |
-| src/features/desk/copy.ts | navDesk | Escritorio | Escritorio | kept |
-| src/features/desk/copy.ts | navInspect | Examinar | Examinar | kept |
-| src/features/desk/copy.ts | navReview | Revisión | Revisión | kept |
-| src/features/desk/copy.ts | navGuide | Guía | Guía | kept |
-| src/features/desk/copy.ts | brand | PERMA | PERMA | kept |
-| src/features/desk/copy.ts | headline | Empiece con contexto. | Empiece con contexto. | kept |
-| src/features/desk/copy.ts | prepareTitle | Prepare una imagen. | Prepare una imagen. | kept |
-| src/features/desk/copy.ts | prepareBody | Registre el contexto y sus observaciones. | Anote el contexto del caso y sus propias observaciones. | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | newExam | Nuevo examen | Nuevo examen | kept |
-| src/features/desk/copy.ts | protocolTitle | Protocolo | Protocolo | kept |
-| src/features/desk/copy.ts | protocolScope | Alcance y límites | Alcance y límites | kept |
-| src/features/desk/copy.ts | protocolStatus | Una herramienta de IA en investigación. | Es una herramienta de IA en investigación. | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | referenceTitle | Imagen de referencia | Imagen de referencia | kept |
-| src/features/desk/copy.ts | referenceExplore | Explorar el espacio de trabajo | Explorar el espacio de trabajo | kept |
-| src/features/desk/copy.ts | referenceNote | Imagen pública de ejemplo; no pertenece al registro que está creando. | Es una imagen pública de ejemplo. No forma parte del registro que usted está creando. | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | attribution | Imagen pública de referencia · P. Tschandl · CC BY-SA 4.0 | Imagen pública de referencia · P. Tschandl · CC BY-SA 4.0 | kept |
-| src/features/desk/copy.ts | referenceAuthor | P. Tschandl | P. Tschandl | kept |
-| src/features/desk/copy.ts | referenceLicense | CC BY-SA 4.0 | CC BY-SA 4.0 | kept |
-| src/features/desk/copy.ts | contextShell | Configuración · Contexto | Configuración · Contexto | kept |
-| src/features/desk/copy.ts | scopeTitle | Alcance del prototipo | Alcance del prototipo | kept |
-| src/features/desk/copy.ts | scopeBody | Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos. Esta versión usa HAM7, evaluado en imágenes dermatoscópicas; una foto corriente de celular no equivale a una dermatoscopía. | Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos. Esta versión usa el modelo HAM7, que asigna puntajes a siete categorías y se evaluó en imágenes dermatoscópicas. Una fotografía corriente de celular no es una dermatoscopía. | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | discardAction | Descartar registro | Descartar registro | kept |
-| src/features/desk/copy.ts | discardTitle | ¿Iniciar un examen nuevo? | ¿Iniciar un examen nuevo? | kept |
-| src/features/desk/copy.ts | discardBody | Esto borra la imagen, el consentimiento, el contexto y las observaciones manuales. Volver normalmente no los borra. | Esto borra la imagen, el consentimiento, el contexto y sus observaciones manuales. Usar el botón Volver no borra nada. | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | discardKeep | Conservar el examen actual | Conservar el examen actual | kept |
-| src/features/desk/copy.ts | discardKeepBody | Cerrar sin borrar el examen | Cierre esta ventana sin borrar el examen. | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | discardConfirm | Borrar e iniciar | Borrar y empezar | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | cancel | Cancelar | Cancelar | kept |
-| src/features/desk/copy.ts | close | Cerrar | Cerrar | kept |
-| src/features/desk/copy.ts | menuAction | Opciones | Opciones | kept |
-| src/features/desk/copy.ts | menuTitle | Opciones | Opciones | kept |
-| src/features/desk/copy.ts | menuGuide | Guía y privacidad | Guía y privacidad | kept |
-| src/features/desk/copy.ts | menuDelete | Borrar examen | Borrar examen | kept |
-| src/features/desk/copy.ts | menuDeleteHint | Disponible cuando el registro tiene contenido. | Solo está disponible cuando el examen tiene contenido. | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | contextHeadline | Dé contexto a la imagen. | Agregue contexto a la imagen. | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | intro | Registre solo lo necesario. No ingrese el nombre, identificador ni datos de contacto del paciente. | Anote solo lo necesario. Por favor, no escriba el nombre, el número de identificación ni los datos de contacto del paciente. | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | modality | Modalidad de imagen | Modalidad de imagen | kept |
-| src/features/desk/copy.ts | modalityValue | Imagen dermatoscópica | Imagen dermatoscópica | kept |
-| src/features/desk/copy.ts | site | Sitio del cuerpo | Sitio del cuerpo | kept |
-| src/features/desk/copy.ts | siteEmpty | Sin registrar | Sin registrar | kept |
-| src/features/desk/copy.ts | clinicalContext | Contexto clínico opcional | Contexto clínico opcional | kept |
-| src/features/desk/copy.ts | ctxSheetTitle | Contexto clínico opcional | Contexto clínico opcional | kept |
-| src/features/desk/copy.ts | ctxSheetNotice | Estos datos son opcionales y acompañan su registro en este dispositivo. No se envían al modelo, no cambian sus puntajes y no constituyen una conclusión clínica. | Estos datos son opcionales y acompañan su registro en este dispositivo. No se envían al modelo, no cambian sus puntajes y no constituyen una conclusión clínica. | kept |
-| src/features/desk/copy.ts | ctxAge | Edad | Edad | kept |
-| src/features/desk/copy.ts | ctxAgeError | Ingrese una edad entera entre 0 y 120. | Ingrese una edad entera entre 0 y 120. | kept |
-| src/features/desk/copy.ts | ctxDurationTitle | Evolución | Tiempo de evolución | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | ctxDurationLt1w | < 1 semana | < 1 semana | kept |
-| src/features/desk/copy.ts | ctxDuration1to4w | 1-4 semanas | 1-4 semanas | kept |
-| src/features/desk/copy.ts | ctxDuration1to6m | 1-6 meses | 1-6 meses | kept |
-| src/features/desk/copy.ts | ctxDurationGt6m | > 6 meses | > 6 meses | kept |
-| src/features/desk/copy.ts | ctxDurationUnknown | No sabe | No sabe | kept |
-| src/features/desk/copy.ts | ctxSymptomsTitle | Síntomas suministrados | Síntomas referidos | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | ctxSymptomItch | Picazón | Picazón | kept |
-| src/features/desk/copy.ts | ctxSymptomPain | Dolor | Dolor | kept |
-| src/features/desk/copy.ts | ctxSymptomBleeding | Sangrado | Sangrado | kept |
-| src/features/desk/copy.ts | ctxSymptomRecentChange | Cambio reciente | Cambio reciente | kept |
-| src/features/desk/copy.ts | ctxSymptomsOne | 1 síntoma | 1 síntoma | kept |
-| src/features/desk/copy.ts | ctxSymptomsMany | {n} síntomas | {n} síntomas | kept |
-| src/features/desk/copy.ts | ctxHistoryTitle | Antecedentes | Antecedentes | kept |
-| src/features/desk/copy.ts | ctxHistoryPlaceholder | Antecedentes relevantes, sin nombres ni identificadores | Antecedentes relevantes, sin nombres ni números de identificación | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | ctxHistoryRecorded | Antecedentes registrados | Antecedentes registrados | kept |
-| src/features/desk/copy.ts | ctxNotRegistered | No registrado | No registrado | kept |
-| src/features/desk/copy.ts | ctxSave | Guardar | Guardar | kept |
-| src/features/desk/copy.ts | ctxExportTitle | Contexto suministrado por el usuario | Contexto aportado por el profesional | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | ctxExportNotice | Dato suministrado por el usuario. El modelo no lo interpreta, no participa en las puntuaciones y no se usa para ninguna conclusión clínica. | Dato aportado por el profesional. El modelo no lo interpreta, no influye en los puntajes y no se usa para ninguna conclusión clínica. | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | ctxReviewScores | Las puntuaciones del modelo no usan este contexto. | Los puntajes del modelo no usan este contexto. | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | siteTitle | Sitio del cuerpo | Sitio del cuerpo | kept |
-| src/features/desk/copy.ts | siteNone | Sin registrar | Sin registrar | kept |
-| src/features/desk/copy.ts | siteFace | Cara | Cara | kept |
-| src/features/desk/copy.ts | siteScalp | Cuero cabelludo | Cuero cabelludo | kept |
-| src/features/desk/copy.ts | siteTrunk | Tronco | Tronco | kept |
-| src/features/desk/copy.ts | siteUpperLimb | Extremidad superior | Extremidad superior | kept |
-| src/features/desk/copy.ts | siteLowerLimb | Extremidad inferior | Extremidad inferior | kept |
-| src/features/desk/copy.ts | continue | Continuar a la imagen | Continuar a la imagen | kept |
-| src/features/desk/copy.ts | privacyCardTitle | Qué pasa con estos datos | Qué pasa con estos datos | kept |
-| src/features/desk/copy.ts | privacyCardStay | Se guardan solo en este dispositivo. | Se guardan solo en este dispositivo. | kept |
-| src/features/desk/copy.ts | privacyCardOptional | Son opcionales: puede continuar sin registrarlos. | Son opcionales: puede continuar sin registrarlos. | kept |
-| src/features/desk/copy.ts | privacyCardModel | El modelo no los interpreta ni se usan para conclusiones clínicas. | El modelo no los interpreta ni se usan para conclusiones clínicas. | kept |
-| src/features/desk/copy.ts | stepperLabel | Progreso del examen | Progreso del examen | kept |
-| src/features/desk/copy.ts | homeLead | Prepare una imagen dermatoscópica, consulte la salida experimental de la IA y registre sus propias observaciones. PERMA no reemplaza la valoración clínica ni emite diagnósticos. | Prepare una imagen dermatoscópica, revise el resultado experimental de la IA y anote sus propias observaciones. PERMA no reemplaza la valoración clínica ni emite diagnósticos. | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | homeJourneyTitle | Cómo es el recorrido | Así funciona el recorrido | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | homeStepContexto | Anote la zona del cuerpo y, si lo necesita, datos para su registro. No modifican el análisis de la IA. | Indique la zona del cuerpo y, si lo desea, otros datos para su registro. No cambian el análisis de la IA. | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | homeStepImagen | Cámara, archivo o la imagen de referencia pública. | Puede usar la cámara, un archivo o la imagen de referencia pública. | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | homeStepAnalisis | Revise la imagen y autorice su envío al servidor para analizarla. | Revise la imagen y autorice su envío al servidor para analizarla. | kept |
-| src/features/desk/copy.ts | homeStepResultado | Compare los puntajes de las siete categorías. Indican la salida relativa del modelo, no la probabilidad de tener una enfermedad. | Compare los puntajes de las siete categorías. Son valores relativos que produce el modelo; no son la probabilidad de que el paciente tenga una enfermedad. | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | homeStepObservaciones | Su revisión ABCDE manual, criterio por criterio. | Su revisión manual con la regla ABCDE, criterio por criterio. | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | homeStepRevision | Resumen y exportación en CSV, PDF o JSON. | Consulte el resumen y expórtelo en CSV, PDF o JSON. | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | railJourney | Recorrido del examen | Recorrido del examen | kept |
-| src/features/desk/copy.ts | railDone | completado | completado | kept |
-| src/features/desk/copy.ts | railNotice | IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos. | Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos. | changed (plain Spanish, no jargon, usted) |
-| src/features/desk/copy.ts | stepEyebrow | Paso {n} de {total} | Paso {n} de {total} | kept |
-| src/features/desk/copy.ts | stepContexto | Contexto | Contexto | kept |
-| src/features/desk/copy.ts | stepImagen | Imagen | Imagen | kept |
-| src/features/desk/copy.ts | stepAnalisis | Análisis | Análisis | kept |
-| src/features/desk/copy.ts | stepResultado | Resultado | Resultado | kept |
-| src/features/desk/copy.ts | stepObservaciones | Observaciones | Observaciones | kept |
-| src/features/desk/copy.ts | stepRevision | Revisión | Revisión | kept |
-| src/features/guide/copy.ts | guideTitle | Referencia · Guía | Referencia · Guía | kept |
-| src/features/guide/copy.ts | guideHeading | Cómo usar PERMA y leer sus resultados | Cómo usar PERMA y leer sus resultados | kept |
-| src/features/guide/copy.ts | guideIntro | Prepare una imagen, autorice el análisis si corresponde y registre sus propias observaciones. La salida de la IA y la revisión manual se mantienen separadas; ninguna sustituye la valoración clínica. | Prepare una imagen, autorice el análisis cuando corresponda y anote sus propias observaciones. El resultado de la IA y su revisión manual se mantienen separados; ninguno de los dos reemplaza la valoración clínica. | changed (plain Spanish, no jargon, usted) |
-| src/features/guide/copy.ts | evidenceTitle | Límite de la evidencia | Límite de la evidencia | kept |
-| src/features/guide/copy.ts | evidenceBody | Esta interfaz usa MoCo HAM7: siete categorías estudiadas en imágenes dermatoscópicas. No incluye SCC como categoría independiente. Aunque permita cargar una foto de celular, eso no demuestra que el modelo sea válido para analizarla. Sus puntajes no confirman ni descartan enfermedades. | Esta interfaz usa el modelo MoCo HAM7, que asigna puntajes a siete categorías estudiadas en imágenes dermatoscópicas. No incluye el carcinoma escamocelular (SCC) como categoría independiente. Que la aplicación acepte una fotografía de celular no demuestra que el modelo sirva para analizarla. Sus puntajes no confirman ni descartan ninguna enfermedad. | changed (plain Spanish, no jargon, usted) |
-| src/features/guide/copy.ts | manualTitle | Examen manual | Examen manual | kept |
-| src/features/guide/copy.ts | manualBody | ABCDE registra las observaciones del profesional; no es un puntaje automático de riesgo. | La regla ABCDE registra las observaciones del profesional. No es un puntaje automático de riesgo. | changed (plain Spanish, no jargon, usted) |
-| src/features/guide/copy.ts | modelIdentityLabel | Identidad del modelo y de la inferencia | Datos del modelo y del análisis | changed (plain Spanish, no jargon, usted) |
-| src/features/guide/copy.ts | modelIdentityHint | Abrir detalles | Abrir detalles | kept |
-| src/features/guide/copy.ts | privacyLabel | Tratamiento de datos | Tratamiento de datos | kept |
-| src/features/guide/copy.ts | privacyHint | Abrir detalles | Abrir detalles | kept |
-| src/features/guide/copy.ts | toneLabel | Transformación de tono solo para investigación | Ajuste de tono, solo para investigación | changed (plain Spanish, no jargon, usted) |
-| src/features/guide/copy.ts | toneHint | Abrir detalles | Abrir detalles | kept |
-| src/features/guide/copy.ts | imageAttribution | Imagen: P. Tschandl · CC BY-SA 4.0 | Imagen: P. Tschandl · CC BY-SA 4.0 | kept |
-| src/features/guide/copy.ts | back | Volver al espacio de trabajo | Volver al espacio de trabajo | kept |
-| src/features/guide/copy.ts | info | Alcance y métodos | Alcance y métodos | kept |
-| src/features/guide/copy.ts | privacyTitle | Referencia · Tratamiento de datos | Referencia · Tratamiento de datos | kept |
-| src/features/guide/copy.ts | privacyHeading | Entienda el recorrido de los datos. | Entienda el recorrido de los datos. | kept |
-| src/features/guide/copy.ts | privacyIntro | Esta versión es un prototipo de investigación. Describe qué queda en su dispositivo y qué viaja al servidor de inferencia cuando usted lo solicita. | Esta versión es un prototipo de investigación. Describe qué queda en su dispositivo y qué viaja al servidor de análisis cuando usted lo solicita. | changed (plain Spanish, no jargon, usted) |
-| src/features/guide/copy.ts | stayTitle | Permanece en su dispositivo | Permanece en su dispositivo | kept |
-| src/features/guide/copy.ts | stayBody | El registro ABCDE, la nota profesional, el contexto de la sesión y la imagen que usted cargó o tomó, guardados en este navegador hasta que descarte el examen. La imagen no se sube sin su acción. Los fotogramas que analiza la guía de la cámara nunca se almacenan ni se suben. | La revisión ABCDE, la nota profesional, el contexto del examen y la imagen que usted cargó o tomó se guardan en este navegador hasta que descarte el examen. La imagen no se sube sin que usted lo decida. Las imágenes que analiza la guía de la cámara no se guardan ni se suben. | changed (plain Spanish, no jargon, usted) |
-| src/features/guide/copy.ts | travelTitle | Viaja al servidor cuando usted pulsa Enviar | Viaja al servidor cuando usted pulsa Enviar | kept |
-| src/features/guide/copy.ts | travelBody | Una copia redimensionada de la imagen, sin ubicación EXIF, junto con el identificador del modelo y el modo de análisis. El contexto, el registro ABCDE y la nota se quedan en este dispositivo y no modifican los puntajes del modelo. | Una copia reducida de la imagen, sin datos de ubicación (EXIF), junto con la versión del modelo y el modo de análisis. El contexto, la revisión ABCDE y la nota se quedan en este dispositivo y no cambian los puntajes del modelo. | changed (plain Spanish, no jargon, usted) |
-| src/features/guide/copy.ts | retentionTitle | Retención y acceso | Conservación y acceso | changed (plain Spanish, no jargon, usted) |
-| src/features/guide/copy.ts | retentionBody | En una solicitud real, la política de retención, acceso y eliminación del servidor debe verificarse por separado. | En un envío real, la política del servidor sobre conservación, acceso y eliminación debe verificarse por separado. | changed (plain Spanish, no jargon, usted) |
-| src/features/guide/copy.ts | referenceTitle | Imagen de referencia | Imagen de referencia | kept |
-| src/features/guide/copy.ts | referenceBody | La imagen de ejemplo incluida es una fotografía pública de P. Tschandl con licencia CC BY-SA 4.0. Es independiente de las imágenes que usted añada a sus registros. | La imagen de ejemplo incluida es una fotografía pública de P. Tschandl con licencia CC BY-SA 4.0. Es independiente de las imágenes que usted añada a sus registros. | kept |
-| src/features/guide/copy.ts | licencesTitle | Licencias | Licencias | kept |
-| src/features/guide/copy.ts | licencesBody | Tipografía Geist: SIL Open Font License 1.1. Iconos: diseño propio del proyecto. MoCo V10 continúa el aprendizaje de DINOv2 con imágenes ISIC y PAD, no con datos sintéticos. Consulte las licencias y atribuciones del release antes de reutilizar el modelo; su uso está limitado a investigación no comercial. | Tipografía Geist: SIL Open Font License 1.1. Iconos: diseño propio del proyecto. El modelo MoCo V10 continúa el aprendizaje de DINOv2 con imágenes de ISIC y PAD, no con datos sintéticos. Revise las licencias y atribuciones de la versión publicada antes de reutilizar el modelo. Su uso está limitado a investigación no comercial. | changed (plain Spanish, no jargon, usted) |
-| src/features/guide/copy.ts | noGuaranteeTitle | Qué debe comprobarse por separado | Qué debe comprobarse por separado | kept |
-| src/features/guide/copy.ts | noGuaranteeBody | Guardar un registro en este navegador no garantiza cifrado en el dispositivo ni borrado automático en el servidor. El análisis del modelo necesita conexión. Verifique el tratamiento de datos antes de usar imágenes sensibles. | Guardar un registro en este navegador no implica cifrado en el dispositivo ni borrado automático en el servidor. El análisis del modelo necesita conexión. Revise el tratamiento de datos antes de usar imágenes sensibles. | changed (plain Spanish, no jargon, usted) |
-| src/features/guide/copy.ts | privacyAction | Volver al envío | Volver al envío | kept |
-| src/features/guide/copy.ts | toneTitle | Tono solo para investigación | Tono solo para investigación | kept |
-| src/features/guide/copy.ts | toneBody | Ruta exclusiva de desarrollo. No forma parte de la aplicación de producción. | Ruta exclusiva de desarrollo. No forma parte de la aplicación de producción. | kept |
-| src/features/camera/copy.ts | captureShell | Imagen · Fuente | Imagen · Fuente | kept |
-| src/features/camera/copy.ts | liveShell | Imagen · Cámara | Imagen · Cámara | kept |
-| src/features/camera/copy.ts | galleryShell | Imagen · Referencia | Imagen · Referencia | kept |
-| src/features/camera/copy.ts | qualityShell | Imagen · Revisión | Imagen · Revisión | kept |
-| src/features/camera/copy.ts | captureTitle | Muestre la imagen. | Elija la imagen. | changed (plain Spanish, no jargon, usted) |
-| src/features/camera/copy.ts | captureBody | Use una imagen dermatoscópica y conserve el original. Esta versión no está validada para analizar fotografías corrientes de celular. Revise que la imagen no incluya datos que identifiquen a una persona. | Use una imagen dermatoscópica y conserve el original. Esta versión no está validada para analizar fotografías corrientes de celular. Revise que la imagen no incluya datos que identifiquen a una persona. | kept |
-| src/features/camera/copy.ts | optCamera | Usar la cámara | Usar la cámara | kept |
-| src/features/camera/copy.ts | optCameraHint | El permiso se solicita al capturar | El permiso se solicita al capturar | kept |
-| src/features/camera/copy.ts | optFile | Elegir un archivo | Elegir un archivo | kept |
-| src/features/camera/copy.ts | optFileHint | JPEG, PNG o WebP · máx. 10 MiB / 20 MP | JPEG, PNG o WebP · hasta 10 MiB y 20 megapíxeles | changed (plain Spanish, no jargon, usted) |
-| src/features/camera/copy.ts | optSample | Ejemplo de referencia pública | Ejemplo de referencia pública | kept |
-| src/features/camera/copy.ts | optSampleHint | Imagen pública de ejemplo, independiente de las que usted añada | Imagen pública de ejemplo, independiente de las que usted añada | kept |
-| src/features/camera/copy.ts | ctaSample | Usar ejemplo de referencia pública | Usar ejemplo de referencia pública | kept |
-| src/features/camera/copy.ts | primerTitle | Permiso de cámara | Permiso de cámara | kept |
-| src/features/camera/copy.ts | primerBody | La cámara se usa solo mientras esta pantalla está abierta. Los fotogramas que analiza la guía no se guardan ni se suben; la foto que usted toma queda en este dispositivo. | La cámara se usa solo mientras esta pantalla está abierta. Las imágenes que analiza la guía no se guardan ni se suben. La foto que usted tome queda en este dispositivo. | changed (plain Spanish, no jargon, usted) |
-| src/features/camera/copy.ts | primerContinue | Continuar | Continuar | kept |
-| src/features/camera/copy.ts | primerCancel | Cancelar | Cancelar | kept |
-| src/features/camera/copy.ts | liveTitle | Capture la imagen. | Capture la imagen. | kept |
-| src/features/camera/copy.ts | liveBody | Centre la zona a examinar. | Centre la zona que va a examinar. | changed (plain Spanish, no jargon, usted) |
-| src/features/camera/copy.ts | shutter | Capturar | Capturar | kept |
-| src/features/camera/copy.ts | starting | Iniciando la cámara… | Iniciando la cámara… | kept |
-| src/features/camera/copy.ts | galleryTitle | Elegir una imagen | Elegir una imagen | kept |
-| src/features/camera/copy.ts | galleryBody | Galería de referencias públicas del prototipo — no se accede a archivos del dispositivo. | Imágenes públicas de referencia del prototipo. La aplicación no accede a los archivos de su dispositivo. | changed (plain Spanish, no jargon, usted) |
-| src/features/camera/copy.ts | galleryFileName | Dermatoscopy Nevus Reticular.jpg | Dermatoscopy Nevus Reticular.jpg | kept |
-| src/features/camera/copy.ts | galleryFileMeta | Philipp Tschandl · 600 × 443 · CC BY-SA 4.0 | Philipp Tschandl · 600 × 443 · CC BY-SA 4.0 | kept |
-| src/features/camera/copy.ts | galleryAttribution | Imagen pública de referencia · P. Tschandl · CC BY-SA 4.0 | Imagen pública de referencia · P. Tschandl · CC BY-SA 4.0 | kept |
-| src/features/camera/copy.ts | galleryCta | Usar imagen de referencia | Usar imagen de referencia | kept |
-| src/features/camera/copy.ts | qualityTitle | Revise antes de enviar. | Revise antes de enviar. | kept |
-| src/features/camera/copy.ts | qualityBody | Revise por su cuenta el enfoque, los reflejos, la cobertura y la información identificable. No hay un puntaje automático de calidad. | Revise usted mismo el enfoque, los reflejos, qué parte de la zona aparece y si hay información que identifique a una persona. La aplicación no asigna un puntaje automático de calidad. | changed (plain Spanish, no jargon, usted) |
-| src/features/camera/copy.ts | qualityDecision | Usted decide si es adecuada | Usted decide si la imagen es adecuada | changed (plain Spanish, no jargon, usted) |
-| src/features/camera/copy.ts | qualityDecisionBody | La alerta de resolución no certifica la calidad diagnóstica de la imagen. Revise el enfoque y el encuadre antes de decidir si desea enviarla. | La alerta de resolución no certifica la calidad diagnóstica de la imagen. Revise el enfoque y el encuadre antes de decidir si desea enviarla. | kept |
-| src/features/camera/copy.ts | qualityIssueTitle | La imagen requiere atención | La imagen requiere atención | kept |
-| src/features/camera/copy.ts | qualityIssueOpen | Abrir detalles | Abrir detalles | kept |
-| src/features/camera/copy.ts | qualityNoIssues | Sin alertas de resolución | Sin alertas de resolución | kept |
-| src/features/camera/copy.ts | issueSheetTitle | Detalle de la alerta | Detalle de la alerta | kept |
-| src/features/camera/copy.ts | issueLowResTitle | Resolución baja | Resolución baja | kept |
-| src/features/camera/copy.ts | issueLowResBody | El lado menor tiene menos de 300 px. Elija una imagen con más resolución. | El lado más corto de la imagen mide menos de 300 píxeles. Elija una imagen de mayor resolución. | changed (plain Spanish, no jargon, usted) |
-| src/features/camera/copy.ts | qualityCta | Revisar envío | Revisar envío | kept |
-| src/features/camera/copy.ts | qualityDifferentSource | Elegir otra fuente | Elegir otra fuente | kept |
-| src/features/camera/copy.ts | close | Cerrar | Cerrar | kept |
-| src/features/camera/copy.ts | measuring | Midiendo la imagen… | Revisando la imagen… | changed (plain Spanish, no jargon, usted) |
-| src/features/camera/guide/copy.ts | guide.label | Guía de encuadre | Guía de encuadre | kept |
-| src/features/camera/guide/copy.ts | guide.manual | Sin ayuda en vivo. Encuadre a mano y capture cuando la zona se vea bien. | Esta captura no tiene guía en vivo. Encuadre la zona a mano y tome la foto cuando se vea bien. | changed (plain Spanish, no jargon, usted) |
-| src/features/camera/guide/copy.ts | guide.disclaimer | Orientación de encuadre. No evalúa la calidad de la imagen. | Esta guía solo orienta el encuadre. No evalúa la calidad de la imagen. | changed (plain Spanish, no jargon, usted) |
-| src/features/camera/guide/copy.ts | guide.status | Estado de la guía | Estado de la guía | kept |
-| src/features/camera/guide/copy.ts | advice.less-light | Busque menos luz | Busque menos luz | kept |
-| src/features/camera/guide/copy.ts | advice.more-light | Busque más luz | Busque más luz | kept |
-| src/features/camera/guide/copy.ts | advice.avoid-glare | Evite el reflejo | Evite el reflejo | kept |
-| src/features/camera/guide/copy.ts | advice.hold-still | Mantenga quieto el teléfono | Mantenga quieto el teléfono | kept |
-| src/features/camera/guide/copy.ts | advice.closer | Acerque un poco | Acerque un poco | kept |
-| src/features/camera/guide/copy.ts | advice.farther | Aleje un poco | Aleje un poco | kept |
-| src/features/camera/guide/copy.ts | advice.center-area | Centre la zona | Centre la zona | kept |
-| src/features/camera/guide/copy.ts | advice.check-focus | Parece borrosa, revise el enfoque | La imagen parece borrosa. Revise el enfoque. | changed (plain Spanish, no jargon, usted) |
-| src/features/camera/guide/copy.ts | chip.focus | Enfoque | Enfoque | kept |
-| src/features/camera/guide/copy.ts | chip.light | Luz | Luz | kept |
-| src/features/camera/guide/copy.ts | chip.distance | Distancia | Distancia | kept |
-| src/features/camera/guide/copy.ts | chip.state.ok | Sin alerta | Sin alerta | kept |
-| src/features/camera/guide/copy.ts | chip.state.revisar | Revisar | Revisar | kept |
-| src/features/camera/guide/copy.ts | chip.state.sin-dato | Sin dato | Sin datos | changed (plain Spanish, no jargon, usted) |
+| Archivo | Clave | Antes (ES) | Después v1 (ES) | v2 (ES) | Motivo |
+|---|---|---|---|---|---|
+| features/desk/copy.ts | back | Volver | Volver | = | kept |
+| features/desk/copy.ts | languageSwitch | EN | EN | = | kept |
+| features/desk/copy.ts | languageLabel | Idioma | Idioma | = | kept |
+| features/desk/copy.ts | navLabel | Navegación principal | Navegación principal | = | kept |
+| features/desk/copy.ts | navDesk | Escritorio | Escritorio | = | kept |
+| features/desk/copy.ts | navInspect | Examinar | Examinar | = | kept |
+| features/desk/copy.ts | navReview | Revisión | Revisión | = | kept |
+| features/desk/copy.ts | navGuide | Guía | Guía | = | kept |
+| features/desk/copy.ts | brand | PERMA | PERMA | = | kept |
+| features/desk/copy.ts | headline | Empiece con contexto. | Empiece con contexto. | = | kept |
+| features/desk/copy.ts | prepareTitle | Prepare una imagen. | Prepare una imagen. | = | kept |
+| features/desk/copy.ts | prepareBody | Registre el contexto y sus observaciones. | Anote el contexto del caso y sus propias observaciones. | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | newExam | Nuevo examen | Nuevo examen | = | kept |
+| features/desk/copy.ts | protocolTitle | Protocolo | Protocolo | = | kept |
+| features/desk/copy.ts | protocolScope | Alcance y límites | Alcance y límites | = | kept |
+| features/desk/copy.ts | protocolStatus | Una herramienta de IA en investigación. | Es una herramienta de IA en investigación. | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | referenceTitle | Imagen de referencia | Imagen de referencia | = | kept |
+| features/desk/copy.ts | referenceExplore | Explorar el espacio de trabajo | Explorar el espacio de trabajo | = | kept |
+| features/desk/copy.ts | referenceNote | Imagen pública de ejemplo; no pertenece al registro que está creando. | Es una imagen pública de ejemplo. No forma parte del registro que usted está creando. | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | attribution | Imagen pública de referencia · P. Tschandl · CC BY-SA 4.0 | Imagen pública de referencia · P. Tschandl · CC BY-SA 4.0 | = | kept |
+| features/desk/copy.ts | referenceAuthor | P. Tschandl | P. Tschandl | = | kept |
+| features/desk/copy.ts | referenceLicense | CC BY-SA 4.0 | CC BY-SA 4.0 | = | kept |
+| features/desk/copy.ts | contextShell | Configuración · Contexto | Configuración · Contexto | = | kept |
+| features/desk/copy.ts | scopeTitle | Alcance del prototipo | Alcance del prototipo | = | kept |
+| features/desk/copy.ts | scopeBody | Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos. Esta versión usa HAM7, evaluado en imágenes dermatoscópicas; una foto corriente de celular no equivale a una dermatoscopía. | Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos. Esta versión usa el modelo HAM7, que asigna puntajes a siete categorías y se evaluó en imágenes dermatoscópicas. Una fotografía corriente de celular no es una dermatoscopía. | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | discardAction | Descartar registro | Descartar registro | = | kept |
+| features/desk/copy.ts | discardTitle | ¿Iniciar un examen nuevo? | ¿Iniciar un examen nuevo? | = | kept |
+| features/desk/copy.ts | discardBody | Esto borra la imagen, el consentimiento, el contexto y las observaciones manuales. Volver normalmente no los borra. | Esto borra la imagen, el consentimiento, el contexto y sus observaciones manuales. Usar el botón Volver no borra nada. | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | discardKeep | Conservar el examen actual | Conservar el examen actual | = | kept |
+| features/desk/copy.ts | discardKeepBody | Cerrar sin borrar el examen | Cierre esta ventana sin borrar el examen. | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | discardConfirm | Borrar e iniciar | Borrar y empezar | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | cancel | Cancelar | Cancelar | = | kept |
+| features/desk/copy.ts | close | Cerrar | Cerrar | = | kept |
+| features/desk/copy.ts | menuAction | Opciones | Opciones | = | kept |
+| features/desk/copy.ts | menuTitle | Opciones | Opciones | = | kept |
+| features/desk/copy.ts | menuGuide | Guía y privacidad | Guía y privacidad | = | kept |
+| features/desk/copy.ts | menuDelete | Borrar examen | Borrar examen | = | kept |
+| features/desk/copy.ts | menuDeleteHint | Disponible cuando el registro tiene contenido. | Solo está disponible cuando el examen tiene contenido. | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | contextHeadline | Dé contexto a la imagen. | Agregue contexto a la imagen. | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | intro | Registre solo lo necesario. No ingrese el nombre, identificador ni datos de contacto del paciente. | Anote solo lo necesario. Por favor, no escriba el nombre, el número de identificación ni los datos de contacto del paciente. | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | modality | Modalidad de imagen | Modalidad de imagen | = | kept |
+| features/desk/copy.ts | modalityValue | Imagen dermatoscópica | Imagen dermatoscópica | = | kept |
+| features/desk/copy.ts | site | Sitio del cuerpo | Sitio del cuerpo | = | kept |
+| features/desk/copy.ts | siteEmpty | Sin registrar | Sin registrar | = | kept |
+| features/desk/copy.ts | clinicalContext | Contexto clínico opcional | Contexto clínico opcional | = | kept |
+| features/desk/copy.ts | ctxSheetTitle | Contexto clínico opcional | Contexto clínico opcional | = | kept |
+| features/desk/copy.ts | ctxSheetNotice | Estos datos son opcionales y acompañan su registro en este dispositivo. No se envían al modelo, no cambian sus puntajes y no constituyen una conclusión clínica. | Estos datos son opcionales y acompañan su registro en este dispositivo. No se envían al modelo, no cambian sus puntajes y no constituyen una conclusión clínica. | = | kept |
+| features/desk/copy.ts | ctxAge | Edad | Edad | = | kept |
+| features/desk/copy.ts | ctxAgeError | Ingrese una edad entera entre 0 y 120. | Ingrese una edad entera entre 0 y 120. | = | kept |
+| features/desk/copy.ts | ctxDurationTitle | Evolución | Tiempo de evolución | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | ctxDurationLt1w | < 1 semana | < 1 semana | = | kept |
+| features/desk/copy.ts | ctxDuration1to4w | 1-4 semanas | 1-4 semanas | = | kept |
+| features/desk/copy.ts | ctxDuration1to6m | 1-6 meses | 1-6 meses | = | kept |
+| features/desk/copy.ts | ctxDurationGt6m | > 6 meses | > 6 meses | = | kept |
+| features/desk/copy.ts | ctxDurationUnknown | No sabe | No sabe | = | kept |
+| features/desk/copy.ts | ctxSymptomsTitle | Síntomas suministrados | Síntomas referidos | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | ctxSymptomItch | Picazón | Picazón | = | kept |
+| features/desk/copy.ts | ctxSymptomPain | Dolor | Dolor | = | kept |
+| features/desk/copy.ts | ctxSymptomBleeding | Sangrado | Sangrado | = | kept |
+| features/desk/copy.ts | ctxSymptomRecentChange | Cambio reciente | Cambio reciente | = | kept |
+| features/desk/copy.ts | ctxSymptomsOne | 1 síntoma | 1 síntoma | = | kept |
+| features/desk/copy.ts | ctxSymptomsMany | {n} síntomas | {n} síntomas | = | kept |
+| features/desk/copy.ts | ctxHistoryTitle | Antecedentes | Antecedentes | = | kept |
+| features/desk/copy.ts | ctxHistoryPlaceholder | Antecedentes relevantes, sin nombres ni identificadores | Antecedentes relevantes, sin nombres ni números de identificación | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | ctxHistoryRecorded | Antecedentes registrados | Antecedentes registrados | = | kept |
+| features/desk/copy.ts | ctxNotRegistered | No registrado | No registrado | = | kept |
+| features/desk/copy.ts | ctxSave | Guardar | Guardar | = | kept |
+| features/desk/copy.ts | ctxExportTitle | Contexto suministrado por el usuario | Contexto aportado por el profesional | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | ctxExportNotice | Dato suministrado por el usuario. El modelo no lo interpreta, no participa en las puntuaciones y no se usa para ninguna conclusión clínica. | Dato aportado por el profesional. El modelo no lo interpreta, no influye en los puntajes y no se usa para ninguna conclusión clínica. | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | ctxReviewScores | Las puntuaciones del modelo no usan este contexto. | Los puntajes del modelo no usan este contexto. | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | siteTitle | Sitio del cuerpo | Sitio del cuerpo | = | kept |
+| features/desk/copy.ts | siteNone | Sin registrar | Sin registrar | = | kept |
+| features/desk/copy.ts | siteFace | Cara | Cara | = | kept |
+| features/desk/copy.ts | siteScalp | Cuero cabelludo | Cuero cabelludo | = | kept |
+| features/desk/copy.ts | siteTrunk | Tronco | Tronco | = | kept |
+| features/desk/copy.ts | siteUpperLimb | Extremidad superior | Extremidad superior | = | kept |
+| features/desk/copy.ts | siteLowerLimb | Extremidad inferior | Extremidad inferior | = | kept |
+| features/desk/copy.ts | continue | Continuar a la imagen | Continuar a la imagen | = | kept |
+| features/desk/copy.ts | privacyCardTitle | Qué pasa con estos datos | Qué pasa con estos datos | = | kept |
+| features/desk/copy.ts | privacyCardStay | Se guardan solo en este dispositivo. | Se guardan solo en este dispositivo. | = | kept |
+| features/desk/copy.ts | privacyCardOptional | Son opcionales: puede continuar sin registrarlos. | Son opcionales: puede continuar sin registrarlos. | = | kept |
+| features/desk/copy.ts | privacyCardModel | El modelo no los interpreta ni se usan para conclusiones clínicas. | El modelo no los interpreta ni se usan para conclusiones clínicas. | = | kept |
+| features/desk/copy.ts | stepperLabel | Progreso del examen | Progreso del examen | = | kept |
+| features/desk/copy.ts | homeLead | Prepare una imagen dermatoscópica, consulte la salida experimental de la IA y registre sus propias observaciones. PERMA no reemplaza la valoración clínica ni emite diagnósticos. | Prepare una imagen dermatoscópica, revise el resultado experimental de la IA y anote sus propias observaciones. PERMA no reemplaza la valoración clínica ni emite diagnósticos. | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | homeJourneyTitle | Cómo es el recorrido | Así funciona el recorrido | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | homeStepContexto | Anote la zona del cuerpo y, si lo necesita, datos para su registro. No modifican el análisis de la IA. | Indique la zona del cuerpo y, si lo desea, otros datos para su registro. No cambian el análisis de la IA. | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | homeStepImagen | Cámara, archivo o la imagen de referencia pública. | Puede usar la cámara, un archivo o la imagen de referencia pública. | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | homeStepAnalisis | Revise la imagen y autorice su envío al servidor para analizarla. | Revise la imagen y autorice su envío al servidor para analizarla. | = | kept |
+| features/desk/copy.ts | homeStepResultado | Compare los puntajes de las siete categorías. Indican la salida relativa del modelo, no la probabilidad de tener una enfermedad. | Compare los puntajes de las siete categorías. Son valores relativos que produce el modelo; no son la probabilidad de que el paciente tenga una enfermedad. | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | homeStepObservaciones | Su revisión ABCDE manual, criterio por criterio. | Su revisión manual con la regla ABCDE, criterio por criterio. | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | homeStepRevision | Resumen y exportación en CSV, PDF o JSON. | Consulte el resumen y expórtelo en CSV, PDF o JSON. | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | railJourney | Recorrido del examen | Recorrido del examen | = | kept |
+| features/desk/copy.ts | railDone | completado | completado | = | kept |
+| features/desk/copy.ts | railNotice | IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos. | Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos. | = | changed (plain Spanish, no jargon, usted) |
+| features/desk/copy.ts | stepEyebrow | Paso {n} de {total} | Paso {n} de {total} | = | kept |
+| features/desk/copy.ts | stepContexto | Contexto | Contexto | = | kept |
+| features/desk/copy.ts | stepImagen | Imagen | Imagen | = | kept |
+| features/desk/copy.ts | stepAnalisis | Análisis | Análisis | = | kept |
+| features/desk/copy.ts | stepResultado | Resultado | Resultado | = | kept |
+| features/desk/copy.ts | stepObservaciones | Observaciones | Observaciones | = | kept |
+| features/desk/copy.ts | stepRevision | Revisión | Revisión | = | kept |
+| features/guide/copy.ts | guideTitle | Referencia · Guía | Referencia · Guía | = | kept |
+| features/guide/copy.ts | guideHeading | Cómo usar PERMA y leer sus resultados | Cómo usar PERMA y leer sus resultados | = | kept |
+| features/guide/copy.ts | guideIntro | Prepare una imagen, autorice el análisis si corresponde y registre sus propias observaciones. La salida de la IA y la revisión manual se mantienen separadas; ninguna sustituye la valoración clínica. | Prepare una imagen, autorice el análisis cuando corresponda y anote sus propias observaciones. El resultado de la IA y su revisión manual se mantienen separados; ninguno de los dos reemplaza la valoración clínica. | = | changed (plain Spanish, no jargon, usted) |
+| features/guide/copy.ts | evidenceTitle | Límite de la evidencia | Límite de la evidencia | = | kept |
+| features/guide/copy.ts | evidenceBody | Esta interfaz usa MoCo HAM7: siete categorías estudiadas en imágenes dermatoscópicas. No incluye SCC como categoría independiente. Aunque permita cargar una foto de celular, eso no demuestra que el modelo sea válido para analizarla. Sus puntajes no confirman ni descartan enfermedades. | Esta interfaz usa el modelo MoCo HAM7, que asigna puntajes a siete categorías estudiadas en imágenes dermatoscópicas. No incluye el carcinoma escamocelular (SCC) como categoría independiente. Que la aplicación acepte una fotografía de celular no demuestra que el modelo sirva para analizarla. Sus puntajes no confirman ni descartan ninguna enfermedad. | = | changed (plain Spanish, no jargon, usted) |
+| features/guide/copy.ts | manualTitle | Examen manual | Examen manual | = | kept |
+| features/guide/copy.ts | manualBody | ABCDE registra las observaciones del profesional; no es un puntaje automático de riesgo. | La regla ABCDE registra las observaciones del profesional. No es un puntaje automático de riesgo. | = | changed (plain Spanish, no jargon, usted) |
+| features/guide/copy.ts | modelIdentityLabel | Identidad del modelo y de la inferencia | Datos del modelo y del análisis | = | changed (plain Spanish, no jargon, usted) |
+| features/guide/copy.ts | modelIdentityHint | Abrir detalles | Abrir detalles | = | kept |
+| features/guide/copy.ts | privacyLabel | Tratamiento de datos | Tratamiento de datos | = | kept |
+| features/guide/copy.ts | privacyHint | Abrir detalles | Abrir detalles | = | kept |
+| features/guide/copy.ts | toneLabel | Transformación de tono solo para investigación | Ajuste de tono, solo para investigación | = | changed (plain Spanish, no jargon, usted) |
+| features/guide/copy.ts | toneHint | Abrir detalles | Abrir detalles | = | kept |
+| features/guide/copy.ts | imageAttribution | Imagen: P. Tschandl · CC BY-SA 4.0 | Imagen: P. Tschandl · CC BY-SA 4.0 | = | kept |
+| features/guide/copy.ts | back | Volver al espacio de trabajo | Volver al espacio de trabajo | = | kept |
+| features/guide/copy.ts | info | Alcance y métodos | Alcance y métodos | = | kept |
+| features/guide/copy.ts | privacyTitle | Referencia · Tratamiento de datos | Referencia · Tratamiento de datos | = | kept |
+| features/guide/copy.ts | privacyHeading | Entienda el recorrido de los datos. | Entienda el recorrido de los datos. | = | kept |
+| features/guide/copy.ts | privacyIntro | Esta versión es un prototipo de investigación. Describe qué queda en su dispositivo y qué viaja al servidor de inferencia cuando usted lo solicita. | Esta versión es un prototipo de investigación. Describe qué queda en su dispositivo y qué viaja al servidor de análisis cuando usted lo solicita. | = | changed (plain Spanish, no jargon, usted) |
+| features/guide/copy.ts | stayTitle | Permanece en su dispositivo | Permanece en su dispositivo | = | kept |
+| features/guide/copy.ts | stayBody | El registro ABCDE, la nota profesional, el contexto de la sesión y la imagen que usted cargó o tomó, guardados en este navegador hasta que descarte el examen. La imagen no se sube sin su acción. Los fotogramas que analiza la guía de la cámara nunca se almacenan ni se suben. | La revisión ABCDE, la nota profesional, el contexto del examen y la imagen que usted cargó o tomó se guardan en este navegador hasta que descarte el examen. La imagen no se sube sin que usted lo decida. Las imágenes que analiza la guía de la cámara no se guardan ni se suben. | = | changed (plain Spanish, no jargon, usted) |
+| features/guide/copy.ts | travelTitle | Viaja al servidor cuando usted pulsa Enviar | Viaja al servidor cuando usted pulsa Enviar | = | kept |
+| features/guide/copy.ts | travelBody | Una copia redimensionada de la imagen, sin ubicación EXIF, junto con el identificador del modelo y el modo de análisis. El contexto, el registro ABCDE y la nota se quedan en este dispositivo y no modifican los puntajes del modelo. | Una copia reducida de la imagen, sin datos de ubicación (EXIF), junto con la versión del modelo y el modo de análisis. El contexto, la revisión ABCDE y la nota se quedan en este dispositivo y no cambian los puntajes del modelo. | = | changed (plain Spanish, no jargon, usted) |
+| features/guide/copy.ts | retentionTitle | Retención y acceso | Conservación y acceso | = | changed (plain Spanish, no jargon, usted) |
+| features/guide/copy.ts | retentionBody | En una solicitud real, la política de retención, acceso y eliminación del servidor debe verificarse por separado. | En un envío real, la política del servidor sobre conservación, acceso y eliminación debe verificarse por separado. | = | changed (plain Spanish, no jargon, usted) |
+| features/guide/copy.ts | referenceTitle | Imagen de referencia | Imagen de referencia | = | kept |
+| features/guide/copy.ts | referenceBody | La imagen de ejemplo incluida es una fotografía pública de P. Tschandl con licencia CC BY-SA 4.0. Es independiente de las imágenes que usted añada a sus registros. | La imagen de ejemplo incluida es una fotografía pública de P. Tschandl con licencia CC BY-SA 4.0. Es independiente de las imágenes que usted añada a sus registros. | = | kept |
+| features/guide/copy.ts | licencesTitle | Licencias | Licencias | = | kept |
+| features/guide/copy.ts | licencesBody | Tipografía Geist: SIL Open Font License 1.1. Iconos: diseño propio del proyecto. MoCo V10 continúa el aprendizaje de DINOv2 con imágenes ISIC y PAD, no con datos sintéticos. Consulte las licencias y atribuciones del release antes de reutilizar el modelo; su uso está limitado a investigación no comercial. | Tipografía Geist: SIL Open Font License 1.1. Iconos: diseño propio del proyecto. El modelo MoCo V10 continúa el aprendizaje de DINOv2 con imágenes de ISIC y PAD, no con datos sintéticos. Revise las licencias y atribuciones de la versión publicada antes de reutilizar el modelo. Su uso está limitado a investigación no comercial. | = | changed (plain Spanish, no jargon, usted) |
+| features/guide/copy.ts | noGuaranteeTitle | Qué debe comprobarse por separado | Qué debe comprobarse por separado | = | kept |
+| features/guide/copy.ts | noGuaranteeBody | Guardar un registro en este navegador no garantiza cifrado en el dispositivo ni borrado automático en el servidor. El análisis del modelo necesita conexión. Verifique el tratamiento de datos antes de usar imágenes sensibles. | Guardar un registro en este navegador no implica cifrado en el dispositivo ni borrado automático en el servidor. El análisis del modelo necesita conexión. Revise el tratamiento de datos antes de usar imágenes sensibles. | = | changed (plain Spanish, no jargon, usted) |
+| features/guide/copy.ts | privacyAction | Volver al envío | Volver al envío | = | kept |
+| features/guide/copy.ts | toneTitle | Tono solo para investigación | Tono solo para investigación | = | kept |
+| features/guide/copy.ts | toneBody | Ruta exclusiva de desarrollo. No forma parte de la aplicación de producción. | Ruta exclusiva de desarrollo. No forma parte de la aplicación de producción. | = | kept |
+| features/camera/copy.ts | captureShell | Imagen · Fuente | Imagen · Fuente | = | kept |
+| features/camera/copy.ts | liveShell | Imagen · Cámara | Imagen · Cámara | = | kept |
+| features/camera/copy.ts | galleryShell | Imagen · Referencia | Imagen · Referencia | = | kept |
+| features/camera/copy.ts | qualityShell | Imagen · Revisión | Imagen · Revisión | = | kept |
+| features/camera/copy.ts | captureTitle | Muestre la imagen. | Elija la imagen. | = | changed (plain Spanish, no jargon, usted) |
+| features/camera/copy.ts | captureBody | Use una imagen dermatoscópica y conserve el original. Esta versión no está validada para analizar fotografías corrientes de celular. Revise que la imagen no incluya datos que identifiquen a una persona. | Use una imagen dermatoscópica y conserve el original. Esta versión no está validada para analizar fotografías corrientes de celular. Revise que la imagen no incluya datos que identifiquen a una persona. | = | kept |
+| features/camera/copy.ts | optCamera | Usar la cámara | Usar la cámara | = | kept |
+| features/camera/copy.ts | optCameraHint | El permiso se solicita al capturar | El permiso se solicita al capturar | = | kept |
+| features/camera/copy.ts | optFile | Elegir un archivo | Elegir un archivo | = | kept |
+| features/camera/copy.ts | optFileHint | JPEG, PNG o WebP · máx. 10 MiB / 20 MP | JPEG, PNG o WebP · hasta 10 MiB y 20 megapíxeles | = | changed (plain Spanish, no jargon, usted) |
+| features/camera/copy.ts | optSample | Ejemplo de referencia pública | Ejemplo de referencia pública | = | kept |
+| features/camera/copy.ts | optSampleHint | Imagen pública de ejemplo, independiente de las que usted añada | Imagen pública de ejemplo, independiente de las que usted añada | = | kept |
+| features/camera/copy.ts | ctaSample | Usar ejemplo de referencia pública | Usar ejemplo de referencia pública | = | kept |
+| features/camera/copy.ts | primerTitle | Permiso de cámara | Permiso de cámara | = | kept |
+| features/camera/copy.ts | primerBody | La cámara se usa solo mientras esta pantalla está abierta. Los fotogramas que analiza la guía no se guardan ni se suben; la foto que usted toma queda en este dispositivo. | La cámara se usa solo mientras esta pantalla está abierta. Las imágenes que analiza la guía no se guardan ni se suben. La foto que usted tome queda en este dispositivo. | = | changed (plain Spanish, no jargon, usted) |
+| features/camera/copy.ts | primerContinue | Continuar | Continuar | = | kept |
+| features/camera/copy.ts | primerCancel | Cancelar | Cancelar | = | kept |
+| features/camera/copy.ts | liveTitle | Capture la imagen. | Capture la imagen. | = | kept |
+| features/camera/copy.ts | liveBody | Centre la zona a examinar. | Centre la zona que va a examinar. | = | changed (plain Spanish, no jargon, usted) |
+| features/camera/copy.ts | shutter | Capturar | Capturar | = | kept |
+| features/camera/copy.ts | starting | Iniciando la cámara… | Iniciando la cámara… | = | kept |
+| features/camera/copy.ts | galleryTitle | Elegir una imagen | Elegir una imagen | = | kept |
+| features/camera/copy.ts | galleryBody | Galería de referencias públicas del prototipo — no se accede a archivos del dispositivo. | Imágenes públicas de referencia del prototipo. La aplicación no accede a los archivos de su dispositivo. | = | changed (plain Spanish, no jargon, usted) |
+| features/camera/copy.ts | galleryFileName | Dermatoscopy Nevus Reticular.jpg | Dermatoscopy Nevus Reticular.jpg | = | kept |
+| features/camera/copy.ts | galleryFileMeta | Philipp Tschandl · 600 × 443 · CC BY-SA 4.0 | Philipp Tschandl · 600 × 443 · CC BY-SA 4.0 | = | kept |
+| features/camera/copy.ts | galleryAttribution | Imagen pública de referencia · P. Tschandl · CC BY-SA 4.0 | Imagen pública de referencia · P. Tschandl · CC BY-SA 4.0 | = | kept |
+| features/camera/copy.ts | galleryCta | Usar imagen de referencia | Usar imagen de referencia | = | kept |
+| features/camera/copy.ts | qualityTitle | Revise antes de enviar. | Revise antes de enviar. | = | kept |
+| features/camera/copy.ts | qualityBody | Revise por su cuenta el enfoque, los reflejos, la cobertura y la información identificable. No hay un puntaje automático de calidad. | Revise usted mismo el enfoque, los reflejos, qué parte de la zona aparece y si hay información que identifique a una persona. La aplicación no asigna un puntaje automático de calidad. | = | changed (plain Spanish, no jargon, usted) |
+| features/camera/copy.ts | qualityDecision | Usted decide si es adecuada | Usted decide si la imagen es adecuada | = | changed (plain Spanish, no jargon, usted) |
+| features/camera/copy.ts | qualityDecisionBody | La alerta de resolución no certifica la calidad diagnóstica de la imagen. Revise el enfoque y el encuadre antes de decidir si desea enviarla. | La alerta de resolución no certifica la calidad diagnóstica de la imagen. Revise el enfoque y el encuadre antes de decidir si desea enviarla. | A resolution alert does not certify diagnostic image quality. Check focus and framing before deciding whether to send it. | kept |
+| features/camera/copy.ts | qualityIssueTitle | La imagen requiere atención | La imagen requiere atención | = | kept |
+| features/camera/copy.ts | qualityIssueOpen | Abrir detalles | Abrir detalles | = | kept |
+| features/camera/copy.ts | qualityNoIssues | Sin alertas de resolución | Sin alertas de resolución | = | kept |
+| features/camera/copy.ts | issueSheetTitle | Detalle de la alerta | Detalle de la alerta | = | kept |
+| features/camera/copy.ts | issueLowResTitle | Resolución baja | Resolución baja | = | kept |
+| features/camera/copy.ts | issueLowResBody | El lado menor tiene menos de 300 px. Elija una imagen con más resolución. | El lado más corto de la imagen mide menos de 300 píxeles. Elija una imagen de mayor resolución. | = | changed (plain Spanish, no jargon, usted) |
+| features/camera/copy.ts | qualityCta | Revisar envío | Revisar envío | = | kept |
+| features/camera/copy.ts | qualityDifferentSource | Elegir otra fuente | Elegir otra fuente | = | kept |
+| features/camera/copy.ts | close | Cerrar | Cerrar | = | kept |
+| features/camera/copy.ts | measuring | Midiendo la imagen… | Revisando la imagen… | = | changed (plain Spanish, no jargon, usted) |
+| features/camera/guide/copy.ts | guide.label | Guía de encuadre | Guía de encuadre | = | kept |
+| features/camera/guide/copy.ts | guide.manual | Sin ayuda en vivo. Encuadre a mano y capture cuando la zona se vea bien. | Esta captura no tiene guía en vivo. Encuadre la zona a mano y tome la foto cuando se vea bien. | = | changed (plain Spanish, no jargon, usted) |
+| features/camera/guide/copy.ts | guide.disclaimer | Orientación de encuadre. No evalúa la calidad de la imagen. | Esta guía solo orienta el encuadre. No evalúa la calidad de la imagen. | = | changed (plain Spanish, no jargon, usted) |
+| features/camera/guide/copy.ts | guide.status | Estado de la guía | Estado de la guía | = | kept |
+| features/camera/guide/copy.ts | advice.less-light | Busque menos luz | Busque menos luz | = | kept |
+| features/camera/guide/copy.ts | advice.more-light | Busque más luz | Busque más luz | = | kept |
+| features/camera/guide/copy.ts | advice.avoid-glare | Evite el reflejo | Evite el reflejo | = | kept |
+| features/camera/guide/copy.ts | advice.hold-still | Mantenga quieto el teléfono | Mantenga quieto el teléfono | = | kept |
+| features/camera/guide/copy.ts | advice.closer | Acerque un poco | Acerque un poco | = | kept |
+| features/camera/guide/copy.ts | advice.farther | Aleje un poco | Aleje un poco | = | kept |
+| features/camera/guide/copy.ts | advice.center-area | Centre la zona | Centre la zona | = | kept |
+| features/camera/guide/copy.ts | advice.check-focus | Parece borrosa, revise el enfoque | La imagen parece borrosa. Revise el enfoque. | = | changed (plain Spanish, no jargon, usted) |
+| features/camera/guide/copy.ts | chip.focus | Enfoque | Enfoque | = | kept |
+| features/camera/guide/copy.ts | chip.light | Luz | Luz | = | kept |
+| features/camera/guide/copy.ts | chip.distance | Distancia | Distancia | = | kept |
+| features/camera/guide/copy.ts | chip.state.ok | Sin alerta | Sin alerta | = | kept |
+| features/camera/guide/copy.ts | chip.state.revisar | Revisar | Revisar | = | kept |
+| features/camera/guide/copy.ts | chip.state.sin-dato | Sin dato | Sin datos | = | changed (plain Spanish, no jargon, usted) |
 
 ## Resultado, visor y revisión/exportación (group-c)
 
-| Archivo | Clave | Antes (ES) | Después (ES) | Motivo |
-|---|---|---|---|---|
-| src/features/inspect/copy.ts | appName | PERMA | PERMA | kept |
-| src/features/inspect/copy.ts | back | Volver | Volver | kept |
-| src/features/inspect/copy.ts | info | Alcance y métodos | Alcance y métodos | kept |
-| src/features/inspect/copy.ts | langSwitchToEn | Cambiar a inglés | Cambiar a inglés | kept |
-| src/features/inspect/copy.ts | langSwitchToEs | Cambiar a español | Cambiar a español | kept |
-| src/features/inspect/copy.ts | langLabelEn | EN | EN | kept |
-| src/features/inspect/copy.ts | langLabelEs | ES | ES | kept |
-| src/features/inspect/copy.ts | experimentalNotice | Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos. | Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos. | kept |
-| src/features/inspect/copy.ts | mockBadge | Modelo simulado | Modelo simulado | kept |
-| src/features/inspect/copy.ts | mockNotice | Valores de demostración generados localmente. No se calcularon a partir de su imagen. | Valores de demostración generados localmente. No se calcularon a partir de su imagen. | kept |
-| src/features/inspect/copy.ts | resultTitle | Salida del modelo | Resultado del modelo | humanized |
-| src/features/inspect/copy.ts | stepResult | Paso 4 de 6 | Paso 4 de 6 | kept |
-| src/features/inspect/copy.ts | stepObservations | Paso 5 de 6 | Paso 5 de 6 | kept |
-| src/features/inspect/copy.ts | stepReview | Paso 6 de 6 | Paso 6 de 6 | kept |
-| src/features/inspect/copy.ts | resultHeading | Salida experimental | Resultado experimental | humanized |
-| src/features/inspect/copy.ts | resultIntro | El modelo reparte su salida entre siete categorías, con puntajes de 0 a 1. Estos valores no indican la probabilidad de tener una enfermedad ni confirman un diagnóstico. | El modelo asigna un puntaje de 0 a 1 a cada una de sus siete categorías. Estos valores no son la probabilidad de tener una enfermedad ni un diagnóstico. | humanized |
-| src/features/inspect/copy.ts | topScores | Clases con mayor puntaje | Categorías con mayor puntaje | humanized |
-| src/features/inspect/copy.ts | noCalibratedRisk | Qué significa el puntaje | Qué significa el puntaje | kept |
-| src/features/inspect/copy.ts | noCalibratedRiskBody | Incluso un puntaje alto no confirma ni descarta una enfermedad. No lo use para decidir si necesita atención médica. | Incluso un puntaje alto no confirma ni descarta una enfermedad. No use este resultado para decidir si necesita atención médica. | humanized |
-| src/features/inspect/copy.ts | viewAllScores | Ver los siete puntajes | Ver los siete puntajes | kept |
-| src/features/inspect/copy.ts | viewAllScoresHint | Abrir detalles | Abrir detalles | kept |
-| src/features/inspect/copy.ts | modelProvenance | Modelo y procedencia | Modelo y origen | humanized |
-| src/features/inspect/copy.ts | modelProvenanceHint | Abrir detalles | Abrir detalles | kept |
-| src/features/inspect/copy.ts | inspectImage | Inspeccionar la imagen | Inspeccionar la imagen | kept |
-| src/features/inspect/copy.ts | classesTitle | Qué significan los puntajes | Qué significan los puntajes | kept |
-| src/features/inspect/copy.ts | classesIntro | Los puntajes muestran cómo el modelo distribuye su salida entre las siete categorías de HAM7. Un valor mayor no equivale a mayor certeza clínica ni a la probabilidad de tener esa enfermedad. | Los puntajes muestran cómo el modelo reparte su resultado entre las siete categorías de lesiones. Un valor más alto no significa mayor certeza clínica ni mayor probabilidad de tener esa enfermedad. | humanized |
-| src/features/inspect/copy.ts | classesBack | Volver a imagen | Volver a la imagen | humanized |
-| src/features/inspect/copy.ts | classDetailTitle | Salida del modelo · Clase | Resultado del modelo · Categoría | humanized |
-| src/features/inspect/copy.ts | classDefinitionHeading | Definición de clase | Qué describe esta categoría | humanized |
-| src/features/inspect/copy.ts | classDetailIntro | La etiqueta identifica una categoría del modelo, no un diagnóstico confirmado. | La etiqueta indica una categoría del modelo. No es un diagnóstico confirmado. | humanized |
-| src/features/inspect/copy.ts | rawScoreMock | Puntaje de demostración · no calculado a partir de su imagen | Puntaje de demostración. No se calculó a partir de su imagen. | humanized |
-| src/features/inspect/copy.ts | rawScoreLive | Puntaje relativo del modelo · no es una probabilidad clínica | Puntaje relativo del modelo. No es una probabilidad clínica. | humanized |
-| src/features/inspect/copy.ts | contextHeading | Lea con contexto | Lea con contexto | kept |
-| src/features/inspect/copy.ts | contextBody | Varias afecciones pueden compartir características visibles. Este prototipo no proporciona ningún umbral de decisión clínica. | Varias afecciones pueden compartir características visibles. Este prototipo no proporciona ningún umbral de decisión clínica. | kept |
-| src/features/inspect/copy.ts | fullOutputHeading | Usar la salida completa | Use el resultado completo | humanized |
-| src/features/inspect/copy.ts | fullOutputBody | Revise los demás puntajes de clase y la identidad técnica. La clase principal no descarta otra afección. | Revise también los demás puntajes y los datos técnicos del modelo. La categoría con mayor puntaje no descarta otra afección. | humanized |
-| src/features/inspect/copy.ts | classDetailBack | Volver a los puntajes de clase | Volver a los puntajes | humanized |
-| src/features/inspect/copy.ts | scaleMin | Mínimo 0 | Mínimo 0 | kept |
-| src/features/inspect/copy.ts | scaleMax | Máximo 1 | Máximo 1 | kept |
-| src/features/inspect/copy.ts | modelSheetTitle | Identidad técnica | Datos técnicos del modelo | humanized |
-| src/features/inspect/copy.ts | modelIdLabel | Modelo | Modelo | kept |
-| src/features/inspect/copy.ts | modelModeLabel | Modo solicitado | Modo solicitado | kept |
-| src/features/inspect/copy.ts | modelSheetIntro | Identidad del modelo que produjo esta salida. Solo se muestran datos recibidos o registrados en esta sesión. | Datos del modelo que produjo este resultado. Solo se muestran los datos recibidos o registrados en esta sesión. | humanized |
-| src/features/inspect/copy.ts | backToResult | Volver al resultado | Volver al resultado | kept |
-| src/features/inspect/copy.ts | modelShaLabel | SHA-256 del modelo | Huella digital del modelo (SHA-256) | humanized |
-| src/features/inspect/copy.ts | modelVerifiedLabel | Verificación de integridad | Comprobación de integridad | humanized |
-| src/features/inspect/copy.ts | modelRecipeLabel | Receta de inferencia | Configuración de la inferencia | humanized |
-| src/features/inspect/copy.ts | modelReleaseLabel | Versión | Versión | kept |
-| src/features/inspect/copy.ts | modelSourceLabel | Origen de los datos | Origen de los datos | kept |
-| src/features/inspect/copy.ts | sourceLive | Servidor en vivo | Servidor en vivo | kept |
-| src/features/inspect/copy.ts | sourceMock | Simulado (sin servidor) | Simulado (sin servidor) | kept |
-| src/features/inspect/copy.ts | verifiedYes | Verificado | Verificado | kept |
-| src/features/inspect/copy.ts | verifiedNo | No verificado | No verificado | kept |
-| src/features/inspect/copy.ts | notAvailable | No disponible | No disponible | kept |
-| src/features/inspect/copy.ts | close | Cerrar | Cerrar | kept |
-| src/features/inspect/copy.ts | viewerTitle | Imagen de referencia | Imagen de referencia | kept |
-| src/features/inspect/copy.ts | viewerTabsLabel | Vistas de la imagen | Vistas de la imagen | kept |
-| src/features/inspect/copy.ts | tabImage | Imagen | Imagen | kept |
-| src/features/inspect/copy.ts | tabOutput | Salida del modelo | Resultado del modelo | humanized |
-| src/features/inspect/copy.ts | tabObservations | Mis observaciones | Mis observaciones | kept |
-| src/features/inspect/copy.ts | imageHeading | Mire más de cerca. | Mire más de cerca. | kept |
-| src/features/inspect/copy.ts | imageAltSession | Imagen de su sesión, sin modificar | Imagen de su sesión, sin modificar | kept |
-| src/features/inspect/copy.ts | imageAltReference | Imagen pública de referencia, sin modificar | Imagen pública de referencia, sin modificar | kept |
-| src/features/inspect/copy.ts | referenceCaption | Referencia pública · Color original | Referencia pública · color original | humanized |
-| src/features/inspect/copy.ts | referenceAttribution | P. Tschandl · CC BY-SA 4.0 | P. Tschandl · CC BY-SA 4.0 | kept |
-| src/features/inspect/copy.ts | toolFit | Ajustar | Ajustar | kept |
-| src/features/inspect/copy.ts | toolZoom | Ampliar | Ampliar | kept |
-| src/features/inspect/copy.ts | toolLayers | Capas | Capas | kept |
-| src/features/inspect/copy.ts | toolInfo | Info | Info | kept |
-| src/features/inspect/copy.ts | toolbarLabel | Herramientas de la imagen | Herramientas de la imagen | kept |
-| src/features/inspect/copy.ts | toolsMenuLabel | Más herramientas de imagen | Más herramientas de imagen | kept |
-| src/features/inspect/copy.ts | toolSheetTitle | Herramientas de imagen | Herramientas de imagen | kept |
-| src/features/inspect/copy.ts | toolSheetIntro | Las herramientas cambian la forma de inspeccionar la fuente. No generan evidencia del modelo. | Estas herramientas solo cambian la forma de ver la imagen original. No producen evidencia del modelo. | humanized |
-| src/features/inspect/copy.ts | toolFitHint | Muestra la imagen completa en el espacio disponible. El color no cambia. | Muestra la imagen completa en el espacio disponible. El color no cambia. | kept |
-| src/features/inspect/copy.ts | toolZoomHint | Solo escala de la ventana de visualización; no es una medición. | Solo cambia el tamaño con que se ve la imagen en pantalla. No es una medida. | humanized |
-| src/features/inspect/copy.ts | toolLayersHint | La imagen original no se modifica. El contorno del modelo es opcional, está desactivado por defecto y no hay mapas de calor. | La imagen original no se modifica. El contorno del modelo es opcional, viene desactivado y no hay mapas de calor. | humanized |
-| src/features/inspect/copy.ts | tabAudit | Auditoría · Luminosidad de la piel | Auditoría de luminosidad de la piel | humanized |
-| src/features/inspect/copy.ts | contourSwitch | Ver delimitación de la lesión | Mostrar el contorno de la lesión | humanized |
-| src/features/inspect/copy.ts | contourCaption | Contorno del modelo (investigación) | Contorno del modelo (investigación) | kept |
-| src/features/inspect/copy.ts | contourUnavailable | No disponible: el análisis no produjo un contorno válido. | No disponible. El análisis no generó un contorno válido. | humanized |
-| src/features/inspect/copy.ts | contourEndpointMissing | Esta versión del servidor no incluye la delimitación. | Esta versión del servidor no incluye el contorno. | humanized |
-| src/features/inspect/copy.ts | itaLabel | ITA | ITA | kept |
-| src/features/inspect/copy.ts | itaMedianL | L* mediana | Luminosidad mediana (L*) | humanized |
-| src/features/inspect/copy.ts | itaMedianB | b* mediana | Eje amarillo-azul mediano (b*) | humanized |
-| src/features/inspect/copy.ts | itaNote | Estimación colorimétrica de soporte, no reemplaza la clasificación clínica de fototipo. | Es una estimación de color de apoyo. No reemplaza la clasificación clínica del fototipo. | humanized |
-| src/features/inspect/copy.ts | itaRegion | Medido en el anillo de piel alrededor de la lesión. ITA es un índice colorimétrico; no equivale al fototipo Fitzpatrick. | Se mide en el anillo de piel alrededor de la lesión. ITA es un índice de color; no equivale al fototipo de Fitzpatrick. | humanized |
-| src/features/inspect/copy.ts | itaIndeterminate | ITA no determinable (b* bajo) | No se puede determinar el ITA (b* demasiado bajo) | humanized |
-| src/features/inspect/copy.ts | itaUnavailable | Fotometría no disponible para esta imagen. | No hay medición de color disponible para esta imagen. | humanized |
-| src/features/inspect/copy.ts | itaEndpointMissing | Esta versión del servidor no incluye la fotometría. | Esta versión del servidor no incluye la medición de color. | humanized |
-| src/features/inspect/copy.ts | toneTitle | Luminosidad de la piel | Luminosidad de la piel | kept |
-| src/features/inspect/copy.ts | toneExplain | Se cambia solo la luminosidad (L*) de la piel alrededor de la lesión; el color y la lesión no se modifican. No simula un cambio de fototipo. | Solo cambia la luminosidad (L*) de la piel alrededor de la lesión. El color y la lesión no se modifican. No simula un cambio de fototipo. | humanized |
-| src/features/inspect/copy.ts | toneSlider | Desplazamiento ΔL* | Cambio de luminosidad (ΔL*) | humanized |
-| src/features/inspect/copy.ts | toneSuffix | (simulación) | (simulación) | kept |
-| src/features/inspect/copy.ts | toneSimulate | Simular | Simular | kept |
-| src/features/inspect/copy.ts | toneSimulating | Simulando… | Simulando… | kept |
-| src/features/inspect/copy.ts | toneBadge | Simulación de luminosidad | Simulación de luminosidad | kept |
-| src/features/inspect/copy.ts | toneOriginal | Original | Original | kept |
-| src/features/inspect/copy.ts | toneSimulated | Simulada | Simulada | kept |
-| src/features/inspect/copy.ts | toneBefore | ITA antes | ITA antes | kept |
-| src/features/inspect/copy.ts | toneAfter | ITA después | ITA después | kept |
-| src/features/inspect/copy.ts | toneNoMask | La máscara de esta imagen no está guardada. Vuelva a analizar la imagen para simular. | No tenemos guardada la zona de la lesión de esta imagen. Vuelva a analizar la imagen para poder simular. | humanized |
-| src/features/inspect/copy.ts | toneFailed | No se pudo simular el tono. Intente de nuevo. | No se pudo simular la luminosidad. Intente de nuevo. | humanized |
-| src/features/inspect/copy.ts | toneZeroNote | ΔL* 0 muestra la imagen original; no se consulta el servicio. | Con ΔL* 0 se muestra la imagen original y no se consulta el servidor. | humanized |
-| src/features/inspect/copy.ts | toolInfoHint | Origen de la imagen y alcance de la vista. | Origen de la imagen y alcance de la vista. | kept |
-| src/features/inspect/copy.ts | backToImage | Volver a imagen | Volver a la imagen | humanized |
-| src/features/inspect/copy.ts | backToTools | Volver a herramientas | Volver a las herramientas | humanized |
-| src/features/inspect/copy.ts | toolSheetLayersTitle | Capas | Capas | kept |
-| src/features/inspect/copy.ts | toolSheetLayersBody | La imagen original se muestra sin modificar. El contorno del modelo es una capa opcional, desactivada por defecto, que se dibuja encima de la imagen. No hay mapas de calor. | La imagen original se muestra sin cambios. El contorno del modelo es una capa opcional, desactivada por defecto, que se dibuja encima de la imagen. No hay mapas de calor. | humanized |
-| src/features/inspect/copy.ts | toolSheetInfoTitle | Info | Info | kept |
-| src/features/inspect/copy.ts | toolSheetInfoBody | La imagen original se conserva sin cambios. La vista solo cambia el tamaño de presentación. | La imagen original se conserva sin cambios. La vista solo cambia el tamaño de presentación. | kept |
-| src/features/inspect/copy.ts | manualInvitation | Su observación, no la del modelo. | Su observación, no la del modelo. | kept |
-| src/features/inspect/copy.ts | registerAbcde | Registrar en ABCDE | Registrar en ABCDE | kept |
-| src/features/inspect/copy.ts | reviewStatus | Estado de revisión | Estado de revisión | kept |
-| src/features/inspect/copy.ts | statusNone | Sin iniciar | Sin iniciar | kept |
-| src/features/inspect/copy.ts | statusPartial | En curso | En curso | kept |
-| src/features/inspect/copy.ts | statusDone | Completa | Completa | kept |
-| src/features/inspect/copy.ts | outputTitle | Salida experimental | Resultado experimental | humanized |
-| src/features/inspect/copy.ts | observationsTitle | Sus observaciones | Sus observaciones | kept |
-| src/features/inspect/copy.ts | observationsIntro | Las observaciones manuales no se convierten en hallazgos del modelo. | Estas observaciones son suyas. No se convierten en hallazgos del modelo. | humanized |
-| src/features/inspect/copy.ts | editAbcde | Editar en ABCDE | Editar en ABCDE | kept |
-| src/features/inspect/copy.ts | notePreviewLabel | Nota profesional | Nota profesional | kept |
-| src/features/inspect/copy.ts | noNote | No se registró ninguna nota profesional. | No se registró ninguna nota profesional. | kept |
-| src/features/inspect/copy.ts | zoomHeader | Inspeccionar · Ampliación de pantalla | Imagen · Zoom en pantalla | humanized |
-| src/features/inspect/copy.ts | zoomHeading | Inspeccione a mayor escala. | Mire la imagen a mayor tamaño. | humanized |
-| src/features/inspect/copy.ts | zoomIntro | El zoom solo cambia la ventana de visualización. No añade detalles ni es una medición física. | El zoom solo cambia cómo se ve la imagen en pantalla. No añade detalle ni es una medida física. | humanized |
-| src/features/inspect/copy.ts | zoomCrop | solo recorte de la ventana de visualización | solo se recorta la vista en pantalla | humanized |
-| src/features/inspect/copy.ts | zoomBackToOriginal | Ajustar imagen original | Ver la imagen original completa | humanized |
-| src/features/inspect/copy.ts | zoomReset | Restablecer vista | Restablecer vista | kept |
-| src/features/inspect/copy.ts | zoomHint | Pellizque o arrastre para mover la imagen. Toque dos veces para ampliar. | Puede pellizcar o arrastrar para mover la imagen. Toque dos veces para acercar. | humanized |
-| src/features/inspect/copy.ts | originalHeader | Inspeccionar · Original | Imagen · Original | humanized |
-| src/features/inspect/copy.ts | originalHeading | Imagen de origen | Imagen de origen | kept |
-| src/features/inspect/copy.ts | originalIntroReference | Referencia pública, mostrada sin transformación del color ni superposiciones. Ajustar conserva la proporción original. | Es una referencia pública. Se muestra sin cambios de color ni capas encima. «Ajustar» mantiene la proporción original. | humanized |
-| src/features/inspect/copy.ts | originalIntroSession | Su imagen, mostrada sin transformación del color ni superposiciones. Ajustar conserva la proporción original. | Es su imagen. Se muestra sin cambios de color ni capas encima. «Ajustar» mantiene la proporción original. | humanized |
-| src/features/inspect/copy.ts | originalNoteReference | Imagen pública de ejemplo; no pertenece al registro que está creando. | Imagen pública de ejemplo; no pertenece al registro que está creando. | kept |
-| src/features/inspect/copy.ts | originalNoteSession | Imagen de su sesión · sin modificar | Imagen de su sesión, sin modificar. | humanized |
-| src/features/inspect/copy.ts | originalBack | Volver al examen | Volver al examen | kept |
-| src/features/inspect/copy.ts | unavailableImage | La imagen no está disponible en esta sesión. | La imagen no está disponible en esta sesión. | kept |
-| src/features/review/copy.ts | summaryTitle | Revisión · Sesión | Revisión · Sesión | kept |
-| src/features/review/copy.ts | summaryHeading | Revise lo que quedó registrado. | Revise lo que quedó registrado. | kept |
-| src/features/review/copy.ts | summaryIntro | Revise lo registrado y lo que falta. Las observaciones manuales no se convierten en hallazgos del modelo. | Revise lo que ya registró y lo que aún falta. Sus observaciones manuales no se convierten en hallazgos del modelo. | humanized |
-| src/features/review/copy.ts | contextTitle | Contexto | Contexto | kept |
-| src/features/review/copy.ts | bodySiteLabel | Sitio del cuerpo | Sitio del cuerpo | kept |
-| src/features/review/copy.ts | siteFace | Cara | Cara | kept |
-| src/features/review/copy.ts | siteScalp | Cuero cabelludo | Cuero cabelludo | kept |
-| src/features/review/copy.ts | siteTrunk | Tronco | Tronco | kept |
-| src/features/review/copy.ts | siteUpperLimb | Extremidad superior | Extremidad superior | kept |
-| src/features/review/copy.ts | siteLowerLimb | Extremidad inferior | Extremidad inferior | kept |
-| src/features/review/copy.ts | notRecorded | Sin registrar | Sin registrar | kept |
-| src/features/review/copy.ts | modalityLabel | Origen de la imagen | Origen de la imagen | kept |
-| src/features/review/copy.ts | modalityReference | Imagen pública de referencia | Imagen pública de referencia | kept |
-| src/features/review/copy.ts | modalitySession | Imagen de su sesión | Imagen de su sesión | kept |
-| src/features/review/copy.ts | modalityNone | Sin imagen | Sin imagen | kept |
-| src/features/review/copy.ts | observationsTitle | Observaciones manuales | Observaciones manuales | kept |
-| src/features/review/copy.ts | unanswered | Sin evaluar | Sin evaluar | kept |
-| src/features/review/copy.ts | noteTitle | Nota profesional | Nota profesional | kept |
-| src/features/review/copy.ts | noteNone | No se registró ninguna nota profesional. | No se registró ninguna nota profesional. | kept |
-| src/features/review/copy.ts | modelTitle | Salida del modelo | Resultado del modelo | humanized |
-| src/features/review/copy.ts | modelSimulated | Modelo simulado: valores de demostración, no calculados a partir de su imagen. | Modelo simulado. Son valores de demostración y no se calcularon a partir de su imagen. | humanized |
-| src/features/review/copy.ts | modelExperimental | Salida experimental. No es un diagnóstico. | Resultado experimental. No es un diagnóstico. | humanized |
-| src/features/review/copy.ts | modelNone | Sin salida del modelo en esta sesión. | El modelo no ha generado resultados en esta sesión. | humanized |
-| src/features/review/copy.ts | editObservations | Editar observaciones manuales | Editar observaciones manuales | kept |
-| src/features/review/copy.ts | editNote | Nota profesional | Editar la nota profesional | humanized |
-| src/features/review/copy.ts | openExport | Vista previa de exportación | Ver vista previa y exportar | humanized |
-| src/features/review/copy.ts | exportTitle | Revise antes de exportar. | Revise antes de exportar. | kept |
-| src/features/review/copy.ts | exportHeader | Revisión · Exportar | Revisión · Exportar | kept |
-| src/features/review/copy.ts | exportDoneHeader | Revisión · Confirmación | Revisión · Descarga | humanized |
-| src/features/review/copy.ts | exportIntro | Vista previa del registro que se descargará. Verifique el contenido antes de confirmar. | Esta es una vista previa del registro que se descargará. Revise el contenido antes de confirmar. | humanized |
-| src/features/review/copy.ts | exportPreviewLabel | Vista previa del archivo JSON | Vista previa del archivo JSON | kept |
-| src/features/review/copy.ts | exportPreviewLabelCsv | Vista previa de la tabla CSV (así se verá en Excel) | Vista previa de la tabla CSV (aproximación de cómo se verá en Excel) | humanized |
-| src/features/review/copy.ts | exportPdfPreviewNote | Esta vista muestra los datos del registro, no el diseño final del PDF. El archivo descargable los presenta como un resumen imprimible. | Esta vista muestra los datos del registro, no el diseño final del PDF. El archivo descargable los presenta como un resumen imprimible. | kept |
-| src/features/review/copy.ts | ackLabel | He revisado el contenido de este registro. | He revisado el contenido de este registro. | kept |
-| src/features/review/copy.ts | ackRequired | Confirme la revisión para habilitar la descarga. | Marque la casilla para confirmar que revisó el registro y habilitar la descarga. | humanized |
-| src/features/review/copy.ts | exportActionJson | Descargar registro JSON | Descargar registro JSON | kept |
-| src/features/review/copy.ts | exportActionCsv | Descargar tabla CSV | Descargar tabla CSV | kept |
-| src/features/review/copy.ts | exportActionPdf | Descargar resumen PDF | Descargar resumen PDF | kept |
-| src/features/review/copy.ts | exportOptions | Opciones de exportación | Opciones de exportación | kept |
-| src/features/review/copy.ts | optionsTitle | Opciones de exportación | Opciones de exportación | kept |
-| src/features/review/copy.ts | optionsIntro | Elija CSV, PDF o JSON. Los formatos conservan la identificación del modelo y distinguen los resultados reales de los simulados. | Puede elegir CSV, PDF o JSON. Todos los formatos indican el modelo usado y si el resultado es real o simulado. | humanized |
-| src/features/review/copy.ts | optionCsv | CSV (tabla para Excel) | CSV (tabla para Excel) | kept |
-| src/features/review/copy.ts | optionCsvHint | Tabla ordenada por secciones: examen, contexto, modelo, puntajes, ABCDE y nota. Abre directo en Excel o Sheets. | Tabla organizada por secciones: examen, contexto, modelo, puntajes, ABCDE y nota. Se puede abrir en Excel o Google Sheets. | humanized |
-| src/features/review/copy.ts | optionJson | JSON (datos técnicos) | JSON (datos técnicos) | kept |
-| src/features/review/copy.ts | optionJsonHint | Incluye observaciones, nota, identidad de la salida y su etiqueta. | Incluye sus observaciones, la nota, los datos que identifican el resultado y su etiqueta. | humanized |
-| src/features/review/copy.ts | optionPdf | PDF (resumen imprimible) | PDF (resumen imprimible) | kept |
-| src/features/review/copy.ts | optionPdfHint | Resumen imprimible con sus observaciones, la nota y los puntajes relativos del modelo. No es un informe diagnóstico. | Resumen imprimible con sus observaciones, la nota y los puntajes relativos del modelo. No es un informe diagnóstico. | kept |
-| src/features/review/copy.ts | optionSelected | Seleccionado | Seleccionado | kept |
-| src/features/review/copy.ts | optionsClose | Cerrar | Cerrar | kept |
-| src/features/review/copy.ts | exportDoneTitle | Descarga iniciada. | Se inició la descarga. | humanized |
-| src/features/review/copy.ts | exportDoneBody | El navegador confirma el inicio de la descarga, no la escritura del archivo. Revise su carpeta de descargas. | La descarga se inició desde esta página. Esa confirmación no garantiza que el archivo se haya guardado: revise su carpeta de descargas. | humanized |
-| src/features/review/copy.ts | exportDoneFile | Archivo | Archivo | kept |
-| src/features/review/copy.ts | exportDoneNew | Iniciar otro examen | Iniciar otro examen | kept |
-| src/features/review/copy.ts | exportDoneBack | Volver a la revisión | Volver a la revisión | kept |
-| src/features/review/copy.ts | close | Cerrar | Cerrar | kept |
-| src/features/review/copy.ts | back | Volver | Volver | kept |
-| src/features/review/copy.ts | info | Alcance y métodos | Alcance y métodos | kept |
+| Archivo | Clave | Antes (ES) | Después v1 (ES) | v2 (ES) | Motivo |
+|---|---|---|---|---|---|
+| features/inspect/copy.ts | appName | PERMA | PERMA | = | kept |
+| features/inspect/copy.ts | back | Volver | Volver | = | kept |
+| features/inspect/copy.ts | info | Alcance y métodos | Alcance y métodos | = | kept |
+| features/inspect/copy.ts | langSwitchToEn | Cambiar a inglés | Cambiar a inglés | = | kept |
+| features/inspect/copy.ts | langSwitchToEs | Cambiar a español | Cambiar a español | = | kept |
+| features/inspect/copy.ts | langLabelEn | EN | EN | = | kept |
+| features/inspect/copy.ts | langLabelEs | ES | ES | = | kept |
+| features/inspect/copy.ts | experimentalNotice | Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos. | Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos. | = | kept |
+| features/inspect/copy.ts | mockBadge | Modelo simulado | Modelo simulado | = | kept |
+| features/inspect/copy.ts | mockNotice | Valores de demostración generados localmente. No se calcularon a partir de su imagen. | Valores de demostración generados localmente. No se calcularon a partir de su imagen. | = | kept |
+| features/inspect/copy.ts | resultTitle | Salida del modelo | Resultado del modelo | = | humanized |
+| features/inspect/copy.ts | stepResult | Paso 4 de 6 | Paso 4 de 6 | = | kept |
+| features/inspect/copy.ts | stepObservations | Paso 5 de 6 | Paso 5 de 6 | = | kept |
+| features/inspect/copy.ts | stepReview | Paso 6 de 6 | Paso 6 de 6 | = | kept |
+| features/inspect/copy.ts | resultHeading | Salida experimental | Resultado experimental | = | humanized |
+| features/inspect/copy.ts | resultIntro | El modelo reparte su salida entre siete categorías, con puntajes de 0 a 1. Estos valores no indican la probabilidad de tener una enfermedad ni confirman un diagnóstico. | El modelo asigna un puntaje de 0 a 1 a cada una de sus siete categorías. Estos valores no son la probabilidad de tener una enfermedad ni un diagnóstico. | = | humanized |
+| features/inspect/copy.ts | topScores | Clases con mayor puntaje | Categorías con mayor puntaje | = | humanized |
+| features/inspect/copy.ts | noCalibratedRisk | Qué significa el puntaje | Qué significa el puntaje | = | kept |
+| features/inspect/copy.ts | noCalibratedRiskBody | Incluso un puntaje alto no confirma ni descarta una enfermedad. No lo use para decidir si necesita atención médica. | Incluso un puntaje alto no confirma ni descarta una enfermedad. No use este resultado para decidir si necesita atención médica. | = | humanized |
+| features/inspect/copy.ts | viewAllScores | Ver los siete puntajes | Ver los siete puntajes | Ver las siete categorías | kept |
+| features/inspect/copy.ts | viewAllScoresHint | Abrir detalles | Abrir detalles | = | kept |
+| features/inspect/copy.ts | modelProvenance | Modelo y procedencia | Modelo y origen | = | humanized |
+| features/inspect/copy.ts | modelProvenanceHint | Abrir detalles | Abrir detalles | = | kept |
+| features/inspect/copy.ts | inspectImage | Inspeccionar la imagen | Inspeccionar la imagen | = | kept |
+| features/inspect/copy.ts | classesTitle | Qué significan los puntajes | Qué significan los puntajes | = | kept |
+| features/inspect/copy.ts | classesIntro | Los puntajes muestran cómo el modelo distribuye su salida entre las siete categorías de HAM7. Un valor mayor no equivale a mayor certeza clínica ni a la probabilidad de tener esa enfermedad. | Los puntajes muestran cómo el modelo reparte su resultado entre las siete categorías de lesiones. Un valor más alto no significa mayor certeza clínica ni mayor probabilidad de tener esa enfermedad. | = | humanized |
+| features/inspect/copy.ts | classesBack | Volver a imagen | Volver a la imagen | = | humanized |
+| features/inspect/copy.ts | classDetailTitle | Salida del modelo · Clase | Resultado del modelo · Categoría | = | humanized |
+| features/inspect/copy.ts | classDefinitionHeading | Definición de clase | Qué describe esta categoría | = | humanized |
+| features/inspect/copy.ts | classDetailIntro | La etiqueta identifica una categoría del modelo, no un diagnóstico confirmado. | La etiqueta indica una categoría del modelo. No es un diagnóstico confirmado. | = | humanized |
+| features/inspect/copy.ts | rawScoreMock | Puntaje de demostración · no calculado a partir de su imagen | Puntaje de demostración. No se calculó a partir de su imagen. | = | humanized |
+| features/inspect/copy.ts | rawScoreLive | Puntaje relativo del modelo · no es una probabilidad clínica | Puntaje relativo del modelo. No es una probabilidad clínica. | = | humanized |
+| features/inspect/copy.ts | contextHeading | Lea con contexto | Lea con contexto | = | kept |
+| features/inspect/copy.ts | contextBody | Varias afecciones pueden compartir características visibles. Este prototipo no proporciona ningún umbral de decisión clínica. | Varias afecciones pueden compartir características visibles. Este prototipo no proporciona ningún umbral de decisión clínica. | = | kept |
+| features/inspect/copy.ts | fullOutputHeading | Usar la salida completa | Use el resultado completo | = | humanized |
+| features/inspect/copy.ts | fullOutputBody | Revise los demás puntajes de clase y la identidad técnica. La clase principal no descarta otra afección. | Revise también los demás puntajes y los datos técnicos del modelo. La categoría con mayor puntaje no descarta otra afección. | = | humanized |
+| features/inspect/copy.ts | classDetailBack | Volver a los puntajes de clase | Volver a los puntajes | = | humanized |
+| features/inspect/copy.ts | scaleMin | Mínimo 0 | Mínimo 0 | = | kept |
+| features/inspect/copy.ts | scaleMax | Máximo 1 | Máximo 1 | = | kept |
+| features/inspect/copy.ts | modelSheetTitle | Identidad técnica | Datos técnicos del modelo | = | humanized |
+| features/inspect/copy.ts | modelIdLabel | Modelo | Modelo | = | kept |
+| features/inspect/copy.ts | modelModeLabel | Modo solicitado | Modo solicitado | = | kept |
+| features/inspect/copy.ts | modelSheetIntro | Identidad del modelo que produjo esta salida. Solo se muestran datos recibidos o registrados en esta sesión. | Datos del modelo que produjo este resultado. Solo se muestran los datos recibidos o registrados en esta sesión. | = | humanized |
+| features/inspect/copy.ts | backToResult | Volver al resultado | Volver al resultado | = | kept |
+| features/inspect/copy.ts | modelShaLabel | SHA-256 del modelo | Huella digital del modelo (SHA-256) | = | humanized |
+| features/inspect/copy.ts | modelVerifiedLabel | Verificación de integridad | Comprobación de integridad | = | humanized |
+| features/inspect/copy.ts | modelRecipeLabel | Receta de inferencia | Configuración de la inferencia | = | humanized |
+| features/inspect/copy.ts | modelReleaseLabel | Versión | Versión | = | kept |
+| features/inspect/copy.ts | modelSourceLabel | Origen de los datos | Origen de los datos | = | kept |
+| features/inspect/copy.ts | sourceLive | Servidor en vivo | Servidor en vivo | = | kept |
+| features/inspect/copy.ts | sourceMock | Simulado (sin servidor) | Simulado (sin servidor) | = | kept |
+| features/inspect/copy.ts | verifiedYes | Verificado | Verificado | = | kept |
+| features/inspect/copy.ts | verifiedNo | No verificado | No verificado | = | kept |
+| features/inspect/copy.ts | notAvailable | No disponible | No disponible | = | kept |
+| features/inspect/copy.ts | close | Cerrar | Cerrar | = | kept |
+| features/inspect/copy.ts | viewerTitle | Imagen de referencia | Imagen de referencia | = | kept |
+| features/inspect/copy.ts | viewerTabsLabel | Vistas de la imagen | Vistas de la imagen | = | kept |
+| features/inspect/copy.ts | tabImage | Imagen | Imagen | = | kept |
+| features/inspect/copy.ts | tabOutput | Salida del modelo | Resultado del modelo | = | humanized |
+| features/inspect/copy.ts | tabObservations | Mis observaciones | Mis observaciones | = | kept |
+| features/inspect/copy.ts | imageHeading | Mire más de cerca. | Mire más de cerca. | = | kept |
+| features/inspect/copy.ts | imageAltSession | Imagen de su sesión, sin modificar | Imagen de su sesión, sin modificar | = | kept |
+| features/inspect/copy.ts | imageAltReference | Imagen pública de referencia, sin modificar | Imagen pública de referencia, sin modificar | = | kept |
+| features/inspect/copy.ts | referenceCaption | Referencia pública · Color original | Referencia pública · color original | = | humanized |
+| features/inspect/copy.ts | referenceAttribution | P. Tschandl · CC BY-SA 4.0 | P. Tschandl · CC BY-SA 4.0 | = | kept |
+| features/inspect/copy.ts | toolFit | Ajustar | Ajustar | = | kept |
+| features/inspect/copy.ts | toolZoom | Ampliar | Ampliar | = | kept |
+| features/inspect/copy.ts | toolLayers | Capas | Capas | = | kept |
+| features/inspect/copy.ts | toolInfo | Info | Info | = | kept |
+| features/inspect/copy.ts | toolbarLabel | Herramientas de la imagen | Herramientas de la imagen | = | kept |
+| features/inspect/copy.ts | toolsMenuLabel | Más herramientas de imagen | Más herramientas de imagen | = | kept |
+| features/inspect/copy.ts | toolSheetTitle | Herramientas de imagen | Herramientas de imagen | = | kept |
+| features/inspect/copy.ts | toolSheetIntro | Las herramientas cambian la forma de inspeccionar la fuente. No generan evidencia del modelo. | Estas herramientas solo cambian la forma de ver la imagen original. No producen evidencia del modelo. | = | humanized |
+| features/inspect/copy.ts | toolFitHint | Muestra la imagen completa en el espacio disponible. El color no cambia. | Muestra la imagen completa en el espacio disponible. El color no cambia. | = | kept |
+| features/inspect/copy.ts | toolZoomHint | Solo escala de la ventana de visualización; no es una medición. | Solo cambia el tamaño con que se ve la imagen en pantalla. No es una medida. | = | humanized |
+| features/inspect/copy.ts | toolLayersHint | La imagen original no se modifica. El contorno del modelo es opcional, está desactivado por defecto y no hay mapas de calor. | La imagen original no se modifica. El contorno del modelo es opcional, viene desactivado y no hay mapas de calor. | = | humanized |
+| features/inspect/copy.ts | tabAudit | Auditoría · Luminosidad de la piel | Auditoría de luminosidad de la piel | = | humanized |
+| features/inspect/copy.ts | contourSwitch | Ver delimitación de la lesión | Mostrar el contorno de la lesión | Contorno de la lesión según el modelo | humanized |
+| features/inspect/copy.ts | contourCaption | Contorno del modelo (investigación) | Contorno del modelo (investigación) | Contorno estimado por el modelo, con fines de investigación. | kept |
+| features/inspect/copy.ts | contourUnavailable | No disponible: el análisis no produjo un contorno válido. | No disponible. El análisis no generó un contorno válido. | = | humanized |
+| features/inspect/copy.ts | contourEndpointMissing | Esta versión del servidor no incluye la delimitación. | Esta versión del servidor no incluye el contorno. | = | humanized |
+| features/inspect/copy.ts | itaLabel | ITA | ITA | = | kept |
+| features/inspect/copy.ts | itaMedianL | L* mediana | Luminosidad mediana (L*) | = | humanized |
+| features/inspect/copy.ts | itaMedianB | b* mediana | Eje amarillo-azul mediano (b*) | = | humanized |
+| features/inspect/copy.ts | itaNote | Estimación colorimétrica de soporte, no reemplaza la clasificación clínica de fototipo. | Es una estimación de color de apoyo. No reemplaza la clasificación clínica del fototipo. | = | humanized |
+| features/inspect/copy.ts | itaRegion | Medido en el anillo de piel alrededor de la lesión. ITA es un índice colorimétrico; no equivale al fototipo Fitzpatrick. | Se mide en el anillo de piel alrededor de la lesión. ITA es un índice de color; no equivale al fototipo de Fitzpatrick. | = | humanized |
+| features/inspect/copy.ts | itaIndeterminate | ITA no determinable (b* bajo) | No se puede determinar el ITA (b* demasiado bajo) | = | humanized |
+| features/inspect/copy.ts | itaUnavailable | Fotometría no disponible para esta imagen. | No hay medición de color disponible para esta imagen. | = | humanized |
+| features/inspect/copy.ts | itaEndpointMissing | Esta versión del servidor no incluye la fotometría. | Esta versión del servidor no incluye la medición de color. | = | humanized |
+| features/inspect/copy.ts | toneTitle | Luminosidad de la piel | Luminosidad de la piel | = | kept |
+| features/inspect/copy.ts | toneExplain | Se cambia solo la luminosidad (L*) de la piel alrededor de la lesión; el color y la lesión no se modifican. No simula un cambio de fototipo. | Solo cambia la luminosidad (L*) de la piel alrededor de la lesión. El color y la lesión no se modifican. No simula un cambio de fototipo. | Solo cambia la luminosidad de la piel alrededor de la lesión; la lesión no se modifica. Es una simulación para inspección. | humanized |
+| features/inspect/copy.ts | toneSlider | Desplazamiento ΔL* | Cambio de luminosidad (ΔL*) | Cambiar la luminosidad | humanized |
+| features/inspect/copy.ts | toneSuffix | (simulación) | (simulación) | = | kept |
+| features/inspect/copy.ts | toneSimulate | Simular | Simular | = | kept |
+| features/inspect/copy.ts | toneSimulating | Simulando… | Simulando… | = | kept |
+| features/inspect/copy.ts | toneBadge | Simulación de luminosidad | Simulación de luminosidad | = | kept |
+| features/inspect/copy.ts | toneOriginal | Original | Original | = | kept |
+| features/inspect/copy.ts | toneSimulated | Simulada | Simulada | = | kept |
+| features/inspect/copy.ts | toneBefore | ITA antes | ITA antes | = | kept |
+| features/inspect/copy.ts | toneAfter | ITA después | ITA después | = | kept |
+| features/inspect/copy.ts | toneNoMask | La máscara de esta imagen no está guardada. Vuelva a analizar la imagen para simular. | No tenemos guardada la zona de la lesión de esta imagen. Vuelva a analizar la imagen para poder simular. | = | humanized |
+| features/inspect/copy.ts | toneFailed | No se pudo simular el tono. Intente de nuevo. | No se pudo simular la luminosidad. Intente de nuevo. | = | humanized |
+| features/inspect/copy.ts | toneZeroNote | ΔL* 0 muestra la imagen original; no se consulta el servicio. | Con ΔL* 0 se muestra la imagen original y no se consulta el servidor. | Original: se muestra la imagen sin cambios. No se consulta el servicio. | humanized |
+| features/inspect/copy.ts | toolInfoHint | Origen de la imagen y alcance de la vista. | Origen de la imagen y alcance de la vista. | = | kept |
+| features/inspect/copy.ts | backToImage | Volver a imagen | Volver a la imagen | = | humanized |
+| features/inspect/copy.ts | backToTools | Volver a herramientas | Volver a las herramientas | = | humanized |
+| features/inspect/copy.ts | toolSheetLayersTitle | Capas | Capas | = | kept |
+| features/inspect/copy.ts | toolSheetLayersBody | La imagen original se muestra sin modificar. El contorno del modelo es una capa opcional, desactivada por defecto, que se dibuja encima de la imagen. No hay mapas de calor. | La imagen original se muestra sin cambios. El contorno del modelo es una capa opcional, desactivada por defecto, que se dibuja encima de la imagen. No hay mapas de calor. | = | humanized |
+| features/inspect/copy.ts | toolSheetInfoTitle | Info | Info | = | kept |
+| features/inspect/copy.ts | toolSheetInfoBody | La imagen original se conserva sin cambios. La vista solo cambia el tamaño de presentación. | La imagen original se conserva sin cambios. La vista solo cambia el tamaño de presentación. | = | kept |
+| features/inspect/copy.ts | manualInvitation | Su observación, no la del modelo. | Su observación, no la del modelo. | = | kept |
+| features/inspect/copy.ts | registerAbcde | Registrar en ABCDE | Registrar en ABCDE | = | kept |
+| features/inspect/copy.ts | reviewStatus | Estado de revisión | Estado de revisión | = | kept |
+| features/inspect/copy.ts | statusNone | Sin iniciar | Sin iniciar | = | kept |
+| features/inspect/copy.ts | statusPartial | En curso | En curso | = | kept |
+| features/inspect/copy.ts | statusDone | Completa | Completa | = | kept |
+| features/inspect/copy.ts | outputTitle | Salida experimental | Resultado experimental | = | humanized |
+| features/inspect/copy.ts | observationsTitle | Sus observaciones | Sus observaciones | = | kept |
+| features/inspect/copy.ts | observationsIntro | Las observaciones manuales no se convierten en hallazgos del modelo. | Estas observaciones son suyas. No se convierten en hallazgos del modelo. | = | humanized |
+| features/inspect/copy.ts | editAbcde | Editar en ABCDE | Editar en ABCDE | = | kept |
+| features/inspect/copy.ts | notePreviewLabel | Nota profesional | Nota profesional | = | kept |
+| features/inspect/copy.ts | noNote | No se registró ninguna nota profesional. | No se registró ninguna nota profesional. | = | kept |
+| features/inspect/copy.ts | zoomHeader | Inspeccionar · Ampliación de pantalla | Imagen · Zoom en pantalla | = | humanized |
+| features/inspect/copy.ts | zoomHeading | Inspeccione a mayor escala. | Mire la imagen a mayor tamaño. | = | humanized |
+| features/inspect/copy.ts | zoomIntro | El zoom solo cambia la ventana de visualización. No añade detalles ni es una medición física. | El zoom solo cambia cómo se ve la imagen en pantalla. No añade detalle ni es una medida física. | = | humanized |
+| features/inspect/copy.ts | zoomCrop | solo recorte de la ventana de visualización | solo se recorta la vista en pantalla | = | humanized |
+| features/inspect/copy.ts | zoomBackToOriginal | Ajustar imagen original | Ver la imagen original completa | = | humanized |
+| features/inspect/copy.ts | zoomReset | Restablecer vista | Restablecer vista | = | kept |
+| features/inspect/copy.ts | zoomHint | Pellizque o arrastre para mover la imagen. Toque dos veces para ampliar. | Puede pellizcar o arrastrar para mover la imagen. Toque dos veces para acercar. | = | humanized |
+| features/inspect/copy.ts | originalHeader | Inspeccionar · Original | Imagen · Original | = | humanized |
+| features/inspect/copy.ts | originalHeading | Imagen de origen | Imagen de origen | = | kept |
+| features/inspect/copy.ts | originalIntroReference | Referencia pública, mostrada sin transformación del color ni superposiciones. Ajustar conserva la proporción original. | Es una referencia pública. Se muestra sin cambios de color ni capas encima. «Ajustar» mantiene la proporción original. | = | humanized |
+| features/inspect/copy.ts | originalIntroSession | Su imagen, mostrada sin transformación del color ni superposiciones. Ajustar conserva la proporción original. | Es su imagen. Se muestra sin cambios de color ni capas encima. «Ajustar» mantiene la proporción original. | = | humanized |
+| features/inspect/copy.ts | originalNoteReference | Imagen pública de ejemplo; no pertenece al registro que está creando. | Imagen pública de ejemplo; no pertenece al registro que está creando. | = | kept |
+| features/inspect/copy.ts | originalNoteSession | Imagen de su sesión · sin modificar | Imagen de su sesión, sin modificar. | = | humanized |
+| features/inspect/copy.ts | originalBack | Volver al examen | Volver al examen | = | kept |
+| features/inspect/copy.ts | unavailableImage | La imagen no está disponible en esta sesión. | La imagen no está disponible en esta sesión. | = | kept |
+| features/review/copy.ts | summaryTitle | Revisión · Sesión | Revisión · Sesión | = | kept |
+| features/review/copy.ts | summaryHeading | Revise lo que quedó registrado. | Revise lo que quedó registrado. | = | kept |
+| features/review/copy.ts | summaryIntro | Revise lo registrado y lo que falta. Las observaciones manuales no se convierten en hallazgos del modelo. | Revise lo que ya registró y lo que aún falta. Sus observaciones manuales no se convierten en hallazgos del modelo. | = | humanized |
+| features/review/copy.ts | contextTitle | Contexto | Contexto | = | kept |
+| features/review/copy.ts | bodySiteLabel | Sitio del cuerpo | Sitio del cuerpo | = | kept |
+| features/review/copy.ts | siteFace | Cara | Cara | = | kept |
+| features/review/copy.ts | siteScalp | Cuero cabelludo | Cuero cabelludo | = | kept |
+| features/review/copy.ts | siteTrunk | Tronco | Tronco | = | kept |
+| features/review/copy.ts | siteUpperLimb | Extremidad superior | Extremidad superior | = | kept |
+| features/review/copy.ts | siteLowerLimb | Extremidad inferior | Extremidad inferior | = | kept |
+| features/review/copy.ts | notRecorded | Sin registrar | Sin registrar | = | kept |
+| features/review/copy.ts | modalityLabel | Origen de la imagen | Origen de la imagen | = | kept |
+| features/review/copy.ts | modalityReference | Imagen pública de referencia | Imagen pública de referencia | = | kept |
+| features/review/copy.ts | modalitySession | Imagen de su sesión | Imagen de su sesión | = | kept |
+| features/review/copy.ts | modalityNone | Sin imagen | Sin imagen | = | kept |
+| features/review/copy.ts | observationsTitle | Observaciones manuales | Observaciones manuales | = | kept |
+| features/review/copy.ts | unanswered | Sin evaluar | Sin evaluar | = | kept |
+| features/review/copy.ts | noteTitle | Nota profesional | Nota profesional | = | kept |
+| features/review/copy.ts | noteNone | No se registró ninguna nota profesional. | No se registró ninguna nota profesional. | = | kept |
+| features/review/copy.ts | modelTitle | Salida del modelo | Resultado del modelo | = | humanized |
+| features/review/copy.ts | modelSimulated | Modelo simulado: valores de demostración, no calculados a partir de su imagen. | Modelo simulado. Son valores de demostración y no se calcularon a partir de su imagen. | = | humanized |
+| features/review/copy.ts | modelExperimental | Salida experimental. No es un diagnóstico. | Resultado experimental. No es un diagnóstico. | = | humanized |
+| features/review/copy.ts | modelNone | Sin salida del modelo en esta sesión. | El modelo no ha generado resultados en esta sesión. | = | humanized |
+| features/review/copy.ts | editObservations | Editar observaciones manuales | Editar observaciones manuales | = | kept |
+| features/review/copy.ts | editNote | Nota profesional | Editar la nota profesional | = | humanized |
+| features/review/copy.ts | openExport | Vista previa de exportación | Ver vista previa y exportar | = | humanized |
+| features/review/copy.ts | exportTitle | Revise antes de exportar. | Revise antes de exportar. | = | kept |
+| features/review/copy.ts | exportHeader | Revisión · Exportar | Revisión · Exportar | = | kept |
+| features/review/copy.ts | exportDoneHeader | Revisión · Confirmación | Revisión · Descarga | = | humanized |
+| features/review/copy.ts | exportIntro | Vista previa del registro que se descargará. Verifique el contenido antes de confirmar. | Esta es una vista previa del registro que se descargará. Revise el contenido antes de confirmar. | = | humanized |
+| features/review/copy.ts | exportPreviewLabel | Vista previa del archivo JSON | Vista previa del archivo JSON | = | kept |
+| features/review/copy.ts | exportPreviewLabelCsv | Vista previa de la tabla CSV (así se verá en Excel) | Vista previa de la tabla CSV (aproximación de cómo se verá en Excel) | = | humanized |
+| features/review/copy.ts | exportPdfPreviewNote | Esta vista muestra los datos del registro, no el diseño final del PDF. El archivo descargable los presenta como un resumen imprimible. | Esta vista muestra los datos del registro, no el diseño final del PDF. El archivo descargable los presenta como un resumen imprimible. | = | kept |
+| features/review/copy.ts | ackLabel | He revisado el contenido de este registro. | He revisado el contenido de este registro. | = | kept |
+| features/review/copy.ts | ackRequired | Confirme la revisión para habilitar la descarga. | Marque la casilla para confirmar que revisó el registro y habilitar la descarga. | = | humanized |
+| features/review/copy.ts | exportActionJson | Descargar registro JSON | Descargar registro JSON | = | kept |
+| features/review/copy.ts | exportActionCsv | Descargar tabla CSV | Descargar tabla CSV | = | kept |
+| features/review/copy.ts | exportActionPdf | Descargar resumen PDF | Descargar resumen PDF | = | kept |
+| features/review/copy.ts | exportOptions | Opciones de exportación | Opciones de exportación | = | kept |
+| features/review/copy.ts | optionsTitle | Opciones de exportación | Opciones de exportación | = | kept |
+| features/review/copy.ts | optionsIntro | Elija CSV, PDF o JSON. Los formatos conservan la identificación del modelo y distinguen los resultados reales de los simulados. | Puede elegir CSV, PDF o JSON. Todos los formatos indican el modelo usado y si el resultado es real o simulado. | = | humanized |
+| features/review/copy.ts | optionCsv | CSV (tabla para Excel) | CSV (tabla para Excel) | = | kept |
+| features/review/copy.ts | optionCsvHint | Tabla ordenada por secciones: examen, contexto, modelo, puntajes, ABCDE y nota. Abre directo en Excel o Sheets. | Tabla organizada por secciones: examen, contexto, modelo, puntajes, ABCDE y nota. Se puede abrir en Excel o Google Sheets. | = | humanized |
+| features/review/copy.ts | optionJson | JSON (datos técnicos) | JSON (datos técnicos) | = | kept |
+| features/review/copy.ts | optionJsonHint | Incluye observaciones, nota, identidad de la salida y su etiqueta. | Incluye sus observaciones, la nota, los datos que identifican el resultado y su etiqueta. | = | humanized |
+| features/review/copy.ts | optionPdf | PDF (resumen imprimible) | PDF (resumen imprimible) | = | kept |
+| features/review/copy.ts | optionPdfHint | Resumen imprimible con sus observaciones, la nota y los puntajes relativos del modelo. No es un informe diagnóstico. | Resumen imprimible con sus observaciones, la nota y los puntajes relativos del modelo. No es un informe diagnóstico. | = | kept |
+| features/review/copy.ts | optionSelected | Seleccionado | Seleccionado | = | kept |
+| features/review/copy.ts | optionsClose | Cerrar | Cerrar | = | kept |
+| features/review/copy.ts | exportDoneTitle | Descarga iniciada. | Se inició la descarga. | = | humanized |
+| features/review/copy.ts | exportDoneBody | El navegador confirma el inicio de la descarga, no la escritura del archivo. Revise su carpeta de descargas. | La descarga se inició desde esta página. Esa confirmación no garantiza que el archivo se haya guardado: revise su carpeta de descargas. | = | humanized |
+| features/review/copy.ts | exportDoneFile | Archivo | Archivo | = | kept |
+| features/review/copy.ts | exportDoneNew | Iniciar otro examen | Iniciar otro examen | = | kept |
+| features/review/copy.ts | exportDoneBack | Volver a la revisión | Volver a la revisión | = | kept |
+| features/review/copy.ts | close | Cerrar | Cerrar | = | kept |
+| features/review/copy.ts | back | Volver | Volver | = | kept |
+| features/review/copy.ts | info | Alcance y métodos | Alcance y métodos | = | kept |
 
 ## ABCDE, comparación, envío y recuperación (group-d)
 
-| Archivo | Clave | Antes (ES) | Después (ES) | Motivo |
-|---|---|---|---|---|
-| src/features/abcde/copy.ts | pageTitle | Mis observaciones | Mis observaciones | kept |
-| src/features/abcde/copy.ts | intro | Abra un criterio para registrar o editar su observación. | Abra cada criterio para anotar lo que observa o para corregir una anotación anterior. | humanized |
-| src/features/abcde/copy.ts | unanswered | Sin evaluar | Sin evaluar | kept |
-| src/features/abcde/copy.ts | back | Volver a la imagen | Volver a la imagen | kept |
-| src/features/abcde/copy.ts | next | Ver resumen | Ver resumen | kept |
-| src/features/abcde/copy.ts | navLabel | Criterios ABCDE | Criterios ABCDE | kept |
-| src/features/abcde/copy.ts | listLabel | Observaciones ABCDE | Observaciones ABCDE | kept |
-| src/features/abcde/copy.ts | criterionA | Asimetría | Asimetría | kept |
-| src/features/abcde/copy.ts | criterionB | Borde | Borde | kept |
-| src/features/abcde/copy.ts | criterionC | Color | Color | kept |
-| src/features/abcde/copy.ts | criterionD | Diámetro | Diámetro | kept |
-| src/features/abcde/copy.ts | criterionE | Evolución | Evolución | kept |
-| src/features/abcde/copy.ts | descA | Compare ambos ejes. Registre solo lo visible. | Compare ambos ejes de la lesión y anote solo lo que se ve en la imagen. | humanized |
-| src/features/abcde/copy.ts | descB | Revise el borde. Registre solo lo visible. | Revise el contorno de la lesión y anote solo lo que se ve en la imagen. | humanized |
-| src/features/abcde/copy.ts | descC | Registre la variación de color visible sin filtros. | Anote los colores visibles en la imagen original, sin aplicar filtros. | humanized |
-| src/features/abcde/copy.ts | descD | Use una medición manual verificada o déjela sin medir. | Si tiene una medición manual verificada, regístrela. Si no, deje este criterio sin medir. | humanized |
-| src/features/abcde/copy.ts | descE | Registre el cambio reportado; no se suministra una imagen anterior. | Anote el cambio reportado. Este prototipo no incluye una imagen anterior para comparar. | humanized |
-| src/features/abcde/copy.ts | A.symmetric | Simétrica | Simétrica | kept |
-| src/features/abcde/copy.ts | A.asymmetric-one-axis | Asimétrica en un eje | Asimétrica en un eje | kept |
-| src/features/abcde/copy.ts | A.asymmetric-two-axes | Asimétrica en dos ejes | Asimétrica en dos ejes | kept |
-| src/features/abcde/copy.ts | A.not-evaluable | No evaluable | No evaluable | kept |
-| src/features/abcde/copy.ts | B.regular | Borde regular | Borde regular | kept |
-| src/features/abcde/copy.ts | B.irregular | Borde irregular | Borde irregular | kept |
-| src/features/abcde/copy.ts | B.not-evaluable | No evaluable | No evaluable | kept |
-| src/features/abcde/copy.ts | C.one-color | Un color | Un color | kept |
-| src/features/abcde/copy.ts | C.two-colors | Dos colores | Dos colores | kept |
-| src/features/abcde/copy.ts | C.three-or-more-colors | Tres colores o más | Tres colores o más | kept |
-| src/features/abcde/copy.ts | C.not-evaluable | No evaluable | No evaluable | kept |
-| src/features/abcde/copy.ts | D.over-6mm-manual | Más de 6 mm — manual | Más de 6 mm (medición manual) | humanized |
-| src/features/abcde/copy.ts | D.up-to-6mm-manual | 6 mm o menos — manual | 6 mm o menos (medición manual) | humanized |
-| src/features/abcde/copy.ts | D.no-physical-measure | Sin medición física | Sin medición física | kept |
-| src/features/abcde/copy.ts | E.change-reported | Cambio reportado | Cambio reportado | kept |
-| src/features/abcde/copy.ts | E.no-change-reported | No se reportan cambios | No se reportan cambios | kept |
-| src/features/abcde/copy.ts | E.not-evaluable | No evaluable | No evaluable | kept |
-| src/features/abcde/copy.ts | calibrationTitle | Mis observaciones · Escala | Mis observaciones · Escala | kept |
-| src/features/abcde/copy.ts | calibrationHeading | Una referencia antes que un número. | Antes de dar una medida, necesita una referencia. | humanized |
-| src/features/abcde/copy.ts | calibrationBody | En una implementación real, establezca una longitud física conocida en el mismo plano de la lesión. Este prototipo no calibra la fotografía. | En un uso real, la fotografía debe incluir una longitud física conocida en el mismo plano de la lesión. Este prototipo no calibra la fotografía. | humanized |
-| src/features/abcde/copy.ts | calibrationNoRulerTitle | No dé por sentada la regla | No dé por supuesta una regla visible | humanized |
-| src/features/abcde/copy.ts | calibrationNoRulerBody | Las marcas visibles por sí solas no verifican las unidades, la perspectiva ni la geometría de adquisición. | Que la imagen muestre marcas de regla no basta para confirmar sus unidades, la perspectiva ni cómo se tomó la foto. | humanized |
-| src/features/abcde/copy.ts | calibrationWithoutTitle | Sin calibración | Sin calibración | kept |
-| src/features/abcde/copy.ts | calibrationWithoutBody | Registre Sin medición física. No convierta píxeles a milímetros. | Anote «Sin medición física». No convierta píxeles en milímetros. | humanized |
-| src/features/abcde/copy.ts | calibrationAction | Ver lista de verificación de referencia | Ver la lista de verificación de la referencia | humanized |
-| src/features/abcde/copy.ts | refCardHint | Abrir detalles | Abrir detalles | kept |
-| src/features/abcde/copy.ts | refPhysicalTitle | Requisitos de referencia física | Requisitos de la referencia física | humanized |
-| src/features/abcde/copy.ts | refPhysicalBody | Una medición manual solo se registra con una referencia física verificada en el mismo plano de la lesión. Sin verificación, use Sin medición física. | Solo puede anotar una medición manual si la referencia física está verificada y se encuentra en el mismo plano de la lesión. Si no está verificada, marque «Sin medición física». | humanized |
-| src/features/abcde/copy.ts | refChangeTitle | Comparación con imagen anterior | Comparación con imagen anterior | kept |
-| src/features/abcde/copy.ts | refChangeBody | Sin una imagen anterior real y su contexto de adquisición no hay comparación automática. Registre solo el cambio que se reporta. | No hay comparación automática sin una imagen anterior real y los datos de cómo se tomó. Anote solo el cambio que se reporte. | humanized |
-| src/features/abcde/copy.ts | readyTitle | Mis observaciones · Referencia | Mis observaciones · Referencia | kept |
-| src/features/abcde/copy.ts | readyHeading | Lista de verificación de referencia | Lista de verificación de la referencia | humanized |
-| src/features/abcde/copy.ts | readyIntro | Ejemplo de documentación, no una calibración exitosa. | Es un ejemplo de documentación. No indica que la calibración haya funcionado. | humanized |
-| src/features/abcde/copy.ts | readyLengthTitle | Longitud y unidades conocidas | Longitud y unidades conocidas | kept |
-| src/features/abcde/copy.ts | readyLengthBody | Deben confirmarse la longitud de referencia y sus unidades. | Confirme la longitud de referencia y sus unidades. | humanized |
-| src/features/abcde/copy.ts | readyPlaneTitle | Mismo plano de imagen | Mismo plano que la lesión | humanized |
-| src/features/abcde/copy.ts | readyPlaneBody | La perspectiva y la distorsión no deben invalidar la referencia. | La perspectiva y la distorsión no deben quitarle validez a la referencia. | humanized |
-| src/features/abcde/copy.ts | readyConfirmTitle | Confirmación manual | Confirmación del profesional | humanized |
-| src/features/abcde/copy.ts | readyConfirmBody | El profesional confirma la referencia antes de presentar cualquier medición física. | Usted confirma la referencia antes de anotar cualquier medición física. | humanized |
-| src/features/abcde/copy.ts | readyAction | Volver sin medir | Volver sin medir | kept |
-| src/features/compare/copy.ts | compareTitle | Comparar | Comparar | kept |
-| src/features/compare/copy.ts | compareHeading | Compare con contexto. | La comparación necesita contexto. | humanized |
-| src/features/compare/copy.ts | compareBody | La comparación no está disponible hasta que se proporcione una fuente anterior. No se ha medido la evolución. | La comparación no está disponible hasta contar con una fuente anterior. Todavía no se ha medido ninguna evolución. | humanized |
-| src/features/compare/copy.ts | requiredTitle | Obligatorio | Obligatorio | kept |
-| src/features/compare/copy.ts | requiredBody | Imagen anterior, fecha/contexto de adquisición y verificación profesional de que la región es comparable. | Hacen falta una imagen anterior, la fecha y las condiciones en que se tomó, y la verificación de un profesional de que la zona es comparable. | humanized |
-| src/features/compare/copy.ts | notInferredTitle | No inferido | No se deduce | humanized |
-| src/features/compare/copy.ts | notInferredBody | Una vista lado a lado no demostraría un cambio cuantitativo sin un método validado. | Ver dos imágenes una al lado de la otra no demuestra un cambio medible sin un método validado. | humanized |
-| src/features/compare/copy.ts | priorCardTitle | Se requiere una fuente anterior | Hace falta una fuente anterior | humanized |
-| src/features/compare/copy.ts | priorCardBody | Sin fecha inventada, fotografía de referencia alterada ni puntaje automático de evolución. | No inventamos una fecha, no alteramos una fotografía de referencia y no calculamos un puntaje automático de evolución. | humanized |
-| src/features/compare/copy.ts | priorCardAction | Revisar requisitos de comparación | Ver los requisitos para comparar | humanized |
-| src/features/compare/copy.ts | noteTitle | Nota profesional | Nota profesional | kept |
-| src/features/compare/copy.ts | noteNone | No se registró ninguna nota profesional. | No se registró ninguna nota profesional. | kept |
-| src/features/compare/copy.ts | noteCurrent | Nota actual | Nota actual | kept |
-| src/features/compare/copy.ts | noteAdd | Escribir nota profesional | Escribir nota profesional | kept |
-| src/features/compare/copy.ts | noteEdit | Editar nota profesional | Editar nota profesional | kept |
-| src/features/compare/copy.ts | noteHint | Solo para su criterio profesional. No ingrese datos identificables del paciente. | Es solo para su criterio profesional. No escriba datos que identifiquen al paciente. | humanized |
-| src/features/compare/copy.ts | noteLabel | Nota profesional | Nota profesional | kept |
-| src/features/compare/copy.ts | noteSave | Guardar nota | Guardar nota | kept |
-| src/features/compare/copy.ts | noteClear | Borrar nota | Borrar nota | kept |
-| src/features/compare/copy.ts | noteSaved | Nota guardada. | Nota guardada. | kept |
-| src/features/compare/copy.ts | noteCleared | Nota borrada. | Nota borrada. | kept |
-| src/features/compare/copy.ts | noteLimit | Límite de caracteres alcanzado. | Ha llegado al límite de caracteres. | humanized |
-| src/features/compare/copy.ts | noteClose | Cerrar | Cerrar | kept |
-| src/features/compare/copy.ts | noteBack | Volver a la sesión | Volver a la sesión | kept |
-| src/features/compare/copy.ts | dockNext | Revisar la sesión | Revisar la sesión | kept |
-| src/features/compare/copy.ts | dockBack | Volver a evolución | Volver a la evolución | humanized |
-| src/features/compare/copy.ts | priorTitle | Comparación anterior | Comparación anterior | kept |
-| src/features/compare/copy.ts | priorHeading | Se requiere una fuente anterior. | Hace falta una fuente anterior. | humanized |
-| src/features/compare/copy.ts | priorBody | La comparación requiere una fuente anterior real y un contexto de adquisición conocido. Este prototipo no fabricará una segunda imagen clínica. | Para comparar necesita una imagen anterior real y conocer en qué condiciones se tomó. Este prototipo no crea una segunda imagen clínica. | humanized |
-| src/features/compare/copy.ts | priorRequirementsHint | Abrir detalles | Abrir detalles | kept |
-| src/features/compare/copy.ts | navInfo | Alcance y métodos | Alcance y métodos | kept |
-| src/features/compare/copy.ts | back | Volver | Volver | kept |
-| src/features/consent/copy.ts | shellTitle | Salida del modelo · Envío | Análisis de la imagen · Envío | humanized |
-| src/features/consent/copy.ts | title | Revise antes de enviar. | Revise la imagen antes de enviarla. | humanized |
-| src/features/consent/copy.ts | body | Al pulsar Enviar, una copia preparada de esta imagen se enviará al servidor de investigación. El contexto y sus observaciones no se envían al modelo. Confirme su autorización y revise las condiciones del servicio antes de continuar. | Al pulsar Enviar, se envía al servidor de investigación una copia de esta imagen preparada para el análisis. Su contexto y sus observaciones no se envían. Antes de continuar, confirme que tiene autorización para enviar la imagen y revise las condiciones del servicio. | humanized |
-| src/features/consent/copy.ts | imageCaption | Imagen seleccionada | Imagen seleccionada | kept |
-| src/features/consent/copy.ts | sampleCaption | Imagen pública de ejemplo; no pertenece al registro que está creando. | Es una imagen pública de ejemplo. No forma parte del registro que está creando. | humanized |
-| src/features/consent/copy.ts | attribution | Imagen pública de referencia · P. Tschandl · CC BY-SA 4.0 | Imagen pública de referencia · P. Tschandl · CC BY-SA 4.0 | kept |
-| src/features/consent/copy.ts | consentLabel | Tengo autorización para enviar esta imagen. | Tengo autorización para enviar esta imagen. | kept |
-| src/features/consent/copy.ts | consentHint | Obligatorio para continuar. | Obligatorio para continuar. | kept |
-| src/features/consent/copy.ts | privacyTitle | Revisar el tratamiento de datos | Cómo se tratan los datos | humanized |
-| src/features/consent/copy.ts | privacyHint | Abrir detalles | Abrir detalles | kept |
-| src/features/consent/copy.ts | privacyBody | La imagen sale del dispositivo sólo cuando usted pulsa Enviar. Los fotogramas que analiza la guía de la cámara no se guardan ni se suben; la foto que usted toma sí queda en este dispositivo y sólo viaja al pulsar Enviar. El servicio de análisis trata la imagen según sus propias condiciones; esta pantalla no las verifica. | La imagen sale del dispositivo solo cuando usted pulsa Enviar. Los fotogramas de vista previa que usa la guía de la cámara no se guardan ni se suben. La foto que usted toma se queda en este dispositivo hasta que pulsa Enviar. El servicio de análisis trata la imagen según sus propias condiciones, que esta pantalla no verifica. | humanized |
-| src/features/consent/copy.ts | send | Enviar para análisis | Enviar para análisis | kept |
-| src/features/consent/copy.ts | close | Cerrar | Cerrar | kept |
-| src/features/consent/copy.ts | waitShellTitle | Salida del modelo · En espera | Análisis de la imagen · En espera | humanized |
-| src/features/consent/copy.ts | waitTitle | Esperando una respuesta | Esperando una respuesta | kept |
-| src/features/consent/copy.ts | waitBody | Estamos esperando la respuesta del servidor. Su imagen y el contexto siguen disponibles en este registro. | Estamos esperando la respuesta del servidor. Su imagen y el contexto siguen disponibles en este registro. | kept |
-| src/features/consent/copy.ts | waitContextTitle | Su contexto permanece aquí | Su contexto permanece aquí | kept |
-| src/features/consent/copy.ts | waitContextBody | Hay una solicitud pendiente. Espere la respuesta antes de volver a enviar la imagen; PERMA evita solicitudes duplicadas desde esta pantalla. | Hay una solicitud en curso. Espere la respuesta antes de enviar la imagen de nuevo. PERMA impide enviar solicitudes repetidas desde esta pantalla. | humanized |
-| src/features/consent/copy.ts | waitNoProgressTitle | Por qué no aparece un porcentaje | Por qué no aparece un porcentaje | kept |
-| src/features/consent/copy.ts | waitNoProgressBody | El servidor no informa cuánto falta. Le mostraremos la respuesta cuando llegue, sin estimar un progreso que no podemos comprobar. | El servidor no informa cuánto falta. Le mostraremos la respuesta cuando llegue. No estimamos un avance que no podemos comprobar. | humanized |
-| src/features/consent/copy.ts | waitStop | Detener espera | Dejar de esperar | humanized |
-| src/features/consent/copy.ts | waitStopHint | Abrir detalles | Abrir detalles | kept |
-| src/features/consent/copy.ts | waitStatus | Esperando respuesta del servicio. | Esperando la respuesta del servicio. | humanized |
-| src/features/consent/copy.ts | waitStopSheetTitle | ¿Detener espera? | ¿Dejar de esperar? | humanized |
-| src/features/consent/copy.ts | waitStopHeading | ¿Salir de la vista de espera? | ¿Salir de la pantalla de espera? | humanized |
-| src/features/consent/copy.ts | waitStopSheetBody | Puede dejar de esperar y volver a revisar la imagen. Esto interrumpe la espera en su navegador, pero no confirma que el servidor haya detenido el análisis. | Puede dejar de esperar y volver a la revisión de la imagen. Así solo se interrumpe la espera en su navegador. No confirma que el servidor haya detenido el análisis. | humanized |
-| src/features/consent/copy.ts | waitStopConfirm | Volver a la revisión de imagen | Volver a la imagen | humanized |
-| src/features/consent/copy.ts | waitStopKeep | Conservar la vista de espera | Seguir esperando | humanized |
-| src/features/recovery/copy.ts | file-unavailable.shell | Imagen no disponible | Imagen no disponible | kept |
-| src/features/recovery/copy.ts | file-unavailable.title | No se pudo abrir esta imagen. | No se pudo abrir esta imagen. | kept |
-| src/features/recovery/copy.ts | file-unavailable.body | Use una imagen JPEG, PNG o WebP válida de hasta 10 MiB y 20 MP. HEIC no es compatible. El contexto registrado se conserva. | Pruebe con una imagen JPEG, PNG o WebP de hasta 10 MiB y 20 megapíxeles. No se admiten fotos en formato HEIC. Su contexto registrado se conserva. | humanized |
-| src/features/recovery/copy.ts | file-unavailable.primary | Elegir otra imagen | Elegir otra imagen | kept |
-| src/features/recovery/copy.ts | file-unavailable.heading1 | Probar con otro archivo | Probar con otro archivo | kept |
-| src/features/recovery/copy.ts | file-unavailable.text1 | Elija otra imagen original y revísela antes de enviarla. El contexto registrado se conserva. | Elija otra imagen original y revísela antes de enviarla. El contexto registrado se conserva. | kept |
-| src/features/recovery/copy.ts | permission.shell | Permiso de cámara denegado | Permiso de cámara denegado | kept |
-| src/features/recovery/copy.ts | permission.title | El acceso a la cámara no está disponible. | El acceso a la cámara no está disponible. | kept |
-| src/features/recovery/copy.ts | permission.body | Puede continuar sin usar la cámara: elija un archivo de imagen. El contexto que ya registró sigue disponible. | Puede continuar sin usar la cámara: elija un archivo de imagen. El contexto que ya registró sigue disponible. | kept |
-| src/features/recovery/copy.ts | permission.heading1 | Usar un archivo | Usar un archivo | kept |
-| src/features/recovery/copy.ts | permission.text1 | Elija una imagen adecuada sin conceder acceso a la cámara. | Elija una imagen adecuada sin conceder acceso a la cámara. | kept |
-| src/features/recovery/copy.ts | permission.heading2 | Probar la cámara más tarde | Probar la cámara más tarde | kept |
-| src/features/recovery/copy.ts | permission.text2 | Revise los permisos del sitio en la configuración de su navegador y vuelva a la captura. | Si quiere usar la cámara más tarde, revise los permisos de este sitio en la configuración de su navegador y vuelva a la captura. | humanized |
-| src/features/recovery/copy.ts | permission.primary | Elegir un archivo de imagen | Elegir un archivo de imagen | kept |
-| src/features/recovery/copy.ts | offline.shell | Conexión no disponible | Conexión no disponible | kept |
-| src/features/recovery/copy.ts | offline.title | Sin conexión para el análisis. | No hay conexión para el análisis. | humanized |
-| src/features/recovery/copy.ts | offline.body | El análisis necesita conexión con el servidor. Puede volver a revisar su registro y reintentar el envío cuando recupere la conexión. | El análisis necesita conexión con el servidor. Mientras tanto, puede revisar su registro y volver a intentar el envío cuando tenga conexión. | humanized |
-| src/features/recovery/copy.ts | offline.heading1 | Conservar el trabajo actual | Conservar el trabajo actual | kept |
-| src/features/recovery/copy.ts | offline.text1 | Conserve la entrada durante esta sesión. No se ha verificado el almacenamiento persistente sin conexión. | Su imagen y sus datos se mantienen durante esta sesión. No hemos verificado que se guarden sin conexión de forma permanente. | humanized |
-| src/features/recovery/copy.ts | offline.heading2 | Al conectarse | Al conectarse | kept |
-| src/features/recovery/copy.ts | offline.text2 | Vuelva al envío cuando tenga conexión y confirme un nuevo intento. La imagen no se reenvía automáticamente. | Cuando tenga conexión, vuelva al envío y confirme un nuevo intento. La imagen no se reenvía sola. | humanized |
-| src/features/recovery/copy.ts | offline.primary | Volver al envío | Volver al envío | kept |
-| src/features/recovery/copy.ts | server-error.shell | Análisis no disponible | Análisis no disponible | kept |
-| src/features/recovery/copy.ts | server-error.title | No se recibió ningún resultado del análisis. | No se recibió ningún resultado del análisis. | kept |
-| src/features/recovery/copy.ts | server-error.body | No pudimos obtener una respuesta del servidor. No hay un resultado nuevo para este intento. Revise la imagen y el contexto antes de decidir si desea enviarla otra vez. | No pudimos obtener una respuesta del servidor. No hay un resultado nuevo para este intento. Revise la imagen y el contexto antes de decidir si desea enviarla otra vez. | kept |
-| src/features/recovery/copy.ts | server-error.primary | Revise antes de reintentar | Revisar antes de volver a intentar | humanized |
-| src/features/recovery/copy.ts | server-error.detailTitle | Revisar la imagen | Revisar la imagen | kept |
-| src/features/recovery/copy.ts | server-error.detailHint | Abrir detalles | Abrir detalles | kept |
-| src/features/recovery/copy.ts | server-error.detailFile | Archivo | Archivo | kept |
-| src/features/recovery/copy.ts | timeout.shell | Finalización no confirmada | Finalización no confirmada | kept |
-| src/features/recovery/copy.ts | timeout.title | No se confirmó la finalización. | No pudimos confirmar que el análisis terminara. | humanized |
-| src/features/recovery/copy.ts | timeout.body | La respuesta tardó más de lo previsto y dejamos de esperar. Esto no confirma que el servidor haya detenido el análisis. Puede volver al registro; no enviaremos otra solicitud sin su acción. | La respuesta tardó más de lo esperado y dejamos de esperar. Esto no quiere decir que el servidor haya detenido el análisis. Puede volver a su registro. No enviaremos otra solicitud sin que usted lo decida. | humanized |
-| src/features/recovery/copy.ts | timeout.primary | Volver sin reenviar | Volver sin reenviar | kept |
-| src/features/recovery/copy.ts | invalid-response.shell | Respuesta del modelo incompatible | Respuesta del análisis no compatible | humanized |
-| src/features/recovery/copy.ts | invalid-response.title | La respuesta no se puede usar. | La respuesta no se puede usar. | kept |
-| src/features/recovery/copy.ts | invalid-response.body | La respuesta no coincide con el modelo o el formato que espera PERMA. Por eso no mostramos sus puntajes. Puede conservar el registro y consultar los detalles técnicos antes de reintentar. | El servidor respondió con un modelo o un formato distinto del que PERMA espera, así que no mostramos los resultados. Su registro se conserva. Puede revisar los detalles técnicos antes de volver a intentarlo. | humanized |
-| src/features/recovery/copy.ts | invalid-response.heading1 | Identidad esperada | Modelo esperado | humanized |
-| src/features/recovery/copy.ts | invalid-response.text1 | MOCO_HAM7 / base / sin TTA / 1 vista / 3072 dimensiones, con siete clases compatibles únicas y puntajes coherentes. | MOCO_HAM7, versión base, sin TTA (aumento de imágenes al predecir), 1 vista, 3072 dimensiones, siete clases compatibles distintas entre sí y valores coherentes entre sí. | humanized |
-| src/features/recovery/copy.ts | invalid-response.heading2 | Recuperación | Cómo seguir | humanized |
-| src/features/recovery/copy.ts | invalid-response.text2 | Conserve la entrada. Compruebe la compatibilidad del servicio antes de una nueva solicitud. | Conserve la imagen y el registro. Verifique que el servicio sea compatible antes de hacer una nueva solicitud. | humanized |
-| src/features/recovery/copy.ts | invalid-response.primary | Ver detalles técnicos | Ver detalles técnicos | kept |
-| src/features/recovery/copy.ts | rate-limit.shell | Límite de solicitudes alcanzado | Límite de solicitudes alcanzado | kept |
-| src/features/recovery/copy.ts | rate-limit.title | El servicio está limitando las solicitudes. | El servicio está limitando las solicitudes. | kept |
-| src/features/recovery/copy.ts | rate-limit.body | Espere antes de volver a intentarlo. Conserve la imagen y las observaciones; no habrá reenvío automático. | Espere un momento antes de volver a intentarlo. Su imagen y sus observaciones se conservan. No se reenviarán automáticamente. | humanized |
-| src/features/recovery/copy.ts | rate-limit.primary | Conservar la imagen y volver | Conservar la imagen y volver | kept |
-| src/features/recovery/copy.ts | export-unavailable.shell | Exportación no disponible | Exportación no disponible | kept |
-| src/features/recovery/copy.ts | export-unavailable.title | No se creó la exportación. | No se creó la exportación. | kept |
-| src/features/recovery/copy.ts | export-unavailable.body | No pudimos preparar el archivo para descargarlo. Vuelva a la vista previa, compruebe el contenido e inténtelo de nuevo. | No pudimos preparar el archivo para descargarlo. Vuelva a la vista previa, revise su contenido y vuelva a intentarlo. | humanized |
-| src/features/recovery/copy.ts | export-unavailable.primary | Volver a la vista previa de exportación | Volver a la vista previa de exportación | kept |
+| Archivo | Clave | Antes (ES) | Después v1 (ES) | v2 (ES) | Motivo |
+|---|---|---|---|---|---|
+| features/abcde/copy.ts | pageTitle | Mis observaciones | Mis observaciones | = | kept |
+| features/abcde/copy.ts | intro | Abra un criterio para registrar o editar su observación. | Abra cada criterio para anotar lo que observa o para corregir una anotación anterior. | = | humanized |
+| features/abcde/copy.ts | unanswered | Sin evaluar | Sin evaluar | = | kept |
+| features/abcde/copy.ts | back | Volver a la imagen | Volver a la imagen | = | kept |
+| features/abcde/copy.ts | next | Ver resumen | Ver resumen | = | kept |
+| features/abcde/copy.ts | navLabel | Criterios ABCDE | Criterios ABCDE | = | kept |
+| features/abcde/copy.ts | listLabel | Observaciones ABCDE | Observaciones ABCDE | = | kept |
+| features/abcde/copy.ts | criterionA | Asimetría | Asimetría | = | kept |
+| features/abcde/copy.ts | criterionB | Borde | Borde | = | kept |
+| features/abcde/copy.ts | criterionC | Color | Color | = | kept |
+| features/abcde/copy.ts | criterionD | Diámetro | Diámetro | = | kept |
+| features/abcde/copy.ts | criterionE | Evolución | Evolución | = | kept |
+| features/abcde/copy.ts | descA | Compare ambos ejes. Registre solo lo visible. | Compare ambos ejes de la lesión y anote solo lo que se ve en la imagen. | = | humanized |
+| features/abcde/copy.ts | descB | Revise el borde. Registre solo lo visible. | Revise el contorno de la lesión y anote solo lo que se ve en la imagen. | = | humanized |
+| features/abcde/copy.ts | descC | Registre la variación de color visible sin filtros. | Anote los colores visibles en la imagen original, sin aplicar filtros. | = | humanized |
+| features/abcde/copy.ts | descD | Use una medición manual verificada o déjela sin medir. | Si tiene una medición manual verificada, regístrela. Si no, deje este criterio sin medir. | = | humanized |
+| features/abcde/copy.ts | descE | Registre el cambio reportado; no se suministra una imagen anterior. | Anote el cambio reportado. Este prototipo no incluye una imagen anterior para comparar. | = | humanized |
+| features/abcde/copy.ts | A.symmetric | Simétrica | Simétrica | = | kept |
+| features/abcde/copy.ts | A.asymmetric-one-axis | Asimétrica en un eje | Asimétrica en un eje | = | kept |
+| features/abcde/copy.ts | A.asymmetric-two-axes | Asimétrica en dos ejes | Asimétrica en dos ejes | = | kept |
+| features/abcde/copy.ts | A.not-evaluable | No evaluable | No evaluable | = | kept |
+| features/abcde/copy.ts | B.regular | Borde regular | Borde regular | = | kept |
+| features/abcde/copy.ts | B.irregular | Borde irregular | Borde irregular | = | kept |
+| features/abcde/copy.ts | B.not-evaluable | No evaluable | No evaluable | = | kept |
+| features/abcde/copy.ts | C.one-color | Un color | Un color | = | kept |
+| features/abcde/copy.ts | C.two-colors | Dos colores | Dos colores | = | kept |
+| features/abcde/copy.ts | C.three-or-more-colors | Tres colores o más | Tres colores o más | = | kept |
+| features/abcde/copy.ts | C.not-evaluable | No evaluable | No evaluable | = | kept |
+| features/abcde/copy.ts | D.over-6mm-manual | Más de 6 mm — manual | Más de 6 mm (medición manual) | = | humanized |
+| features/abcde/copy.ts | D.up-to-6mm-manual | 6 mm o menos — manual | 6 mm o menos (medición manual) | = | humanized |
+| features/abcde/copy.ts | D.no-physical-measure | Sin medición física | Sin medición física | = | kept |
+| features/abcde/copy.ts | E.change-reported | Cambio reportado | Cambio reportado | = | kept |
+| features/abcde/copy.ts | E.no-change-reported | No se reportan cambios | No se reportan cambios | = | kept |
+| features/abcde/copy.ts | E.not-evaluable | No evaluable | No evaluable | = | kept |
+| features/abcde/copy.ts | calibrationTitle | Mis observaciones · Escala | Mis observaciones · Escala | = | kept |
+| features/abcde/copy.ts | calibrationHeading | Una referencia antes que un número. | Antes de dar una medida, necesita una referencia. | = | humanized |
+| features/abcde/copy.ts | calibrationBody | En una implementación real, establezca una longitud física conocida en el mismo plano de la lesión. Este prototipo no calibra la fotografía. | En un uso real, la fotografía debe incluir una longitud física conocida en el mismo plano de la lesión. Este prototipo no calibra la fotografía. | = | humanized |
+| features/abcde/copy.ts | calibrationNoRulerTitle | No dé por sentada la regla | No dé por supuesta una regla visible | = | humanized |
+| features/abcde/copy.ts | calibrationNoRulerBody | Las marcas visibles por sí solas no verifican las unidades, la perspectiva ni la geometría de adquisición. | Que la imagen muestre marcas de regla no basta para confirmar sus unidades, la perspectiva ni cómo se tomó la foto. | = | humanized |
+| features/abcde/copy.ts | calibrationWithoutTitle | Sin calibración | Sin calibración | = | kept |
+| features/abcde/copy.ts | calibrationWithoutBody | Registre Sin medición física. No convierta píxeles a milímetros. | Anote «Sin medición física». No convierta píxeles en milímetros. | = | humanized |
+| features/abcde/copy.ts | calibrationAction | Ver lista de verificación de referencia | Ver la lista de verificación de la referencia | = | humanized |
+| features/abcde/copy.ts | refCardHint | Abrir detalles | Abrir detalles | = | kept |
+| features/abcde/copy.ts | refPhysicalTitle | Requisitos de referencia física | Requisitos de la referencia física | = | humanized |
+| features/abcde/copy.ts | refPhysicalBody | Una medición manual solo se registra con una referencia física verificada en el mismo plano de la lesión. Sin verificación, use Sin medición física. | Solo puede anotar una medición manual si la referencia física está verificada y se encuentra en el mismo plano de la lesión. Si no está verificada, marque «Sin medición física». | = | humanized |
+| features/abcde/copy.ts | refChangeTitle | Comparación con imagen anterior | Comparación con imagen anterior | = | kept |
+| features/abcde/copy.ts | refChangeBody | Sin una imagen anterior real y su contexto de adquisición no hay comparación automática. Registre solo el cambio que se reporta. | No hay comparación automática sin una imagen anterior real y los datos de cómo se tomó. Anote solo el cambio que se reporte. | = | humanized |
+| features/abcde/copy.ts | readyTitle | Mis observaciones · Referencia | Mis observaciones · Referencia | = | kept |
+| features/abcde/copy.ts | readyHeading | Lista de verificación de referencia | Lista de verificación de la referencia | = | humanized |
+| features/abcde/copy.ts | readyIntro | Ejemplo de documentación, no una calibración exitosa. | Es un ejemplo de documentación. No indica que la calibración haya funcionado. | = | humanized |
+| features/abcde/copy.ts | readyLengthTitle | Longitud y unidades conocidas | Longitud y unidades conocidas | = | kept |
+| features/abcde/copy.ts | readyLengthBody | Deben confirmarse la longitud de referencia y sus unidades. | Confirme la longitud de referencia y sus unidades. | = | humanized |
+| features/abcde/copy.ts | readyPlaneTitle | Mismo plano de imagen | Mismo plano que la lesión | = | humanized |
+| features/abcde/copy.ts | readyPlaneBody | La perspectiva y la distorsión no deben invalidar la referencia. | La perspectiva y la distorsión no deben quitarle validez a la referencia. | = | humanized |
+| features/abcde/copy.ts | readyConfirmTitle | Confirmación manual | Confirmación del profesional | = | humanized |
+| features/abcde/copy.ts | readyConfirmBody | El profesional confirma la referencia antes de presentar cualquier medición física. | Usted confirma la referencia antes de anotar cualquier medición física. | = | humanized |
+| features/abcde/copy.ts | readyAction | Volver sin medir | Volver sin medir | = | kept |
+| features/compare/copy.ts | compareTitle | Comparar | Comparar | = | kept |
+| features/compare/copy.ts | compareHeading | Compare con contexto. | La comparación necesita contexto. | = | humanized |
+| features/compare/copy.ts | compareBody | La comparación no está disponible hasta que se proporcione una fuente anterior. No se ha medido la evolución. | La comparación no está disponible hasta contar con una fuente anterior. Todavía no se ha medido ninguna evolución. | = | humanized |
+| features/compare/copy.ts | requiredTitle | Obligatorio | Obligatorio | = | kept |
+| features/compare/copy.ts | requiredBody | Imagen anterior, fecha/contexto de adquisición y verificación profesional de que la región es comparable. | Hacen falta una imagen anterior, la fecha y las condiciones en que se tomó, y la verificación de un profesional de que la zona es comparable. | = | humanized |
+| features/compare/copy.ts | notInferredTitle | No inferido | No se deduce | = | humanized |
+| features/compare/copy.ts | notInferredBody | Una vista lado a lado no demostraría un cambio cuantitativo sin un método validado. | Ver dos imágenes una al lado de la otra no demuestra un cambio medible sin un método validado. | = | humanized |
+| features/compare/copy.ts | priorCardTitle | Se requiere una fuente anterior | Hace falta una fuente anterior | = | humanized |
+| features/compare/copy.ts | priorCardBody | Sin fecha inventada, fotografía de referencia alterada ni puntaje automático de evolución. | No inventamos una fecha, no alteramos una fotografía de referencia y no calculamos un puntaje automático de evolución. | = | humanized |
+| features/compare/copy.ts | priorCardAction | Revisar requisitos de comparación | Ver los requisitos para comparar | = | humanized |
+| features/compare/copy.ts | noteTitle | Nota profesional | Nota profesional | = | kept |
+| features/compare/copy.ts | noteNone | No se registró ninguna nota profesional. | No se registró ninguna nota profesional. | = | kept |
+| features/compare/copy.ts | noteCurrent | Nota actual | Nota actual | = | kept |
+| features/compare/copy.ts | noteAdd | Escribir nota profesional | Escribir nota profesional | = | kept |
+| features/compare/copy.ts | noteEdit | Editar nota profesional | Editar nota profesional | = | kept |
+| features/compare/copy.ts | noteHint | Solo para su criterio profesional. No ingrese datos identificables del paciente. | Es solo para su criterio profesional. No escriba datos que identifiquen al paciente. | = | humanized |
+| features/compare/copy.ts | noteLabel | Nota profesional | Nota profesional | = | kept |
+| features/compare/copy.ts | noteSave | Guardar nota | Guardar nota | = | kept |
+| features/compare/copy.ts | noteClear | Borrar nota | Borrar nota | = | kept |
+| features/compare/copy.ts | noteSaved | Nota guardada. | Nota guardada. | = | kept |
+| features/compare/copy.ts | noteCleared | Nota borrada. | Nota borrada. | = | kept |
+| features/compare/copy.ts | noteLimit | Límite de caracteres alcanzado. | Ha llegado al límite de caracteres. | = | humanized |
+| features/compare/copy.ts | noteClose | Cerrar | Cerrar | = | kept |
+| features/compare/copy.ts | noteBack | Volver a la sesión | Volver a la sesión | = | kept |
+| features/compare/copy.ts | dockNext | Revisar la sesión | Revisar la sesión | = | kept |
+| features/compare/copy.ts | dockBack | Volver a evolución | Volver a la evolución | = | humanized |
+| features/compare/copy.ts | priorTitle | Comparación anterior | Comparación anterior | = | kept |
+| features/compare/copy.ts | priorHeading | Se requiere una fuente anterior. | Hace falta una fuente anterior. | = | humanized |
+| features/compare/copy.ts | priorBody | La comparación requiere una fuente anterior real y un contexto de adquisición conocido. Este prototipo no fabricará una segunda imagen clínica. | Para comparar necesita una imagen anterior real y conocer en qué condiciones se tomó. Este prototipo no crea una segunda imagen clínica. | = | humanized |
+| features/compare/copy.ts | priorRequirementsHint | Abrir detalles | Abrir detalles | = | kept |
+| features/compare/copy.ts | navInfo | Alcance y métodos | Alcance y métodos | = | kept |
+| features/compare/copy.ts | back | Volver | Volver | = | kept |
+| features/consent/copy.ts | shellTitle | Salida del modelo · Envío | Análisis de la imagen · Envío | = | humanized |
+| features/consent/copy.ts | title | Revise antes de enviar. | Revise la imagen antes de enviarla. | = | humanized |
+| features/consent/copy.ts | body | Al pulsar Enviar, una copia preparada de esta imagen se enviará al servidor de investigación. El contexto y sus observaciones no se envían al modelo. Confirme su autorización y revise las condiciones del servicio antes de continuar. | Al pulsar Enviar, se envía al servidor de investigación una copia de esta imagen preparada para el análisis. Su contexto y sus observaciones no se envían. Antes de continuar, confirme que tiene autorización para enviar la imagen y revise las condiciones del servicio. | = | humanized |
+| features/consent/copy.ts | imageCaption | Imagen seleccionada | Imagen seleccionada | = | kept |
+| features/consent/copy.ts | sampleCaption | Imagen pública de ejemplo; no pertenece al registro que está creando. | Es una imagen pública de ejemplo. No forma parte del registro que está creando. | = | humanized |
+| features/consent/copy.ts | attribution | Imagen pública de referencia · P. Tschandl · CC BY-SA 4.0 | Imagen pública de referencia · P. Tschandl · CC BY-SA 4.0 | = | kept |
+| features/consent/copy.ts | consentLabel | Tengo autorización para enviar esta imagen. | Tengo autorización para enviar esta imagen. | = | kept |
+| features/consent/copy.ts | consentHint | Obligatorio para continuar. | Obligatorio para continuar. | = | kept |
+| features/consent/copy.ts | privacyTitle | Revisar el tratamiento de datos | Cómo se tratan los datos | = | humanized |
+| features/consent/copy.ts | privacyHint | Abrir detalles | Abrir detalles | = | kept |
+| features/consent/copy.ts | privacyBody | La imagen sale del dispositivo sólo cuando usted pulsa Enviar. Los fotogramas que analiza la guía de la cámara no se guardan ni se suben; la foto que usted toma sí queda en este dispositivo y sólo viaja al pulsar Enviar. El servicio de análisis trata la imagen según sus propias condiciones; esta pantalla no las verifica. | La imagen sale del dispositivo solo cuando usted pulsa Enviar. Los fotogramas de vista previa que usa la guía de la cámara no se guardan ni se suben. La foto que usted toma se queda en este dispositivo hasta que pulsa Enviar. El servicio de análisis trata la imagen según sus propias condiciones, que esta pantalla no verifica. | = | humanized |
+| features/consent/copy.ts | send | Enviar para análisis | Enviar para análisis | = | kept |
+| features/consent/copy.ts | close | Cerrar | Cerrar | = | kept |
+| features/consent/copy.ts | waitShellTitle | Salida del modelo · En espera | Análisis de la imagen · En espera | = | humanized |
+| features/consent/copy.ts | waitTitle | Esperando una respuesta | Esperando una respuesta | = | kept |
+| features/consent/copy.ts | waitBody | Estamos esperando la respuesta del servidor. Su imagen y el contexto siguen disponibles en este registro. | Estamos esperando la respuesta del servidor. Su imagen y el contexto siguen disponibles en este registro. | = | kept |
+| features/consent/copy.ts | waitContextTitle | Su contexto permanece aquí | Su contexto permanece aquí | = | kept |
+| features/consent/copy.ts | waitContextBody | Hay una solicitud pendiente. Espere la respuesta antes de volver a enviar la imagen; PERMA evita solicitudes duplicadas desde esta pantalla. | Hay una solicitud en curso. Espere la respuesta antes de enviar la imagen de nuevo. PERMA impide enviar solicitudes repetidas desde esta pantalla. | = | humanized |
+| features/consent/copy.ts | waitNoProgressTitle | Por qué no aparece un porcentaje | Por qué no aparece un porcentaje | = | kept |
+| features/consent/copy.ts | waitNoProgressBody | El servidor no informa cuánto falta. Le mostraremos la respuesta cuando llegue, sin estimar un progreso que no podemos comprobar. | El servidor no informa cuánto falta. Le mostraremos la respuesta cuando llegue. No estimamos un avance que no podemos comprobar. | = | humanized |
+| features/consent/copy.ts | waitStop | Detener espera | Dejar de esperar | = | humanized |
+| features/consent/copy.ts | waitStopHint | Abrir detalles | Abrir detalles | = | kept |
+| features/consent/copy.ts | waitStatus | Esperando respuesta del servicio. | Esperando la respuesta del servicio. | = | humanized |
+| features/consent/copy.ts | waitStopSheetTitle | ¿Detener espera? | ¿Dejar de esperar? | = | humanized |
+| features/consent/copy.ts | waitStopHeading | ¿Salir de la vista de espera? | ¿Salir de la pantalla de espera? | = | humanized |
+| features/consent/copy.ts | waitStopSheetBody | Puede dejar de esperar y volver a revisar la imagen. Esto interrumpe la espera en su navegador, pero no confirma que el servidor haya detenido el análisis. | Puede dejar de esperar y volver a la revisión de la imagen. Así solo se interrumpe la espera en su navegador. No confirma que el servidor haya detenido el análisis. | = | humanized |
+| features/consent/copy.ts | waitStopConfirm | Volver a la revisión de imagen | Volver a la imagen | = | humanized |
+| features/consent/copy.ts | waitStopKeep | Conservar la vista de espera | Seguir esperando | = | humanized |
+| features/recovery/copy.ts | file-unavailable.shell | Imagen no disponible | Imagen no disponible | = | kept |
+| features/recovery/copy.ts | file-unavailable.title | No se pudo abrir esta imagen. | No se pudo abrir esta imagen. | = | kept |
+| features/recovery/copy.ts | file-unavailable.body | Use una imagen JPEG, PNG o WebP válida de hasta 10 MiB y 20 MP. HEIC no es compatible. El contexto registrado se conserva. | Pruebe con una imagen JPEG, PNG o WebP de hasta 10 MiB y 20 megapíxeles. No se admiten fotos en formato HEIC. Su contexto registrado se conserva. | = | humanized |
+| features/recovery/copy.ts | file-unavailable.primary | Elegir otra imagen | Elegir otra imagen | = | kept |
+| features/recovery/copy.ts | file-unavailable.heading1 | Probar con otro archivo | Probar con otro archivo | = | kept |
+| features/recovery/copy.ts | file-unavailable.text1 | Elija otra imagen original y revísela antes de enviarla. El contexto registrado se conserva. | Elija otra imagen original y revísela antes de enviarla. El contexto registrado se conserva. | = | kept |
+| features/recovery/copy.ts | permission.shell | Permiso de cámara denegado | Permiso de cámara denegado | = | kept |
+| features/recovery/copy.ts | permission.title | El acceso a la cámara no está disponible. | El acceso a la cámara no está disponible. | = | kept |
+| features/recovery/copy.ts | permission.body | Puede continuar sin usar la cámara: elija un archivo de imagen. El contexto que ya registró sigue disponible. | Puede continuar sin usar la cámara: elija un archivo de imagen. El contexto que ya registró sigue disponible. | = | kept |
+| features/recovery/copy.ts | permission.heading1 | Usar un archivo | Usar un archivo | = | kept |
+| features/recovery/copy.ts | permission.text1 | Elija una imagen adecuada sin conceder acceso a la cámara. | Elija una imagen adecuada sin conceder acceso a la cámara. | = | kept |
+| features/recovery/copy.ts | permission.heading2 | Probar la cámara más tarde | Probar la cámara más tarde | = | kept |
+| features/recovery/copy.ts | permission.text2 | Revise los permisos del sitio en la configuración de su navegador y vuelva a la captura. | Si quiere usar la cámara más tarde, revise los permisos de este sitio en la configuración de su navegador y vuelva a la captura. | = | humanized |
+| features/recovery/copy.ts | permission.primary | Elegir un archivo de imagen | Elegir un archivo de imagen | = | kept |
+| features/recovery/copy.ts | offline.shell | Conexión no disponible | Conexión no disponible | = | kept |
+| features/recovery/copy.ts | offline.title | Sin conexión para el análisis. | No hay conexión para el análisis. | = | humanized |
+| features/recovery/copy.ts | offline.body | El análisis necesita conexión con el servidor. Puede volver a revisar su registro y reintentar el envío cuando recupere la conexión. | El análisis necesita conexión con el servidor. Mientras tanto, puede revisar su registro y volver a intentar el envío cuando tenga conexión. | Analysis needs a connection to the server. Meanwhile, you can review your record and try sending again once you are connected. | humanized |
+| features/recovery/copy.ts | offline.heading1 | Conservar el trabajo actual | Conservar el trabajo actual | = | kept |
+| features/recovery/copy.ts | offline.text1 | Conserve la entrada durante esta sesión. No se ha verificado el almacenamiento persistente sin conexión. | Su imagen y sus datos se mantienen durante esta sesión. No hemos verificado que se guarden sin conexión de forma permanente. | = | humanized |
+| features/recovery/copy.ts | offline.heading2 | Al conectarse | Al conectarse | = | kept |
+| features/recovery/copy.ts | offline.text2 | Vuelva al envío cuando tenga conexión y confirme un nuevo intento. La imagen no se reenvía automáticamente. | Cuando tenga conexión, vuelva al envío y confirme un nuevo intento. La imagen no se reenvía sola. | = | humanized |
+| features/recovery/copy.ts | offline.primary | Volver al envío | Volver al envío | = | kept |
+| features/recovery/copy.ts | server-error.shell | Análisis no disponible | Análisis no disponible | = | kept |
+| features/recovery/copy.ts | server-error.title | No se recibió ningún resultado del análisis. | No se recibió ningún resultado del análisis. | = | kept |
+| features/recovery/copy.ts | server-error.body | No pudimos obtener una respuesta del servidor. No hay un resultado nuevo para este intento. Revise la imagen y el contexto antes de decidir si desea enviarla otra vez. | No pudimos obtener una respuesta del servidor. No hay un resultado nuevo para este intento. Revise la imagen y el contexto antes de decidir si desea enviarla otra vez. | = | kept |
+| features/recovery/copy.ts | server-error.primary | Revise antes de reintentar | Revisar antes de volver a intentar | = | humanized |
+| features/recovery/copy.ts | server-error.detailTitle | Revisar la imagen | Revisar la imagen | = | kept |
+| features/recovery/copy.ts | server-error.detailHint | Abrir detalles | Abrir detalles | = | kept |
+| features/recovery/copy.ts | server-error.detailFile | Archivo | Archivo | = | kept |
+| features/recovery/copy.ts | timeout.shell | Finalización no confirmada | Finalización no confirmada | = | kept |
+| features/recovery/copy.ts | timeout.title | No se confirmó la finalización. | No pudimos confirmar que el análisis terminara. | = | humanized |
+| features/recovery/copy.ts | timeout.body | La respuesta tardó más de lo previsto y dejamos de esperar. Esto no confirma que el servidor haya detenido el análisis. Puede volver al registro; no enviaremos otra solicitud sin su acción. | La respuesta tardó más de lo esperado y dejamos de esperar. Esto no quiere decir que el servidor haya detenido el análisis. Puede volver a su registro. No enviaremos otra solicitud sin que usted lo decida. | = | humanized |
+| features/recovery/copy.ts | timeout.primary | Volver sin reenviar | Volver sin reenviar | = | kept |
+| features/recovery/copy.ts | invalid-response.shell | Respuesta del modelo incompatible | Respuesta del análisis no compatible | = | humanized |
+| features/recovery/copy.ts | invalid-response.title | La respuesta no se puede usar. | La respuesta no se puede usar. | = | kept |
+| features/recovery/copy.ts | invalid-response.body | La respuesta no coincide con el modelo o el formato que espera PERMA. Por eso no mostramos sus puntajes. Puede conservar el registro y consultar los detalles técnicos antes de reintentar. | El servidor respondió con un modelo o un formato distinto del que PERMA espera, así que no mostramos los resultados. Su registro se conserva. Puede revisar los detalles técnicos antes de volver a intentarlo. | = | humanized |
+| features/recovery/copy.ts | invalid-response.heading1 | Identidad esperada | Modelo esperado | = | humanized |
+| features/recovery/copy.ts | invalid-response.text1 | MOCO_HAM7 / base / sin TTA / 1 vista / 3072 dimensiones, con siete clases compatibles únicas y puntajes coherentes. | MOCO_HAM7, versión base, sin TTA (aumento de imágenes al predecir), 1 vista, 3072 dimensiones, siete clases compatibles distintas entre sí y valores coherentes entre sí. | = | humanized |
+| features/recovery/copy.ts | invalid-response.heading2 | Recuperación | Cómo seguir | = | humanized |
+| features/recovery/copy.ts | invalid-response.text2 | Conserve la entrada. Compruebe la compatibilidad del servicio antes de una nueva solicitud. | Conserve la imagen y el registro. Verifique que el servicio sea compatible antes de hacer una nueva solicitud. | = | humanized |
+| features/recovery/copy.ts | invalid-response.primary | Ver detalles técnicos | Ver detalles técnicos | Volver a revisar la imagen | kept |
+| features/recovery/copy.ts | rate-limit.shell | Límite de solicitudes alcanzado | Límite de solicitudes alcanzado | = | kept |
+| features/recovery/copy.ts | rate-limit.title | El servicio está limitando las solicitudes. | El servicio está limitando las solicitudes. | = | kept |
+| features/recovery/copy.ts | rate-limit.body | Espere antes de volver a intentarlo. Conserve la imagen y las observaciones; no habrá reenvío automático. | Espere un momento antes de volver a intentarlo. Su imagen y sus observaciones se conservan. No se reenviarán automáticamente. | Wait a moment before trying again. Your image and observations are kept. They will not be resent automatically. | humanized |
+| features/recovery/copy.ts | rate-limit.primary | Conservar la imagen y volver | Conservar la imagen y volver | = | kept |
+| features/recovery/copy.ts | export-unavailable.shell | Exportación no disponible | Exportación no disponible | = | kept |
+| features/recovery/copy.ts | export-unavailable.title | No se creó la exportación. | No se creó la exportación. | = | kept |
+| features/recovery/copy.ts | export-unavailable.body | No pudimos preparar el archivo para descargarlo. Vuelva a la vista previa, compruebe el contenido e inténtelo de nuevo. | No pudimos preparar el archivo para descargarlo. Vuelva a la vista previa, revise su contenido y vuelva a intentarlo. | = | humanized |
+| features/recovery/copy.ts | export-unavailable.primary | Volver a la vista previa de exportación | Volver a la vista previa de exportación | = | kept |
 

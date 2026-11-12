@@ -103,11 +103,11 @@ describe('ContourOverlay', () => {
 describe('ContourSwitch', () => {
   it('is off by default and toggles on click', async () => {
     render(withI18n(<ContourSwitch result={resultWith()} />));
-    const sw = screen.getByRole('switch', { name: 'Mostrar el contorno de la lesión' });
+    const sw = screen.getByRole('switch', { name: 'Contorno de la lesión según el modelo' });
     expect(sw.getAttribute('aria-checked')).toBe('false');
     await userEvent.click(sw);
     expect(sw.getAttribute('aria-checked')).toBe('true');
-    expect(screen.getByText('Contorno del modelo (investigación)')).toBeTruthy();
+    expect(screen.getByText('Contorno estimado por el modelo, con fines de investigación.')).toBeTruthy();
   });
 
   it('is disabled with a reason when the segmentation is unavailable', () => {

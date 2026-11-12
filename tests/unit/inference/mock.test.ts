@@ -33,7 +33,7 @@ describe('MockInferenceClient: replays real captures, invents nothing', () => {
 
   it('refuses a simulated tone without a captured replay for that stop', async () => {
     const error = await make()
-      .simulateTone({ file: imageBlob(), maskPngBase64: 'x', deltaL: 8 })
+      .simulateTone({ file: imageBlob(), maskPngBase64: 'x', deltaL: 4.86 })
       .catch((e: unknown) => e);
     expect(error).toBeInstanceOf(InferenceError);
     expect((error as InferenceError).scenario).toBe('file-unavailable');

@@ -7,7 +7,7 @@ import { runToResult } from './support';
 // /api/analyze exist, the app must report the explainability layer as unavailable, not invent values.
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
 const SHOTS = path.join(REPO_ROOT, 'test-results', 'explainability');
-const SWITCH_NAME = 'Mostrar el contorno de la lesión';
+const SWITCH_NAME = 'Contorno de la lesión según el modelo';
 const NO_ENDPOINT_SWITCH = 'Esta versión del servidor no incluye el contorno.';
 const NO_ENDPOINT_ITA = 'Esta versión del servidor no incluye la medición de color.';
 

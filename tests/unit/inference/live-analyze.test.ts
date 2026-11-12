@@ -52,13 +52,13 @@ describe('LiveInferenceClient.simulateTone: request and error mapping', () => {
   it('sends the stored mask and the delta to /api/simulate-tone', async () => {
     const fetchImpl = vi.fn(async () => jsonResponse({ error: { code: 'INVALID_DELTA' } }, 422));
     await clientWith(fetchImpl as unknown as typeof fetch)
-      .simulateTone({ file: FILE, maskPngBase64: 'MASK-FIELD', deltaL: -8 })
+      .simulateTone({ file: FILE, maskPngBase64: 'MASK-FIELD', deltaL: -4.86 })
       .catch(() => undefined);
     const [url, init] = fetchImpl.mock.calls[0] as unknown as [string, RequestInit];
     expect(url).toContain('/api/simulate-tone');
     const form = init.body as FormData;
     expect(form.get('mask_png_base64')).toBe('MASK-FIELD');
-    expect(form.get('delta_l')).toBe('-8');
+    expect(form.get('delta_l')).toBe('-4.86');
   });
 
   it('refuses deltas that are not tone stops before any request is sent', async () => {
@@ -72,7 +72,7 @@ describe('LiveInferenceClient.simulateTone: request and error mapping', () => {
   it('maps a 422 INVALID_DELTA rejection to a typed InferenceError', async () => {
     const fetchImpl = vi.fn(async () => jsonResponse({ error: { code: 'INVALID_DELTA' } }, 422));
     const error = await clientWith(fetchImpl as unknown as typeof fetch)
-      .simulateTone({ file: FILE, maskPngBase64: 'x', deltaL: 8 })
+      .simulateTone({ file: FILE, maskPngBase64: 'x', deltaL: 4.86 })
       .catch((e: unknown) => e);
     expect(error).toBeInstanceOf(InferenceError);
   });
