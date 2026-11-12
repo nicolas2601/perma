@@ -63,8 +63,8 @@ test.describe('recovery scenarios (provoked for real)', () => {
     primary: string;
     backTarget: RegExp;
   }> = [
-    { scenario: 'server-error', path: /\/recuperacion\/servidor$/, title: 'No se recibió ningún resultado del análisis.', primary: 'Revise antes de reintentar', backTarget: /\/imagen\/calidad$/ },
-    { scenario: 'timeout', path: /\/recuperacion\/tiempo$/, title: 'No se confirmó la finalización.', primary: 'Volver sin reenviar', backTarget: /\/imagen\/calidad$/ },
+    { scenario: 'server-error', path: /\/recuperacion\/servidor$/, title: 'No se recibió ningún resultado del análisis.', primary: 'Revisar antes de volver a intentar', backTarget: /\/imagen\/calidad$/ },
+    { scenario: 'timeout', path: /\/recuperacion\/tiempo$/, title: 'No pudimos confirmar que el análisis terminara.', primary: 'Volver sin reenviar', backTarget: /\/imagen\/calidad$/ },
     { scenario: 'invalid-response', path: /\/recuperacion\/respuesta$/, title: 'La respuesta no se puede usar.', primary: 'Revisar contrato técnico', backTarget: /\/imagen\/calidad$/ },
     { scenario: 'rate-limit', path: /\/recuperacion\/limite$/, title: 'El servicio está limitando las solicitudes.', primary: 'Conservar la imagen y volver', backTarget: /\/imagen\/calidad$/ },
   ];

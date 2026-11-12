@@ -5,7 +5,7 @@ import { COPY, chooseSample, dismissOfflineBanner, openHome, previewImage, toCap
 test.use({ serviceWorkers: 'allow' });
 
 const OFFLINE_READY_ES = 'PERMA está lista para usarse sin conexión. El análisis de imágenes requiere conexión a la red.';
-const OFFLINE_SEND_HEADING = 'Sin conexión para el análisis.';
+const OFFLINE_SEND_HEADING = 'No hay conexión para el análisis.';
 
 /** First load installs the SW; reload once so the page is controlled by it (precache complete). */
 async function activateServiceWorker(page: Page): Promise<void> {

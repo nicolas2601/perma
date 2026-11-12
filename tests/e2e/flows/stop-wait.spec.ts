@@ -18,5 +18,5 @@ test('Detener la espera keeps the image and a late response is discarded', async
   await expect(previewImage(page)).toBeVisible();
   await page.waitForTimeout(SLOW_MAX_MS + LATE_RESPONSE_MARGIN_MS);
   await expect(page).toHaveURL(/\/imagen\/calidad$/);
-  await expect(page.getByRole('heading', { name: 'Salida del modelo' })).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: 'Resultado del modelo' })).toHaveCount(0);
 });

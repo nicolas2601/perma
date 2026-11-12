@@ -29,8 +29,8 @@ describe('ActionRow', () => {
   });
 
   it('renders a link when a destination is given and hides the chevron from assistive tech', () => {
-    renderWithRouter(<ActionRow tint="lilac" icon={ICON} title="Ver los siete puntajes" hint="Abrir detalles" to="/resultado/clases" />);
-    const link = screen.getByRole('link', { name: /Ver los siete puntajes/ });
+    renderWithRouter(<ActionRow tint="lilac" icon={ICON} title="Ver las siete categorías" hint="Abrir detalles" to="/resultado/clases" />);
+    const link = screen.getByRole('link', { name: /Ver las siete categorías/ });
     expect(link.getAttribute('href')).toBe('/resultado/clases');
     expect(link.querySelector('svg')?.getAttribute('aria-hidden')).toBe('true');
   });

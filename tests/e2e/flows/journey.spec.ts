@@ -134,7 +134,7 @@ test.describe('9-step journey (mock build, success scenario)', () => {
       await page.getByRole('button', { name: COPY.abcdeSummary }).click();
       await expect(page).toHaveURL(/\/examen\/comparar$/);
       await page.getByRole('button', { name: COPY.compareNote }).click();
-      await page.getByRole('textbox', { name: 'Nota profesional' }).fill(NOTE_TEXT);
+      await page.getByRole('textbox', { name: 'Editar la nota profesional' }).fill(NOTE_TEXT);
       await page.getByRole('button', { name: 'Guardar nota' }).click();
       await expect(page.getByText('Nota guardada.')).toBeVisible();
       await page.getByRole('button', { name: 'Cerrar' }).first().click();
@@ -150,7 +150,7 @@ test.describe('9-step journey (mock build, success scenario)', () => {
       await page.getByRole('checkbox', { name: COPY.exportAck }).check();
       await expect(download).toBeEnabled();
       await expect(page).toHaveURL(/\/revision\/exportar$/);
-      await expect(page.getByText('Descarga iniciada.')).toHaveCount(0);
+      await expect(page.getByText('Se inició la descarga.')).toHaveCount(0);
       const [file] = await Promise.all([page.waitForEvent('download'), download.click()]);
       expect(file.suggestedFilename()).toMatch(/\.csv$/);
       const path = await file.path();
@@ -160,7 +160,7 @@ test.describe('9-step journey (mock build, success scenario)', () => {
       expect(csv.startsWith('\uFEFFSección;Campo;Valor;Nota')).toBe(true);
       expect(csv.split('\r\n').filter((line) => /^Puntajes crudos;/.test(line))).toHaveLength(7);
       await expect(page).toHaveURL(/\/revision\/exportada$/);
-      await expect(page.getByText('Descarga iniciada.')).toBeVisible();
+      await expect(page.getByText('Se inició la descarga.')).toBeVisible();
     });
   });
 });

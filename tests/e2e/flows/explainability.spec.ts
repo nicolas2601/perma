@@ -7,9 +7,9 @@ import { runToResult } from './support';
 // /api/analyze exist, the app must report the explainability layer as unavailable, not invent values.
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
 const SHOTS = path.join(REPO_ROOT, 'test-results', 'explainability');
-const SWITCH_NAME = 'Ver delimitación de la lesión';
-const NO_ENDPOINT_SWITCH = 'Esta versión del servidor no incluye la delimitación.';
-const NO_ENDPOINT_ITA = 'Esta versión del servidor no incluye la fotometría.';
+const SWITCH_NAME = 'Mostrar el contorno de la lesión';
+const NO_ENDPOINT_SWITCH = 'Esta versión del servidor no incluye el contorno.';
+const NO_ENDPOINT_ITA = 'Esta versión del servidor no incluye la medición de color.';
 
 async function shot(page: Page, name: string): Promise<void> {
   const project = test.info().project.name;
@@ -37,7 +37,7 @@ test.describe('explainability layer (no captures yet: unavailable state)', () =>
     await page.goto('/inspeccion?tab=auditoria');
     await expect(page.getByRole('button', { name: 'Simular' })).toBeDisabled();
     await expect(
-      page.getByText('La máscara de esta imagen no está guardada. Vuelva a analizar la imagen para simular.'),
+      page.getByText('No tenemos guardada la zona de la lesión de esta imagen. Vuelva a analizar la imagen para poder simular.'),
     ).toBeVisible();
     await shot(page, 'audit-no-capture');
   });
