@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import analyzeCaptureRaw from '../../../fixtures/api/analyze-MOCO_HAM7-reference-tschandl-600.json?raw';
 import {
   analyzeResponseSchema,
   simulateToneResponseSchema,
@@ -92,16 +93,16 @@ function expectInvalid(payload: unknown) {
 }
 
 describe('analyze contract: valid payloads', () => {
-  // TODO(captures): the mapping of a complete ok body must use a REAL capture (fixtures/api/analyze-MOCO_HAM7-*.json).
-  it.skip('accepts a complete ok response and maps it to the app shape', () => {
-    const body = parseOrInvalid(analyzeResponseSchema, analyzeBody(), 'analyze');
+  it('accepts a real captured ok response and maps it to the app shape', () => {
+    const capture = JSON.parse(analyzeCaptureRaw) as { segmentation: { contour: unknown[] }; photometry: { ita_deg: number; ita_category: string } };
+    const body = parseOrInvalid(analyzeResponseSchema, capture, 'analyze');
     const result = toAnalysisResult(body, 15200);
     const seg = result.segmentation;
     const ph = result.photometry;
     if (seg?.status !== 'ok' || ph?.status !== 'ok') throw new Error('expected ok segmentation and photometry');
-    expect(seg.contour).toHaveLength(4);
-    expect(ph.itaDeg).toBe(42.5);
-    expect(ph.itaCategory).toBe('light');
+    expect(seg.contour).toHaveLength(capture.segmentation.contour.length);
+    expect(ph.itaDeg).toBe(capture.photometry.ita_deg);
+    expect(ph.itaCategory).toBe(capture.photometry.ita_category);
     expect(result.model).toBe('MOCO_HAM7');
   });
 

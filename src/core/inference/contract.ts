@@ -13,12 +13,22 @@ export const scoresSchema = z.record(classCodeSchema, scoreSchema);
 const modelKeySchema = z.enum(LIVE_MODEL_KEYS);
 const baseModeSchema = z.literal('base');
 
-export const mocoRecipeSchema = z.object({
-  feature: z.string().min(1),
-  tau: z.number().finite(),
-  tta: z.literal('none'),
-  n_views: z.literal(1),
-});
+/** v10.0.0 names the feature `feature` and uses one view; v10.1.0 names it `features` and averages 8 D4 views. */
+export const mocoRecipeSchema = z
+  .object({
+    feature: z.string().min(1).optional(),
+    features: z.string().min(1).optional(),
+    tau: z.number().finite(),
+    tta: z.enum(['none', 'd4-mean']),
+    n_views: z.union([z.literal(1), z.literal(8)]).optional(),
+    views: z.union([z.literal(1), z.literal(8)]).optional(),
+  })
+  .refine((recipe) => recipe.feature !== undefined || recipe.features !== undefined, {
+    message: 'recipe must name its feature',
+  })
+  .refine((recipe) => recipe.n_views !== undefined || recipe.views !== undefined, {
+    message: 'recipe must state its view count',
+  });
 
 export const mocoIdentitySchema = z.object({
   model_id: z.literal('dermssl-v10-moco'),
@@ -52,10 +62,13 @@ export const predictResponseSchema = z
     feature_dim: z.number().int().positive(),
     mode: baseModeSchema,
     requested_mode: baseModeSchema,
-    inference_mode: z.literal('single_view'),
-    views: z.literal(1),
+    inference_mode: z.enum(['single_view', 'd4_tta_8view']),
+    views: z.union([z.literal(1), z.literal(8)]),
     model_key: modelKeySchema,
     identity: mocoIdentitySchema,
+  })
+  .refine((body) => (body.inference_mode === 'single_view') === (body.views === 1), {
+    message: 'inference_mode and views must agree',
   })
   .refine((body) => sameClassOrder(body.classes), {
     message: 'classes must match CLASS_CODES order',
@@ -85,7 +98,8 @@ export function parseOrInvalid<S extends z.ZodType>(schema: S, payload: unknown,
 }
 
 export function formatRecipe(recipe: z.infer<typeof mocoRecipeSchema>): string {
-  return `${recipe.feature} | tau=${recipe.tau} | ${recipe.tta} | n=${recipe.n_views}`;
+  const feature = recipe.feature ?? recipe.features ?? '';
+  return `${feature} | tau=${recipe.tau} | ${recipe.tta} | n=${recipe.n_views ?? recipe.views}`;
 }
 
 export function toModelIdentity(identity: z.infer<typeof mocoIdentitySchema>): ModelIdentity {
