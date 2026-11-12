@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { screeningSchema, toScreening } from './screeningContract';
 import { CLASS_CODES, InferenceError, type InferenceResult, type ModelIdentity } from './types';
 
 /** The only model served live. A71/B71 were retired by the backend on 2026-11-08 (predict answers 422). */
@@ -66,6 +67,7 @@ export const predictResponseSchema = z
     views: z.union([z.literal(1), z.literal(8)]),
     model_key: modelKeySchema,
     identity: mocoIdentitySchema,
+    screening: screeningSchema.optional(),
   })
   .refine((body) => (body.inference_mode === 'single_view') === (body.views === 1), {
     message: 'inference_mode and views must agree',
@@ -128,6 +130,7 @@ export function toInferenceResult(body: PredictResponse, latencyMs: number): Inf
     scores: body.probs,
     latencyMs,
     warnings: collectWarnings(body),
+    ...(body.screening === undefined ? {} : { screening: toScreening(body.screening) }),
   };
 }
 

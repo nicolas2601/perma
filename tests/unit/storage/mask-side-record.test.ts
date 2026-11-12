@@ -122,4 +122,25 @@ describe('stored result validation stays backward compatible', () => {
     const bad = { ...snapshotWith(resultWith('a1')), result: { ...resultWith('a1'), photometry: { status: 'maybe' } } };
     expect(parseStoredExam(bad)).toBeNull();
   });
+
+  it('accepts a stored melanoma-priority screening block', () => {
+    const screening = {
+      status: 'ok',
+      ruleId: 'melanoma-priority-v1',
+      target: 'mel',
+      logOffset: 1.5,
+      pred: 'mel',
+      alert: true,
+      differsFromPred: true,
+      development: null,
+    };
+    const stored = { ...snapshotWith(resultWith('a1')), result: { ...resultWith('a1'), screening } };
+    expect(parseStoredExam(stored)).not.toBeNull();
+  });
+
+  it('rejects a stored screening block with a non-boolean alert', () => {
+    const screening = { status: 'ok', ruleId: 'r', target: 'mel', logOffset: 1.5, pred: 'mel', alert: 'yes' };
+    const bad = { ...snapshotWith(resultWith('a1')), result: { ...resultWith('a1'), screening } };
+    expect(parseStoredExam(bad)).toBeNull();
+  });
 });

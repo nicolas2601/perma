@@ -66,6 +66,35 @@
         "task": "814f6cb268ffbc179f6c3db8b2f64cb158fe0174564b6fdb4e523778c375c92d",
         "backbone": "fe64610560880e2df1185bf17fbe49e2da46a31e0644ddad76bfa7e8651aab1e"
       }
+    },
+    "screening": {
+      "status": "ok",
+      "reason": null,
+      "rule_id": "melanoma-priority-v1",
+      "target": "mel",
+      "log_offset": 1.5,
+      "pred": "nv",
+      "alert": false,
+      "differs_from_pred": false,
+      "development": {
+        "at_zero": {
+          "target_recall": 0.5404,
+          "target_to_nevus": 0.2229,
+          "nevus_recall": 0.8458,
+          "target_precision": 0.4116,
+          "target_alert_rate": 0.1453,
+          "macro_f1": 0.6126
+        },
+        "nested": {
+          "target_recall": 0.7673,
+          "target_to_nevus": 0.1321,
+          "nevus_recall": 0.7592,
+          "target_precision": 0.3239,
+          "target_alert_rate": 0.2627,
+          "macro_f1": 0.6023
+        }
+      },
+      "note": "Operating point chosen on development data to prioritise melanoma recall; it raises more false alerts on benign lesions. Not evaluated on the sealed test sets."
     }
   },
   "segmentation": {
@@ -657,8 +686,8 @@
     "ita_category": "light"
   },
   "timing_ms": {
-    "classification": 9975,
-    "segmentation": 334,
-    "photometry": 3394
+    "classification": 14770,
+    "segmentation": 290,
+    "photometry": 5360
   }
 }

@@ -93,7 +93,8 @@ function isResult(value: unknown): boolean {
     Object.values(value.scores).every((score) => typeof score === 'number' && Number.isFinite(score)) &&
     (value.analysisId === undefined || typeof value.analysisId === 'string') &&
     (value.segmentation === undefined || isSegmentation(value.segmentation)) &&
-    (value.photometry === undefined || isPhotometry(value.photometry))
+    (value.photometry === undefined || isPhotometry(value.photometry)) &&
+    (value.screening === undefined || isScreening(value.screening))
   );
 }
 
@@ -121,6 +122,21 @@ function isPhotometry(value: unknown): boolean {
     finiteNumber(value.medianL) &&
     finiteNumber(value.medianB) &&
     (value.itaDeg === null || finiteNumber(value.itaDeg))
+  );
+}
+
+/** Records saved before the melanoma-priority block have no `screening`; it stays optional. */
+function isScreening(value: unknown): boolean {
+  if (!isObject(value)) return false;
+  if (value.status === 'unavailable') return typeof value.reason === 'string';
+  return (
+    value.status === 'ok' &&
+    typeof value.ruleId === 'string' &&
+    typeof value.target === 'string' &&
+    typeof value.pred === 'string' &&
+    finiteNumber(value.logOffset) &&
+    typeof value.alert === 'boolean' &&
+    typeof value.differsFromPred === 'boolean'
   );
 }
 

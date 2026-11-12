@@ -22,6 +22,11 @@ export const copy = {
     resultHeading: 'Resultado experimental',
     resultIntro: 'El modelo compara la imagen con siete tipos de lesión y muestra cuánto se parece a cada uno. Estos valores no son la probabilidad de tener una enfermedad ni un diagnóstico.',
     topScores: 'Tipos de lesión con mayor parecido',
+    melanomaPriorityLabel: 'Señal de melanoma',
+    melanomaPriorityBody:
+      'El valor de melanoma supera el umbral de prioridad, aunque no es el más alto. Ese umbral busca que el modelo deje pasar menos melanomas, y por eso también señala lesiones que no lo son.',
+    melanomaPriorityEvidence:
+      'En datos de desarrollo señaló {recall} de cada 100 melanomas; de las imágenes señaladas, {precision} de cada 100 eran melanoma.',
     noCalibratedRisk: 'Qué significa este resultado',
     noCalibratedRiskBody: 'Incluso un valor alto no confirma ni descarta una enfermedad. No use este resultado para decidir si el paciente necesita atención médica.',
     viewAllScores: 'Ver las siete categorías',
@@ -188,6 +193,11 @@ export const copy = {
     resultHeading: 'Experimental result',
     resultIntro: 'The model compares the image with seven lesion types and shows how closely it resembles each one. These values are not the probability of having a disease, nor a diagnosis.',
     topScores: 'Lesion types with the closest match',
+    melanomaPriorityLabel: 'Melanoma signal',
+    melanomaPriorityBody:
+      'The melanoma value is above the priority threshold, even though it is not the highest. That threshold aims to make the model miss fewer melanomas, so it also flags lesions that are not melanoma.',
+    melanomaPriorityEvidence:
+      'On development data it flagged {recall} of every 100 melanomas; of the flagged images, {precision} of every 100 were melanoma.',
     noCalibratedRisk: 'What this result means',
     noCalibratedRiskBody: 'Even a high value does not confirm or rule out a disease. Do not use this result to decide whether the patient needs medical care.',
     viewAllScores: 'See all seven categories',
