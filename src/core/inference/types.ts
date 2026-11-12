@@ -29,7 +29,36 @@ export interface InferenceResult {
   photometry?: PhotometryResult;
   /** Ties the in-memory mask to this exact analysis (see storage/maskRecord.ts). */
   analysisId?: string;
+  /** Melanoma-priority operating point reported next to the scores. Absent on older backends. */
+  screening?: ScreeningResult;
 }
+
+/** Development-only metrics of an operating point (grouped out-of-fold; not a sealed test). */
+export interface ScreeningMetrics {
+  targetRecall: number;
+  targetToNevus: number;
+  nevusRecall: number;
+  targetPrecision: number;
+  targetAlertRate: number;
+  macroF1: number;
+}
+
+/**
+ * The model's scores read with a lower bar for melanoma. `pred` is that reading, never a diagnosis;
+ * the ranked scores are unchanged.
+ */
+export type ScreeningResult =
+  | {
+      status: 'ok';
+      ruleId: string;
+      target: ClassCode;
+      logOffset: number;
+      pred: ClassCode;
+      alert: boolean;
+      differsFromPred: boolean;
+      development: { atZero: ScreeningMetrics; nested: ScreeningMetrics } | null;
+    }
+  | { status: 'unavailable'; reason: string };
 
 export type RecoveryScenario =
   | 'permission' | 'offline' | 'server-error' | 'timeout'
