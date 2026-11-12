@@ -26,7 +26,7 @@ export const copy = {
       'La revisión ABCDE, la nota profesional, el contexto del examen y la imagen que usted cargó o tomó se guardan en este navegador hasta que descarte el examen. La imagen no se sube sin que usted lo decida. Las imágenes que analiza la guía de la cámara no se guardan ni se suben.',
     travelTitle: 'Viaja al servidor cuando usted pulsa Enviar',
     travelBody:
-      'Una copia reducida de la imagen, sin datos de ubicación (EXIF), junto con la versión del modelo y el modo de análisis. El contexto, la revisión ABCDE y la nota se quedan en este dispositivo y no cambian los puntajes del modelo.',
+      'Una copia reducida de la imagen, sin datos de ubicación (EXIF), junto con la versión del modelo y el tipo de análisis. El contexto, la revisión ABCDE y la nota se quedan en este dispositivo y no cambian los puntajes del modelo.',
     retentionTitle: 'Conservación y acceso',
     retentionBody:
       'En un envío real, la política del servidor sobre conservación, acceso y eliminación debe verificarse por separado.',
@@ -69,7 +69,7 @@ export const copy = {
       'The ABCDE review, the professional note, the exam context and the image you uploaded or took are kept in this browser until you discard the exam. The image is not uploaded unless you decide to. The frames the camera guide analyses are never stored or uploaded.',
     travelTitle: 'Sent to the server when you press Send',
     travelBody:
-      'A reduced copy of the image, without location data (EXIF), together with the model version and the analysis mode. The context, the ABCDE review and the note stay on this device and do not change the model scores.',
+      'A reduced copy of the image, without location data (EXIF), together with the model version and the type of analysis. The context, the ABCDE review and the note stay on this device and do not change the model scores.',
     retentionTitle: 'Retention and access',
     retentionBody:
       'For a real submission, the server’s policy on retention, access and deletion must be checked separately.',
