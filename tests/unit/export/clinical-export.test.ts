@@ -34,7 +34,7 @@ describe('JSON export: user-supplied context', () => {
     const doc = buildJsonDocument(snapshot(context), exportedAt, t);
     expect(doc.userSuppliedContext.interpretedByModel).toBe(false);
     expect(doc.userSuppliedContext.usedInScores).toBe(false);
-    expect(doc.userSuppliedContext.notice).toContain('no influye en los puntajes');
+    expect(doc.userSuppliedContext.notice).toContain('no influye en el resultado');
   });
 
   it('exports null when nothing was supplied', () => {

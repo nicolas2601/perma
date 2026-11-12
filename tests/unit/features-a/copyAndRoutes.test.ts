@@ -56,7 +56,7 @@ describe('feature copy modules', () => {
   it('explains research scores and the live image task without inventing guarantees', () => {
     expect(inspectCopy.es.experimentalNotice).toContain('ni emite diagnósticos');
     expect(inspectCopy.es.resultIntro).toContain('no son la probabilidad de tener una enfermedad');
-    expect(guideCopy.es.evidenceBody).toContain('HAM7');
+    expect(guideCopy.es.evidenceBody).toContain('siete tipos de lesión');
     expect(guideCopy.es.evidenceBody).toContain('No incluye el carcinoma escamocelular (SCC)');
     expect(guideCopy.es.licencesBody).not.toContain('entrenado con datos sintéticos');
     expect(consentCopy.es.waitStopSheetBody).toContain('No confirma que el servidor haya detenido el análisis');

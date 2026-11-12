@@ -35,7 +35,7 @@ export const copy = {
     galleryCta: 'Usar imagen de referencia',
     qualityTitle: 'Revise antes de enviar.',
     qualityBody:
-      'Revise usted mismo el enfoque, los reflejos, qué parte de la zona aparece y si hay información que identifique a una persona. La aplicación no asigna un puntaje automático de calidad.',
+      'Revise usted mismo el enfoque, los reflejos, qué parte de la zona aparece y si hay información que identifique a una persona. La aplicación no califica la calidad de la imagen de forma automática.',
     qualityDecision: 'Usted decide si la imagen es adecuada',
     qualityDecisionBody:
       'La alerta de resolución no certifica la calidad diagnóstica de la imagen. Revise el enfoque y el encuadre antes de decidir si desea enviarla.',
@@ -81,7 +81,7 @@ export const copy = {
     galleryCta: 'Use reference image',
     qualityTitle: 'Review before sending.',
     qualityBody:
-      'Check focus, reflections, how much of the area is visible and whether there is information that identifies a person. The app does not assign an automatic quality score.',
+      'Check focus, reflections, how much of the area is visible and whether there is information that identifies a person. The app does not rate image quality automatically.',
     qualityDecision: 'You decide whether the image is adequate',
     qualityDecisionBody: 'A resolution alert does not certify diagnostic image quality. Check focus and framing before deciding whether to send it.',
     qualityIssueTitle: 'The image needs attention',
