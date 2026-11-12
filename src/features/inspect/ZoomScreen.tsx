@@ -11,6 +11,7 @@ import { ActionDock, ScreenHeader } from './Chrome';
 import { useObjectUrl, isReferenceImage, PUBLIC_REFERENCE_URL } from './useImageSource';
 import { useZoomPointers } from './useZoomPointers';
 import { ContourLayer } from './explain/ContourOverlay';
+import { ContourSwitch } from './explain/ContourSwitch';
 
 const LABEL_FADE_S = 0.1;
 
@@ -57,6 +58,7 @@ export default function ZoomScreen() {
             <span className="text-muted">{t('zoomHint')}</span>
           </figcaption>
         </figure>
+        {result ? <ContourSwitch result={result} /> : null}
         <div className="flex items-center gap-3">
           <ModeLabel zoomed={zoomed} fitLabel={t('toolFit')} zoomLabel={t('toolZoom')} />
           <Button variant="quiet" onClick={zoom.reset} className="ml-auto">

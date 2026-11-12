@@ -67,7 +67,7 @@ export default function ViewerScreen() {
         infoLabel={t('info')}
         trailing={toolsButton}
       />
-      <div tabIndex={0} className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-28 pt-2 lg:grid lg:grid-cols-[minmax(0,1fr)_23.75rem] lg:items-start lg:gap-x-8 lg:overflow-visible lg:px-8 lg:pb-10">
+      <div tabIndex={0} className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-32 scroll-pb-32 pt-2 lg:grid lg:grid-cols-[minmax(0,1fr)_23.75rem] lg:items-start lg:gap-x-8 lg:overflow-visible lg:px-8 lg:pb-10">
         <ViewerStage src={src} image={image} result={result} onOpenTool={openTool} />
         <div>
           <div className="mb-3 flex">
@@ -88,6 +88,7 @@ export default function ViewerScreen() {
         open={toolOpen}
         tool={tool}
         image={image}
+        result={result}
         onOpenChange={setToolOpen}
         onSelect={setTool}
       />

@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
 import type { ExamImage } from '@/core/exam/contract';
+import type { InferenceResult } from '@/core/inference/types';
+import { ContourSwitch } from './explain/ContourSwitch';
 import { Button, PHASE_TINT, Sheet } from '@/ui';
 import { useNavigate } from '@/app/router';
 import { useT } from '@/core/i18n/I18nProvider';
@@ -16,12 +18,14 @@ type ToolSheetProps = {
   open: boolean;
   tool: ToolName;
   image: ExamImage | null;
+  /** When present, the layers sheet offers the model-contour switch (shared state with the result). */
+  result?: InferenceResult | null;
   onOpenChange: (open: boolean) => void;
   onSelect: (tool: ToolName) => void;
 };
 
 /** Image tools sheet ("Herramientas de imagen"). The original image is never modified; the optional model contour is drawn above it. */
-export function ToolSheet({ open, tool, image, onOpenChange, onSelect }: ToolSheetProps) {
+export function ToolSheet({ open, tool, image, result, onOpenChange, onSelect }: ToolSheetProps) {
   const t = useT('inspect');
   const navigate = useNavigate();
   const close = () => onOpenChange(false);
@@ -43,6 +47,7 @@ export function ToolSheet({ open, tool, image, onOpenChange, onSelect }: ToolShe
       ) : (
         <div className="flex flex-col gap-3 text-body text-ink">
           <p className="m-0">{tool === 'layers' ? t('toolSheetLayersBody') : t('toolSheetInfoBody')}</p>
+          {tool === 'layers' && result ? <ContourSwitch result={result} /> : null}
           {tool === 'info' ? <p className="m-0 text-label text-muted">{sourceText(image, t)}</p> : null}
           <Button fullWidth variant="secondary" onClick={() => onSelect('menu')}>
             {t('backToTools')}
