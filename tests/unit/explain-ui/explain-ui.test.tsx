@@ -157,40 +157,43 @@ describe('PhotometryCard', () => {
 describe('ToneAudit', () => {
   const renderAudit = (result: InferenceResult) =>
     render(withI18n(<ToneAudit result={result} file={new Blob(['img'])} src="blob:original" />));
+  // Slider index 0..4 maps to ΔL* −9.73, −4.86, 0, +4.86, +9.73 (one DDI band = 4.86).
+  const STEP_DARKER_1 = '1';
+  const STEP_LIGHTER_2 = '4';
 
   it('does not call the service when the slider moves; only Simular does', async () => {
     renderAudit(resultWith());
     const slider = screen.getByRole('slider');
-    fireEvent.change(slider, { target: { value: '-8' } });
+    fireEvent.change(slider, { target: { value: STEP_DARKER_1 } });
     expect(simulateTone).not.toHaveBeenCalled();
-    expect(slider.getAttribute('aria-valuetext')).toBe('ΔL* −8 (simulación)');
+    expect(slider.getAttribute('aria-valuetext')).toBe('Más oscura (1 paso)');
     await userEvent.click(screen.getByRole('button', { name: 'Simular' }));
     expect(simulateTone).toHaveBeenCalledTimes(1);
-    expect(simulateTone.mock.calls[0]?.[0]).toMatchObject({ deltaL: -8, maskPngBase64: 'iVBORw0KGgo=' });
+    expect(simulateTone.mock.calls[0]?.[0]).toMatchObject({ deltaL: -4.86, maskPngBase64: 'iVBORw0KGgo=' });
   });
 
-  it('reuses the in-memory result for a delta already simulated', async () => {
+  it('reuses the in-memory result for a step already simulated', async () => {
     renderAudit(resultWith());
     const slider = screen.getByRole('slider');
-    fireEvent.change(slider, { target: { value: '8' } });
+    fireEvent.change(slider, { target: { value: STEP_LIGHTER_2 } });
     await userEvent.click(screen.getByRole('button', { name: 'Simular' }));
-    fireEvent.change(slider, { target: { value: '-8' } });
+    fireEvent.change(slider, { target: { value: STEP_DARKER_1 } });
     await userEvent.click(screen.getByRole('button', { name: 'Simular' }));
-    fireEvent.change(slider, { target: { value: '8' } });
+    fireEvent.change(slider, { target: { value: STEP_LIGHTER_2 } });
     await userEvent.click(screen.getByRole('button', { name: 'Simular' }));
     expect(simulateTone).toHaveBeenCalledTimes(2);
   });
 
-  it('never calls the service for delta 0', async () => {
+  it('never calls the service for the original step', async () => {
     renderAudit(resultWith());
     await userEvent.click(screen.getByRole('button', { name: 'Simular' }));
     expect(simulateTone).not.toHaveBeenCalled();
-    expect(screen.getByText('Con ΔL* 0 se muestra la imagen original y no se consulta el servidor.')).toBeTruthy();
+    expect(screen.getByText('Original: se muestra la imagen sin cambios. No se consulta el servicio.')).toBeTruthy();
   });
 
-  it('badges the simulated image as a tone simulation', async () => {
+  it('badges the simulated image as a luminance simulation', async () => {
     renderAudit(resultWith());
-    fireEvent.change(screen.getByRole('slider'), { target: { value: '-8' } });
+    fireEvent.change(screen.getByRole('slider'), { target: { value: STEP_DARKER_1 } });
     await userEvent.click(screen.getByRole('button', { name: 'Simular' }));
     expect(await screen.findByText('Simulación de luminosidad')).toBeTruthy();
   });

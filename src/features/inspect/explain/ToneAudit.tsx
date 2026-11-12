@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { getInferenceClient } from '@/core/inference';
 import { formatItaDegrees } from '@/core/explain/ita';
-import { createToneCache, isToneStop, TONE_STOPS, toneStopLabel, type ToneStop } from '@/core/explain/toneCache';
+import { createToneCache, TONE_STEP_KEYS, TONE_STOPS, type ToneStop } from '@/core/explain/toneCache';
 import { useI18n, useT } from '@/core/i18n/I18nProvider';
 import type { InferenceResult, ToneSimulation } from '@/core/inference/types';
 import { Badge, Button, cx } from '@/ui';
@@ -14,9 +14,9 @@ type ToneAuditProps = {
   src: string | null;
 };
 
-const SLIDER_MIN = TONE_STOPS[0];
-const SLIDER_MAX = TONE_STOPS[TONE_STOPS.length - 1];
-const SLIDER_STEP = 8;
+const STEP_INDEX_MIN = 0;
+const STEP_INDEX_MAX = TONE_STOPS.length - 1;
+const ORIGINAL_INDEX = TONE_STOPS.indexOf(0);
 
 /**
  * Tone robustness audit. The slider only chooses a stop; the service is called only by "Simular".
@@ -25,7 +25,8 @@ const SLIDER_STEP = 8;
 export function ToneAudit({ result, file, src }: ToneAuditProps) {
   const t = useT('inspect');
   const { locale } = useI18n();
-  const [delta, setDelta] = useState<ToneStop>(0);
+  const [stepIndex, setStepIndex] = useState(ORIGINAL_INDEX);
+  const delta: ToneStop = TONE_STOPS[stepIndex] ?? 0;
   const [view, setView] = useState<'original' | 'simulated'>('original');
   const [simulation, setSimulation] = useState<ToneSimulation | null>(null);
   const [busy, setBusy] = useState(false);
@@ -35,7 +36,7 @@ export function ToneAudit({ result, file, src }: ToneAuditProps) {
 
   const onSlide = (value: string) => {
     const next = Number(value);
-    if (isToneStop(next)) setDelta(next);
+    if (Number.isInteger(next) && next >= STEP_INDEX_MIN && next <= STEP_INDEX_MAX) setStepIndex(next);
   };
 
   const simulate = async () => {
@@ -89,12 +90,12 @@ export function ToneAudit({ result, file, src }: ToneAuditProps) {
       </div>
       <input
         type="range"
-        min={SLIDER_MIN}
-        max={SLIDER_MAX}
-        step={SLIDER_STEP}
-        value={delta}
+        min={STEP_INDEX_MIN}
+        max={STEP_INDEX_MAX}
+        step={1}
+        value={stepIndex}
         aria-label={t('toneSlider')}
-        aria-valuetext={toneStopLabel(delta, t('toneSuffix'))}
+        aria-valuetext={t(TONE_STEP_KEYS[stepIndex] ?? 'toneStep0')}
         onChange={(event) => onSlide(event.target.value)}
         className={cx('h-11 w-full accent-accent')}
       />

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { formatItaDegrees, itaCategoryLabel } from '@/core/explain/ita';
 import { contourToSvgPoints, contourViewBox } from '@/core/explain/contourPath';
-import { TONE_STOPS, createToneCache, isToneStop, toneStopLabel } from '@/core/explain/toneCache';
+import { TONE_STEP_KEYS, TONE_STOPS, createToneCache, isToneStop } from '@/core/explain/toneCache';
 import { ITA_CATEGORIES } from '@/core/inference/types';
 
 describe('ITA category labels', () => {
@@ -66,38 +66,34 @@ describe('contour to SVG polygon', () => {
 });
 
 describe('tone stops and simulation cache', () => {
-  it('exposes exactly the five discrete stops', () => {
-    expect(TONE_STOPS).toEqual([-16, -8, 0, 8, 16]);
+  it('uses one DDI band (4.86 L*) per step, spanning the measured phototype range', () => {
+    expect(TONE_STOPS).toEqual([-9.73, -4.86, 0, 4.86, 9.73]);
+    expect(TONE_STEP_KEYS).toHaveLength(TONE_STOPS.length);
   });
 
   it('accepts only stops from the list', () => {
-    expect(isToneStop(-8)).toBe(true);
-    expect(isToneStop(-4)).toBe(false);
-  });
-
-  it('labels a stop with the simulation wording', () => {
-    expect(toneStopLabel(-8)).toBe('ΔL* −8 (simulación)');
-    expect(toneStopLabel(0)).toBe('ΔL* 0 (simulación)');
+    expect(isToneStop(-4.86)).toBe(true);
+    expect(isToneStop(-8)).toBe(false);
   });
 
   it('stores and retrieves values per delta without collisions', () => {
     const cache = createToneCache<string>();
-    cache.set(-8, 'a');
-    cache.set(8, 'b');
-    expect(cache.get(-8)).toBe('a');
-    expect(cache.get(8)).toBe('b');
-    expect(cache.get(16)).toBeUndefined();
+    cache.set(-4.86, 'a');
+    cache.set(4.86, 'b');
+    expect(cache.get(-4.86)).toBe('a');
+    expect(cache.get(4.86)).toBe('b');
+    expect(cache.get(9.73)).toBeUndefined();
   });
 
   it('clears all entries', () => {
     const cache = createToneCache<string>();
-    cache.set(-8, 'a');
+    cache.set(-4.86, 'a');
     cache.clear();
-    expect(cache.get(-8)).toBeUndefined();
+    expect(cache.get(-4.86)).toBeUndefined();
   });
 
   it('refuses to cache a delta outside the stops', () => {
     const cache = createToneCache<string>();
-    expect(() => cache.set(-4 as never, 'x')).toThrow(RangeError);
+    expect(() => cache.set(-8 as never, 'x')).toThrow(RangeError);
   });
 });

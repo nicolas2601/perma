@@ -1,23 +1,21 @@
-/** Discrete ΔL* stops offered by the tone-robustness audit. Delta 0 shows the original and never calls the API. */
-export const TONE_STOPS = [-16, -8, 0, 8, 16] as const;
+/**
+ * Luminance stops (ΔL*), one DDI band = 4.86 L*. ±9.73 is the whole measured phototype span.
+ * Delta 0 shows the original and never calls the API.
+ */
+export const TONE_STOPS = [-9.73, -4.86, 0, 4.86, 9.73] as const;
 export type ToneStop = (typeof TONE_STOPS)[number];
 
-const SIGN_FOR: Record<'pos' | 'neg' | 'zero', string> = { pos: '+', neg: '−', zero: '' };
+/** Copy keys for the main UI, in the same order as TONE_STOPS. Exact ΔL* values live in technical details. */
+export const TONE_STEP_KEYS = [
+  'toneStepMinus2',
+  'toneStepMinus1',
+  'toneStep0',
+  'toneStepPlus1',
+  'toneStepPlus2',
+] as const;
 
 export function isToneStop(value: number): value is ToneStop {
   return (TONE_STOPS as readonly number[]).includes(value);
-}
-
-/** aria-valuetext, e.g. "ΔL* −8 (simulación)". The suffix comes from copy so ES and EN stay in parity. */
-export function toneStopLabel(delta: ToneStop, suffix = '(simulación)'): string {
-  const sign = SIGN_FOR[deltaSign(delta)];
-  return `ΔL* ${sign}${Math.abs(delta)} ${suffix}`;
-}
-
-function deltaSign(delta: number): 'pos' | 'neg' | 'zero' {
-  if (delta > 0) return 'pos';
-  if (delta < 0) return 'neg';
-  return 'zero';
 }
 
 export interface ToneCache<T> {
