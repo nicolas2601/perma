@@ -87,13 +87,27 @@ test.describe('explainability layer on the real captured reference image', () =>
     await shot(page, 'audit-after-simulation');
   });
 
+  test('phones: the audit Simular button is never covered by the bottom navigation', async ({ page }) => {
+    test.skip(test.info().project.name !== 'mobile-390', 'phone layout only');
+    await runToResult(page);
+    await page.goto('/inspeccion?tab=auditoria');
+    const simular = page.getByRole('button', { name: 'Simular' });
+    await simular.scrollIntoViewIfNeeded();
+    const nav = page.getByRole('navigation', { name: 'Navegación principal' }).filter({ visible: true }).first();
+    const button = await simular.boundingBox();
+    const bar = await nav.boundingBox();
+    expect(button && bar ? button.y + button.height <= bar.y : false).toBeTruthy();
+  });
+
   test('the result shows the photo at a real size on mobile and the switch draws over it', async ({ page }) => {
     await runToResult(page);
     const photo = page.locator('figure img').first();
     await expect(photo).toBeVisible();
-    const box = await photo.boundingBox();
-    expect(box?.width ?? 0).toBeGreaterThan(0);
-    expect(box?.height ?? 0).toBeGreaterThan(0);
+    const figure = photo.locator('xpath=ancestor::figure[1]');
+    const box = await figure.boundingBox();
+    // The real capture must not collapse: a flex column once shrank this figure to 0 px on phones.
+    expect(box?.height ?? 0).toBeGreaterThan(150);
+    await shot(page, 'result-figure-top');
     await page.getByRole('switch', { name: SWITCH_NAME }).click();
     await expect(page.locator('figure svg[viewBox] polygon').first()).toBeVisible();
   });

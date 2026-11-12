@@ -43,6 +43,7 @@ export default function ResultScreen() {
           <ImageFigure
             src={src}
             reference={isReferenceImage(image)}
+            className="shrink-0"
             imageClassName="lg:h-[42dvh]"
             overlay={<ContourLayer result={result} />}
           />
