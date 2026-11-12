@@ -68,7 +68,7 @@ describe('export acknowledgement', () => {
 describe('export file name', () => {
   it('uses the record id prefix and the export date for both formats', () => {
     const at = new Date('2026-11-05T12:00:00.000Z');
-    expect(buildFilename('rec-1', at, 'json')).toBe('perma-rec1-2026-11-05.json');
-    expect(buildFilename('rec-1', at, 'pdf')).toBe('perma-rec1-2026-11-05.pdf');
+    expect(buildFilename('rec-1', at, 'json')).toBe('vera-rec1-2026-11-05.json');
+    expect(buildFilename('rec-1', at, 'pdf')).toBe('vera-rec1-2026-11-05.pdf');
   });
 });

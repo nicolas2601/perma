@@ -4,6 +4,14 @@
   "installCommand": "bun install --frozen-lockfile",
   "buildCommand": "VITE_INFERENCE=live bun run build",
   "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "perma.tikno.pro" }],
+      "destination": "https://vera.tikno.pro/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/api/:path*", "destination": "https://derm.nicolasmoreno.site/api/:path*" },
     { "source": "/((?!assets/|icons/|api/).*)", "destination": "/index.html" }

@@ -4,7 +4,7 @@
  */
 export const copy = {
   es: {
-    appName: 'PERMA',
+    appName: 'VERA',
     back: 'Volver',
     info: 'Alcance y métodos',
     langSwitchToEn: 'Cambiar a inglés',
@@ -170,7 +170,7 @@ export const copy = {
     unavailableImage: 'La imagen no está disponible en esta sesión.',
   },
   en: {
-    appName: 'PERMA',
+    appName: 'VERA',
     back: 'Back',
     info: 'Scope and methods',
     langSwitchToEn: 'Switch to English',

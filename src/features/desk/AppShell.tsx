@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { useNavigate, useRouter } from '@/app/router';
 import { useI18n, useT } from '@/core/i18n/I18nProvider';
-import markUrl from '@/assets/brand/perma-mark.svg';
+import markUrl from '@/assets/brand/vera-mark.svg';
 import { BookIcon, ChevronDownIcon, FileIcon, HomeIcon, ScanIcon } from '@/ui/icons';
 import { FloatingNav, type NavItem } from '@/ui/FloatingNav';
 import { IconButton } from '@/ui/IconButton';
@@ -78,7 +78,7 @@ export function AppShell({ title, onBack, headerAction, showNav = true, children
             icon={<Glyph className="size-5 rotate-90"><ChevronDownIcon /></Glyph>}
           />
         ) : (
-          <img src={markUrl} alt="PERMA" width={BRAND_MARK_PX} height={BRAND_MARK_PX} decoding="async" className="m-2 size-8 shrink-0 lg:hidden" />
+          <img src={markUrl} alt="VERA" width={BRAND_MARK_PX} height={BRAND_MARK_PX} decoding="async" className="m-2 size-8 shrink-0 lg:hidden" />
         )}
         <p className="m-0 min-w-0 flex-1 text-header text-muted lg:text-section lg:text-ink">{title}</p>
         {headerAction}

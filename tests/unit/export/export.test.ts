@@ -106,13 +106,13 @@ describe('exportRecord', () => {
     const result = await exportRecord('json', snapshot(), deps({ download }));
     expect(result).toEqual({
       ok: true,
-      filename: 'perma-rec1-2026-11-05.json',
+      filename: 'vera-rec1-2026-11-05.json',
       bytes: expect.any(Number),
     });
     const call = download.mock.calls[0];
     expect(call?.[0]).toBeInstanceOf(Blob);
     expect(call?.[0].type).toBe('application/json');
-    expect(call?.[1]).toBe('perma-rec1-2026-11-05.json');
+    expect(call?.[1]).toBe('vera-rec1-2026-11-05.json');
   });
 
   it('reports download-failed when the download is not triggered, so the UI routes to recoverExport', async () => {
@@ -141,7 +141,7 @@ describe('exportRecord', () => {
   });
 
   it('builds a PDF filename with a sanitized record prefix', () => {
-    expect(buildFilename('ab-c/123 xyz', exportedAt, 'pdf')).toBe('perma-abc123xy-2026-11-05.pdf');
-    expect(buildFilename('---', exportedAt, 'json')).toBe('perma-record-2026-11-05.json');
+    expect(buildFilename('ab-c/123 xyz', exportedAt, 'pdf')).toBe('vera-abc123xy-2026-11-05.pdf');
+    expect(buildFilename('---', exportedAt, 'json')).toBe('vera-record-2026-11-05.json');
   });
 });

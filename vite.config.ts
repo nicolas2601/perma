@@ -50,8 +50,8 @@ export default defineConfig({
         ],
       },
       manifest: {
-        name: 'PERMA', short_name: 'PERMA', lang: 'es', display: 'standalone',
-        background_color: '#f2f5f4', theme_color: '#006779', start_url: '/',
+        name: 'VERA', short_name: 'VERA', lang: 'es', display: 'standalone',
+        background_color: '#f2f5f4', theme_color: '#f2f5f4', start_url: '/',
         icons: [
           { src: '/icons/pwa-192.png', sizes: '192x192', type: 'image/png' },
           { src: '/icons/pwa-512.png', sizes: '512x512', type: 'image/png' },

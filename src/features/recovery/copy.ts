@@ -51,7 +51,7 @@ export const copy = {
     'invalid-response.shell': 'Respuesta del análisis no compatible',
     'invalid-response.title': 'La respuesta no se puede usar.',
     'invalid-response.body':
-      'El servidor respondió con un modelo o un formato distinto del que PERMA espera, así que no mostramos los resultados. Su registro se conserva. Puede revisar los detalles técnicos antes de volver a intentarlo.',
+      'El servidor respondió con un modelo o un formato distinto del que VERA espera, así que no mostramos los resultados. Su registro se conserva. Puede revisar los detalles técnicos antes de volver a intentarlo.',
     'invalid-response.heading1': 'Modelo esperado',
     'invalid-response.text1':
       'MOCO_HAM7, versión base, sin TTA (aumento de imágenes al predecir), 1 vista, 3072 dimensiones, siete clases compatibles distintas entre sí y valores coherentes entre sí.',
@@ -116,7 +116,7 @@ export const copy = {
     'invalid-response.shell': 'Incompatible analysis response',
     'invalid-response.title': 'The response cannot be used.',
     'invalid-response.body':
-      'The server answered with a model or format other than the one PERMA expects, so we are not showing the results. Your record is kept. You can review the technical details before trying again.',
+      'The server answered with a model or format other than the one VERA expects, so we are not showing the results. Your record is kept. You can review the technical details before trying again.',
     'invalid-response.heading1': 'Expected model',
     'invalid-response.text1':
       'MOCO_HAM7, base version, no TTA (image augmentation at prediction time), 1 view, 3072 dimensions, seven distinct compatible classes and values that agree with each other.',

@@ -1,7 +1,7 @@
 import { useNavigate, useRouter } from '@/app/router';
 import { useExam } from '@/core/exam/react';
 import { useI18n, useT } from '@/core/i18n/I18nProvider';
-import markUrl from '@/assets/brand/perma-mark.svg';
+import markUrl from '@/assets/brand/vera-mark.svg';
 import { BookIcon, FileIcon, HomeIcon, ScanIcon } from '@/ui/icons';
 import { cx } from '@/ui/cx';
 import { SegmentedControl } from '@/ui/SegmentedControl';
@@ -72,7 +72,7 @@ export function Rail() {
         className="flex min-h-11 cursor-pointer items-center gap-3 rounded-tile border-0 bg-transparent px-2 text-left text-ink outline-offset-2"
       >
         <img src={markUrl} alt="" width={36} height={36} className="size-9" />
-        <span className="text-section font-semibold tracking-tight">PERMA</span>
+        <span className="text-section font-semibold tracking-tight">VERA</span>
       </button>
 
       <nav aria-label={t('navLabel')} className="flex flex-col gap-1">

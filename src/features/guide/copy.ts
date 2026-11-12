@@ -2,7 +2,7 @@
 export const copy = {
   es: {
     guideTitle: 'Referencia · Guía',
-    guideHeading: 'Cómo usar PERMA y leer sus resultados',
+    guideHeading: 'Cómo usar VERA y leer sus resultados',
     guideIntro: 'Prepare una imagen, autorice el análisis cuando corresponda y anote sus propias observaciones. El resultado de la IA y su revisión manual se mantienen separados; ninguno de los dos reemplaza la valoración clínica.',
     evidenceTitle: 'Límite de la evidencia',
     evidenceBody: 'La aplicación usa un modelo entrenado con imágenes dermatoscópicas de siete tipos de lesión. No incluye el carcinoma escamocelular (SCC) como categoría independiente. Que la aplicación acepte una fotografía de celular no demuestra que el modelo sirva para analizarla. Sus puntajes no confirman ni descartan ninguna enfermedad.',
@@ -45,7 +45,7 @@ export const copy = {
   },
   en: {
     guideTitle: 'Reference · Guide',
-    guideHeading: 'How to use PERMA and read its results',
+    guideHeading: 'How to use VERA and read its results',
     guideIntro: 'Prepare an image, authorise analysis when appropriate and note your own observations. The AI result and your manual review are kept separate; neither one replaces clinical assessment.',
     evidenceTitle: 'Limits of the evidence',
     evidenceBody: 'The app uses a model trained on dermoscopic images of seven lesion types. It does not include squamous cell carcinoma (SCC) as a separate category. The app accepting a phone photograph does not show that the model is suitable for analysing it. Its scores neither confirm nor rule out any condition.',

@@ -9,7 +9,7 @@ import { Card } from '@/ui/Card';
 import { IconBlob } from '@/ui/IconBlob';
 import { IconButton } from '@/ui/IconButton';
 import { BookIcon, ScanIcon } from '@/ui/icons';
-import geometricArt from '@/assets/brand/perma-geometric-welcome.svg';
+import geometricArt from '@/assets/brand/vera-geometric-welcome.svg';
 import referenceAvif from '@/assets/images/reference-tschandl-300.avif';
 import referenceWebp from '@/assets/images/reference-tschandl-300.webp';
 import moreIcon from '@/assets/icons/more.svg';
