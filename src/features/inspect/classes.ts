@@ -6,12 +6,12 @@ export type ClassInfo = { code: ClassCode; name: Record<Locale, string> };
 /** Seven raw output classes (HAM10000 labels). Names are descriptive, not diagnostic claims. */
 export const CLASS_INFO: Readonly<Record<ClassCode, ClassInfo>> = {
   nv: { code: 'nv', name: { es: 'Nevo melanocítico', en: 'Melanocytic nevus' } },
-  bkl: { code: 'bkl', name: { es: 'Queratosis benigna', en: 'Benign keratosis' } },
+  bkl: { code: 'bkl', name: { es: 'Queratosis seborreica o lesión queratósica benigna', en: 'Seborrheic or benign keratosis' } },
   mel: { code: 'mel', name: { es: 'Melanoma', en: 'Melanoma' } },
   bcc: { code: 'bcc', name: { es: 'Carcinoma basocelular', en: 'Basal cell carcinoma' } },
   akiec: {
     code: 'akiec',
-    name: { es: 'Queratosis actínica / carcinoma intraepidérmico', en: 'Actinic keratosis / intraepidermal carcinoma' },
+    name: { es: 'Queratosis actínica', en: 'Actinic keratosis' },
   },
   vasc: { code: 'vasc', name: { es: 'Lesión vascular', en: 'Vascular lesion' } },
   df: { code: 'df', name: { es: 'Dermatofibroma', en: 'Dermatofibroma' } },
