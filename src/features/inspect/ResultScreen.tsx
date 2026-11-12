@@ -1,6 +1,6 @@
 import { ContourLayer } from './explain/ContourOverlay';
 import { ContourSwitch } from './explain/ContourSwitch';
-import { PhotometryCard } from './explain/PhotometryCard';
+import { TechnicalDetails } from './explain/TechnicalDetails';
 import { useState } from 'react';
 import { Badge, Button, Card, Chip, Notice, PHASE_TINT } from '@/ui';
 import { useExam } from '@/core/exam/react';
@@ -69,7 +69,6 @@ export default function ResultScreen() {
           <Card variant="raised" className="shrink-0">
             <ContourSwitch result={result} />
           </Card>
-          <PhotometryCard photometry={result.photometry} locale={locale} />
           <Card variant="raised" className="shrink-0">
             <p className="m-0 text-body-medium text-ink">{t('noCalibratedRisk')}</p>
             <p className="m-0 text-header text-muted">{t('noCalibratedRiskBody')}</p>
@@ -92,6 +91,7 @@ export default function ResultScreen() {
               tile
             />
           </div>
+          <TechnicalDetails result={result} locale={locale} />
           <ExperimentalNotice />
         </div>
       </div>
