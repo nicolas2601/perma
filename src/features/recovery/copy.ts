@@ -12,7 +12,7 @@ export const copy = {
       'Pruebe con una imagen JPEG, PNG o WebP de hasta 10 MiB y 20 megapíxeles. No se admiten fotos en formato HEIC. Su contexto registrado se conserva.',
     'file-unavailable.primary': 'Elegir otra imagen',
     'file-unavailable.heading1': 'Probar con otro archivo',
-    'file-unavailable.text1': 'Elija otra imagen original y revísela antes de enviarla. El contexto registrado se conserva.',
+    'file-unavailable.text1': 'Elija otra imagen original y revísela antes de enviarla.',
 
     'permission.shell': 'Permiso de cámara denegado',
     'permission.title': 'El acceso a la cámara no está disponible.',
@@ -78,7 +78,7 @@ export const copy = {
       'Use a valid JPEG, PNG or WebP image up to 10 MiB and 20 megapixels. HEIC photos are not supported. Your recorded context is kept.',
     'file-unavailable.primary': 'Choose another image',
     'file-unavailable.heading1': 'Try another file',
-    'file-unavailable.text1': 'Choose another original image and review it before sending. The recorded context is kept.',
+    'file-unavailable.text1': 'Choose another original image and review it before sending.',
 
     'permission.shell': 'Camera permission denied',
     'permission.title': 'Camera access is not available.',
