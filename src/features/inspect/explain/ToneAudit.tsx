@@ -74,6 +74,7 @@ export function ToneAudit({ result, file, src }: ToneAuditProps) {
     <div className="flex flex-col gap-4">
       <h2 className="m-0 text-title text-ink">{t('toneTitle')}</h2>
       <p className="m-0 text-body text-ink">{t('toneExplain')}</p>
+      <p className="m-0 text-caption text-muted">{t('toneRampNote')}</p>
       <figure className="m-0 flex flex-col gap-2 overflow-hidden rounded-tile bg-surface">
         {shownSrc ? (
           <img src={shownSrc} alt={showSimulated ? t('toneSimulated') : t('toneOriginal')} decoding="async" className="block h-64 w-full object-contain" />
