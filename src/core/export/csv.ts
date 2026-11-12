@@ -1,7 +1,7 @@
 import { CLASS_CODES } from '@/core/inference/types';
 import { normalizeClinicalContext } from '@/core/exam/clinicalContext';
 import { UNANSWERED_VALUE, type ExportSnapshot, type Translate } from './types';
-import { photometryForExport } from './explainabilityExport';
+import { photometryForExport, segmentationForExport } from './explainabilityExport';
 
 /**
  * Tidy long-format CSV for spreadsheets (Excel, Google Sheets, pandas):
@@ -37,6 +37,7 @@ export function buildCsvRows(snapshot: ExportSnapshot, exportedAt: Date, t: Tran
     ...contextRows(snapshot, t),
     ...modelRows(snapshot, t),
     ...photometryRows(snapshot, t),
+    ...segmentationRows(snapshot, t),
     ...scoreRows(snapshot, t),
     ...abcdeRows(snapshot, t),
   );
@@ -72,6 +73,25 @@ function modelRows({ result }: ExportSnapshot, t: Translate): Row[] {
 }
 
 const ITA_DEGREE_DECIMALS = 1;
+
+function segmentationRows({ result }: ExportSnapshot, t: Translate): Row[] {
+  if (result === null) return [];
+  const segmentation = segmentationForExport(result);
+  if (segmentation === null) return [];
+  const section = t('core.csv.sectionSegmentation');
+  const note = t('core.csv.segmentationNote');
+  if (segmentation.status === 'unavailable') {
+    return [[section, t('core.csv.segmentationStatus'), t(`core.csv.segmentationReason.${segmentation.reason ?? 'segmenter_error'}`), note]];
+  }
+  const identity = segmentation.identity;
+  if (identity === undefined || segmentation.areaFraction === undefined) return [];
+  return [
+    [section, t('core.csv.segmenterModel'), identity.modelId, note],
+    [section, t('core.csv.segmenterRelease'), identity.release, note],
+    [section, t('core.csv.segmenterSha'), identity.modelSha256, note],
+    [section, t('core.csv.lesionArea'), segmentation.areaFraction.toFixed(SCORE_DECIMALS), note],
+  ];
+}
 
 function photometryRows({ result }: ExportSnapshot, t: Translate): Row[] {
   if (result === null) return [];

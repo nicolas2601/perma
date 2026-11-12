@@ -96,4 +96,13 @@ describe('explainability export', () => {
     const mockRows = buildCsvRows(snapshotWith({ ...liveResult(), source: 'mock' } as InferenceResult), exportedAt, t);
     expect(mockRows.map((row) => row[2])).not.toContain('42.5');
   });
+
+  it('adds the segmenter identity and the lesion area to the CSV, never the mask', () => {
+    const rows = buildCsvRows(snapshotWith(liveResult()), exportedAt, t);
+    const values = rows.map((row) => row[2]);
+    expect(values).toContain(SEGMENTATION.identity.modelId);
+    expect(values).toContain(SEGMENTATION.identity.release);
+    expect(values).toContain(SEGMENTATION.areaFraction.toFixed(4));
+    expect(rows.flat().join('|')).not.toContain(MASK_SECRET);
+  });
 });
