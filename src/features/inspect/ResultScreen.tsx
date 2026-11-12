@@ -8,6 +8,7 @@ import { useI18n, useT } from '@/core/i18n/I18nProvider';
 import { useNavigate } from '@/app/router';
 import { ActionDock, ExperimentalNotice, ScreenHeader } from './Chrome';
 import { ActionRow } from './ActionRow';
+import { MelanomaPriorityNotice } from './MelanomaPriorityNotice';
 import { ModelDetailsSheet } from './ModelDetailsSheet';
 import { ScoreCard } from './ScoreCard';
 import { rankClasses } from './classes';
@@ -71,6 +72,7 @@ export default function ResultScreen() {
               <ScoreCard key={code} code={code} score={result.scores[code]} locale={locale} to="/resultado/clases" />
             ))}
           </section>
+          <MelanomaPriorityNotice result={result} />
           <Card variant="raised" className="shrink-0">
             <p className="m-0 text-body-medium text-ink">{t('noCalibratedRisk')}</p>
             <p className="m-0 text-header text-muted">{t('noCalibratedRiskBody')}</p>
