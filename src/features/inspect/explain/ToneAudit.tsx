@@ -77,7 +77,7 @@ export function ToneAudit({ result, file, src }: ToneAuditProps) {
       <p className="m-0 text-caption text-muted">{t('toneRampNote')}</p>
       <figure className="m-0 flex flex-col gap-2 overflow-hidden rounded-tile bg-surface">
         {shownSrc ? (
-          <img src={shownSrc} alt={showSimulated ? t('toneSimulated') : t('toneOriginal')} decoding="async" className="block h-64 w-full object-contain" />
+          <img src={shownSrc} alt={showSimulated ? t('toneSimulated') : t('toneOriginal')} decoding="async" className="block h-40 w-full object-contain lg:h-64" />
         ) : null}
         {showSimulated ? <Badge tone="simulated">{t('toneBadge')}</Badge> : null}
       </figure>
@@ -100,6 +100,11 @@ export function ToneAudit({ result, file, src }: ToneAuditProps) {
         onChange={(event) => onSlide(event.target.value)}
         className={cx('h-11 w-full accent-accent')}
       />
+      <div className="m-0 flex justify-between text-caption text-muted">
+        <span>{t('toneScaleDarker')}</span>
+        <span>{t('toneStep0')}</span>
+        <span>{t('toneScaleLighter')}</span>
+      </div>
       <p className="m-0 text-caption text-ink">{t(TONE_STEP_KEYS[stepIndex] ?? 'toneStep0')}</p>
       <Button fullWidth disabled={mask === undefined || busy} onClick={() => void simulate()}>
         {busy ? t('toneSimulating') : t('toneSimulate')}
