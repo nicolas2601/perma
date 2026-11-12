@@ -33,7 +33,7 @@ export const COPY = {
 } as const;
 
 export const NOTICE_TEXT =
-  'Prototipo experimental de investigación. Los puntajes no son probabilidades clínicas. No diagnostica.';
+  'Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos.';
 
 /** The PWA "offline-ready" banner sits over the bottom CTA on first load; dismiss it like a user would. */
 export async function dismissOfflineBanner(page: Page): Promise<void> {
