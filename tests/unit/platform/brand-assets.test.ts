@@ -77,13 +77,14 @@ describe('brand assets referenced by the app', () => {
   });
 
   it.each([
-    'src/assets/brand/perma-mark.svg',
-    'src/assets/brand/perma-logo-horizontal.svg',
-    'src/assets/brand/perma-logo-mono.svg',
+    'src/assets/brand/vera-mark.svg',
+    'src/assets/brand/vera-logo-horizontal.svg',
+    'src/assets/brand/vera-mark-mono.svg',
     'public/favicon.svg',
-  ])('%s has an accessible title and no dangling aria-labelledby', (rel) => {
+  ])('%s has an accessible title and no dangling aria-labelledby reference', (rel) => {
     const svg = readFileSync(join(ROOT, rel), 'utf8');
-    expect(svg).toMatch(/<title>[^<]+<\/title>/);
-    expect(svg).not.toContain('aria-labelledby');
+    expect(svg).toMatch(/<title(\s[^>]*)?>[^<]+<\/title>/);
+    const labelledBy = svg.match(/aria-labelledby="([^"]+)"/)?.[1]?.split(/\s+/) ?? [];
+    for (const id of labelledBy) expect(svg).toContain(`id="${id}"`);
   });
 });

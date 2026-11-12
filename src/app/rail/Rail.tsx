@@ -1,7 +1,7 @@
 import { useNavigate, useRouter } from '@/app/router';
 import { useExam } from '@/core/exam/react';
 import { useI18n, useT } from '@/core/i18n/I18nProvider';
-import markUrl from '@/assets/brand/perma-mark.svg';
+import markUrl from '@/assets/brand/vera-mark.svg';
 import { BookIcon, FileIcon, HomeIcon, ScanIcon } from '@/ui/icons';
 import { cx } from '@/ui/cx';
 import { SegmentedControl } from '@/ui/SegmentedControl';

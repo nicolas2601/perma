@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { useNavigate, useRouter } from '@/app/router';
 import { useI18n, useT } from '@/core/i18n/I18nProvider';
-import markUrl from '@/assets/brand/perma-mark.svg';
+import markUrl from '@/assets/brand/vera-mark.svg';
 import { BookIcon, ChevronDownIcon, FileIcon, HomeIcon, ScanIcon } from '@/ui/icons';
 import { FloatingNav, type NavItem } from '@/ui/FloatingNav';
 import { IconButton } from '@/ui/IconButton';
