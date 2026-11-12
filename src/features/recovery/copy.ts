@@ -57,7 +57,7 @@ export const copy = {
       'MOCO_HAM7, versión base, sin TTA (aumento de imágenes al predecir), 1 vista, 3072 dimensiones, siete clases compatibles distintas entre sí y valores coherentes entre sí.',
     'invalid-response.heading2': 'Cómo seguir',
     'invalid-response.text2': 'Conserve la imagen y el registro. Verifique que el servicio sea compatible antes de hacer una nueva solicitud.',
-    'invalid-response.primary': 'Ver detalles técnicos',
+    'invalid-response.primary': 'Volver a revisar la imagen',
 
     'rate-limit.shell': 'Límite de solicitudes alcanzado',
     'rate-limit.title': 'El servicio está limitando las solicitudes.',
@@ -122,7 +122,7 @@ export const copy = {
       'MOCO_HAM7, base version, no TTA (image augmentation at prediction time), 1 view, 3072 dimensions, seven distinct compatible classes and values that agree with each other.',
     'invalid-response.heading2': 'What to do next',
     'invalid-response.text2': 'Keep the image and record. Check that the service is compatible before making a new request.',
-    'invalid-response.primary': 'View technical details',
+    'invalid-response.primary': 'Review the image again',
 
     'rate-limit.shell': 'Request limit reached',
     'rate-limit.title': 'The service is limiting requests.',
