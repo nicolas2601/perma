@@ -77,7 +77,7 @@ export type SystemCopy = {
 };
 
 const ES: SystemCopy = {
-  title: 'Sistema de componentes de PERMA',
+  title: 'Sistema de componentes de VERA',
   languageLabel: 'Idioma',
   navLabel: 'Navegación principal',
   noticeLabel: 'Aviso del prototipo',
@@ -162,7 +162,7 @@ const ES: SystemCopy = {
 };
 
 const EN: SystemCopy = {
-  title: 'PERMA component system',
+  title: 'VERA component system',
   languageLabel: 'Language',
   navLabel: 'Main navigation',
   noticeLabel: 'Prototype notice',

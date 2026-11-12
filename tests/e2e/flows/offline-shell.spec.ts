@@ -4,7 +4,7 @@ import { COPY, chooseSample, dismissOfflineBanner, openHome, previewImage, toCap
 // The production service worker must be active for these specs (the only spec family that allows it).
 test.use({ serviceWorkers: 'allow' });
 
-const OFFLINE_READY_ES = 'PERMA está lista para usarse sin conexión. El análisis de imágenes requiere conexión a la red.';
+const OFFLINE_READY_ES = 'VERA está lista para usarse sin conexión. El análisis de imágenes requiere conexión a la red.';
 const OFFLINE_SEND_HEADING = 'No hay conexión para el análisis.';
 
 /** First load installs the SW; reload once so the page is controlled by it (precache complete). */

@@ -73,7 +73,7 @@ describe('UpdatePrompt', () => {
     setPhase('update-ready');
     render(<UpdatePrompt canReload locale="en" />);
 
-    expect(screen.getByText('A new version of PERMA is available.')).toBeInTheDocument();
+    expect(screen.getByText('A new version of VERA is available.')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Update' })).toBeEnabled();
   });
 });
