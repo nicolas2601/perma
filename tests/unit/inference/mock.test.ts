@@ -1,8 +1,9 @@
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { MockInferenceClient, SIMULATED_WARNING } from '@/core/inference/mock';
-import { AnalyzeEndpointMissing } from '@/core/inference/errors';
 import { InferenceError } from '@/core/inference/types';
 import { fixtureJson } from '@/mocks/msw/fixtures';
+import analyzeRaw from '../../../fixtures/api/analyze-MOCO_HAM7-reference-tschandl-600.json?raw';
+import toneRaw from '../../../fixtures/api/simulate-tone-4.86-reference-tschandl-600.json?raw';
 
 const make = (scenario?: 'success' | 'slow' | 'offline', extra: { slowDelayMs?: number; failureDelayMs?: number } = {}) =>
   new MockInferenceClient({ defaultModel: 'MOCO_HAM7', scenario, failureDelayMs: 0, ...extra });
@@ -27,13 +28,26 @@ describe('MockInferenceClient: replays real captures, invents nothing', () => {
     expect(a.scores).toEqual(b.scores);
   });
 
-  it('reports the explainability layer as unavailable when no analyze capture exists', async () => {
-    await expect(make().analyze({ file: imageBlob() })).rejects.toBeInstanceOf(AnalyzeEndpointMissing);
+  it('replays the real analyze capture as mock, with its contour and photometry', async () => {
+    const result = await make().analyze({ file: imageBlob() });
+    const capture = JSON.parse(analyzeRaw) as { segmentation: { contour: unknown[] }; photometry: { ita_deg: number } };
+    expect(result.source).toBe('mock');
+    expect(result.segmentation).toMatchObject({ status: 'ok', source: 'mock' });
+    if (result.segmentation?.status !== 'ok') throw new Error('expected ok segmentation');
+    expect(result.segmentation.contour).toHaveLength(capture.segmentation.contour.length);
+    if (result.photometry?.status !== 'ok') throw new Error('expected ok photometry');
+    expect(result.photometry.itaDeg).toBe(capture.photometry.ita_deg);
   });
 
-  it('refuses a simulated tone without a captured replay for that stop', async () => {
+  it('replays the real tone capture for a luminance step', async () => {
+    const tone = await make().simulateTone({ file: imageBlob(), maskPngBase64: 'x', deltaL: 4.86 });
+    const capture = JSON.parse(toneRaw) as { delta_l: number; width: number };
+    expect(tone).toMatchObject({ source: 'mock', deltaL: capture.delta_l, width: capture.width });
+  });
+
+  it('refuses a tone for delta 0: the original is shown and the service is never called', async () => {
     const error = await make()
-      .simulateTone({ file: imageBlob(), maskPngBase64: 'x', deltaL: 4.86 })
+      .simulateTone({ file: imageBlob(), maskPngBase64: 'x', deltaL: 0 })
       .catch((e: unknown) => e);
     expect(error).toBeInstanceOf(InferenceError);
     expect((error as InferenceError).scenario).toBe('file-unavailable');

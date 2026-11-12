@@ -1,0 +1,664 @@
+{
+  "schema": "dermssl.analyze.v1",
+  "scope": "research",
+  "classification": {
+    "pred": "nv",
+    "confidence": 0.984152,
+    "confidence_calibrated": false,
+    "confidence_note": "Uncalibrated model score; not a clinical probability.",
+    "classes": [
+      "akiec",
+      "bcc",
+      "bkl",
+      "df",
+      "mel",
+      "nv",
+      "vasc"
+    ],
+    "probs": {
+      "akiec": 4e-06,
+      "bcc": 0.0,
+      "bkl": 0.002526,
+      "df": 3.3e-05,
+      "mel": 0.013285,
+      "nv": 0.984152,
+      "vasc": 1e-06
+    },
+    "feature_dim": 3072,
+    "mode": "base",
+    "requested_mode": "base",
+    "inference_mode": "d4_tta_8view",
+    "views": 8,
+    "model_key": "MOCO_HAM7",
+    "identity": {
+      "model_id": "dermssl-v10-moco",
+      "release": "v10.1.0",
+      "method": "moco_v3_style",
+      "conversion": "V10 shared-backbone ONNX",
+      "backbone": "DINOv2 ViT-B/14",
+      "backbone_sha256": "fe64610560880e2df1185bf17fbe49e2da46a31e0644ddad76bfa7e8651aab1e",
+      "model_sha256": "dd5c4cbaad6cc3101a97312117487a408f10d5f9023f5f93996538e9674b3204",
+      "recipe": {
+        "features": "cls4",
+        "layer_norm": true,
+        "layers": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "normalization": "row_l2",
+        "prior": false,
+        "resolution": 448,
+        "softmax_temperature": 1.0,
+        "standard_scaler": false,
+        "tau": 0.0,
+        "tta": "d4-mean",
+        "views": 8
+      },
+      "task": "HAM",
+      "model_key": "MOCO_HAM7",
+      "head_sha256": "814f6cb268ffbc179f6c3db8b2f64cb158fe0174564b6fdb4e523778c375c92d",
+      "task_sha256": "814f6cb268ffbc179f6c3db8b2f64cb158fe0174564b6fdb4e523778c375c92d",
+      "sha256": {
+        "model": "dd5c4cbaad6cc3101a97312117487a408f10d5f9023f5f93996538e9674b3204",
+        "head": "814f6cb268ffbc179f6c3db8b2f64cb158fe0174564b6fdb4e523778c375c92d",
+        "task": "814f6cb268ffbc179f6c3db8b2f64cb158fe0174564b6fdb4e523778c375c92d",
+        "backbone": "fe64610560880e2df1185bf17fbe49e2da46a31e0644ddad76bfa7e8651aab1e"
+      }
+    }
+  },
+  "segmentation": {
+    "status": "ok",
+    "reason": null,
+    "image_width": 3320,
+    "image_height": 2210,
+    "mask_width": 512,
+    "mask_height": 341,
+    "mask_png_base64": "iVBORw0KGgoAAAANSUhEUgAAAgAAAAFVCAAAAAC8uAj/AAAE2UlEQVR4nO3c3VYbRxCF0U5W3v+VnQsWREL8TCswVVNn70vby57p+qgRArMWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+av6gvY9ef9L1zuDnrpdXwP0123V/jR7z78oQ//sl532UqLo/lisj+lxX12VH8wJ0z/Rf2tdvR39QWcNv8T/6UrKf6wOHcodsCj2g1w8gelHfCoNIDTB6KAB5UBFIxDAe+Vvwg82R8J3CsMoGgUCrhTF4BBtJD2CFjKu1cWQOEYFHAjcAN4JXirKoDiESjgVeQGWAp4U/T2eIfz95WBtXI3wOoRYb3gALwWXKsqgC4n3+U6CiVvgGUJxAdgCZQE0OrQW13M+eI3QPpjoCKAdgfe7oJOZAOsFb0EBPAiNgEBvAotQABvMpdAQQB9z7nvlf0eG+BW4BI4P4DeZ9z76n7B+V8Uv8IRB32rgAA+lVGBAL4S0IAXgV8JeFEogK+NT0AA3xlegAC+NbsAAYQTwPdGr4DTA7jiaV7xmo+yAY4YXIAADplbgACOGVuAAA6aWoAAjhpawOkBXPfrKzMLsAGOG1mAADZMLEAAOwZ+bVAA4QSwZ9wOEEA4AewatgIEsG1WAQLYN6oAAYQTwBMmrQABPGNQAQIIJ4BwAnjKnGeAAMIJ4DljVoAAwgkgnADCCSCcAMIJIJwAwgkgnADCCSCcAMKdH8B1/3forRl3sWyAeAIIJ4BwAggngHACCCeAcAIIJ4CnjHkfSADpBPCMOQtAAOkE8IRBC0AAT5g0/4oARp3f5dkA22YFLIBwAggngF2zngACSCeATcMWgAA2TZu/ANIJIJwAtox7AgggXUEAF/4Ja/MWgA2QTgDhBBBOAOEEEE4AOy78CcxnBBBOAOEEEE4A4QQQTgDhBLBl3ueBAggngHACCCeAcALYM+5VoADCCSCcHxCxadozwAYIJ4BwAggngHACCCeAcAIIJ4Bdw94I8L+Dt139+u/ZAOEEEE4A+0Y9AwQQTgDhBBBOAPuu/Q0N7wggnADCnR/AqE+irs8G2DbqJYAA0gkgnAB2zXoCCCCdAMIJYNOwJ4AA0glgz7QFIIB0AtgybgEIYMu8+QsgnQA2DFwAAkgngOMmLgABpBPAYSMXgADSCSCcAI6a+QQQwFFD5y+AdAI4ZuoCEMAxY+cvgEPmzl8A6f6pvoALGPzxX7EBLnecl7vgLTbAN2aP32uA70yfvw3wpfHjtwG+FDB/G+BzCeOvucsr/JCYjOkvG+BRzOhfCOA/YaN/IYC1Vujs11oCWCt5+ksA0cNfKzyA+Omv4AAM/0VoAMb/KvOtYPN/U3IUxW8FGv+NzA3Am8AALIBbJQGUjsD879RsgMIhmP+9tEeA+b8TFoD5v1cUQNEgzP9B1QYoGYX5Pyp7BBQMw/w/UPca4PRxmP9Hak/lzPeEzf9D5cdyVgPlN9pUg3M5I4EGt9lUi5P57QRa3GRTTc7mVxNoco89tTmcX0ugzR321Ol4fqGBTrfXU7MT+tkGmt1cS93O6AcL6HZrPXU8pZ+IoON9tdTzoP5nAj1vqqe2Z/VUA23vpq/OR/ZNA50v/Tp6n+LnCfS+7gu5xEHed3CJSwYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIMW/EylzlfMDUcYAAAAASUVORK5CYII=",
+    "contour": [
+      [
+        1144,
+        398
+      ],
+      [
+        1248,
+        398
+      ],
+      [
+        1254,
+        405
+      ],
+      [
+        1280,
+        405
+      ],
+      [
+        1287,
+        411
+      ],
+      [
+        1410,
+        411
+      ],
+      [
+        1416,
+        405
+      ],
+      [
+        1481,
+        405
+      ],
+      [
+        1501,
+        418
+      ],
+      [
+        1514,
+        418
+      ],
+      [
+        1553,
+        456
+      ],
+      [
+        1559,
+        456
+      ],
+      [
+        1585,
+        489
+      ],
+      [
+        1591,
+        489
+      ],
+      [
+        1611,
+        508
+      ],
+      [
+        1617,
+        508
+      ],
+      [
+        1630,
+        521
+      ],
+      [
+        1656,
+        534
+      ],
+      [
+        1676,
+        554
+      ],
+      [
+        1715,
+        573
+      ],
+      [
+        1766,
+        612
+      ],
+      [
+        1825,
+        618
+      ],
+      [
+        1831,
+        625
+      ],
+      [
+        1844,
+        625
+      ],
+      [
+        1870,
+        638
+      ],
+      [
+        1883,
+        651
+      ],
+      [
+        1883,
+        657
+      ],
+      [
+        1955,
+        729
+      ],
+      [
+        1961,
+        729
+      ],
+      [
+        1968,
+        742
+      ],
+      [
+        1974,
+        742
+      ],
+      [
+        1974,
+        748
+      ],
+      [
+        2006,
+        787
+      ],
+      [
+        2006,
+        800
+      ],
+      [
+        2019,
+        819
+      ],
+      [
+        2019,
+        891
+      ],
+      [
+        2013,
+        897
+      ],
+      [
+        2013,
+        949
+      ],
+      [
+        2000,
+        975
+      ],
+      [
+        1987,
+        988
+      ],
+      [
+        1980,
+        1014
+      ],
+      [
+        1961,
+        1040
+      ],
+      [
+        1961,
+        1053
+      ],
+      [
+        1948,
+        1072
+      ],
+      [
+        1955,
+        1150
+      ],
+      [
+        1961,
+        1156
+      ],
+      [
+        1961,
+        1182
+      ],
+      [
+        1974,
+        1208
+      ],
+      [
+        1974,
+        1254
+      ],
+      [
+        1987,
+        1267
+      ],
+      [
+        1993,
+        1305
+      ],
+      [
+        1987,
+        1312
+      ],
+      [
+        1987,
+        1331
+      ],
+      [
+        1980,
+        1338
+      ],
+      [
+        1974,
+        1370
+      ],
+      [
+        1961,
+        1396
+      ],
+      [
+        1948,
+        1409
+      ],
+      [
+        1929,
+        1448
+      ],
+      [
+        1929,
+        1461
+      ],
+      [
+        1896,
+        1500
+      ],
+      [
+        1896,
+        1506
+      ],
+      [
+        1890,
+        1506
+      ],
+      [
+        1838,
+        1545
+      ],
+      [
+        1812,
+        1552
+      ],
+      [
+        1805,
+        1558
+      ],
+      [
+        1734,
+        1565
+      ],
+      [
+        1728,
+        1571
+      ],
+      [
+        1702,
+        1571
+      ],
+      [
+        1676,
+        1584
+      ],
+      [
+        1656,
+        1584
+      ],
+      [
+        1630,
+        1597
+      ],
+      [
+        1611,
+        1597
+      ],
+      [
+        1585,
+        1616
+      ],
+      [
+        1578,
+        1616
+      ],
+      [
+        1572,
+        1629
+      ],
+      [
+        1501,
+        1701
+      ],
+      [
+        1410,
+        1746
+      ],
+      [
+        1397,
+        1746
+      ],
+      [
+        1371,
+        1759
+      ],
+      [
+        1332,
+        1759
+      ],
+      [
+        1326,
+        1766
+      ],
+      [
+        1209,
+        1766
+      ],
+      [
+        1202,
+        1772
+      ],
+      [
+        1189,
+        1772
+      ],
+      [
+        1183,
+        1779
+      ],
+      [
+        1157,
+        1779
+      ],
+      [
+        1150,
+        1785
+      ],
+      [
+        1066,
+        1785
+      ],
+      [
+        1060,
+        1779
+      ],
+      [
+        1021,
+        1779
+      ],
+      [
+        1001,
+        1766
+      ],
+      [
+        969,
+        1759
+      ],
+      [
+        949,
+        1746
+      ],
+      [
+        930,
+        1746
+      ],
+      [
+        917,
+        1733
+      ],
+      [
+        885,
+        1727
+      ],
+      [
+        826,
+        1694
+      ],
+      [
+        794,
+        1688
+      ],
+      [
+        768,
+        1662
+      ],
+      [
+        768,
+        1649
+      ],
+      [
+        755,
+        1636
+      ],
+      [
+        755,
+        1623
+      ],
+      [
+        748,
+        1616
+      ],
+      [
+        748,
+        1558
+      ],
+      [
+        742,
+        1552
+      ],
+      [
+        742,
+        1519
+      ],
+      [
+        735,
+        1513
+      ],
+      [
+        735,
+        1331
+      ],
+      [
+        742,
+        1325
+      ],
+      [
+        742,
+        1267
+      ],
+      [
+        748,
+        1260
+      ],
+      [
+        748,
+        1208
+      ],
+      [
+        742,
+        1202
+      ],
+      [
+        742,
+        1072
+      ],
+      [
+        748,
+        1066
+      ],
+      [
+        748,
+        994
+      ],
+      [
+        742,
+        988
+      ],
+      [
+        742,
+        897
+      ],
+      [
+        735,
+        891
+      ],
+      [
+        735,
+        709
+      ],
+      [
+        729,
+        703
+      ],
+      [
+        729,
+        670
+      ],
+      [
+        735,
+        664
+      ],
+      [
+        735,
+        605
+      ],
+      [
+        748,
+        586
+      ],
+      [
+        748,
+        560
+      ],
+      [
+        761,
+        541
+      ],
+      [
+        768,
+        508
+      ],
+      [
+        800,
+        450
+      ],
+      [
+        839,
+        418
+      ],
+      [
+        852,
+        418
+      ],
+      [
+        859,
+        411
+      ],
+      [
+        911,
+        411
+      ],
+      [
+        917,
+        405
+      ],
+      [
+        1040,
+        405
+      ],
+      [
+        1047,
+        411
+      ],
+      [
+        1105,
+        411
+      ],
+      [
+        1112,
+        405
+      ],
+      [
+        1138,
+        405
+      ]
+    ],
+    "area_fraction": 0.2039,
+    "threshold": 0.5,
+    "identity": {
+      "model_id": "dermlip-resnet34-unet-student",
+      "run": "abl029-resnet34-ima6-s43",
+      "release": "v10.2.0",
+      "model_sha256": "fd3ebedfc7647f4e4d1684bf6593b457d54559c320196868f4dd1490f0292c84",
+      "input_size": 224
+    }
+  },
+  "photometry": {
+    "region": "perilesional_ring",
+    "category_scheme": "Chardon 1991 / Del Bino 2006 ITA categories (colorimetric, not Fitzpatrick)",
+    "n_px": 2289756,
+    "valid_fraction": 0.97,
+    "status": "ok",
+    "reason": null,
+    "median_L": 68.2,
+    "median_b": 17.13,
+    "ita_deg": 46.74,
+    "ita_category": "light"
+  },
+  "timing_ms": {
+    "classification": 9975,
+    "segmentation": 334,
+    "photometry": 3394
+  }
+}

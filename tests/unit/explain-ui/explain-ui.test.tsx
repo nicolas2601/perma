@@ -206,3 +206,15 @@ describe('ToneAudit', () => {
     ).toBeTruthy();
   });
 });
+
+describe('PhotometryCard on a real indeterminate capture', () => {
+  it('shows the indeterminate state and keeps L* and b* from the capture', async () => {
+    const { analyzeResponseSchema, toAnalysisResult } = await import('@/core/inference/analyzeContract');
+    const { parseOrInvalid } = await import('@/core/inference/contract');
+    const raw = (await import('../../../fixtures/api/analyze-MOCO_HAM7-sample_02_ISIC_0014609_image.json?raw')).default;
+    const result = toAnalysisResult(parseOrInvalid(analyzeResponseSchema, JSON.parse(raw), 'analyze'), 0);
+    render(withI18n(<PhotometryCard photometry={result.photometry} locale="es" />));
+    expect(screen.getByText('No se puede determinar el ITA (b* demasiado bajo)')).toBeTruthy();
+    expect(screen.getByText(/Eje amarillo-azul mediano \(b\*\) 4,5/)).toBeTruthy();
+  });
+});
