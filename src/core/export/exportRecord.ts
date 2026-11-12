@@ -82,5 +82,5 @@ function tryDownload(deps: ExportDeps, blob: Blob, filename: string): boolean {
 export function buildFilename(recordId: string, exportedAt: Date, format: ExportFormat): string {
   const date = exportedAt.toISOString().slice(0, DATE_PREFIX_LENGTH);
   const id = recordId.replace(/[^a-zA-Z0-9]/g, '').slice(0, ID_PREFIX_LENGTH) || 'record';
-  return `perma-${id}-${date}.${FILE_EXTENSION[format]}`;
+  return `vera-${id}-${date}.${FILE_EXTENSION[format]}`;
 }

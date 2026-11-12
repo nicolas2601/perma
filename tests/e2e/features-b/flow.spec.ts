@@ -44,7 +44,7 @@ test('result to export flow on simulated data', async ({ page }) => {
   await expect(exportButton).toBeEnabled();
 
   const [download] = await Promise.all([page.waitForEvent('download'), exportButton.click()]);
-  expect(download.suggestedFilename()).toMatch(/^perma-.*\.json$/);
+  expect(download.suggestedFilename()).toMatch(/^vera-.*\.json$/);
   await expect(page).toHaveURL(/\/revision\/exportada/);
   await expect(page.getByRole('heading', { name: 'Se inició la descarga.' })).toBeVisible();
   await page.screenshot({ path: 'test-results/shots/flow-after-export.png' });
