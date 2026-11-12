@@ -10,7 +10,7 @@ import { IconBlob } from '@/ui/IconBlob';
 import { InfoIcon } from '@/ui/icons';
 import { AppShell } from './AppShell';
 import { BODY_SITE_KEYS, ClinicalContextSheet, SITE_LABEL_KEY, SiteSheet, type BodySiteKey } from './ContextSheets';
-import { CAPTURE_PATH, DESK_PATH } from './recoveryPaths';
+import { CAPTURE_PATH, DESK_PATH, RESULT_PATH } from './recoveryPaths';
 
 const FIELD_CLASS =
   'flex min-h-14 w-full flex-col items-start justify-center gap-1 rounded-card bg-surface px-4 py-3 text-left text-ink shadow-raised outline-offset-2';
@@ -30,6 +30,11 @@ export default function Context() {
   const [contextOpen, setContextOpen] = useState(false);
   const [siteOpen, setSiteOpen] = useState(false);
   const siteLabel = site === null ? t('siteEmpty') : t(SITE_LABEL_KEY[site]);
+
+  const phase = useExam((s) => s.phase);
+  // The reducer keeps the context of an exam that already has an analysis. Say so, instead of a silent no-op.
+  const locked = phase !== 'idle' && phase !== 'contextSet';
+  const hasResult = phase === 'result';
 
   const save = () => {
     dispatch({ type: 'SET_SITE', site });
@@ -56,11 +61,26 @@ export default function Context() {
               <span className="text-caption text-muted">{clinicalContextSummary(storedContext, tFull)}</span>
             </button>
           </div>
-          <div className="mt-auto pt-4 lg:mt-0 lg:pt-0">
-            <Button fullWidth className="lg:w-auto lg:px-8" onClick={save}>
-              {t('continue')}
-            </Button>
-          </div>
+          {locked ? (
+            <Card variant="raised" className="shrink-0 gap-3 p-4">
+              <p className="m-0 text-body-medium text-ink">{t('lockedTitle')}</p>
+              <p className="m-0 text-label text-muted">{t('lockedBody')}</p>
+              {hasResult ? (
+                <Button fullWidth onClick={() => navigate(RESULT_PATH)}>
+                  {t('lockedViewResult')}
+                </Button>
+              ) : null}
+              <Button variant="quiet" fullWidth onClick={() => navigate(DESK_PATH)}>
+                {t('lockedNewExam')}
+              </Button>
+            </Card>
+          ) : (
+            <div className="mt-auto pt-4 lg:mt-0 lg:pt-0">
+              <Button fullWidth className="lg:w-auto lg:px-8" onClick={save}>
+                {t('continue')}
+              </Button>
+            </div>
+          )}
         </div>
         <aside className="hidden lg:col-span-5 lg:block">
           <Card variant="soft" tint="sky" className="gap-5 p-8">
