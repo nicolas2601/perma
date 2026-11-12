@@ -1,7 +1,7 @@
 {
   "schema": "dermssl.capture-manifest.v1",
   "git_commit": "dbd213c",
-  "note": "analyze outputs byte-identical to the 24d0125 capture; simulate-tone re-captured at dbd213c (smooth luminance ramp). Previous set kept in superseded-24d0125/.",
+  "note": "analyze outputs byte-identical to the 24d0125 capture; simulate-tone re-captured at dbd213c (smooth luminance ramp). Previous set kept in superseded-24d0125/. analyze-* files replaced by the 485fb04 capture (adds classification.screening).",
   "parts": [
     {
       "schema": "dermssl.capture.v1",
@@ -415,6 +415,120 @@
           "simulation_skip_reason": null
         }
       ]
+    },
+    {
+      "schema": "dermssl.capture.v1",
+      "captured_at": "2026-11-12T22:51:53.200568+00:00",
+      "git_commit": "485fb04fa9420d1d5bc514cef3d7ea77226dc2cc",
+      "git_dirty": false,
+      "release": "v10.1.0",
+      "classifier": {
+        "classifier_manifest_sha256": "b0550cb237b4afc7dcab5541604948d5fe83860785fc1ad0b95715575ef44e9c",
+        "classifier_model_sha256": "dd5c4cbaad6cc3101a97312117487a408f10d5f9023f5f93996538e9674b3204",
+        "identity": {
+          "model_id": "dermssl-v10-moco",
+          "release": "v10.1.0",
+          "method": "moco_v3_style",
+          "conversion": "V10 shared-backbone ONNX",
+          "backbone": "DINOv2 ViT-B/14",
+          "backbone_sha256": "fe64610560880e2df1185bf17fbe49e2da46a31e0644ddad76bfa7e8651aab1e",
+          "model_sha256": "dd5c4cbaad6cc3101a97312117487a408f10d5f9023f5f93996538e9674b3204",
+          "recipe": {
+            "features": "cls4",
+            "layer_norm": true,
+            "layers": [
+              8,
+              9,
+              10,
+              11
+            ],
+            "normalization": "row_l2",
+            "prior": false,
+            "resolution": 448,
+            "softmax_temperature": 1.0,
+            "standard_scaler": false,
+            "tau": 0.0,
+            "tta": "d4-mean",
+            "views": 8
+          }
+        }
+      },
+      "segmenter": {
+        "segmenter_manifest_sha256": "e643254d30861853a8dfcc9b5903d346fd7c85353cdb7019d427a5469ddeded6",
+        "segmenter_model_sha256": "fd3ebedfc7647f4e4d1684bf6593b457d54559c320196868f4dd1490f0292c84",
+        "identity": {
+          "model_id": "dermlip-resnet34-unet-student",
+          "run": "abl029-resnet34-ima6-s43",
+          "release": "v10.2.0",
+          "model_sha256": "fd3ebedfc7647f4e4d1684bf6593b457d54559c320196868f4dd1490f0292c84",
+          "input_size": 224
+        }
+      },
+      "screening": {
+        "ready": true,
+        "reason": "ready",
+        "rule_id": "melanoma-priority-v1",
+        "sha256": "cacd326a981c6d8fb9f7d4da43f2340cddaba56aebabdbc8ded0969708f66641"
+      },
+      "images": [
+        {
+          "name": "reference-tschandl-600.webp",
+          "stem": "reference-tschandl-600",
+          "sha256": "b3396439fdece174f03465d79285b45197fc5ca8adb610f95409ee7be6e661b1",
+          "analyze": "analyze-MOCO_HAM7-reference-tschandl-600.json",
+          "simulations": "captured",
+          "simulation_skip_reason": null
+        },
+        {
+          "name": "sample_01_ISIC_0010249_image.jpg",
+          "stem": "sample_01_ISIC_0010249_image",
+          "sha256": "4327ae13f5628a5f7ed89936a814c4794b4fbf0f0e1f898d9ccfce14f5aa4491",
+          "analyze": "analyze-MOCO_HAM7-sample_01_ISIC_0010249_image.json",
+          "simulations": "captured",
+          "simulation_skip_reason": null
+        },
+        {
+          "name": "sample_02_ISIC_0014609_image.jpg",
+          "stem": "sample_02_ISIC_0014609_image",
+          "sha256": "8e1ba10cde37a7a55f31f57c433510005e29361f1e82deb1d7ee286e6becc729",
+          "analyze": "analyze-MOCO_HAM7-sample_02_ISIC_0014609_image.json",
+          "simulations": "captured",
+          "simulation_skip_reason": null
+        },
+        {
+          "name": "sample_03_ISIC_0010219_image.jpg",
+          "stem": "sample_03_ISIC_0010219_image",
+          "sha256": "298a6ec7abfa029c8d5269b76a7c471d4e7a7a38e712c3631cf505b952387e12",
+          "analyze": "analyze-MOCO_HAM7-sample_03_ISIC_0010219_image.json",
+          "simulations": "captured",
+          "simulation_skip_reason": null
+        },
+        {
+          "name": "sample_04_ISIC_0013203_image.jpg",
+          "stem": "sample_04_ISIC_0013203_image",
+          "sha256": "c8d6a71d483fd613a683fe1d133520cc5fa7be003bb6446f17286f4751b5143d",
+          "analyze": "analyze-MOCO_HAM7-sample_04_ISIC_0013203_image.json",
+          "simulations": "captured",
+          "simulation_skip_reason": null
+        },
+        {
+          "name": "sample_05_ISIC_0011089_image.jpg",
+          "stem": "sample_05_ISIC_0011089_image",
+          "sha256": "400b273b4878c640a8996a949158894f18a0a948f56c9d4575241792662c460e",
+          "analyze": "analyze-MOCO_HAM7-sample_05_ISIC_0011089_image.json",
+          "simulations": "captured",
+          "simulation_skip_reason": null
+        },
+        {
+          "name": "sample_06_ISIC_0015638_image_api0.5x.jpg",
+          "stem": "sample_06_ISIC_0015638_image_api0.5x",
+          "sha256": "7b62136104e899a3fb26170f89b738fbea1e388487e45e1d1deb89218f241d5f",
+          "analyze": "analyze-MOCO_HAM7-sample_06_ISIC_0015638_image_api0.5x.json",
+          "simulations": "captured",
+          "simulation_skip_reason": null
+        }
+      ],
+      "note": "analyze outputs re-captured with the melanoma-priority screening policy; classification, segmentation and photometry equal to the dbd213c capture (max |dprob| 1e-6); simulate-tone unchanged."
     }
   ]
 }
