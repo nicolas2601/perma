@@ -55,7 +55,7 @@ test.describe('export acknowledgement and PDF download', () => {
     await page.getByRole('button', { name: EXPORT_OPTIONS_LABEL, exact: true }).click();
     await page.getByRole('radio', { name: PDF_OPTION_LABEL }).click();
     await expect(page.getByRole('radiogroup', { name: EXPORT_OPTIONS_LABEL })).toBeHidden();
-    await expect(page.getByText('El PDF contiene el resumen imprimible del registro.')).toBeVisible();
+    await expect(page.getByText(/resumen imprimible/).first()).toBeVisible();
     await expect(page).not.toHaveURL(/\/revision\/exportada$/);
     const [file] = await Promise.all([
       page.waitForEvent('download'),

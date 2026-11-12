@@ -1,25 +1,27 @@
 import {
-  CLASS_CODES,
   InferenceError,
-  type ClassCode,
+  type AnalyzeRequest,
   type InferenceClient,
   type InferenceResult,
-  type InferenceMode,
   type ModelId,
   type ModelIdentity,
   type PredictRequest,
   type RecoveryScenario,
+  type SimulateToneRequest,
+  type ToneSimulation,
 } from './types';
 import { isFailureScenario, type MockScenario } from './mockScenario';
 import { fnv1a, mulberry32 } from './seededRandom';
+import { isToneStop } from '@/core/explain/toneCache';
+import { analyzeResponseSchema, simulateToneResponseSchema, toAnalysisResult, toToneSimulation } from './analyzeContract';
+import { AnalyzeEndpointMissing } from './errors';
+import { loadAnalyzeCapture, loadPredictMocoBaseCapture, loadSimulateToneCapture } from './captures';
+import { parseOrInvalid, predictResponseSchema, toInferenceResult } from './contract';
 
 export const SIMULATED_WARNING = 'simulated-model';
-const SLOW_MIN_MS = 6_000;
-const SLOW_MAX_MS = 12_000;
+const SLOW_MIN_MS = 14_000;
+const SLOW_MAX_MS = 16_000;
 const FAILURE_DELAY_MS = 600;
-const SCORE_DECIMALS = 6;
-const SCORE_SCALE = 10 ** SCORE_DECIMALS;
-const ENCODER = new TextEncoder();
 
 const FAILURE_MESSAGES: Record<RecoveryScenario, string> = {
   permission: 'Simulated: permission denied',
@@ -35,16 +37,16 @@ const FAILURE_MESSAGES: Record<RecoveryScenario, string> = {
 export interface MockClientOptions {
   defaultModel: ModelId;
   scenario?: MockScenario;
-  /** Overrides the seeded 6-12 s delay of the `slow` scenario. */
+  /** Overrides the seeded 14-16 s delay of the `slow` scenario. */
   slowDelayMs?: number;
   /** Delay before a simulated failure, so the UI state is reachable without a real timeout. */
   failureDelayMs?: number;
 }
 
 /**
- * Deterministic simulator. Same image bytes + model + mode always give the same scores.
- * Every result is `source: 'mock'` with a simulated identity and never claims a real sha256.
- * The scenario applies to predict only; status always reports the simulated identity.
+ * Mock client for the mock build. It never invents clinical values: every result is a replay of a
+ * REAL captured API response (fixtures/api/*.json). With no capture the capability reports unavailable.
+ * Only the failure scenarios and the slow delay are simulated; they carry `source: 'mock'`.
  */
 export class MockInferenceClient implements InferenceClient {
   readonly source = 'mock' as const;
@@ -62,18 +64,44 @@ export class MockInferenceClient implements InferenceClient {
   }
 
   async predict(request: PredictRequest): Promise<InferenceResult> {
-    const model = request.model ?? this.options.defaultModel;
-    const mode = request.mode ?? 'base';
     const bytes = new Uint8Array(await request.file.arrayBuffer());
-    const seed = fnv1a(ENCODER.encode(`${model}|${mode}`), fnv1a(bytes));
-    const random = mulberry32(seed);
+    const random = mulberry32(fnv1a(bytes));
     const scenario = this.options.scenario ?? 'success';
     const delayMs = this.delayFor(scenario, random);
     await waitFor(delayMs, request.signal);
     if (isFailureScenario(scenario)) {
       throw new InferenceError(scenario, FAILURE_MESSAGES[scenario]);
     }
-    return simulatedResult(model, mode, random, delayMs);
+    const replayed = await replayMocoBase();
+    if (replayed === null) {
+      throw new InferenceError('server-error', 'No captured predict replay is available in this mock build');
+    }
+    return replayed;
+  }
+
+  /**
+   * Replays a REAL captured analyze response. With no capture the explainability layer is unavailable:
+   * AnalyzeEndpointMissing makes the caller fall back to predict, exactly as against a backend without /api/analyze.
+   */
+  async analyze(request: AnalyzeRequest): Promise<InferenceResult> {
+    const capture = await loadAnalyzeCapture();
+    if (capture === null) throw new AnalyzeEndpointMissing();
+    const base = await this.predict(request);
+    const body = parseOrInvalid(analyzeResponseSchema, capture, 'analyze-replay');
+    return asMock(toAnalysisResult(body, base.latencyMs));
+  }
+
+  /** Replays a REAL captured tone simulation for the requested stop. Never computes pixels or values itself. */
+  async simulateTone(request: SimulateToneRequest): Promise<ToneSimulation> {
+    if (!isToneStop(request.deltaL)) {
+      throw new RangeError(`Delta ${request.deltaL} is not a tone stop`);
+    }
+    const capture = await loadSimulateToneCapture(request.deltaL);
+    if (capture === null) {
+      throw new InferenceError('file-unavailable', `No captured simulate-tone replay for ΔL* ${request.deltaL}`);
+    }
+    const body = parseOrInvalid(simulateToneResponseSchema, capture, 'simulate-tone-replay');
+    return { ...toToneSimulation(body), source: 'mock' };
   }
 
   private delayFor(scenario: MockScenario, random: () => number): number {
@@ -83,34 +111,26 @@ export class MockInferenceClient implements InferenceClient {
   }
 }
 
-function seededSlowDelay(random: () => number): number {
-  return SLOW_MIN_MS + Math.floor(random() * (SLOW_MAX_MS - SLOW_MIN_MS + 1));
+/** Marks replayed real data as mock: the UI keeps its "Modelo simulado" badge in mock builds only. */
+function asMock(result: InferenceResult): InferenceResult {
+  const { segmentation } = result;
+  return {
+    ...result,
+    source: 'mock',
+    warnings: [SIMULATED_WARNING],
+    segmentation: segmentation && { ...segmentation, source: 'mock' },
+  };
 }
 
-function simulatedResult(
-  model: ModelId,
-  mode: InferenceMode,
-  random: () => number,
-  latencyMs: number,
-): InferenceResult {
-  const scores = Object.fromEntries(
-    CLASS_CODES.map((code) => [code, Math.round(random() * SCORE_SCALE) / SCORE_SCALE]),
-  ) as Record<ClassCode, number>;
-  return {
-    source: 'mock',
-    model,
-    mode,
-    identity: {
-      modelId: `simulated-${model}`,
-      sha256: null,
-      sha256Verified: false,
-      recipe: 'simulated',
-      release: null,
-    },
-    scores,
-    latencyMs,
-    warnings: [SIMULATED_WARNING],
-  };
+async function replayMocoBase(): Promise<InferenceResult | null> {
+  const capture = await loadPredictMocoBaseCapture();
+  if (capture === null) return null;
+  const body = parseOrInvalid(predictResponseSchema, capture, 'predict-replay');
+  return asMock(toInferenceResult(body, 0));
+}
+
+function seededSlowDelay(random: () => number): number {
+  return SLOW_MIN_MS + Math.floor(random() * (SLOW_MAX_MS - SLOW_MIN_MS + 1));
 }
 
 /** Resolves after `ms`, or rejects with the caller's abort reason as soon as the signal fires. */

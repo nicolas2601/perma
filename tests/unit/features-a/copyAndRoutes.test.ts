@@ -33,11 +33,11 @@ describe('feature copy modules', () => {
 
   it('merges every feature into the registry under its namespace, without collisions', () => {
     expect(copyRegistry.es['desk.headline']).toBe('Empiece con contexto.');
-    expect(copyRegistry.en['desk.headline']).toBe('Start with context.');
-    expect(copyRegistry.es['consent.title']).toBe('Revise antes de enviar.');
+    expect(copyRegistry.en['desk.headline']).toBe('Begin with the context.');
+    expect(copyRegistry.es['consent.title']).toBe('Revise la imagen antes de enviarla.');
     expect(copyRegistry.es['consent.waitTitle']).toBe('Esperando una respuesta');
     expect(copyRegistry.es['recovery.rate-limit.title']).toBe('El servicio está limitando las solicitudes.');
-    expect(copyRegistry.es['camera.captureTitle']).toBe('Muestre la imagen.');
+    expect(copyRegistry.es['camera.captureTitle']).toBe('Elija la imagen.');
   });
 
   it('keeps the Figma-verified recovery titles in both locales', () => {
@@ -55,11 +55,11 @@ describe('feature copy modules', () => {
 
   it('explains research scores and the live image task without inventing guarantees', () => {
     expect(inspectCopy.es.experimentalNotice).toContain('ni emite diagnósticos');
-    expect(inspectCopy.es.resultIntro).toContain('no indican la probabilidad de tener una enfermedad');
-    expect(guideCopy.es.evidenceBody).toContain('HAM7');
-    expect(guideCopy.es.evidenceBody).toContain('No incluye SCC');
+    expect(inspectCopy.es.resultIntro).toContain('no son la probabilidad de tener una enfermedad');
+    expect(guideCopy.es.evidenceBody).toContain('siete tipos de lesión');
+    expect(guideCopy.es.evidenceBody).toContain('No incluye el carcinoma escamocelular (SCC)');
     expect(guideCopy.es.licencesBody).not.toContain('entrenado con datos sintéticos');
-    expect(consentCopy.es.waitStopSheetBody).toContain('no confirma que el servidor');
+    expect(consentCopy.es.waitStopSheetBody).toContain('No confirma que el servidor haya detenido el análisis');
     expect(consentCopy.es.waitStopSheetBody).not.toContain('no tiene una solicitud en curso');
   });
 });

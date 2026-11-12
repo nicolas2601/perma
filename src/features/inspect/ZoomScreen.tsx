@@ -10,6 +10,8 @@ import { useInertiaZoom } from '@/motion';
 import { ActionDock, ScreenHeader } from './Chrome';
 import { useObjectUrl, isReferenceImage, PUBLIC_REFERENCE_URL } from './useImageSource';
 import { useZoomPointers } from './useZoomPointers';
+import { ContourLayer } from './explain/ContourOverlay';
+import { ContourSwitch } from './explain/ContourSwitch';
 
 const LABEL_FADE_S = 0.1;
 
@@ -17,6 +19,7 @@ export default function ZoomScreen() {
   const t = useT('inspect');
   const navigate = useNavigate();
   const image = useExam((state) => state.image);
+  const result = useExam((state) => state.result);
   const src = useObjectUrl(image);
   const reference = isReferenceImage(image);
   const shown = src ?? (reference ? PUBLIC_REFERENCE_URL : null);
@@ -35,14 +38,19 @@ export default function ZoomScreen() {
         <figure className="m-0 flex flex-col overflow-hidden rounded-tile bg-surface">
           <div ref={viewportRef} {...handlers} className="relative h-80 touch-none overflow-hidden bg-surface lg:h-[calc(100dvh-160px)]">
             {shown ? (
-              <m.img
-                src={shown}
-                alt={reference ? t('imageAltReference') : t('imageAltSession')}
-                draggable={false}
-                decoding="async"
-                className="pointer-events-none absolute inset-0 m-auto max-h-full max-w-full object-contain select-none"
+              <m.div
+                className="pointer-events-none absolute inset-0"
                 style={{ x: zoom.x, y: zoom.y, scale: zoom.scale }}
-              />
+              >
+                <img
+                  src={shown}
+                  alt={reference ? t('imageAltReference') : t('imageAltSession')}
+                  draggable={false}
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-contain select-none"
+                />
+                {result ? <ContourLayer result={result} /> : null}
+              </m.div>
             ) : null}
           </div>
           <figcaption className="flex flex-col gap-0.5 border-t border-solid border-soft-line px-3.5 py-2 text-caption text-ink">
@@ -50,6 +58,7 @@ export default function ZoomScreen() {
             <span className="text-muted">{t('zoomHint')}</span>
           </figcaption>
         </figure>
+        {result ? <ContourSwitch result={result} /> : null}
         <div className="flex items-center gap-3">
           <ModeLabel zoomed={zoomed} fitLabel={t('toolFit')} zoomLabel={t('toolZoom')} />
           <Button variant="quiet" onClick={zoom.reset} className="ml-auto">

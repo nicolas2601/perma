@@ -1,14 +1,8 @@
 import { z } from 'zod';
-import {
-  CLASS_CODES,
-  InferenceError,
-  type InferenceResult,
-  type ModelIdentity,
-} from './types';
+import { CLASS_CODES, InferenceError, type InferenceResult, type ModelIdentity } from './types';
 
-// shortcut: the UI and exports use HAM7 labels; add result-specific vocabularies before enabling PAD6.
+/** The only model served live. A71/B71 were retired by the backend on 2026-11-08 (predict answers 422). */
 export const LIVE_MODEL_KEYS = ['MOCO_HAM7'] as const;
-export const INFERENCE_MODES = ['base', 'tta'] as const;
 
 const SHA256_HEX = /^[0-9a-f]{64}$/;
 
@@ -16,98 +10,66 @@ export const classCodeSchema = z.enum(CLASS_CODES);
 const scoreSchema = z.number().finite().min(0).max(1);
 /** Exhaustive: every class code must be present (zod 4 enum-keyed record). */
 export const scoresSchema = z.record(classCodeSchema, scoreSchema);
-const modelKeySchema = z.enum(['A71', 'B71']);
-const mocoModelKeySchema = z.enum(LIVE_MODEL_KEYS);
-const modeSchema = z.enum(INFERENCE_MODES);
+const modelKeySchema = z.enum(LIVE_MODEL_KEYS);
+const baseModeSchema = z.literal('base');
 
-export const recipeSchema = z.object({
-  feature: z.string().min(1),
-  tau: z.number().finite(),
-  tta: z.string().min(1),
-  aggregation: z.string().min(1),
-  n_views: z.number().int().positive(),
-});
+/** v10.0.0 names the feature `feature` and uses one view; v10.1.0 names it `features` and averages 8 D4 views. */
+export const mocoRecipeSchema = z
+  .object({
+    feature: z.string().min(1).optional(),
+    features: z.string().min(1).optional(),
+    tau: z.number().finite(),
+    tta: z.enum(['none', 'd4-mean']),
+    n_views: z.union([z.literal(1), z.literal(8)]).optional(),
+    views: z.union([z.literal(1), z.literal(8)]).optional(),
+  })
+  .refine((recipe) => recipe.feature !== undefined || recipe.features !== undefined, {
+    message: 'recipe must name its feature',
+  })
+  .refine((recipe) => recipe.n_views !== undefined || recipe.views !== undefined, {
+    message: 'recipe must state its view count',
+  });
 
-const legacyIdentitySchema = z.object({
-  model_id: z.string().min(1),
-  release: z.string().min(1),
-  arm: modelKeySchema,
-  model_sha256: z.string().regex(SHA256_HEX).nullable(),
-  sha256_verified: z.boolean(),
-  recipe: recipeSchema,
-});
-
-const mocoRecipeSchema = recipeSchema.omit({ aggregation: true }).extend({
-  tta: z.literal('none'),
-  n_views: z.literal(1),
-});
-const mocoIdentitySchema = z.object({
+export const mocoIdentitySchema = z.object({
   model_id: z.literal('dermssl-v10-moco'),
-  release: z.literal('v10.0.0'),
+  release: z.string().min(1),
   model_sha256: z.string().regex(SHA256_HEX),
   sha256_verified: z.boolean().nullable().default(null),
   recipe: mocoRecipeSchema,
 });
-export const identitySchema = z.union([legacyIdentitySchema, mocoIdentitySchema]);
 
-/** Per-arm state shared by /api/status and the per-model entries of /api/report. */
-const modelStateSchema = z.object({
+/** GET /api/status (fixtures/api/status-MOCO_HAM7.json). */
+export const statusSchema = z.object({
   backbone_ready: z.boolean(),
   classification_ready: z.boolean(),
   reason: z.string().min(1),
   release: z.string().min(1),
-  release_arm: modelKeySchema,
+  release_arm: z.null(),
   device: z.string().min(1),
   threads: z.number().int().nonnegative(),
-  identity: legacyIdentitySchema,
-  recipe: recipeSchema,
+  model_key: modelKeySchema,
+  identity: mocoIdentitySchema,
 });
-
-/** V9 captures remain readable; live requests are restricted to the current model registry. */
-export const statusSchema = z.union([
-  modelStateSchema.extend({ model_key: modelKeySchema }),
-  modelStateSchema.omit({ recipe: true }).extend({
-    release_arm: z.null(),
-    model_key: mocoModelKeySchema,
-    identity: mocoIdentitySchema,
-  }),
-]);
 export type StatusResponse = z.infer<typeof statusSchema>;
 
-/** GET /api/report (fixtures/api/report.json). No scientific report, only state and disclaimer. */
-export const reportSchema = z.object({
-  source: z.object({ release: z.string().min(1), scope: z.string().min(1) }),
-  disclaimer: z.string().min(1),
-  model: modelStateSchema,
-  models: z.object({ A71: modelStateSchema, B71: modelStateSchema }),
-});
-
-/** POST /api/predict success body (fixtures/api/predict-B71-{base,tta}.json). */
-const legacyPredictResponseSchema = z
+/** POST /api/predict success body (fixtures/api/predict-MOCO_HAM7-base.json). */
+export const predictResponseSchema = z
   .object({
     pred: classCodeSchema,
     confidence: scoreSchema,
     classes: z.array(classCodeSchema),
     probs: scoresSchema,
     feature_dim: z.number().int().positive(),
-    mode: modeSchema,
-    requested_mode: modeSchema,
-    inference_mode: z.string().min(1),
-    views: z.number().int().positive(),
+    mode: baseModeSchema,
+    requested_mode: baseModeSchema,
+    inference_mode: z.enum(['single_view', 'd4_tta_8view']),
+    views: z.union([z.literal(1), z.literal(8)]),
     model_key: modelKeySchema,
-    identity: legacyIdentitySchema,
-  });
-export const predictResponseSchema = z.union([
-  legacyPredictResponseSchema,
-  legacyPredictResponseSchema.extend({
-    model_key: mocoModelKeySchema,
     identity: mocoIdentitySchema,
-    mode: z.literal('base'),
-    requested_mode: z.literal('base'),
-    inference_mode: z.literal('single_view'),
-    views: z.literal(1),
-  }),
-])
+  })
+  .refine((body) => (body.inference_mode === 'single_view') === (body.views === 1), {
+    message: 'inference_mode and views must agree',
+  })
   .refine((body) => sameClassOrder(body.classes), {
     message: 'classes must match CLASS_CODES order',
   })
@@ -135,12 +97,12 @@ export function parseOrInvalid<S extends z.ZodType>(schema: S, payload: unknown,
   return parsed.data;
 }
 
-export function formatRecipe(recipe: z.infer<typeof identitySchema>['recipe']): string {
-  const aggregation = 'aggregation' in recipe ? ` | ${recipe.aggregation}` : '';
-  return `${recipe.feature} | tau=${recipe.tau} | ${recipe.tta}${aggregation} | n=${recipe.n_views}`;
+export function formatRecipe(recipe: z.infer<typeof mocoRecipeSchema>): string {
+  const feature = recipe.feature ?? recipe.features ?? '';
+  return `${feature} | tau=${recipe.tau} | ${recipe.tta} | n=${recipe.n_views ?? recipe.views}`;
 }
 
-export function toModelIdentity(identity: z.infer<typeof identitySchema>): ModelIdentity {
+export function toModelIdentity(identity: z.infer<typeof mocoIdentitySchema>): ModelIdentity {
   return {
     modelId: identity.model_id,
     sha256: identity.model_sha256,
@@ -153,7 +115,6 @@ export function toModelIdentity(identity: z.infer<typeof identitySchema>): Model
 function collectWarnings(body: PredictResponse): string[] {
   const warnings: string[] = [];
   if (!body.identity.sha256_verified) warnings.push('identity-unverified');
-  if (body.requested_mode !== body.mode) warnings.push('mode-mismatch');
   return warnings;
 }
 

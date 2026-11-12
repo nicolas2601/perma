@@ -62,7 +62,7 @@ Two shapes exist, and both are tolerated:
 
 ## Pending backend items
 
-1. **Default model: B71 vs A71.** Awaiting Pau's decision. The client default is `VITE_DEFAULT_MODEL`, which falls back to `B71` (see `docs/model-swap.md`).
+1. **Default model (resolved).** A71 and B71 were retired upstream on 2026-11-08 and the client now serves only `MOCO_HAM7` (see `docs/model-swap.md`). The B71/A71 captures below are kept as history.
 2. **`model_sha256` is not traceable from the thesis repo.** The API reports a hash and `sha256_verified: true`, but the thesis repo does not contain the matching artifact, so the chain of custody cannot be checked from our side.
 3. **`/api/report` no longer returns the scientific report.** The client does not depend on it; it is kept only for contract validation.
 

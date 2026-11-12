@@ -1,20 +1,12 @@
 // Test-only. Raw captures from the live API (see docs/api-notes.md). Never imported by production code.
 import type { JsonBodyType } from 'msw';
-import predictBaseRaw from '../../../fixtures/api/predict-B71-base.json?raw';
-import predictTtaRaw from '../../../fixtures/api/predict-B71-tta.json?raw';
 import mocoPredictRaw from '../../../fixtures/api/predict-MOCO_HAM7-base.json?raw';
 import mocoStatusRaw from '../../../fixtures/api/status-MOCO_HAM7.json?raw';
 import probeEmptyRaw from '../../../fixtures/api/probe-empty-file.json?raw';
 import probeNoFileRaw from '../../../fixtures/api/probe-no-file.json?raw';
 import probeWrongTypeRaw from '../../../fixtures/api/probe-wrong-type.json?raw';
-import reportRaw from '../../../fixtures/api/report.json?raw';
-import statusRaw from '../../../fixtures/api/status.json?raw';
 
 export const FIXTURE_TEXT = {
-  status: statusRaw,
-  report: reportRaw,
-  predictBase: predictBaseRaw,
-  predictTta: predictTtaRaw,
   mocoPredict: mocoPredictRaw,
   mocoStatus: mocoStatusRaw,
   probeEmptyFile: probeEmptyRaw,

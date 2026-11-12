@@ -23,7 +23,7 @@ import {
   beginAnalysis,
   finishAnalysis,
   isAnalysisInFlight,
-  predictImage,
+  analyzeImage,
   scenarioOfFailure,
   stopAnalysis,
 } from './analysis';
@@ -45,7 +45,7 @@ function useAnalysis(ready: boolean, upload: Blob | null): void {
     if (!ready || upload === null) return;
     const controller = beginAnalysis();
     if (controller === null) return;
-    predictImage(upload, controller.signal)
+    analyzeImage(upload, controller.signal)
       .then(
         (result) => {
           if (controller.signal.aborted || window.location.pathname !== PROCESSING_PATH) return;

@@ -55,7 +55,7 @@ test('reload restores the record, the ABCDE value and the note from IndexedDB', 
   });
 
   await test.step('the ABCDE value survives the reload (reached in-app from compare)', async () => {
-    await page.getByRole('button', { name: 'Volver a evolución' }).click();
+    await page.getByRole('button', { name: 'Volver a la evolución' }).click();
     await expect(page).toHaveURL(/\/examen\/abcde$/);
     await expect(page.getByRole('button', { name: /^Asimetría/ }).first()).toContainText(ABCDE_OPTION);
   });

@@ -20,7 +20,7 @@ export function ScoreCard({ code, score, locale, to }: ScoreCardProps) {
   return (
     <Card variant="raised" interactive className="shrink-0">
       <Link to={to} className="-m-4 block p-4 outline-offset-2 focus-visible:-outline-offset-2">
-        <ScoreRow label={`${name} (${code})`} score={score} locale={locale} />
+        <ScoreRow label={name} score={score} locale={locale} />
       </Link>
     </Card>
   );

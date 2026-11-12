@@ -16,6 +16,7 @@
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --font-sans: 'Geist Variable', 'Geist', ui-sans-serif, system-ui, sans-serif;
   --accent-pressed: #004f5e;
+  --overlay-wine: #854442;
   --disabled-surface: #e4ece9;
   --disabled-text: #4b6259;
   --error-surface: #fff0f1;
@@ -47,6 +48,7 @@
 
 @theme inline {
   --color-accent-pressed: var(--accent-pressed);
+  --color-overlay-wine: var(--overlay-wine);
   --color-disabled-surface: var(--disabled-surface);
   --color-disabled-text: var(--disabled-text);
   --color-error-surface: var(--error-surface);

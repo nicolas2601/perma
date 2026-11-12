@@ -49,8 +49,8 @@ describe('clinicalContextLines', () => {
     );
     expect(lines).toEqual([
       'Edad: 54',
-      'Evolución: < 1 semana',
-      'Síntomas suministrados: Picazón, Dolor',
+      'Tiempo de evolución: < 1 semana',
+      'Síntomas referidos: Picazón, Dolor',
       'Antecedentes: nevo',
     ]);
   });

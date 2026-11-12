@@ -124,6 +124,8 @@ describe('autosave', () => {
       load: async () => null,
       save: vi.fn().mockRejectedValueOnce(new Error('disk')).mockResolvedValue(undefined),
       clear: async () => undefined,
+      saveMask: async () => undefined,
+      loadMask: async () => null,
     };
     const store = createExamStore(createInitialState(clock), clock);
     attachAutosave(store, failing, { debounceMs: DEBOUNCE_MS, onError });
@@ -152,6 +154,8 @@ describe('exam runtime', () => {
       load: vi.fn().mockRejectedValue(new Error('corrupt')),
       save: vi.fn(async () => undefined),
       clear: async () => undefined,
+      saveMask: async () => undefined,
+      loadMask: async () => null,
     };
     const runtime = createExamRuntime({ storage: createExamStorage(broken), clock, debounceMs: 0 });
     await runtime.ready;

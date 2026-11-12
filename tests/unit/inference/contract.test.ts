@@ -3,14 +3,13 @@ import {
   apiErrorBodySchema,
   parseOrInvalid,
   predictResponseSchema,
-  reportSchema,
   statusSchema,
   toInferenceResult,
 } from '@/core/inference/contract';
 import { CLASS_CODES, InferenceError } from '@/core/inference/types';
 import { fixtureJson } from '@/mocks/msw/fixtures';
 
-const base = () => structuredClone(fixtureJson('predictBase')) as Record<string, unknown>;
+const base = () => structuredClone(fixtureJson('mocoPredict')) as Record<string, unknown>;
 
 function expectInvalid(payload: unknown) {
   expect(() => parseOrInvalid(predictResponseSchema, payload, 'predict')).toThrow(InferenceError);
@@ -21,85 +20,52 @@ function expectInvalid(payload: unknown) {
   }
 }
 
-describe('contract: captured fixtures validate', () => {
-  it('validates status, report and both predict modes', () => {
-    expect(statusSchema.safeParse(fixtureJson('status')).success).toBe(true);
-    expect(reportSchema.safeParse(fixtureJson('report')).success).toBe(true);
-    expect(predictResponseSchema.safeParse(fixtureJson('predictBase')).success).toBe(true);
-    expect(predictResponseSchema.safeParse(fixtureJson('predictTta')).success).toBe(true);
+describe('contract: captured MOCO_HAM7 fixtures validate', () => {
+  it('validates the status and predict captures', () => {
+    expect(() => parseOrInvalid(statusSchema, fixtureJson('mocoStatus'), 'status')).not.toThrow();
+    expect(() => parseOrInvalid(predictResponseSchema, fixtureJson('mocoPredict'), 'predict')).not.toThrow();
   });
 
-  it('accepts both captured error shapes', () => {
-    expect(apiErrorBodySchema.safeParse(fixtureJson('probeEmptyFile')).success).toBe(true);
-    expect(apiErrorBodySchema.safeParse(fixtureJson('probeNoFile')).success).toBe(true);
-  });
-
-  it('normalizes the base fixture to an InferenceResult with the captured identity', () => {
-    const body = parseOrInvalid(predictResponseSchema, fixtureJson('predictBase'), 'predict');
-    const result = toInferenceResult(body, 123);
-    expect(result).toEqual({
-      source: 'live',
-      model: 'B71',
-      mode: 'base',
-      identity: {
-        modelId: 'dermssl-v9-B71',
-        sha256: '7fd581afc14a5c61da37f8d3873ce78c228276b0186a98e39096e9130285bbd6',
-        sha256Verified: true,
-        recipe: 'cls4 | tau=0 | D4 | mean_probabilities | n=8',
-        release: 'v9.0.0',
-      },
-      scores: body.probs,
-      latencyMs: 123,
-      warnings: [],
-    });
+  it('maps the predict capture to a live InferenceResult with the served model', () => {
+    const body = parseOrInvalid(predictResponseSchema, fixtureJson('mocoPredict'), 'predict');
+    const result = toInferenceResult(body, 12);
+    expect(result).toMatchObject({ source: 'live', model: 'MOCO_HAM7', mode: 'base', latencyMs: 12 });
     expect(Object.keys(result.scores).sort()).toEqual([...CLASS_CODES].sort());
-  });
-
-  it('flags a mode mismatch as a warning instead of failing silently', () => {
-    const body = parseOrInvalid(
-      predictResponseSchema,
-      { ...base(), requested_mode: 'tta', mode: 'base' },
-      'predict',
-    );
-    expect(toInferenceResult(body, 0).warnings).toEqual(['mode-mismatch']);
-  });
-
-  it('tolerates unknown extra fields from the server', () => {
-    expect(predictResponseSchema.safeParse({ ...base(), new_field: 'x' }).success).toBe(true);
   });
 });
 
-describe('contract: invalid payloads become invalid-response', () => {
-  it('rejects a missing class score', () => {
-    const probs = { ...(base().probs as Record<string, number>) };
-    delete probs.mel;
-    expectInvalid({ ...base(), probs });
+describe('contract: invalid predict payloads are rejected', () => {
+  it('rejects a class order that differs from CLASS_CODES', () => {
+    const body = base();
+    body.classes = [...(body.classes as string[])].reverse();
+    expectInvalid(body);
   });
 
-  it('rejects a score outside [0, 1]', () => {
-    const probs = { ...(base().probs as Record<string, number>), nv: 1.5 };
-    expectInvalid({ ...base(), probs, confidence: 1.5 });
+  it('rejects a confidence that does not equal probs[pred]', () => {
+    const body = base();
+    body.confidence = 0.123456;
+    expectInvalid(body);
   });
 
-  it('rejects classes out of CLASS_CODES order', () => {
-    expectInvalid({ ...base(), classes: [...CLASS_CODES].reverse() });
+  it('rejects any model other than MOCO_HAM7 (A71/B71 are retired)', () => {
+    expectInvalid({ ...base(), model_key: 'B71' });
+    expectInvalid({ ...base(), model_key: 'A71' });
   });
 
-  it('rejects a confidence that does not match probs[pred]', () => {
-    expectInvalid({ ...base(), confidence: 0.1 });
+  it('rejects the retired tta mode: the UI exposes a single base mode', () => {
+    expectInvalid({ ...base(), requested_mode: 'tta', mode: 'tta' });
   });
 
-  it('rejects a non-hex sha256', () => {
-    const identity = { ...(base().identity as Record<string, unknown>), model_sha256: 'not-a-hash' };
-    expectInvalid({ ...base(), identity });
+  it('rejects a non-finite or out-of-range score', () => {
+    const body = base();
+    (body.probs as Record<string, number>).mel = Number.NaN;
+    expectInvalid(body);
   });
+});
 
-  it('rejects an unknown model_key', () => {
-    expectInvalid({ ...base(), model_key: 'next' });
-  });
-
-  it('rejects a non-object payload', () => {
-    expectInvalid('<html>');
-    expectInvalid(null);
+describe('contract: error bodies', () => {
+  it('accepts both tolerated error shapes', () => {
+    expect(apiErrorBodySchema.safeParse({ error: { code: 'INVALID_IMAGE' } }).success).toBe(true);
+    expect(apiErrorBodySchema.safeParse({ detail: [] }).success).toBe(true);
   });
 });

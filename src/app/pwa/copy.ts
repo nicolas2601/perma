@@ -3,7 +3,7 @@ import type { FeatureCopy } from '@/core/i18n/contract';
 export const copy = {
   es: {
     regionLabel: 'Estado de la aplicación',
-    updateReady: 'Hay una versión nueva de PERMA.',
+    updateReady: 'Hay una nueva versión de PERMA disponible.',
     updateBlocked:
       'Hay una versión nueva. Podrá actualizar cuando termine o guarde la revisión en curso.',
     updateApply: 'Actualizar',

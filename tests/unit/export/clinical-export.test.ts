@@ -26,7 +26,7 @@ function snapshot(clinicalContext: ClinicalContext | undefined): ExportSnapshot 
 describe('JSON export: user-supplied context', () => {
   it('carries the context under a clearly labelled section', () => {
     const doc = buildJsonDocument(snapshot(context), exportedAt, t);
-    expect(doc.userSuppliedContext.label).toBe('Contexto suministrado por el usuario');
+    expect(doc.userSuppliedContext.label).toBe('Contexto aportado por el profesional');
     expect(doc.userSuppliedContext.context).toEqual(context);
   });
 
@@ -34,7 +34,7 @@ describe('JSON export: user-supplied context', () => {
     const doc = buildJsonDocument(snapshot(context), exportedAt, t);
     expect(doc.userSuppliedContext.interpretedByModel).toBe(false);
     expect(doc.userSuppliedContext.usedInScores).toBe(false);
-    expect(doc.userSuppliedContext.notice).toContain('no participa en las puntuaciones');
+    expect(doc.userSuppliedContext.notice).toContain('no influye en el resultado');
   });
 
   it('exports null when nothing was supplied', () => {
@@ -53,11 +53,11 @@ describe('JSON export: user-supplied context', () => {
 describe('PDF export: user-supplied context', () => {
   it('prints the labelled section and its lines after the observations', () => {
     const texts = buildPdfBlocks(snapshot(context), exportedAt, t).map((block) => block.text);
-    const heading = texts.indexOf('Contexto suministrado por el usuario');
+    const heading = texts.indexOf('Contexto aportado por el profesional');
     expect(heading).toBeGreaterThan(texts.indexOf('Observaciones ABCDE'));
     expect(texts).toContain('Edad: 54');
-    expect(texts).toContain('Evolución: 1-6 meses');
-    expect(texts).toContain('Síntomas suministrados: Dolor');
+    expect(texts).toContain('Tiempo de evolución: 1-6 meses');
+    expect(texts).toContain('Síntomas referidos: Dolor');
   });
 
   it('prints "No registrado" when nothing was supplied', () => {

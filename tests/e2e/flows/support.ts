@@ -4,36 +4,36 @@ import { expect, type Locator, type Page } from '@playwright/test';
 export const COPY = {
   homeHeadline: 'Empiece con contexto.',
   newExam: 'Nuevo examen',
-  contextHeadline: 'Dé contexto a la imagen.',
+  contextHeadline: 'Agregue contexto a la imagen.',
   continueToImage: 'Continuar a la imagen',
-  captureHeadline: 'Muestre la imagen.',
+  captureHeadline: 'Elija la imagen.',
   sampleCta: 'Usar ejemplo de referencia pública',
   qualityHeadline: 'Revise antes de enviar.',
   reviewSend: 'Revisar envío',
-  consentHeadline: 'Sepa qué envía.',
+  consentHeadline: 'Revise la imagen antes de enviarla.',
   consentLabel: 'Tengo autorización para enviar esta imagen.',
   sendCta: 'Enviar para análisis',
-  stopWait: 'Detener espera',
-  stopSheetConfirm: 'Volver a la revisión de imagen',
+  stopWait: 'Dejar de esperar',
+  stopSheetConfirm: 'Volver a la imagen',
   stopConfirm: 'Detener',
   simulatedBadge: 'Modelo simulado',
-  seeScores: 'Ver los siete puntajes',
+  seeScores: 'Ver las siete categorías',
   inspectImage: 'Inspeccionar la imagen',
   tabImage: 'Imagen',
-  tabOutput: 'Salida del modelo',
+  tabOutput: 'Resultado del modelo',
   tabObservations: 'Mis observaciones',
   registerAbcde: 'Registrar en ABCDE',
   abcdeSummary: 'Ver resumen',
   compareNote: 'Escribir nota profesional',
   reviewSession: 'Revisar la sesión',
-  exportPreview: 'Vista previa de exportación',
+  exportPreview: 'Ver vista previa y exportar',
   exportAck: 'He revisado el contenido de este registro.',
   exportJson: 'Descargar tabla CSV',
   dismissBanner: 'Entendido',
 } as const;
 
 export const NOTICE_TEXT =
-  'Prototipo experimental de investigación. Los puntajes no son probabilidades clínicas. No diagnostica.';
+  'Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos.';
 
 /** The PWA "offline-ready" banner sits over the bottom CTA on first load; dismiss it like a user would. */
 export async function dismissOfflineBanner(page: Page): Promise<void> {

@@ -1,4 +1,5 @@
 import { createMemoryAdapter } from './memoryAdapter';
+import { reattachMask, splitMask } from './maskRecord';
 import type { ExamStorageAdapter, StoredExam } from './types';
 
 export type StorageMode = 'indexeddb' | 'memory';
@@ -44,10 +45,28 @@ export function createExamStorage(primary: ExamStorageAdapter | null): ExamStora
 
   return {
     status: () => state,
-    load: () => run((adapter) => adapter.load()),
-    save: (snapshot: StoredExam) => run((adapter) => adapter.save(snapshot)),
+    load: () => loadWithMask(run),
+    save: (snapshot: StoredExam) => saveWithMask(run, snapshot),
     clear: () => run((adapter) => adapter.clear()),
+    saveMask: (mask) => run((adapter) => adapter.saveMask(mask)),
+    loadMask: () => run((adapter) => adapter.loadMask()),
   };
+}
+
+type Run = <T>(operation: (adapter: ExamStorageAdapter) => Promise<T>) => Promise<T>;
+
+/** The mask goes to its own side record; the exam JSON never carries it. */
+async function saveWithMask(run: Run, snapshot: StoredExam): Promise<void> {
+  const { snapshot: stripped, mask } = splitMask(snapshot);
+  // Snapshot first: an interrupted write leaves an analysisId mismatch, which restores no mask (safe).
+  await run((adapter) => adapter.save(stripped));
+  await run((adapter) => adapter.saveMask(mask));
+}
+
+async function loadWithMask(run: Run): Promise<StoredExam | null> {
+  const snapshot = await run((adapter) => adapter.load());
+  if (snapshot === null) return null;
+  return reattachMask(snapshot, await run((adapter) => adapter.loadMask()));
 }
 
 function errorName(error: unknown): string {

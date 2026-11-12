@@ -35,8 +35,8 @@ describe('LiveInferenceClient: success', () => {
   });
 
   it('predicts base from the captured MoCo body, with measured latency', async () => {
-    const base = await client().predict({ file: imageBlob(), model: 'MOCO_HAM7', mode: 'base' });
-    expect(base).toMatchObject({ source: 'live', model: 'MOCO_HAM7', mode: 'base', warnings: ['identity-unverified'] });
+    const base = await client().predict({ file: imageBlob() });
+    expect(base).toMatchObject({ source: 'live', warnings: ['identity-unverified'] });
     expect(base.latencyMs).toBeGreaterThanOrEqual(0);
   });
 
@@ -52,7 +52,7 @@ describe('LiveInferenceClient: success', () => {
         return HttpResponse.json(fixtureJson('mocoPredict'));
       }),
     );
-    await client().predict({ file: imageBlob(), model: 'MOCO_HAM7', mode: 'base' });
+    await client().predict({ file: imageBlob() });
     expect(seen?.path).toBe('/api/predict');
     expect(seen?.mode).toBe('base');
     expect(seen?.multipart).toContain('name="file"');
@@ -70,8 +70,8 @@ describe('LiveInferenceClient: success', () => {
     expect(model).toBe('MOCO_HAM7');
   });
 
-  it('refuses the mock-only model before any request', () => {
-    expect(() => client({ defaultModel: 'next' })).toThrow(RangeError);
+  it('constructs for the single served model', () => {
+    expect(() => client({ defaultModel: 'MOCO_HAM7' })).not.toThrow();
   });
 });
 
@@ -87,7 +87,7 @@ describe('LiveInferenceClient: HTTP and network mapping', () => {
 
   it.each(cases)('maps %s to %s', async (failure, expected) => {
     server.use(predictFailure(failure));
-    const error = await errorFrom(client().predict({ file: imageBlob(), model: 'MOCO_HAM7' }));
+    const error = await errorFrom(client().predict({ file: imageBlob() }));
     expect(error.scenario).toBe(expected);
   });
 
@@ -95,28 +95,28 @@ describe('LiveInferenceClient: HTTP and network mapping', () => {
     server.use(
       http.post('/api/predict', () => HttpResponse.json(fixtureJson('probeNoFile'), { status: 422 })),
     );
-    const error = await errorFrom(client().predict({ file: imageBlob(), model: 'MOCO_HAM7' }));
+    const error = await errorFrom(client().predict({ file: imageBlob() }));
     expect(error.scenario).toBe('file-unavailable');
   });
 
   it('reports offline without sending a request when the browser has no network', async () => {
     const hits = vi.fn();
     server.use(http.post('/api/predict', () => (hits(), HttpResponse.json(fixtureJson('mocoPredict')))));
-    const error = await errorFrom(client({ isOnline: () => false }).predict({ file: imageBlob(), model: 'MOCO_HAM7' }));
+    const error = await errorFrom(client({ isOnline: () => false }).predict({ file: imageBlob() }));
     expect(error.scenario).toBe('offline');
     expect(hits).not.toHaveBeenCalled();
   });
 
   it('maps the 60 s timeout (shortened here) to timeout', async () => {
     server.use(predictFailure('timeout'));
-    const error = await errorFrom(client({ timeoutMs: 50 }).predict({ file: imageBlob(), model: 'MOCO_HAM7' }));
+    const error = await errorFrom(client({ timeoutMs: 50 }).predict({ file: imageBlob() }));
     expect(error.scenario).toBe('timeout');
   });
 
   it('rethrows a caller abort untouched, not as a recovery scenario', async () => {
     server.use(predictFailure('timeout'));
     const controller = new AbortController();
-    const pending = client({ timeoutMs: 60_000 }).predict({ file: imageBlob(), model: 'MOCO_HAM7', signal: controller.signal });
+    const pending = client({ timeoutMs: 60_000 }).predict({ file: imageBlob(), signal: controller.signal });
     controller.abort();
     await expect(pending).rejects.toMatchObject({ name: 'AbortError' });
   });
@@ -125,20 +125,20 @@ describe('LiveInferenceClient: HTTP and network mapping', () => {
 describe('LiveInferenceClient: schema and identity guards', () => {
   it('turns a non-JSON 200 body into invalid-response', async () => {
     server.use(predictFailure('invalid-response'));
-    const error = await errorFrom(client().predict({ file: imageBlob(), model: 'MOCO_HAM7' }));
+    const error = await errorFrom(client().predict({ file: imageBlob() }));
     expect(error.scenario).toBe('invalid-response');
   });
 
   it('turns a schema-broken 200 body into invalid-response (never partial)', async () => {
     const broken = { ...(fixtureJson('mocoPredict') as Record<string, unknown>), probs: { nv: 0.5 } };
     server.use(http.post('/api/predict', () => HttpResponse.json(broken)));
-    const error = await errorFrom(client().predict({ file: imageBlob(), model: 'MOCO_HAM7' }));
+    const error = await errorFrom(client().predict({ file: imageBlob() }));
     expect(error.scenario).toBe('invalid-response');
   });
 
-  it('rejects a valid body that answers for a different model than requested', async () => {
-    server.use(http.post('/api/predict', () => HttpResponse.json({ ...(fixtureJson('mocoPredict') as object), model_key: 'A71' })));
-    const error = await errorFrom(client().predict({ file: imageBlob(), model: 'MOCO_HAM7' }));
+  it('rejects a body that answers for a retired model', async () => {
+    server.use(http.post('/api/predict', () => HttpResponse.json({ ...(fixtureJson('mocoPredict') as object), model_key: 'B71' })));
+    const error = await errorFrom(client().predict({ file: imageBlob() }));
     expect(error.scenario).toBe('invalid-response');
   });
 

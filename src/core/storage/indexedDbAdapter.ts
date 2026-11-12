@@ -1,12 +1,14 @@
 import { openDB, type DBSchema, type IDBPDatabase } from 'idb';
 import { parseStoredExam } from './schema';
-import type { ExamStorageAdapter, StoredExam } from './types';
+import { isAnalysisMask } from './maskRecord';
+import type { AnalysisMask, ExamStorageAdapter, StoredExam } from './types';
 
 const DB_NAME = 'perma-exam';
 /** Bump with a new upgrade branch for every schema change. */
 const DB_VERSION = 1;
 const STORE = 'exam';
 const CURRENT_KEY = 'current';
+const MASK_KEY = 'analysisMask';
 
 export interface ExamDbSchema extends DBSchema {
   exam: { key: string; value: unknown };
@@ -49,6 +51,17 @@ export function createIndexedDbAdapter(open: OpenExamDatabase = openDefaultDatab
     async clear() {
       const db = await database();
       await db.delete(STORE, CURRENT_KEY);
+      await db.delete(STORE, MASK_KEY);
+    },
+    async saveMask(mask: AnalysisMask | null) {
+      const db = await database();
+      if (mask === null) await db.delete(STORE, MASK_KEY);
+      else await db.put(STORE, mask, MASK_KEY);
+    },
+    async loadMask() {
+      const db = await database();
+      const value: unknown = await db.get(STORE, MASK_KEY);
+      return isAnalysisMask(value) ? value : null;
     },
   };
 }

@@ -31,8 +31,9 @@ it('requests status for the configured MoCo model rather than the server default
   }
 });
 
-it('rejects a healthy legacy status instead of claiming that MoCo is ready', async () => {
-  const fetchSpy = vi.spyOn(globalThis, 'fetch').mockResolvedValue(Response.json(fixtureJson('status')));
+it('rejects a healthy status that reports a retired model instead of claiming MoCo is ready', async () => {
+  const body = { ...(fixtureJson('mocoStatus') as object), model_key: 'B71' };
+  const fetchSpy = vi.spyOn(globalThis, 'fetch').mockResolvedValue(Response.json(body));
   try {
     await expect(createInferenceClient({ env: {}, search: '' }).status()).rejects.toMatchObject({ scenario: 'invalid-response' });
   } finally {
@@ -51,7 +52,7 @@ it.each(['A71', 'B71', 'MOCO_PAD6'])('refuses unsupported live configuration %s 
 });
 
 it.each([
-  fixtureJson('predictBase'),
+  { ...JSON.parse(predictRaw), requested_mode: 'tta', mode: 'tta' },
   { ...JSON.parse(predictRaw), probs: { nv: 0.7 } },
   { ...JSON.parse(predictRaw), model_key: 'MOCO_PAD6' },
 ])('rejects a stale or incompatible prediction without relabeling it', async (body) => {

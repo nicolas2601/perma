@@ -50,8 +50,8 @@ describe('scenario parity: mock drives all eight recovery scenarios', () => {
   it.each(MOCK_CASES.filter((s): s is RecoveryScenario => s !== 'success' && s !== 'slow'))(
     'mock %s surfaces the same scenario',
     async (scenario) => {
-      const mock = new MockInferenceClient({ defaultModel: 'B71', scenario, failureDelayMs: 0 });
-      await expect(captureScenario(mock.predict({ file: imageBlob(), model: 'B71' }))).resolves.toBe(scenario);
+      const mock = new MockInferenceClient({ defaultModel: 'MOCO_HAM7', scenario, failureDelayMs: 0 });
+      await expect(captureScenario(mock.predict({ file: imageBlob() }))).resolves.toBe(scenario);
     },
   );
 
@@ -66,7 +66,7 @@ describe('scenario parity: live maps the HTTP-reachable subset to the same scena
     async (expected, failure) => {
       server.use(predictFailure(failure));
       const live = new LiveInferenceClient({ defaultModel: 'MOCO_HAM7', timeoutMs: 50 });
-      await expect(captureScenario(live.predict({ file: imageBlob(), model: 'MOCO_HAM7' }))).resolves.toBe(expected);
+      await expect(captureScenario(live.predict({ file: imageBlob() }))).resolves.toBe(expected);
     },
   );
 

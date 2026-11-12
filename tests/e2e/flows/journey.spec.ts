@@ -83,13 +83,13 @@ test.describe('9-step journey (mock build, success scenario)', () => {
 
     await test.step('6 Processing completes and lands on the result', async () => {
       await page.getByRole('button', { name: COPY.sendCta }).click();
-      await expect(page.getByRole('heading', { name: /Salida del modelo|Salida experimental/ }).first()).toBeVisible({ timeout: 30_000 });
+      await expect(page.getByRole('heading', { name: /Resultado experimental/ }).first()).toBeVisible({ timeout: 30_000 });
       await expect(page).toHaveURL(/\/resultado$/);
     });
 
     await test.step('7 Result: simulated badge, notice, seven raw scores, no percentages', async () => {
       await expect(page.getByText(COPY.simulatedBadge).first()).toBeVisible();
-      await expect(page.getByText(NOTICE_TEXT)).toBeVisible();
+      await expect(page.getByRole('note').getByText(NOTICE_TEXT)).toBeVisible();
       await page.getByText(COPY.seeScores).click();
       await expect(page).toHaveURL(/\/resultado\/clases$/);
       await expect(page.locator('main a').filter({ hasText: /\d,\d{2}/ })).toHaveCount(RAW_SCORE_COUNT);
@@ -150,7 +150,7 @@ test.describe('9-step journey (mock build, success scenario)', () => {
       await page.getByRole('checkbox', { name: COPY.exportAck }).check();
       await expect(download).toBeEnabled();
       await expect(page).toHaveURL(/\/revision\/exportar$/);
-      await expect(page.getByText('Descarga iniciada.')).toHaveCount(0);
+      await expect(page.getByText('Se inició la descarga.')).toHaveCount(0);
       const [file] = await Promise.all([page.waitForEvent('download'), download.click()]);
       expect(file.suggestedFilename()).toMatch(/\.csv$/);
       const path = await file.path();
@@ -158,9 +158,9 @@ test.describe('9-step journey (mock build, success scenario)', () => {
       expect(statSync(path as string).size).toBeGreaterThan(0);
       const csv = readFileSync(path as string, 'utf8');
       expect(csv.startsWith('\uFEFFSección;Campo;Valor;Nota')).toBe(true);
-      expect(csv.split('\r\n').filter((line) => /^Puntajes crudos;/.test(line))).toHaveLength(7);
+      expect(csv.split('\r\n').filter((line) => /^Puntajes relativos del modelo;/.test(line))).toHaveLength(7);
       await expect(page).toHaveURL(/\/revision\/exportada$/);
-      await expect(page.getByText('Descarga iniciada.')).toBeVisible();
+      await expect(page.getByText('Se inició la descarga.')).toBeVisible();
     });
   });
 });

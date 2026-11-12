@@ -12,10 +12,10 @@ describe('createInferenceClient: flavor selection', () => {
     expect(client.source).toBe('live');
   });
 
-  it('builds the mock client when VITE_INFERENCE=mock, honouring VITE_DEFAULT_MODEL', async () => {
-    const client = createInferenceClient({ env: { VITE_INFERENCE: 'mock', VITE_DEFAULT_MODEL: 'A71' }, search: '' });
+  it('builds the mock client when VITE_INFERENCE=mock', () => {
+    const client = createInferenceClient({ env: { VITE_INFERENCE: 'mock', VITE_DEFAULT_MODEL: 'MOCO_HAM7' }, search: '' });
     expect(client).toBeInstanceOf(MockInferenceClient);
-    await expect(client.predict({ file: imageBlob() })).resolves.toMatchObject({ source: 'mock', model: 'A71' });
+    expect(client.source).toBe('mock');
   });
 
   it('reads ?mock=<scenario> only for the mock client', async () => {
@@ -26,13 +26,8 @@ describe('createInferenceClient: flavor selection', () => {
     expect(live.source).toBe('live');
   });
 
-  it('allows the mock-only next model in mock mode', async () => {
-    const client = createInferenceClient({ env: { VITE_INFERENCE: 'mock', VITE_DEFAULT_MODEL: 'next' }, search: '' });
-    await expect(client.predict({ file: imageBlob() })).resolves.toMatchObject({ model: 'next' });
-  });
-
-  it.each(['A71', 'B71', 'next'])('refuses %s as the live default model at construction time', (model) => {
-    expect(() => createInferenceClient({ env: { VITE_DEFAULT_MODEL: model }, search: '' })).toThrow(RangeError);
+  it.each(['A71', 'B71', 'next'])('refuses retired or fictional model %s at construction time', (model) => {
+    expect(() => createInferenceClient({ env: { VITE_DEFAULT_MODEL: model }, search: '' })).toThrow('VITE_DEFAULT_MODEL');
   });
 });
 

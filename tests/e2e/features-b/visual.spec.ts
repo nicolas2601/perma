@@ -53,7 +53,7 @@ for (const [name, route] of PAGES) {
 
 test('shot modelDetails sheet', async ({ page }) => {
   const errors = await openSeeded(page, '/resultado');
-  await page.getByRole('button', { name: 'Modelo y procedencia' }).click();
+  await page.getByRole('button', { name: 'Modelo y origen' }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await shot(page, 'modelDetails');
   expect(errors).toEqual([]);
@@ -106,7 +106,7 @@ test('export then acknowledgement page', async ({ page }) => {
   await expect(exportButton).toBeEnabled();
   await exportButton.click();
   await expect(page).toHaveURL(/\/revision\/exportada/);
-  await expect(page.getByRole('heading', { name: 'Descarga iniciada.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Se inició la descarga.' })).toBeVisible();
   await shot(page, 'exportDone');
   expect(errors).toEqual([]);
 });

@@ -41,7 +41,7 @@ test.describe('features-A flow', () => {
     await expect(page).toHaveURL(/\/imagen\/calidad$/);
     await page.getByRole('button', { name: 'Elegir otra fuente' }).click();
     await expect(page).toHaveURL(/\/imagen$/);
-    await expect(page.getByRole('heading', { level: 1, name: 'Muestre la imagen.' })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: 'Elija la imagen.' })).toBeVisible();
   });
 
   test('a deep link to consent without context is redirected to the context screen', async ({ page }) => {

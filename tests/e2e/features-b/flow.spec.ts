@@ -8,7 +8,7 @@ test('result to export flow on simulated data', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/resultado?seed=result');
-  await expect(page.getByRole('heading', { name: 'Salida experimental' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Resultado experimental' })).toBeVisible();
   await expect(page.getByText('Modelo simulado').first()).toBeVisible();
   await expect(page.getByText(/No diagnostica\./).first()).toBeVisible();
 
@@ -25,7 +25,7 @@ test('result to export flow on simulated data', async ({ page }) => {
 
   await page.getByRole('button', { name: 'Ver resumen' }).click();
   await expect(page).toHaveURL(/\/examen\/comparar/);
-  await expect(page.getByRole('heading', { name: 'Compare con contexto.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'La comparación necesita contexto.' })).toBeVisible();
 
   await page.getByRole('button', { name: 'Escribir nota profesional' }).click();
   await page.getByRole('textbox', { name: 'Nota profesional' }).fill('Control de prueba');
@@ -35,7 +35,7 @@ test('result to export flow on simulated data', async ({ page }) => {
 
   await page.getByRole('button', { name: 'Revisar la sesión' }).click();
   await expect(page).toHaveURL(/\/revision$/);
-  await page.getByRole('button', { name: 'Vista previa de exportación' }).click();
+  await page.getByRole('button', { name: 'Ver vista previa y exportar' }).click();
   await expect(page).toHaveURL(/\/revision\/exportar/);
 
   const exportButton = page.getByRole('button', { name: 'Descargar registro JSON' });
@@ -46,7 +46,7 @@ test('result to export flow on simulated data', async ({ page }) => {
   const [download] = await Promise.all([page.waitForEvent('download'), exportButton.click()]);
   expect(download.suggestedFilename()).toMatch(/^perma-.*\.json$/);
   await expect(page).toHaveURL(/\/revision\/exportada/);
-  await expect(page.getByRole('heading', { name: 'Descarga iniciada.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Se inició la descarga.' })).toBeVisible();
   await page.screenshot({ path: 'test-results/shots/flow-after-export.png' });
   expect(errors).toEqual([]);
 });
