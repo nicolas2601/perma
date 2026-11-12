@@ -65,8 +65,8 @@ describe('scenario parity: live maps the HTTP-reachable subset to the same scena
     'live %s',
     async (expected, failure) => {
       server.use(predictFailure(failure));
-      const live = new LiveInferenceClient({ defaultModel: 'B71', timeoutMs: 50 });
-      await expect(captureScenario(live.predict({ file: imageBlob(), model: 'B71' }))).resolves.toBe(expected);
+      const live = new LiveInferenceClient({ defaultModel: 'MOCO_HAM7', timeoutMs: 50 });
+      await expect(captureScenario(live.predict({ file: imageBlob(), model: 'MOCO_HAM7' }))).resolves.toBe(expected);
     },
   );
 

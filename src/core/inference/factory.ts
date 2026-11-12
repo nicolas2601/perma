@@ -17,8 +17,8 @@ export interface FactoryInput {
 }
 
 const DEFAULT_FLAVOR: InferenceFlavor = 'live';
-const DEFAULT_MODEL: ModelId = 'B71';
-const MODEL_IDS: readonly ModelId[] = ['A71', 'B71', 'next'];
+const DEFAULT_MODEL: ModelId = 'MOCO_HAM7';
+const MODEL_IDS: readonly ModelId[] = ['MOCO_HAM7', 'A71', 'B71', 'next'];
 
 /** Fail fast on misconfiguration: a bad build flag must not silently select another backend. */
 export function parseFlavor(value: string | undefined): InferenceFlavor {

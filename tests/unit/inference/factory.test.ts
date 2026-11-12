@@ -6,7 +6,7 @@ import { parseMockScenario } from '@/core/inference/mockScenario';
 import { imageBlob } from './support/apiServer';
 
 describe('createInferenceClient: flavor selection', () => {
-  it('defaults to live with B71 when no env is set', () => {
+  it('defaults to live with MoCo HAM7 when no env is set', () => {
     const client = createInferenceClient({ env: {}, search: '' });
     expect(client).toBeInstanceOf(LiveInferenceClient);
     expect(client.source).toBe('live');
@@ -31,8 +31,8 @@ describe('createInferenceClient: flavor selection', () => {
     await expect(client.predict({ file: imageBlob() })).resolves.toMatchObject({ model: 'next' });
   });
 
-  it('refuses next as the live default model at construction time', () => {
-    expect(() => createInferenceClient({ env: { VITE_DEFAULT_MODEL: 'next' }, search: '' })).toThrow(RangeError);
+  it.each(['A71', 'B71', 'next'])('refuses %s as the live default model at construction time', (model) => {
+    expect(() => createInferenceClient({ env: { VITE_DEFAULT_MODEL: model }, search: '' })).toThrow(RangeError);
   });
 });
 
@@ -47,7 +47,7 @@ describe('flag parsing fails fast on misconfiguration', () => {
 
   it('treats empty strings as unset', () => {
     expect(parseFlavor('')).toBe('live');
-    expect(parseDefaultModel('')).toBe('B71');
+    expect(parseDefaultModel('')).toBe('MOCO_HAM7');
   });
 });
 

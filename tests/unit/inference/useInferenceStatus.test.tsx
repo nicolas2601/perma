@@ -19,10 +19,10 @@ function wrapperFor() {
 
 describe('useInferenceStatus', () => {
   it('exposes the live model identity from /api/status', async () => {
-    const client = new LiveInferenceClient({ defaultModel: 'B71' });
+    const client = new LiveInferenceClient({ defaultModel: 'MOCO_HAM7' });
     const { result } = renderHook(() => useInferenceStatus(client), { wrapper: wrapperFor() });
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
-    expect(result.current.data).toMatchObject({ modelId: 'dermssl-v9-B71', sha256Verified: true });
+    expect(result.current.data).toMatchObject({ modelId: 'dermssl-v10-moco', sha256Verified: null });
   });
 
   it('surfaces a rate-limit as an error and does not retry against the shared API', async () => {
@@ -33,7 +33,7 @@ describe('useInferenceStatus', () => {
         return HttpResponse.json({ error: { code: 'RATE_LIMITED' } }, { status: 429 });
       }),
     );
-    const client = new LiveInferenceClient({ defaultModel: 'B71' });
+    const client = new LiveInferenceClient({ defaultModel: 'MOCO_HAM7' });
     const { result } = renderHook(() => useInferenceStatus(client), { wrapper: wrapperFor() });
     await waitFor(() => expect(result.current.isError).toBe(true));
     expect(result.current.error).toMatchObject({ scenario: 'rate-limit' });

@@ -4,7 +4,7 @@ import type { FeatureCopy } from './contract';
 export const coreCopy = {
   es: {
     'core.notice.experimental':
-      'Prototipo experimental de investigación. Los puntajes no son probabilidades clínicas. No diagnostica.',
+      'Esta es una herramienta de IA en investigación. No reemplaza la valoración clínica ni emite diagnósticos.',
     'core.badge.simulated': 'Modelo simulado',
     'core.abcde.unanswered': 'Sin evaluar',
     'core.source.live': 'En vivo',
@@ -19,7 +19,7 @@ export const coreCopy = {
     'core.export.image': 'Imagen',
     'core.export.noImage': 'Sin imagen',
     'core.export.noResult': 'Sin salida del modelo',
-    'core.export.scores': 'Puntajes crudos',
+    'core.export.scores': 'Puntajes relativos del modelo',
     'core.export.observations': 'Observaciones ABCDE',
     'core.export.note': 'Nota',
     'core.export.failed': 'No se pudo generar el archivo.',
@@ -45,7 +45,7 @@ export const coreCopy = {
     'core.csv.release': 'Versión',
     'core.csv.sha': 'SHA-256 del modelo',
     'core.csv.simulatedNote': 'Valores simulados: no provienen del modelo real.',
-    'core.csv.scoreNote': 'Puntaje crudo de 0 a 1; no es una probabilidad clínica.',
+    'core.csv.scoreNote': 'Puntaje relativo de 0 a 1; no indica la probabilidad de tener una enfermedad.',
     'core.csv.origin.camera': 'Cámara',
     'core.csv.origin.file': 'Archivo cargado',
     'core.csv.origin.sample': 'Imagen de referencia pública',
@@ -68,7 +68,7 @@ export const coreCopy = {
   },
   en: {
     'core.notice.experimental':
-      'Experimental research prototype. Scores are not clinical probabilities. It does not diagnose.',
+      'This is an AI research tool. It does not replace clinical assessment or provide diagnoses.',
     'core.badge.simulated': 'Simulated model',
     'core.abcde.unanswered': 'Not evaluated',
     'core.source.live': 'Live',
@@ -83,7 +83,7 @@ export const coreCopy = {
     'core.export.image': 'Image',
     'core.export.noImage': 'No image',
     'core.export.noResult': 'No model output',
-    'core.export.scores': 'Raw scores',
+    'core.export.scores': 'Relative model scores',
     'core.export.observations': 'ABCDE observations',
     'core.export.note': 'Note',
     'core.export.failed': 'The file could not be generated.',
@@ -109,7 +109,7 @@ export const coreCopy = {
     'core.csv.release': 'Release',
     'core.csv.sha': 'Model SHA-256',
     'core.csv.simulatedNote': 'Simulated values: they do not come from the real model.',
-    'core.csv.scoreNote': 'Raw score from 0 to 1; not a clinical probability.',
+    'core.csv.scoreNote': 'Relative score from 0 to 1; it does not indicate the probability of having a condition.',
     'core.csv.origin.camera': 'Camera',
     'core.csv.origin.file': 'Uploaded file',
     'core.csv.origin.sample': 'Public reference image',

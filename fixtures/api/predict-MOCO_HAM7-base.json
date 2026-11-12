@@ -1,0 +1,34 @@
+{
+  "pred": "nv",
+  "confidence": 0.703498,
+  "confidence_calibrated": false,
+  "confidence_note": "Uncalibrated model score; not a clinical probability.",
+  "classes": ["akiec", "bcc", "bkl", "df", "mel", "nv", "vasc"],
+  "probs": {"akiec": 0.002772, "bcc": 0.001791, "bkl": 0.238344, "df": 0.011131, "mel": 0.002328, "nv": 0.703498, "vasc": 0.040136},
+  "feature_dim": 3072,
+  "mode": "base",
+  "requested_mode": "base",
+  "inference_mode": "single_view",
+  "views": 1,
+  "model_key": "MOCO_HAM7",
+  "identity": {
+    "model_id": "dermssl-v10-moco",
+    "release": "v10.0.0",
+    "method": "moco_v3_style",
+    "conversion": "V10 shared-backbone ONNX",
+    "backbone": "DINOv2 ViT-B/14",
+    "backbone_sha256": "fe64610560880e2df1185bf17fbe49e2da46a31e0644ddad76bfa7e8651aab1e",
+    "model_sha256": "eb41e67f472a1491a6970246e59f6db8c0276c79fdd190c68fb25e3b3f80dd7a",
+    "recipe": {"feature": "cls4", "layers": [8, 9, 10, 11], "layer_norm": true, "l2_normalize": true, "n_views": 1, "tta": "none", "tau": 0.0, "color_constancy": false, "hue_jitter": 0.0},
+    "task": "HAM",
+    "model_key": "MOCO_HAM7",
+    "head_sha256": "7b441d4eabe2b06b5b73cf40618d9a921e205f225758983e85fb29b644f78930",
+    "task_sha256": "220415f20dff5d5c5f421d0a666fdaaa2c08aed3b5b433c372dad04b40a9b977",
+    "sha256": {
+      "model": "eb41e67f472a1491a6970246e59f6db8c0276c79fdd190c68fb25e3b3f80dd7a",
+      "head": "7b441d4eabe2b06b5b73cf40618d9a921e205f225758983e85fb29b644f78930",
+      "task": "220415f20dff5d5c5f421d0a666fdaaa2c08aed3b5b433c372dad04b40a9b977",
+      "backbone": "fe64610560880e2df1185bf17fbe49e2da46a31e0644ddad76bfa7e8651aab1e"
+    }
+  }
+}

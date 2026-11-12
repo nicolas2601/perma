@@ -7,8 +7,7 @@ import { illustrationUrl } from '@/assets/illustrations';
 import { Button } from '@/ui/Button';
 import { Card } from '@/ui/Card';
 import { IconBlob } from '@/ui/IconBlob';
-import { ChevronDownIcon, InfoIcon } from '@/ui/icons';
-import { Glyph } from './Glyph';
+import { InfoIcon } from '@/ui/icons';
 import { AppShell } from './AppShell';
 import { BODY_SITE_KEYS, ClinicalContextSheet, SITE_LABEL_KEY, SiteSheet, type BodySiteKey } from './ContextSheets';
 import { CAPTURE_PATH, DESK_PATH } from './recoveryPaths';
@@ -46,10 +45,7 @@ export default function Context() {
           <div className="flex flex-col gap-3">
             <div className={FIELD_CLASS}>
               <span className="text-caption text-muted">{t('modality')}</span>
-              <span className="flex w-full items-center justify-between text-body text-ink">
-                {t('modalityValue')}
-                <Glyph className="size-5"><ChevronDownIcon /></Glyph>
-              </span>
+              <span className="text-body text-ink">{t('modalityValue')}</span>
             </div>
             <button type="button" className={FIELD_CLASS} onClick={() => setSiteOpen(true)}>
               <span className="text-caption text-muted">{t('site')}</span>

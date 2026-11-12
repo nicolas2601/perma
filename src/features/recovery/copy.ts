@@ -16,7 +16,7 @@ export const copy = {
 
     'permission.shell': 'Permiso de cámara denegado',
     'permission.title': 'El acceso a la cámara no está disponible.',
-    'permission.body': 'El escenario de permiso denegado no bloquea la selección de archivos. El contexto registrado sigue disponible.',
+    'permission.body': 'Puede continuar sin usar la cámara: elija un archivo de imagen. El contexto que ya registró sigue disponible.',
     'permission.heading1': 'Usar un archivo',
     'permission.text1': 'Elija una imagen adecuada sin conceder acceso a la cámara.',
     'permission.heading2': 'Probar la cámara más tarde',
@@ -26,17 +26,17 @@ export const copy = {
     'offline.shell': 'Conexión no disponible',
     'offline.title': 'Sin conexión para el análisis.',
     'offline.body':
-      'Una solicitud real al modelo requiere el servicio de inferencia. La interfaz no debe mostrar un resultado nuevo sin conexión.',
+      'El análisis necesita conexión con el servidor. Puede volver a revisar su registro y reintentar el envío cuando recupere la conexión.',
     'offline.heading1': 'Conservar el trabajo actual',
     'offline.text1': 'Conserve la entrada durante esta sesión. No se ha verificado el almacenamiento persistente sin conexión.',
     'offline.heading2': 'Al conectarse',
-    'offline.text2': 'Volver al envío y reintentar explícitamente. No cargue en segundo plano sin avisar.',
+    'offline.text2': 'Vuelva al envío cuando tenga conexión y confirme un nuevo intento. La imagen no se reenvía automáticamente.',
     'offline.primary': 'Volver al envío',
 
     'server-error.shell': 'Análisis no disponible',
     'server-error.title': 'No se recibió ningún resultado del análisis.',
     'server-error.body':
-      'Escenario de error del servidor. No muestre puntajes anteriores como si fueran una respuesta nueva. Conserve la imagen y el contexto actuales para un reintento deliberado.',
+      'No pudimos obtener una respuesta del servidor. No hay un resultado nuevo para este intento. Revise la imagen y el contexto antes de decidir si desea enviarla otra vez.',
     'server-error.primary': 'Revise antes de reintentar',
     'server-error.detailTitle': 'Revisar la imagen',
     'server-error.detailHint': 'Abrir detalles',
@@ -45,19 +45,19 @@ export const copy = {
     'timeout.shell': 'Finalización no confirmada',
     'timeout.title': 'No se confirmó la finalización.',
     'timeout.body':
-      'Un tiempo de espera agotado no demuestra que el servidor se haya detenido. Evite el reenvío automático y explique qué puede confirmar el servicio.',
+      'La respuesta tardó más de lo previsto y dejamos de esperar. Esto no confirma que el servidor haya detenido el análisis. Puede volver al registro; no enviaremos otra solicitud sin su acción.',
     'timeout.primary': 'Volver sin reenviar',
 
-    'invalid-response.shell': 'Incompatibilidad del contrato del modelo',
+    'invalid-response.shell': 'Respuesta del modelo incompatible',
     'invalid-response.title': 'La respuesta no se puede usar.',
     'invalid-response.body':
-      'La identidad devuelta o la estructura de puntajes no coincide con el contrato validado del cliente. No se deben mostrar puntajes de clase.',
+      'La respuesta no coincide con el modelo o el formato que espera PERMA. Por eso no mostramos sus puntajes. Puede conservar el registro y consultar los detalles técnicos antes de reintentar.',
     'invalid-response.heading1': 'Identidad esperada',
     'invalid-response.text1':
-      'B71 / base / D4 / 8 vistas / 3072 dimensiones, con siete clases compatibles únicas y puntajes coherentes.',
+      'MOCO_HAM7 / base / sin TTA / 1 vista / 3072 dimensiones, con siete clases compatibles únicas y puntajes coherentes.',
     'invalid-response.heading2': 'Recuperación',
     'invalid-response.text2': 'Conserve la entrada. Compruebe la compatibilidad del servicio antes de una nueva solicitud.',
-    'invalid-response.primary': 'Revisar contrato técnico',
+    'invalid-response.primary': 'Ver detalles técnicos',
 
     'rate-limit.shell': 'Límite de solicitudes alcanzado',
     'rate-limit.title': 'El servicio está limitando las solicitudes.',
@@ -68,7 +68,7 @@ export const copy = {
     'export-unavailable.shell': 'Exportación no disponible',
     'export-unavailable.title': 'No se creó la exportación.',
     'export-unavailable.body':
-      'Escenario de recuperación. Mantenga disponible la sesión y permita que el profesional vuelva a intentarlo sin perder las observaciones.',
+      'No pudimos preparar el archivo para descargarlo. Vuelva a la vista previa, compruebe el contenido e inténtelo de nuevo.',
     'export-unavailable.primary': 'Volver a la vista previa de exportación',
   },
   en: {
@@ -82,7 +82,7 @@ export const copy = {
 
     'permission.shell': 'Camera permission denied',
     'permission.title': 'Camera access is not available.',
-    'permission.body': 'Denied camera permission does not block file selection. The recorded context remains available.',
+    'permission.body': 'You can continue without the camera: choose an image file. The context you already recorded remains available.',
     'permission.heading1': 'Use a file',
     'permission.text1': 'Choose a suitable image without granting camera access.',
     'permission.heading2': 'Try the camera later',
@@ -91,17 +91,17 @@ export const copy = {
 
     'offline.shell': 'Connection unavailable',
     'offline.title': 'No connection for the analysis.',
-    'offline.body': 'A real model request needs the inference service. The interface must not show a new result offline.',
+    'offline.body': 'Analysis needs a connection to the server. You can return to your record and retry sending when you are back online.',
     'offline.heading1': 'Keep the current work',
     'offline.text1': 'Keep the input during this session. Offline persistent storage has not been verified.',
     'offline.heading2': 'When connected',
-    'offline.text2': 'Return to submission and retry explicitly. Nothing is uploaded in the background without notice.',
+    'offline.text2': 'Return to submission when connected and confirm a new attempt. The image is not resent automatically.',
     'offline.primary': 'Back to submission',
 
     'server-error.shell': 'Analysis unavailable',
     'server-error.title': 'No analysis result was received.',
     'server-error.body':
-      'Server error scenario. Do not show earlier scores as if they were a new response. Keep the current image and context for a deliberate retry.',
+      'We could not get a response from the server. There is no new result for this attempt. Review the image and context before deciding whether to send it again.',
     'server-error.primary': 'Review before retrying',
     'server-error.detailTitle': 'Review the image',
     'server-error.detailHint': 'Open details',
@@ -110,18 +110,18 @@ export const copy = {
     'timeout.shell': 'Completion not confirmed',
     'timeout.title': 'Completion could not be confirmed.',
     'timeout.body':
-      'A timeout does not prove that the server stopped. Avoid automatic resending and explain what the service can confirm.',
+      'The response took longer than expected, so we stopped waiting. This does not confirm that the server stopped processing. You can return to the record; we will not send another request without your action.',
     'timeout.primary': 'Go back without resending',
 
-    'invalid-response.shell': 'Model contract mismatch',
+    'invalid-response.shell': 'Incompatible model response',
     'invalid-response.title': 'The response cannot be used.',
     'invalid-response.body':
-      'The returned identity or score structure does not match the validated client contract. No class scores must be shown.',
+      'The response does not match the model or format PERMA expects, so its scores are not displayed. You can keep the record and check the technical details before retrying.',
     'invalid-response.heading1': 'Expected identity',
-    'invalid-response.text1': 'B71 / base / D4 / 8 views / 3072 dimensions, with seven unique compatible classes and coherent scores.',
+    'invalid-response.text1': 'MOCO_HAM7 / base / no TTA / 1 view / 3072 dimensions, with seven unique compatible classes and coherent scores.',
     'invalid-response.heading2': 'Recovery',
     'invalid-response.text2': 'Keep the input. Check the service compatibility before a new request.',
-    'invalid-response.primary': 'Review technical contract',
+    'invalid-response.primary': 'View technical details',
 
     'rate-limit.shell': 'Request limit reached',
     'rate-limit.title': 'The service is limiting requests.',
@@ -131,7 +131,7 @@ export const copy = {
     'export-unavailable.shell': 'Export unavailable',
     'export-unavailable.title': 'The export was not created.',
     'export-unavailable.body':
-      'Recovery scenario. Keep the session available and let the professional try again without losing the observations.',
+      'We could not prepare the download. Return to the preview, check its contents and try again.',
     'export-unavailable.primary': 'Back to export preview',
   },
 } as const;

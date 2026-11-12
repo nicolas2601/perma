@@ -6,8 +6,8 @@ import {
   type ModelIdentity,
 } from './types';
 
-/** Arms the public API serves today. `next` is mock-only and never reaches this contract. */
-export const LIVE_MODEL_KEYS = ['A71', 'B71'] as const;
+// shortcut: the UI and exports use HAM7 labels; add result-specific vocabularies before enabling PAD6.
+export const LIVE_MODEL_KEYS = ['MOCO_HAM7'] as const;
 export const INFERENCE_MODES = ['base', 'tta'] as const;
 
 const SHA256_HEX = /^[0-9a-f]{64}$/;
@@ -16,7 +16,8 @@ export const classCodeSchema = z.enum(CLASS_CODES);
 const scoreSchema = z.number().finite().min(0).max(1);
 /** Exhaustive: every class code must be present (zod 4 enum-keyed record). */
 export const scoresSchema = z.record(classCodeSchema, scoreSchema);
-const modelKeySchema = z.enum(LIVE_MODEL_KEYS);
+const modelKeySchema = z.enum(['A71', 'B71']);
+const mocoModelKeySchema = z.enum(LIVE_MODEL_KEYS);
 const modeSchema = z.enum(INFERENCE_MODES);
 
 export const recipeSchema = z.object({
@@ -27,7 +28,7 @@ export const recipeSchema = z.object({
   n_views: z.number().int().positive(),
 });
 
-export const identitySchema = z.object({
+const legacyIdentitySchema = z.object({
   model_id: z.string().min(1),
   release: z.string().min(1),
   arm: modelKeySchema,
@@ -35,6 +36,19 @@ export const identitySchema = z.object({
   sha256_verified: z.boolean(),
   recipe: recipeSchema,
 });
+
+const mocoRecipeSchema = recipeSchema.omit({ aggregation: true }).extend({
+  tta: z.literal('none'),
+  n_views: z.literal(1),
+});
+const mocoIdentitySchema = z.object({
+  model_id: z.literal('dermssl-v10-moco'),
+  release: z.literal('v10.0.0'),
+  model_sha256: z.string().regex(SHA256_HEX),
+  sha256_verified: z.boolean().nullable().default(null),
+  recipe: mocoRecipeSchema,
+});
+export const identitySchema = z.union([legacyIdentitySchema, mocoIdentitySchema]);
 
 /** Per-arm state shared by /api/status and the per-model entries of /api/report. */
 const modelStateSchema = z.object({
@@ -45,12 +59,19 @@ const modelStateSchema = z.object({
   release_arm: modelKeySchema,
   device: z.string().min(1),
   threads: z.number().int().nonnegative(),
-  identity: identitySchema,
+  identity: legacyIdentitySchema,
   recipe: recipeSchema,
 });
 
-/** GET /api/status (fixtures/api/status.json). Adds the arm selected by the server. */
-export const statusSchema = modelStateSchema.extend({ model_key: modelKeySchema });
+/** V9 captures remain readable; live requests are restricted to the current model registry. */
+export const statusSchema = z.union([
+  modelStateSchema.extend({ model_key: modelKeySchema }),
+  modelStateSchema.omit({ recipe: true }).extend({
+    release_arm: z.null(),
+    model_key: mocoModelKeySchema,
+    identity: mocoIdentitySchema,
+  }),
+]);
 export type StatusResponse = z.infer<typeof statusSchema>;
 
 /** GET /api/report (fixtures/api/report.json). No scientific report, only state and disclaimer. */
@@ -62,7 +83,7 @@ export const reportSchema = z.object({
 });
 
 /** POST /api/predict success body (fixtures/api/predict-B71-{base,tta}.json). */
-export const predictResponseSchema = z
+const legacyPredictResponseSchema = z
   .object({
     pred: classCodeSchema,
     confidence: scoreSchema,
@@ -74,8 +95,19 @@ export const predictResponseSchema = z
     inference_mode: z.string().min(1),
     views: z.number().int().positive(),
     model_key: modelKeySchema,
-    identity: identitySchema,
-  })
+    identity: legacyIdentitySchema,
+  });
+export const predictResponseSchema = z.union([
+  legacyPredictResponseSchema,
+  legacyPredictResponseSchema.extend({
+    model_key: mocoModelKeySchema,
+    identity: mocoIdentitySchema,
+    mode: z.literal('base'),
+    requested_mode: z.literal('base'),
+    inference_mode: z.literal('single_view'),
+    views: z.literal(1),
+  }),
+])
   .refine((body) => sameClassOrder(body.classes), {
     message: 'classes must match CLASS_CODES order',
   })
@@ -103,8 +135,9 @@ export function parseOrInvalid<S extends z.ZodType>(schema: S, payload: unknown,
   return parsed.data;
 }
 
-export function formatRecipe(recipe: StatusResponse['recipe']): string {
-  return `${recipe.feature} | tau=${recipe.tau} | ${recipe.tta} | ${recipe.aggregation} | n=${recipe.n_views}`;
+export function formatRecipe(recipe: z.infer<typeof identitySchema>['recipe']): string {
+  const aggregation = 'aggregation' in recipe ? ` | ${recipe.aggregation}` : '';
+  return `${recipe.feature} | tau=${recipe.tau} | ${recipe.tta}${aggregation} | n=${recipe.n_views}`;
 }
 
 export function toModelIdentity(identity: z.infer<typeof identitySchema>): ModelIdentity {

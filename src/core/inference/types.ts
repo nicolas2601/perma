@@ -1,4 +1,4 @@
-export type ModelId = 'A71' | 'B71' | 'next';
+export type ModelId = 'MOCO_HAM7' | 'A71' | 'B71' | 'next';
 export type InferenceMode = 'base' | 'tta';
 export type DataSource = 'live' | 'mock';
 
