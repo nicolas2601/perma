@@ -74,7 +74,6 @@ export function ToneAudit({ result, file, src }: ToneAuditProps) {
     <div className="flex flex-col gap-4">
       <h2 className="m-0 text-title text-ink">{t('toneTitle')}</h2>
       <p className="m-0 text-body text-ink">{t('toneExplain')}</p>
-      <p className="m-0 text-caption text-muted">{t('toneRampNote')}</p>
       <figure className="m-0 flex flex-col gap-2 overflow-hidden rounded-tile bg-surface">
         {shownSrc ? (
           <img src={shownSrc} alt={showSimulated ? t('toneSimulated') : t('toneOriginal')} decoding="async" className="block h-40 w-full object-contain lg:h-64" />
@@ -112,6 +111,7 @@ export function ToneAudit({ result, file, src }: ToneAuditProps) {
       {delta === 0 ? <p className="m-0 text-caption text-muted">{t('toneZeroNote')}</p> : null}
       {mask === undefined ? <p className="m-0 text-caption text-muted">{t('toneNoMask')}</p> : null}
       {failed ? <p className="m-0 text-caption text-muted">{t('toneFailed')}</p> : null}
+      <p className="m-0 text-caption text-muted">{t('toneRampNote')}</p>
       <p className="m-0 text-caption text-ink">
         {t('toneBefore')}: {before === null ? '—' : formatItaDegrees(before, locale)}
         {showSimulated ? ` · ${t('toneAfter')}: ${after === null ? '—' : formatItaDegrees(after, locale)}` : null}

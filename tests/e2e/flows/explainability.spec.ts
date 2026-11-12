@@ -87,12 +87,13 @@ test.describe('explainability layer on the real captured reference image', () =>
     await shot(page, 'audit-after-simulation');
   });
 
-  test('phones: the audit Simular button is never covered by the bottom navigation', async ({ page }) => {
+  test('phones: the audit Simular button sits above the bottom navigation at first render', async ({ page }) => {
     test.skip(test.info().project.name !== 'mobile-390', 'phone layout only');
     await runToResult(page);
     await page.goto('/inspeccion?tab=auditoria');
+    // Initial render, no scrolling: the control must already sit above the bottom navigation.
     const simular = page.getByRole('button', { name: 'Simular' });
-    await simular.scrollIntoViewIfNeeded();
+    await expect(simular).toBeVisible();
     const nav = page.getByRole('navigation', { name: 'Navegación principal' }).filter({ visible: true }).first();
     const button = await simular.boundingBox();
     const bar = await nav.boundingBox();
