@@ -97,3 +97,16 @@ describe('tone stops and simulation cache', () => {
     expect(() => cache.set(-8 as never, 'x')).toThrow(RangeError);
   });
 });
+
+describe('percent format for the lesion area', () => {
+  it('uses a locale decimal comma and a space before the percent sign in Spanish', async () => {
+    const { formatPercent } = await import('@/core/explain/ita');
+    expect(formatPercent(0.428, 'es')).toBe('42,8\u00A0%');
+    expect(formatPercent(0.428, 'en')).toBe('42.8%');
+  });
+
+  it('refuses a fraction outside [0, 1]', async () => {
+    const { formatPercent } = await import('@/core/explain/ita');
+    expect(() => formatPercent(1.2, 'es')).toThrow(RangeError);
+  });
+});

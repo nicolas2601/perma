@@ -1,5 +1,5 @@
 import { useT } from '@/core/i18n/I18nProvider';
-import type { ExplainLocale } from '@/core/explain/ita';
+import { formatPercent, type ExplainLocale } from '@/core/explain/ita';
 import type { InferenceResult, ModelIdentity, SegmentationResult } from '@/core/inference/types';
 import { PhotometryCard } from './PhotometryCard';
 
@@ -24,7 +24,7 @@ export function TechnicalDetails({ result, locale }: TechnicalDetailsProps) {
           identity={result.identity}
           rows={[t('technicalModel'), t('technicalRecipe')]}
         />
-        <SegmenterBlock segmentation={result.segmentation} />
+        <SegmenterBlock segmentation={result.segmentation} locale={locale} />
       </div>
     </details>
   );
@@ -47,7 +47,7 @@ function IdentityList({ heading, identity, rows }: { heading: string; identity: 
   );
 }
 
-function SegmenterBlock({ segmentation }: { segmentation: SegmentationResult | undefined }) {
+function SegmenterBlock({ segmentation, locale }: { segmentation: SegmentationResult | undefined; locale: ExplainLocale }) {
   const t = useT('inspect');
   if (segmentation?.status !== 'ok') {
     return (
@@ -67,7 +67,7 @@ function SegmenterBlock({ segmentation }: { segmentation: SegmentationResult | u
         <dt className="text-muted">{t('technicalChecksum')}</dt>
         <dd className="m-0 break-all">{identity.modelSha256}</dd>
         <dt className="text-muted">{t('technicalAreaLabel')}</dt>
-        <dd className="m-0">{segmentation.areaFraction.toFixed(3)}</dd>
+        <dd className="m-0">{formatPercent(segmentation.areaFraction, locale)}</dd>
       </dl>
     </section>
   );
