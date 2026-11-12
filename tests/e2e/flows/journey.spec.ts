@@ -134,7 +134,7 @@ test.describe('9-step journey (mock build, success scenario)', () => {
       await page.getByRole('button', { name: COPY.abcdeSummary }).click();
       await expect(page).toHaveURL(/\/examen\/comparar$/);
       await page.getByRole('button', { name: COPY.compareNote }).click();
-      await page.getByRole('textbox', { name: 'Editar la nota profesional' }).fill(NOTE_TEXT);
+      await page.getByRole('textbox', { name: 'Nota profesional' }).fill(NOTE_TEXT);
       await page.getByRole('button', { name: 'Guardar nota' }).click();
       await expect(page.getByText('Nota guardada.')).toBeVisible();
       await page.getByRole('button', { name: 'Cerrar' }).first().click();

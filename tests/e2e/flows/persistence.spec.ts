@@ -20,7 +20,7 @@ test('reload restores the record, the ABCDE value and the note from IndexedDB', 
   await page.getByRole('radio', { name: ABCDE_OPTION, exact: true }).click();
   await page.getByRole('button', { name: COPY.abcdeSummary }).click();
   await page.getByRole('button', { name: COPY.compareNote }).click();
-  await page.getByRole('textbox', { name: 'Editar la nota profesional' }).fill(NOTE_TEXT);
+  await page.getByRole('textbox', { name: 'Nota profesional' }).fill(NOTE_TEXT);
   await page.getByRole('button', { name: 'Guardar nota' }).click();
   await expect(page.getByText('Nota guardada.')).toBeVisible();
   await page.getByRole('button', { name: 'Cerrar' }).first().click();

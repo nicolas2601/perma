@@ -28,7 +28,7 @@ test('result to export flow on simulated data', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'La comparación necesita contexto.' })).toBeVisible();
 
   await page.getByRole('button', { name: 'Escribir nota profesional' }).click();
-  await page.getByRole('textbox', { name: 'Editar la nota profesional' }).fill('Control de prueba');
+  await page.getByRole('textbox', { name: 'Nota profesional' }).fill('Control de prueba');
   await page.getByRole('button', { name: 'Guardar nota' }).click();
   await expect(page.getByText('Nota guardada.')).toBeVisible();
   await page.keyboard.press('Escape');
