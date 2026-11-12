@@ -8,7 +8,7 @@ export const COPY = {
   continueToImage: 'Continuar a la imagen',
   captureHeadline: 'Elija la imagen.',
   sampleCta: 'Usar ejemplo de referencia pública',
-  qualityHeadline: 'Revise la imagen antes de enviarla.',
+  qualityHeadline: 'Revise antes de enviar.',
   reviewSend: 'Revisar envío',
   consentHeadline: 'Revise la imagen antes de enviarla.',
   consentLabel: 'Tengo autorización para enviar esta imagen.',
