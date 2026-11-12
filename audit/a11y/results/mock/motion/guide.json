@@ -1,0 +1,8 @@
+{
+  "view": "guide",
+  "route": "/guia",
+  "reducedMotionEmulated": true,
+  "longDeclaredTransitions": [],
+  "animationsSampled": 0,
+  "offenders": []
+}

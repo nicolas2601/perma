@@ -1,0 +1,98 @@
+{
+  "route": "/revision",
+  "tabPresses": 120,
+  "reachedBrowserOrEnd": true,
+  "uniqueStops": 7,
+  "trapCandidates": [],
+  "invisibleFocus": [],
+  "obscuredFocus": [],
+  "backwardJumps": [
+    {
+      "step": 9,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 17,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 25,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 33,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 41,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 49,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 57,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 65,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 73,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 81,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 89,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 97,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 105,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    },
+    {
+      "step": 113,
+      "from": "Vista previa de exportación",
+      "to": "Volver"
+    }
+  ],
+  "firstStops": [
+    "button:Volver",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "div:Su sesión, claramente separada.Revise lo registrado y lo que",
+    "button:Editar observaciones manuales",
+    "button:Nota profesional",
+    "button:Vista previa de exportación",
+    "button:Volver",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "div:Su sesión, claramente separada.Revise lo registrado y lo que",
+    "button:Editar observaciones manuales",
+    "button:Nota profesional",
+    "button:Vista previa de exportación",
+    "button:Volver"
+  ]
+}

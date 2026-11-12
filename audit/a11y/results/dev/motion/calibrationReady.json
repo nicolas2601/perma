@@ -1,0 +1,8 @@
+{
+  "view": "calibrationReady",
+  "route": "/examen/calibracion/lista",
+  "reducedMotionEmulated": true,
+  "longDeclaredTransitions": [],
+  "animationsSampled": 0,
+  "offenders": []
+}

@@ -1,0 +1,8 @@
+{
+  "view": "consent",
+  "route": "/envio",
+  "reducedMotionEmulated": true,
+  "longDeclaredTransitions": [],
+  "animationsSampled": 0,
+  "offenders": []
+}

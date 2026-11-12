@@ -1,0 +1,31 @@
+{
+  "environment": {
+    "node": "v26.2.0",
+    "cpu": "AMD Ryzen 5 5500U with Radeon Graphics",
+    "cores": 12,
+    "throttling": "not applied"
+  },
+  "edge": 128,
+  "frames": 240,
+  "repeats": 5,
+  "targetFps": 10,
+  "deadlineMs": 1500,
+  "workerPath": {
+    "samples": 1200,
+    "meanMs": 1.08,
+    "p50Ms": 1.01,
+    "p95Ms": 1.523,
+    "maxMs": 3.21,
+    "analysisFpsCeiling": 925.6,
+    "fpsAtTarget": 10
+  },
+  "measurementOnly": {
+    "samples": 1200,
+    "meanMs": 0.958,
+    "p50Ms": 0.953,
+    "p95Ms": 1.241,
+    "maxMs": 1.688,
+    "analysisFpsCeiling": 1044.2,
+    "fpsAtTarget": 10
+  }
+}

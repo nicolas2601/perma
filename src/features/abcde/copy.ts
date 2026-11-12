@@ -1,0 +1,156 @@
+import type { AbcdeCriterion } from '@/core/storage/types';
+
+/**
+ * ABCDE, calibration and comparison-entry copy. Option keys mirror `ABCDE_OPTIONS`
+ * in logic.ts (17 entries across the five criteria). Keys are namespaced `abcde.<key>`.
+ */
+export const copy = {
+  es: {
+    pageTitle: 'Mis observaciones',
+    intro: 'Abra cada criterio para anotar lo que observa o para corregir una anotación anterior.',
+    unanswered: 'Sin evaluar',
+    back: 'Volver a la imagen',
+    next: 'Ver resumen',
+    navLabel: 'Criterios ABCDE',
+    listLabel: 'Observaciones ABCDE',
+    criterionA: 'Asimetría',
+    criterionB: 'Borde',
+    criterionC: 'Color',
+    criterionD: 'Diámetro',
+    criterionE: 'Evolución',
+    descA: 'Compare ambos ejes de la lesión y anote solo lo que se ve en la imagen.',
+    descB: 'Revise el contorno de la lesión y anote solo lo que se ve en la imagen.',
+    descC: 'Anote los colores visibles en la imagen original, sin aplicar filtros.',
+    descD: 'Si tiene una medición manual verificada, regístrela. Si no, deje este criterio sin medir.',
+    descE: 'Anote el cambio reportado. Este prototipo no incluye una imagen anterior para comparar.',
+    'A.symmetric': 'Simétrica',
+    'A.asymmetric-one-axis': 'Asimétrica en un eje',
+    'A.asymmetric-two-axes': 'Asimétrica en dos ejes',
+    'A.not-evaluable': 'No evaluable',
+    'B.regular': 'Borde regular',
+    'B.irregular': 'Borde irregular',
+    'B.not-evaluable': 'No evaluable',
+    'C.one-color': 'Un color',
+    'C.two-colors': 'Dos colores',
+    'C.three-or-more-colors': 'Tres colores o más',
+    'C.not-evaluable': 'No evaluable',
+    'D.over-6mm-manual': 'Más de 6 mm (medición manual)',
+    'D.up-to-6mm-manual': '6 mm o menos (medición manual)',
+    'D.no-physical-measure': 'Sin medición física',
+    'E.change-reported': 'Cambio reportado',
+    'E.no-change-reported': 'No se reportan cambios',
+    'E.not-evaluable': 'No evaluable',
+    calibrationTitle: 'Mis observaciones · Escala',
+    calibrationHeading: 'Antes de dar una medida, necesita una referencia.',
+    calibrationBody:
+      'En un uso real, la fotografía debe incluir una longitud física conocida en el mismo plano de la lesión. Este prototipo no calibra la fotografía.',
+    calibrationNoRulerTitle: 'No dé por supuesta una regla visible',
+    calibrationNoRulerBody:
+      'Que la imagen muestre marcas de regla no basta para confirmar sus unidades, la perspectiva ni cómo se tomó la foto.',
+    calibrationWithoutTitle: 'Sin calibración',
+    calibrationWithoutBody: 'Anote «Sin medición física». No convierta píxeles en milímetros.',
+    calibrationAction: 'Ver la lista de verificación de la referencia',
+    refCardHint: 'Abrir detalles',
+    refPhysicalTitle: 'Requisitos de la referencia física',
+    refPhysicalBody:
+      'Solo puede anotar una medición manual si la referencia física está verificada y se encuentra en el mismo plano de la lesión. Si no está verificada, marque «Sin medición física».',
+    refChangeTitle: 'Comparación con imagen anterior',
+    refChangeBody:
+      'No hay comparación automática sin una imagen anterior real y los datos de cómo se tomó. Anote solo el cambio que se reporte.',
+    readyTitle: 'Mis observaciones · Referencia',
+    readyHeading: 'Lista de verificación de la referencia',
+    readyIntro: 'Es un ejemplo de documentación. No indica que la calibración haya funcionado.',
+    readyLengthTitle: 'Longitud y unidades conocidas',
+    readyLengthBody: 'Confirme la longitud de referencia y sus unidades.',
+    readyPlaneTitle: 'Mismo plano que la lesión',
+    readyPlaneBody: 'La perspectiva y la distorsión no deben quitarle validez a la referencia.',
+    readyConfirmTitle: 'Confirmación del profesional',
+    readyConfirmBody: 'Usted confirma la referencia antes de anotar cualquier medición física.',
+    readyAction: 'Volver sin medir',
+  },
+  en: {
+    pageTitle: 'My observations',
+    intro: 'Open each criterion to record what you observe or to correct an earlier entry.',
+    unanswered: 'Not assessed',
+    back: 'Back to image',
+    next: 'View summary',
+    navLabel: 'ABCDE criteria',
+    listLabel: 'ABCDE observations',
+    criterionA: 'Asymmetry',
+    criterionB: 'Border',
+    criterionC: 'Colour',
+    criterionD: 'Diameter',
+    criterionE: 'Evolution',
+    descA: 'Compare both axes of the lesion and record only what is visible in the image.',
+    descB: 'Review the outline of the lesion and record only what is visible in the image.',
+    descC: 'Record the colours visible in the original image, without applying filters.',
+    descD: 'If you have a verified manual measurement, record it. If not, leave this criterion unmeasured.',
+    descE: 'Record the reported change. This prototype does not include an earlier image to compare.',
+    'A.symmetric': 'Symmetric',
+    'A.asymmetric-one-axis': 'Asymmetric in one axis',
+    'A.asymmetric-two-axes': 'Asymmetric in two axes',
+    'A.not-evaluable': 'Not evaluable',
+    'B.regular': 'Regular border',
+    'B.irregular': 'Irregular border',
+    'B.not-evaluable': 'Not evaluable',
+    'C.one-color': 'One colour',
+    'C.two-colors': 'Two colours',
+    'C.three-or-more-colors': 'Three or more colours',
+    'C.not-evaluable': 'Not evaluable',
+    'D.over-6mm-manual': 'Over 6 mm (manual measurement)',
+    'D.up-to-6mm-manual': '6 mm or less (manual measurement)',
+    'D.no-physical-measure': 'No physical measurement',
+    'E.change-reported': 'Change reported',
+    'E.no-change-reported': 'No change reported',
+    'E.not-evaluable': 'Not evaluable',
+    calibrationTitle: 'My observations · Scale',
+    calibrationHeading: 'Before a measurement, you need a reference.',
+    calibrationBody:
+      'In real use, the photograph must include a known physical length in the same plane as the lesion. This prototype does not calibrate the photograph.',
+    calibrationNoRulerTitle: 'Do not assume a visible ruler is valid',
+    calibrationNoRulerBody:
+      'Ruler-like markings in the image do not by themselves confirm the units, the perspective or how the photograph was taken.',
+    calibrationWithoutTitle: 'Without calibration',
+    calibrationWithoutBody: 'Record “No physical measurement”. Do not convert pixels to millimetres.',
+    calibrationAction: 'View the reference checklist',
+    refCardHint: 'Open details',
+    refPhysicalTitle: 'Physical reference requirements',
+    refPhysicalBody:
+      'You can record a manual measurement only if the physical reference is verified and lies in the same plane as the lesion. If it is not verified, mark “No physical measurement”.',
+    refChangeTitle: 'Comparison with earlier image',
+    refChangeBody:
+      'There is no automatic comparison without a real earlier image and the details of how it was taken. Record only the change that is reported.',
+    readyTitle: 'My observations · Reference',
+    readyHeading: 'Reference checklist',
+    readyIntro: 'This is a documentation example. It does not show that the calibration worked.',
+    readyLengthTitle: 'Known length and units',
+    readyLengthBody: 'Confirm the reference length and its units.',
+    readyPlaneTitle: 'Same plane as the lesion',
+    readyPlaneBody: 'Perspective and distortion must not undermine the reference.',
+    readyConfirmTitle: 'Professional confirmation',
+    readyConfirmBody: 'You confirm the reference before recording any physical measurement.',
+    readyAction: 'Return without measuring',
+  },
+} as const;
+
+/** Copy key of the criterion title, e.g. "A" -> "criterionA". */
+export const CRITERION_TITLE_KEY: Record<AbcdeCriterion, string> = {
+  A: 'criterionA',
+  B: 'criterionB',
+  C: 'criterionC',
+  D: 'criterionD',
+  E: 'criterionE',
+};
+
+export const CRITERION_DESC_KEY: Record<AbcdeCriterion, string> = {
+  A: 'descA',
+  B: 'descB',
+  C: 'descC',
+  D: 'descD',
+  E: 'descE',
+};
+
+/** Copy key of an option value, e.g. ("B", "regular") -> "B.regular". */
+export function optionKey(criterion: AbcdeCriterion, value: string): string {
+  return `${criterion}.${value}`;
+}

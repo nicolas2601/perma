@@ -1,0 +1,34 @@
+# Static host headers (Cloudflare Pages / Netlify `_headers` syntax). Copied to dist/ by Vite.
+# EXAMPLE-grade policy: verify with `curl -sI` on the real host after deploy.
+# Not applied by `vite preview` or `vite dev`. /api is served by the reverse proxy, see deploy/.
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; font-src 'self'; worker-src 'self' blob:; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+  Permissions-Policy: camera=(self), microphone=(), geolocation=(), payment=(), usb=()
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Content-Type-Options: nosniff
+
+# Content-hashed bundles: safe to cache forever.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Workbox runtime chunk is named by content hash (workbox-<hash>.js).
+/workbox-*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+# Must always revalidate so updates and the precache manifest are seen.
+/index.html
+  Cache-Control: no-store
+
+/sw.js
+  Cache-Control: no-store
+
+/registerSW.js
+  Cache-Control: no-cache
+
+/manifest.webmanifest
+  Cache-Control: no-cache
+
+# Defensive: /api is normally served by the proxy (deploy/), which must enforce the same rule.
+/api/*
+  Cache-Control: no-store

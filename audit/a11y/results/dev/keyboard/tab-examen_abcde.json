@@ -1,0 +1,63 @@
+{
+  "route": "/examen/abcde",
+  "tabPresses": 120,
+  "reachedBrowserOrEnd": true,
+  "uniqueStops": 15,
+  "trapCandidates": [],
+  "invisibleFocus": [],
+  "obscuredFocus": [],
+  "backwardJumps": [
+    {
+      "step": 17,
+      "from": "Ver resumen",
+      "to": "Volver a la imagen"
+    },
+    {
+      "step": 33,
+      "from": "Ver resumen",
+      "to": "Volver a la imagen"
+    },
+    {
+      "step": 49,
+      "from": "Ver resumen",
+      "to": "Volver a la imagen"
+    },
+    {
+      "step": 65,
+      "from": "Ver resumen",
+      "to": "Volver a la imagen"
+    },
+    {
+      "step": 81,
+      "from": "Ver resumen",
+      "to": "Volver a la imagen"
+    },
+    {
+      "step": 97,
+      "from": "Ver resumen",
+      "to": "Volver a la imagen"
+    },
+    {
+      "step": 113,
+      "from": "Ver resumen",
+      "to": "Volver a la imagen"
+    }
+  ],
+  "firstStops": [
+    "button:Volver a la imagen",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "button:A",
+    "button:B",
+    "button:C",
+    "button:D",
+    "button:E",
+    "button:AAsimetríaSin evaluar",
+    "button:BBordeSin evaluar",
+    "button:CColorSin evaluar",
+    "button:DDiámetroSin evaluar",
+    "button:EEvoluciónSin evaluar",
+    "button:Volver a la imagen",
+    "button:Ver resumen"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "view": "timeout",
+  "route": "/recuperacion/tiempo",
+  "reducedMotionEmulated": true,
+  "longDeclaredTransitions": [],
+  "animationsSampled": 0,
+  "offenders": []
+}

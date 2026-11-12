@@ -1,0 +1,98 @@
+{
+  "route": "/revision/exportar",
+  "tabPresses": 120,
+  "reachedBrowserOrEnd": true,
+  "uniqueStops": 7,
+  "trapCandidates": [],
+  "invisibleFocus": [],
+  "obscuredFocus": [],
+  "backwardJumps": [
+    {
+      "step": 9,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 17,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 25,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 33,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 41,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 49,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 57,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 65,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 73,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 81,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 89,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 97,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 105,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 113,
+      "from": "",
+      "to": "Volver"
+    }
+  ],
+  "firstStops": [
+    "button:Volver",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "div:Revise antes de exportar.Vista previa del registro que se de",
+    "button:Opciones de exportación",
+    "pre:Vista previa del archivo JSON",
+    "input:",
+    "button:Volver",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "div:Revise antes de exportar.Vista previa del registro que se de",
+    "button:Opciones de exportación",
+    "pre:Vista previa del archivo JSON",
+    "input:",
+    "button:Volver"
+  ]
+}

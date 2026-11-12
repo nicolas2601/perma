@@ -1,0 +1,127 @@
+import { useNavigate } from '@/app/router';
+import { illustrationUrl, type IllustrationName } from '@/assets/illustrations';
+import type { RecoveryMode } from '@/core/exam/commands';
+import { useExam, useExamDispatch } from '@/core/exam/react';
+import { useT } from '@/core/i18n/I18nProvider';
+import type { RecoveryScenario } from '@/core/inference/types';
+import { AppShell } from '@/features/desk/AppShell';
+import {
+  CAPTURE_PATH,
+  CONSENT_PATH,
+  EXPORT_COMPARE_PATH,
+  QUALITY_PATH,
+} from '@/features/desk/recoveryPaths';
+import { Button } from '@/ui/Button';
+import { ImageDetailRow } from './ImageDetailRow';
+
+interface RecoveryAction {
+  path: string;
+  /** Matches the reducer's RECOVERY_TARGET table: `back` returns to the review, `retry` re-enters the send step. */
+  mode: RecoveryMode;
+}
+
+interface RecoveryTargets {
+  primary: RecoveryAction;
+  secondary?: RecoveryAction;
+  back: RecoveryAction;
+}
+
+const TO_CAPTURE: RecoveryAction = { path: CAPTURE_PATH, mode: 'back' };
+const TO_REVIEW: RecoveryAction = { path: QUALITY_PATH, mode: 'back' };
+const TO_SEND: RecoveryAction = { path: CONSENT_PATH, mode: 'retry' };
+
+/** Where each recovery page sends the user (design/architecture.md section 3). */
+export const RECOVERY_TARGETS: Record<RecoveryScenario, RecoveryTargets> = {
+  'file-unavailable': { primary: TO_CAPTURE, back: TO_CAPTURE },
+  permission: { primary: TO_CAPTURE, back: TO_CAPTURE },
+  offline: { primary: TO_SEND, back: TO_REVIEW },
+  'server-error': { primary: TO_REVIEW, back: TO_REVIEW },
+  timeout: { primary: TO_REVIEW, back: TO_REVIEW },
+  'invalid-response': { primary: TO_REVIEW, back: TO_REVIEW },
+  'rate-limit': { primary: TO_REVIEW, back: TO_REVIEW },
+  'export-unavailable': {
+    primary: { path: EXPORT_COMPARE_PATH, mode: 'back' },
+    back: { path: EXPORT_COMPARE_PATH, mode: 'back' },
+  },
+};
+
+/** Spot illustration per scenario. Decorative: the page title already states the problem. */
+const RECOVERY_ART: Record<RecoveryScenario, IllustrationName> = {
+  'file-unavailable': 'fileProblem',
+  permission: 'permissionCamera',
+  offline: 'offline',
+  'server-error': 'serverProblem',
+  timeout: 'waitingResponse',
+  'invalid-response': 'serverProblem',
+  'rate-limit': 'waitingResponse',
+  'export-unavailable': 'serverProblem',
+};
+
+/** Number of heading/text pairs each page shows (keys in recovery/copy.ts). */
+const SECTION_COUNT: Record<RecoveryScenario, number> = {
+  'file-unavailable': 1,
+  permission: 2,
+  offline: 2,
+  'server-error': 0,
+  timeout: 0,
+  'invalid-response': 2,
+  'rate-limit': 0,
+  'export-unavailable': 0,
+};
+
+export interface RecoveryPageProps {
+  scenario: RecoveryScenario;
+}
+
+/** One screen per recovery scenario. The record is preserved; nothing is retried automatically. */
+export function RecoveryPage({ scenario }: RecoveryPageProps) {
+  const t = useT('recovery');
+  const navigate = useNavigate();
+  const dispatch = useExamDispatch();
+  const imageName = useExam((s) => s.image?.name ?? null);
+  const targets = RECOVERY_TARGETS[scenario];
+  const go = (action: RecoveryAction) => {
+    dispatch({ type: 'RECOVER', scenario, mode: action.mode });
+    navigate(action.path);
+  };
+  const secondary = targets.secondary;
+  const sectionIndexes = Array.from({ length: SECTION_COUNT[scenario] }, (_, i) => i + 1);
+  return (
+    <AppShell title={t(`${scenario}.shell`)} onBack={() => go(targets.back)} showNav={false}>
+      <div className="flex flex-1 flex-col gap-5 lg:my-auto lg:mx-auto lg:w-full lg:max-w-140 lg:flex-none lg:rounded-card lg:bg-surface lg:p-8 lg:text-center lg:shadow-raised">
+        <p role="alert" className="sr-only">
+          {t(`${scenario}.title`)}
+        </p>
+        <img
+          src={illustrationUrl(RECOVERY_ART[scenario])}
+          alt=""
+          width={160}
+          height={120}
+          decoding="async"
+          className="h-auto w-40 self-center"
+        />
+        <h1 className="m-0 text-title text-ink">{t(`${scenario}.title`)}</h1>
+        <p className="m-0 text-body text-ink">{t(`${scenario}.body`)}</p>
+        {sectionIndexes.map((n) => (
+          <section key={n} className="flex flex-col gap-1">
+            <h2 className="m-0 text-section text-ink">{t(`${scenario}.heading${n}`)}</h2>
+            <p className="m-0 text-label text-muted">{t(`${scenario}.text${n}`)}</p>
+          </section>
+        ))}
+        {scenario === 'server-error' && imageName !== null ? (
+          <ImageDetailRow title={t('server-error.detailTitle')} hint={t('server-error.detailHint')} fileLabel={t('server-error.detailFile')} fileName={imageName} />
+        ) : null}
+        <div className="mt-auto flex flex-col gap-2 pt-4 lg:mt-2 lg:flex-row lg:flex-wrap lg:justify-center lg:pt-2">
+          <Button fullWidth className="lg:w-auto lg:px-8" onClick={() => go(targets.primary)}>
+            {t(`${scenario}.primary`)}
+          </Button>
+          {secondary ? (
+            <Button variant="secondary" fullWidth className="lg:w-auto lg:px-8" onClick={() => go(secondary)}>
+              {t(`${scenario}.secondary`)}
+            </Button>
+          ) : null}
+        </div>
+      </div>
+    </AppShell>
+  );
+}

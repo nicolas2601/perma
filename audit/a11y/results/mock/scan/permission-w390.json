@@ -1,0 +1,52 @@
+{
+  "view": "permission",
+  "nodeId": "141:2722",
+  "phase": "08 · Recovery",
+  "manifestState": "recoverPermission",
+  "requestedUrl": "/recuperacion/permiso",
+  "finalPath": "/recuperacion/permiso",
+  "httpStatus": 200,
+  "viewport": "w390",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "El acceso a la cámara no está disponible."
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [],
+  "targets": {
+    "total": 3,
+    "under24": [],
+    "under44Count": 0
+  },
+  "contrast": {
+    "checked": 9,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "liveRegions": [
+    {
+      "role": "alert",
+      "live": null,
+      "text": "El acceso a la cámara no está disponible."
+    }
+  ],
+  "pageErrors": [],
+  "screenshot": "screenshots/mock/permission-w390.png"
+}

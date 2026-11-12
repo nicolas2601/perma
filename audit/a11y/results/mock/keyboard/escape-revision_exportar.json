@@ -1,0 +1,20 @@
+{
+  "route": "/revision/exportar",
+  "triggersTested": 3,
+  "results": [
+    {
+      "trigger": "‹",
+      "opened": false
+    },
+    {
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "trigger": "Export options",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "view": "rateLimit",
+  "route": "/recuperacion/limite",
+  "reducedMotionEmulated": true,
+  "longDeclaredTransitions": [],
+  "animationsSampled": 0,
+  "offenders": []
+}

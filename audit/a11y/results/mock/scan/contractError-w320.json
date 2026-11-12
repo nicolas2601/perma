@@ -1,0 +1,52 @@
+{
+  "view": "contractError",
+  "nodeId": "141:2805",
+  "phase": "08 · Recovery",
+  "manifestState": "recoverContract",
+  "requestedUrl": "/recuperacion/respuesta",
+  "finalPath": "/recuperacion/respuesta",
+  "httpStatus": 200,
+  "viewport": "w320",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "La respuesta no se puede usar."
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [],
+  "targets": {
+    "total": 3,
+    "under24": [],
+    "under44Count": 0
+  },
+  "contrast": {
+    "checked": 9,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 320,
+    "scrollWidth": 320,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 320,
+    "scrollWidth": 359,
+    "overflowPx": 39,
+    "clipped": []
+  },
+  "liveRegions": [
+    {
+      "role": "alert",
+      "live": null,
+      "text": "La respuesta no se puede usar."
+    }
+  ],
+  "pageErrors": [],
+  "screenshot": "screenshots/mock/contractError-w320.png"
+}

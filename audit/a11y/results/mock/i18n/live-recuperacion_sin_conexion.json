@@ -1,0 +1,10 @@
+{
+  "route": "/recuperacion/sin-conexion",
+  "liveRegions": [
+    {
+      "role": "alert",
+      "live": null,
+      "text": "Sin conexión para el análisis."
+    }
+  ]
+}

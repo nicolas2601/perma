@@ -1,0 +1,59 @@
+{
+  "view": "discard",
+  "nodeId": "141:2420",
+  "phase": "00 · Start",
+  "manifestState": "idle",
+  "requestedUrl": "/",
+  "finalPath": "/",
+  "httpStatus": 200,
+  "viewport": "w390",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "Empiece con contexto."
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [],
+  "targets": {
+    "total": 8,
+    "under24": [],
+    "under44Count": 0
+  },
+  "contrast": {
+    "checked": 18,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 390,
+    "scrollWidth": 508,
+    "overflowPx": 118,
+    "clipped": [
+      "li:Revisión",
+      "button:Revisión",
+      "span:",
+      "span:",
+      "svg:",
+      "path:",
+      "path:",
+      "span:Revisión",
+      "li:Guía",
+      "button:Guía",
+      "span:",
+      "span:"
+    ]
+  },
+  "liveRegions": [],
+  "pageErrors": [],
+  "screenshot": "screenshots/mock/discard-w390.png"
+}

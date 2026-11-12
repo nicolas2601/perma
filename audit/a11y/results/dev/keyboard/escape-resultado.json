@@ -1,0 +1,24 @@
+{
+  "route": "/resultado",
+  "triggersTested": 4,
+  "results": [
+    {
+      "trigger": "‹",
+      "opened": false
+    },
+    {
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "trigger": "Model and provenanceOpen details",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "trigger": "Inspect the image",
+      "opened": false
+    }
+  ]
+}

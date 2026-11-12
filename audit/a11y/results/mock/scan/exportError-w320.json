@@ -1,0 +1,52 @@
+{
+  "view": "exportError",
+  "nodeId": "141:2705",
+  "phase": "08 · Recovery",
+  "manifestState": "recoverExport",
+  "requestedUrl": "/recuperacion/exportacion",
+  "finalPath": "/recuperacion/exportacion",
+  "httpStatus": 200,
+  "viewport": "w320",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "No se creó la exportación."
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [],
+  "targets": {
+    "total": 3,
+    "under24": [],
+    "under44Count": 0
+  },
+  "contrast": {
+    "checked": 5,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 320,
+    "scrollWidth": 320,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 320,
+    "scrollWidth": 372,
+    "overflowPx": 52,
+    "clipped": []
+  },
+  "liveRegions": [
+    {
+      "role": "alert",
+      "live": null,
+      "text": "No se creó la exportación."
+    }
+  ],
+  "pageErrors": [],
+  "screenshot": "screenshots/mock/exportError-w320.png"
+}

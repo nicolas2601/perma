@@ -1,5 +1,7 @@
-export type ModelId = 'A71' | 'B71' | 'next';
-export type InferenceMode = 'base' | 'tta';
+/** The only model served live. Legacy arms A71/B71 were retired upstream on 2026-11-08. */
+export type ModelId = 'MOCO_HAM7';
+/** The UI exposes no mode switch; single-view inference is the only mode. */
+export type InferenceMode = 'base';
 export type DataSource = 'live' | 'mock';
 
 export const CLASS_CODES = ['akiec', 'bcc', 'bkl', 'df', 'mel', 'nv', 'vasc'] as const;
@@ -22,6 +24,11 @@ export interface InferenceResult {
   scores: Record<ClassCode, number>;
   latencyMs: number;
   warnings: string[];
+  /** Present only on analyze responses. Optional so predict-only results stay valid. */
+  segmentation?: SegmentationResult;
+  photometry?: PhotometryResult;
+  /** Ties the in-memory mask to this exact analysis (see storage/maskRecord.ts). */
+  analysisId?: string;
 }
 
 export type RecoveryScenario =
@@ -30,8 +37,6 @@ export type RecoveryScenario =
 
 export interface PredictRequest {
   file: Blob;
-  model?: ModelId;
-  mode?: InferenceMode;
   signal?: AbortSignal;
 }
 
@@ -39,6 +44,8 @@ export interface InferenceClient {
   readonly source: DataSource;
   status(signal?: AbortSignal): Promise<ModelIdentity>;
   predict(request: PredictRequest): Promise<InferenceResult>;
+  analyze(request: AnalyzeRequest): Promise<InferenceResult>;
+  simulateTone(request: SimulateToneRequest): Promise<ToneSimulation>;
 }
 
 export class InferenceError extends Error {
@@ -46,4 +53,78 @@ export class InferenceError extends Error {
     super(message, options);
     this.name = 'InferenceError';
   }
+}
+
+export const ITA_CATEGORIES = ['very_light', 'light', 'intermediate', 'tan', 'brown', 'dark'] as const;
+export type ItaCategory = (typeof ITA_CATEGORIES)[number];
+
+/** Contour vertex in ORIGINAL image pixel coordinates [x, y]. */
+export type ContourPoint = readonly [number, number];
+
+export type SegmentationUnavailableReason = 'empty_mask' | 'degenerate_mask' | 'segmenter_error' | 'endpoint_missing';
+export type SegmentationSource = 'model' | 'mock';
+export type PhotometryReason =
+  | 'no_mask' | 'degenerate_mask' | 'ring_too_small' | 'ita_indeterminate' | 'endpoint_missing';
+
+export interface SegmentationIdentity {
+  modelId: string;
+  run: string;
+  release: string;
+  modelSha256: string;
+  inputSize: number;
+}
+
+/** Model-derived lesion mask/contour. Source is always the live model (never simulated). */
+export type SegmentationResult =
+  | {
+      status: 'ok';
+      source: SegmentationSource;
+      imageWidth: number;
+      imageHeight: number;
+      maskWidth: number;
+      maskHeight: number;
+      /** In-memory only. Absent after reload until restored from the mask side record; never exported. */
+      maskPngBase64?: string;
+      contour: ContourPoint[];
+      areaFraction: number;
+      threshold: number;
+      identity: SegmentationIdentity;
+    }
+  | { status: 'unavailable'; source: SegmentationSource; reason: SegmentationUnavailableReason };
+
+/** Colorimetric skin measurement from the perilesional ring. Not a Fitzpatrick phototype. */
+export type PhotometryResult =
+  | {
+      status: 'ok' | 'indeterminate';
+      region: string;
+      medianL: number;
+      medianB: number;
+      itaDeg: number | null;
+      itaCategory: ItaCategory | null;
+      nPx: number;
+      validFraction: number;
+    }
+  | { status: 'unavailable'; reason: PhotometryReason };
+
+/** Tone-robustness simulation. Always source 'live' (the backend computed it); never persisted or exported. */
+export interface ToneSimulation {
+  deltaL: number;
+  imageWebpBase64: string;
+  width: number;
+  height: number;
+  clippedFraction: number;
+  photometry: PhotometryResult;
+  source: DataSource;
+}
+
+export interface AnalyzeRequest {
+  file: Blob;
+  signal?: AbortSignal;
+}
+
+export interface SimulateToneRequest {
+  file: Blob;
+  maskPngBase64: string;
+  deltaL: number;
+  signal?: AbortSignal;
 }

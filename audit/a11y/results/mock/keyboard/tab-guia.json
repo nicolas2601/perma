@@ -1,0 +1,98 @@
+{
+  "route": "/guia",
+  "tabPresses": 120,
+  "reachedBrowserOrEnd": true,
+  "uniqueStops": 7,
+  "trapCandidates": [],
+  "invisibleFocus": [],
+  "obscuredFocus": [],
+  "backwardJumps": [
+    {
+      "step": 9,
+      "from": "Volver al espacio de trabajo",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 17,
+      "from": "Volver al espacio de trabajo",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 25,
+      "from": "Volver al espacio de trabajo",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 33,
+      "from": "Volver al espacio de trabajo",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 41,
+      "from": "Volver al espacio de trabajo",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 49,
+      "from": "Volver al espacio de trabajo",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 57,
+      "from": "Volver al espacio de trabajo",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 65,
+      "from": "Volver al espacio de trabajo",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 73,
+      "from": "Volver al espacio de trabajo",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 81,
+      "from": "Volver al espacio de trabajo",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 89,
+      "from": "Volver al espacio de trabajo",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 97,
+      "from": "Volver al espacio de trabajo",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 105,
+      "from": "Volver al espacio de trabajo",
+      "to": "Volver al espacio de trabajo"
+    },
+    {
+      "step": 113,
+      "from": "Volver al espacio de trabajo",
+      "to": "Volver al espacio de trabajo"
+    }
+  ],
+  "firstStops": [
+    "button:Volver al espacio de trabajo",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "div:Ayuda técnica. No es un diagnóstico.Use la imagen de origen,",
+    "a:Identidad del modelo y de la inferenciaAbrir detalles",
+    "a:Tratamiento de datosAbrir detalles",
+    "button:Volver al espacio de trabajo",
+    "button:Volver al espacio de trabajo",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "div:Ayuda técnica. No es un diagnóstico.Use la imagen de origen,",
+    "a:Identidad del modelo y de la inferenciaAbrir detalles",
+    "a:Tratamiento de datosAbrir detalles",
+    "button:Volver al espacio de trabajo",
+    "button:Volver al espacio de trabajo"
+  ]
+}

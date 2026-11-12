@@ -1,0 +1,18 @@
+{
+  "route": "/revision",
+  "switchFound": true,
+  "controlLabel": "Cambiar a inglés",
+  "switchTargetLang": "en",
+  "before": {
+    "htmlLang": "es",
+    "title": "PERMA",
+    "h1": "Revisión · Sesión"
+  },
+  "after": {
+    "htmlLang": "en",
+    "title": "PERMA",
+    "h1": "Review · Session"
+  },
+  "documentLangUpdated": true,
+  "visibleTextChanged": true
+}

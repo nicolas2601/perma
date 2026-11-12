@@ -1,0 +1,72 @@
+{
+  "route": "/inspeccion",
+  "triggersTested": 15,
+  "results": [
+    {
+      "trigger": "‹",
+      "opened": false
+    },
+    {
+      "trigger": "",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "trigger": "Image",
+      "opened": false
+    },
+    {
+      "trigger": "Model output",
+      "opened": false
+    },
+    {
+      "trigger": "My observations",
+      "opened": false
+    },
+    {
+      "trigger": "Fit",
+      "opened": false
+    },
+    {
+      "trigger": "Zoom",
+      "opened": false
+    },
+    {
+      "trigger": "Layers",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "trigger": "Info",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "trigger": "Record in ABCDE",
+      "opened": false
+    },
+    {
+      "trigger": "Desk",
+      "opened": false
+    },
+    {
+      "trigger": "Examine",
+      "opened": false
+    },
+    {
+      "trigger": "Review",
+      "opened": false
+    },
+    {
+      "trigger": "Guide",
+      "opened": false
+    }
+  ]
+}

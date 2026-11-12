@@ -1,0 +1,59 @@
+{
+  "view": "scope",
+  "nodeId": "141:2397",
+  "phase": "00 · Start",
+  "manifestState": "idle",
+  "requestedUrl": "/",
+  "finalPath": "/",
+  "httpStatus": 200,
+  "viewport": "w320",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "Empiece con contexto."
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [],
+  "targets": {
+    "total": 8,
+    "under24": [],
+    "under44Count": 0
+  },
+  "contrast": {
+    "checked": 18,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 320,
+    "scrollWidth": 320,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 320,
+    "scrollWidth": 508,
+    "overflowPx": 188,
+    "clipped": [
+      "button:ProtocoloAlcance y límitesEn estudio. No",
+      "span:Protocolo",
+      "span:Alcance y límites",
+      "span:En estudio. No diagnostica.",
+      "li:Examinar",
+      "button:Examinar",
+      "span:Examinar",
+      "li:Revisión",
+      "button:Revisión",
+      "span:",
+      "span:",
+      "svg:"
+    ]
+  },
+  "liveRegions": [],
+  "pageErrors": [],
+  "screenshot": "screenshots/dev/scope-w320.png"
+}

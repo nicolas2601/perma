@@ -1,0 +1,113 @@
+{
+  "route": "/revision/exportar",
+  "tabPresses": 120,
+  "reachedBrowserOrEnd": true,
+  "uniqueStops": 6,
+  "trapCandidates": [],
+  "invisibleFocus": [],
+  "obscuredFocus": [],
+  "backwardJumps": [
+    {
+      "step": 8,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 15,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 22,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 29,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 36,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 43,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 50,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 57,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 64,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 71,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 78,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 85,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 92,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 99,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 106,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 113,
+      "from": "",
+      "to": "Volver"
+    },
+    {
+      "step": 120,
+      "from": "",
+      "to": "Volver"
+    }
+  ],
+  "firstStops": [
+    "button:Volver",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "button:Opciones de exportación",
+    "pre:Vista previa del archivo JSON",
+    "input:",
+    "button:Volver",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "button:Opciones de exportación",
+    "pre:Vista previa del archivo JSON",
+    "input:",
+    "button:Volver",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés"
+  ]
+}

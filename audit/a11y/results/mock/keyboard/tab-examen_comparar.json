@@ -1,0 +1,93 @@
+{
+  "route": "/examen/comparar",
+  "tabPresses": 120,
+  "reachedBrowserOrEnd": true,
+  "uniqueStops": 8,
+  "trapCandidates": [],
+  "invisibleFocus": [],
+  "obscuredFocus": [],
+  "backwardJumps": [
+    {
+      "step": 10,
+      "from": "Revisar la sesión",
+      "to": "Volver"
+    },
+    {
+      "step": 19,
+      "from": "Revisar la sesión",
+      "to": "Volver"
+    },
+    {
+      "step": 28,
+      "from": "Revisar la sesión",
+      "to": "Volver"
+    },
+    {
+      "step": 37,
+      "from": "Revisar la sesión",
+      "to": "Volver"
+    },
+    {
+      "step": 46,
+      "from": "Revisar la sesión",
+      "to": "Volver"
+    },
+    {
+      "step": 55,
+      "from": "Revisar la sesión",
+      "to": "Volver"
+    },
+    {
+      "step": 64,
+      "from": "Revisar la sesión",
+      "to": "Volver"
+    },
+    {
+      "step": 73,
+      "from": "Revisar la sesión",
+      "to": "Volver"
+    },
+    {
+      "step": 82,
+      "from": "Revisar la sesión",
+      "to": "Volver"
+    },
+    {
+      "step": 91,
+      "from": "Revisar la sesión",
+      "to": "Volver"
+    },
+    {
+      "step": 100,
+      "from": "Revisar la sesión",
+      "to": "Volver"
+    },
+    {
+      "step": 109,
+      "from": "Revisar la sesión",
+      "to": "Volver"
+    },
+    {
+      "step": 118,
+      "from": "Revisar la sesión",
+      "to": "Volver"
+    }
+  ],
+  "firstStops": [
+    "button:Volver",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "div:Compare con contexto.La comparación no está disponible hasta",
+    "button:Se requiere una fuente anteriorSin fecha inventada, fotograf",
+    "button:Escribir nota profesional",
+    "button:Volver a evolución",
+    "button:Revisar la sesión",
+    "button:Volver",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "div:Compare con contexto.La comparación no está disponible hasta",
+    "button:Se requiere una fuente anteriorSin fecha inventada, fotograf",
+    "button:Escribir nota profesional",
+    "button:Volver a evolución"
+  ]
+}

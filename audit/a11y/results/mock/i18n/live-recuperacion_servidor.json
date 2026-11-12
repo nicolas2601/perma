@@ -1,0 +1,10 @@
+{
+  "route": "/recuperacion/servidor",
+  "liveRegions": [
+    {
+      "role": "alert",
+      "live": null,
+      "text": "No se recibió ningún resultado del análisis."
+    }
+  ]
+}

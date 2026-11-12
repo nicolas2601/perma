@@ -1,0 +1,46 @@
+{
+  "view": "compare",
+  "nodeId": "141:3531",
+  "phase": "06 · ABCDE",
+  "manifestState": "compare",
+  "requestedUrl": "/examen/comparar",
+  "finalPath": "/examen/comparar",
+  "httpStatus": 200,
+  "viewport": "w320",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "Mis observaciones · Comparar"
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [],
+  "targets": {
+    "total": 7,
+    "under24": [],
+    "under44Count": 0
+  },
+  "contrast": {
+    "checked": 18,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 320,
+    "scrollWidth": 320,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 320,
+    "scrollWidth": 331,
+    "overflowPx": 11,
+    "clipped": []
+  },
+  "liveRegions": [],
+  "pageErrors": [],
+  "screenshot": "screenshots/mock/compare-w320.png"
+}

@@ -1,0 +1,18 @@
+{
+  "route": "/guia",
+  "triggersTested": 3,
+  "results": [
+    {
+      "trigger": "‹",
+      "opened": false
+    },
+    {
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "trigger": "Back to workspace",
+      "opened": false
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "route": "/inspeccion",
+  "tabPresses": 120,
+  "reachedBrowserOrEnd": true,
+  "uniqueStops": 15,
+  "trapCandidates": [],
+  "invisibleFocus": [],
+  "obscuredFocus": [],
+  "backwardJumps": [
+    {
+      "step": 17,
+      "from": "Guía",
+      "to": "Volver"
+    },
+    {
+      "step": 33,
+      "from": "Guía",
+      "to": "Volver"
+    },
+    {
+      "step": 49,
+      "from": "Guía",
+      "to": "Volver"
+    },
+    {
+      "step": 65,
+      "from": "Guía",
+      "to": "Volver"
+    },
+    {
+      "step": 81,
+      "from": "Guía",
+      "to": "Volver"
+    },
+    {
+      "step": 97,
+      "from": "Guía",
+      "to": "Volver"
+    },
+    {
+      "step": 113,
+      "from": "Guía",
+      "to": "Volver"
+    }
+  ],
+  "firstStops": [
+    "button:Volver",
+    "button:Más herramientas de imagen",
+    "a:Alcance y métodos",
+    "button:Cambiar a inglés",
+    "button:Imagen",
+    "div:Mire más de cerca.Referencia pública · Color originalP. Tsch",
+    "button:Ajustar",
+    "button:Ampliar",
+    "button:Capas",
+    "button:Info",
+    "button:Registrar en ABCDE",
+    "button:Escritorio",
+    "button:Examinar",
+    "button:Revisión",
+    "button:Guía"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "route": "/resultado",
+  "switchFound": true,
+  "controlLabel": "Cambiar a inglés",
+  "switchTargetLang": "en",
+  "before": {
+    "htmlLang": "es",
+    "title": "PERMA",
+    "h1": "Salida del modelo"
+  },
+  "after": {
+    "htmlLang": "en",
+    "title": "PERMA",
+    "h1": "Model output"
+  },
+  "documentLangUpdated": true,
+  "visibleTextChanged": true
+}

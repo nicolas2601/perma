@@ -1,0 +1,30 @@
+{
+  "route": "/imagen/calidad",
+  "triggersTested": 5,
+  "results": [
+    {
+      "trigger": "",
+      "opened": false
+    },
+    {
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "trigger": "Body siteNot recorded",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "trigger": "Optional clinical contextAge, duration, ",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "trigger": "Continue to image",
+      "opened": false
+    }
+  ]
+}

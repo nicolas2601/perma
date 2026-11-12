@@ -1,0 +1,20 @@
+{
+  "backbone_ready": true,
+  "classification_ready": true,
+  "reason": "ready",
+  "release": "v10.0.0",
+  "release_arm": null,
+  "device": "cpu",
+  "threads": 2,
+  "model_key": "MOCO_HAM7",
+  "identity": {
+    "model_id": "dermssl-v10-moco",
+    "release": "v10.0.0",
+    "method": "moco_v3_style",
+    "conversion": "V10 shared-backbone ONNX",
+    "backbone": "DINOv2 ViT-B/14",
+    "backbone_sha256": "fe64610560880e2df1185bf17fbe49e2da46a31e0644ddad76bfa7e8651aab1e",
+    "model_sha256": "eb41e67f472a1491a6970246e59f6db8c0276c79fdd190c68fb25e3b3f80dd7a",
+    "recipe": {"feature": "cls4", "layers": [8, 9, 10, 11], "layer_norm": true, "l2_normalize": true, "n_views": 1, "tta": "none", "tau": 0.0, "color_constancy": false, "hue_jitter": 0.0}
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "route": "/",
+  "triggersTested": 8,
+  "results": [
+    {
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "trigger": "New exam",
+      "opened": false
+    },
+    {
+      "trigger": "ProtocolScope and limitsUnder study. Doe",
+      "opened": true,
+      "closedOnEscape": true,
+      "focusReturnedToTrigger": true
+    },
+    {
+      "trigger": "P. TschandlCC BY-SA 4.0Reference imageEx",
+      "opened": false
+    },
+    {
+      "trigger": "Desk",
+      "opened": false
+    },
+    {
+      "trigger": "Examine",
+      "opened": false
+    },
+    {
+      "trigger": "Review",
+      "opened": false
+    },
+    {
+      "trigger": "Guide",
+      "opened": false
+    }
+  ]
+}

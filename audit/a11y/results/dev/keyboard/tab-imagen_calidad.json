@@ -1,0 +1,123 @@
+{
+  "route": "/imagen/calidad",
+  "tabPresses": 120,
+  "reachedBrowserOrEnd": true,
+  "uniqueStops": 5,
+  "trapCandidates": [],
+  "invisibleFocus": [],
+  "obscuredFocus": [],
+  "backwardJumps": [
+    {
+      "step": 7,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 13,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 19,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 25,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 31,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 37,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 43,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 49,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 55,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 61,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 67,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 73,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 79,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 85,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 91,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 97,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 103,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 109,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    },
+    {
+      "step": 115,
+      "from": "Continuar a la imagen",
+      "to": "Volver"
+    }
+  ],
+  "firstStops": [
+    "button:Volver",
+    "button:Idioma: EN",
+    "button:Sitio del cuerpoSin registrar",
+    "button:Contexto clínico opcionalEdad, duración, síntomas y antecede",
+    "button:Continuar a la imagen",
+    "button:Volver",
+    "button:Idioma: EN",
+    "button:Sitio del cuerpoSin registrar",
+    "button:Contexto clínico opcionalEdad, duración, síntomas y antecede",
+    "button:Continuar a la imagen",
+    "button:Volver",
+    "button:Idioma: EN",
+    "button:Sitio del cuerpoSin registrar",
+    "button:Contexto clínico opcionalEdad, duración, síntomas y antecede",
+    "button:Continuar a la imagen"
+  ]
+}

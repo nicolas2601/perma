@@ -1,0 +1,18 @@
+{
+  "route": "/resultado",
+  "switchFound": true,
+  "controlLabel": "Idioma: EN",
+  "switchTargetLang": "en",
+  "before": {
+    "htmlLang": "es",
+    "title": "PERMA",
+    "h1": "Dé contexto a la imagen."
+  },
+  "after": {
+    "htmlLang": "en",
+    "title": "PERMA",
+    "h1": "Add context to the image."
+  },
+  "documentLangUpdated": true,
+  "visibleTextChanged": true
+}

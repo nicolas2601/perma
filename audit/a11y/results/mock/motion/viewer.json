@@ -1,0 +1,8 @@
+{
+  "view": "viewer",
+  "route": "/inspeccion?tab=imagen",
+  "reducedMotionEmulated": true,
+  "longDeclaredTransitions": [],
+  "animationsSampled": 0,
+  "offenders": []
+}

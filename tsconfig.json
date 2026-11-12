@@ -6,5 +6,5 @@
     "isolatedModules": true, "skipLibCheck": true, "noEmit": true, "types": ["vite/client","vite-plugin-pwa/client"],
     "paths": { "@/*": ["./src/*"] }
   },
-  "include": ["src","tests","vite.config.ts","vitest.config.ts"]
+  "include": ["src","tests","vite.config.ts","vitest.config.ts","playwright.config.ts","playwright.flows.config.ts"]
 }

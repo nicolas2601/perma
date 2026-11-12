@@ -1,0 +1,52 @@
+{
+  "view": "exportOptions",
+  "nodeId": "141:3760",
+  "phase": "07 · Export",
+  "manifestState": "exporting",
+  "requestedUrl": "/revision/exportar?seed=result",
+  "finalPath": "/revision/exportar?seed=result",
+  "httpStatus": 200,
+  "viewport": "w390",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "Revisión · Exportar"
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [],
+  "targets": {
+    "total": 5,
+    "under24": [],
+    "under44Count": 1
+  },
+  "contrast": {
+    "checked": 14,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "liveRegions": [
+    {
+      "role": "status",
+      "live": "polite",
+      "text": "iConfirme la revisión para habilitar la descarga."
+    }
+  ],
+  "pageErrors": [],
+  "screenshot": "screenshots/dev/exportOptions-w390.png"
+}

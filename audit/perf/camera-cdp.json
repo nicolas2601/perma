@@ -1,0 +1,10 @@
+{
+  "throttleRate": 4,
+  "runMs": 15000,
+  "finalUrl": "/imagen/camara",
+  "hasVideo": true,
+  "advisorMessages": 116,
+  "advisorFps": 8.01,
+  "intervalP50Ms": 127.3,
+  "intervalP95Ms": 154.6
+}

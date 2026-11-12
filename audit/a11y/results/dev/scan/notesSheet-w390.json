@@ -1,0 +1,46 @@
+{
+  "view": "notesSheet",
+  "nodeId": "141:3554",
+  "phase": "06 · ABCDE",
+  "manifestState": "compare",
+  "requestedUrl": "/examen/comparar?seed=result",
+  "finalPath": "/examen/comparar?seed=result",
+  "httpStatus": 200,
+  "viewport": "w390",
+  "meta": {
+    "htmlLang": "es",
+    "colorSchemeMeta": "light",
+    "colorSchemeCss": "light",
+    "h1": [
+      "Mis observaciones · Comparar"
+    ],
+    "main": 1,
+    "title": "PERMA"
+  },
+  "axe": [],
+  "targets": {
+    "total": 7,
+    "under24": [],
+    "under44Count": 0
+  },
+  "contrast": {
+    "checked": 18,
+    "unverifiable": 0,
+    "fails": []
+  },
+  "reflow": {
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "zoom200Emulated": {
+    "viewportWidth": 390,
+    "scrollWidth": 390,
+    "overflowPx": 0,
+    "clipped": []
+  },
+  "liveRegions": [],
+  "pageErrors": [],
+  "screenshot": "screenshots/dev/notesSheet-w390.png"
+}

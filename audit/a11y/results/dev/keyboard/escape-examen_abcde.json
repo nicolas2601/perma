@@ -1,0 +1,106 @@
+{
+  "route": "/examen/abcde",
+  "triggersTested": 25,
+  "results": [
+    {
+      "trigger": "‹",
+      "opened": false
+    },
+    {
+      "trigger": "EN",
+      "opened": false
+    },
+    {
+      "trigger": "A",
+      "opened": false
+    },
+    {
+      "trigger": "B",
+      "opened": false
+    },
+    {
+      "trigger": "C",
+      "opened": false
+    },
+    {
+      "trigger": "D",
+      "opened": false
+    },
+    {
+      "trigger": "E",
+      "opened": false
+    },
+    {
+      "trigger": "AAsymmetryNot assessed",
+      "opened": false
+    },
+    {
+      "trigger": "Symmetric",
+      "opened": false
+    },
+    {
+      "trigger": "Asymmetric in one axis",
+      "opened": false
+    },
+    {
+      "trigger": "Asymmetric in two axes",
+      "opened": false
+    },
+    {
+      "trigger": "Not evaluable",
+      "opened": false
+    },
+    {
+      "trigger": "BBorderNot assessed",
+      "opened": false
+    },
+    {
+      "trigger": "Regular border",
+      "opened": false
+    },
+    {
+      "trigger": "Irregular border",
+      "opened": false
+    },
+    {
+      "trigger": "Not evaluable",
+      "opened": false
+    },
+    {
+      "trigger": "CColourNot assessed",
+      "opened": false
+    },
+    {
+      "trigger": "One colour",
+      "opened": false
+    },
+    {
+      "trigger": "Two colours",
+      "opened": false
+    },
+    {
+      "trigger": "Three or more colours",
+      "opened": false
+    },
+    {
+      "trigger": "Not evaluable",
+      "opened": false
+    },
+    {
+      "trigger": "DDiameterNot assessed",
+      "opened": false
+    },
+    {
+      "trigger": "Over 6 mm — manual",
+      "opened": false
+    },
+    {
+      "trigger": "6 mm or less — manual",
+      "opened": false
+    },
+    {
+      "trigger": "No physical measurement",
+      "opened": false
+    }
+  ]
+}

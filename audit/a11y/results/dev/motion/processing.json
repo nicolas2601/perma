@@ -1,0 +1,8 @@
+{
+  "view": "processing",
+  "route": "/envio/procesando",
+  "reducedMotionEmulated": true,
+  "longDeclaredTransitions": [],
+  "animationsSampled": 0,
+  "offenders": []
+}
