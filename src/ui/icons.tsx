@@ -90,6 +90,14 @@ export function PlusIcon(props: IconProps) {
   );
 }
 
+export function ArrowUpRightIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M7 17 17 7M8 7h9v9" />
+    </Svg>
+  );
+}
+
 export function LayersIcon(props: IconProps) {
   return (
     <Svg {...props}>

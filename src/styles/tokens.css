@@ -39,6 +39,16 @@
   --deep-blush: #8a2c62;
   --tint-lilac: #e8e3f7;
   --deep-lilac: #5b3fa0;
+  /* VERA brand palette ("V de atención"): hero, home tool cards, analysis art. */
+  --brand-noche: #0d2226;
+  --brand-hondo: #0b4a55;
+  --brand-papel: #f2f5f4;
+  --brand-durazno: #ebc2a8;
+  --brand-arcilla: #d49a78;
+  --brand-bruma: #c8dbd9;
+  --brand-crema: #faf5f0;
+  --hero-gradient: linear-gradient(90deg, #0b4a55 0%, #006779 50%, #3c8a8c 100%);
+  --hero-gradient-mobile: linear-gradient(180deg, #0b4a55 0%, #006779 55%, #3c8a8c 100%);
   --motion-press: 120ms;
   --motion-card: 140ms;
   --motion-expand: 220ms;
@@ -100,6 +110,13 @@
   --animate-perma-accordion-down: perma-accordion-down var(--motion-expand) var(--ease-perma-out);
   --animate-perma-accordion-up: perma-accordion-up var(--motion-expand) var(--ease-perma-out);
 
+  --color-noche: var(--brand-noche);
+  --color-hondo: var(--brand-hondo);
+  --color-papel: var(--brand-papel);
+  --color-durazno: var(--brand-durazno);
+  --color-arcilla: var(--brand-arcilla);
+  --color-bruma: var(--brand-bruma);
+  --color-crema: var(--brand-crema);
   --color-canvas: var(--canvas);
   --color-surface: var(--surface);
   --color-ink: var(--ink);

@@ -72,7 +72,7 @@ export function Rail() {
         className="flex min-h-11 cursor-pointer items-center gap-3 rounded-tile border-0 bg-transparent px-2 text-left text-ink outline-offset-2"
       >
         <img src={markUrl} alt="" width={36} height={36} className="size-9" />
-        <span className="text-section font-semibold tracking-tight">VERA</span>
+        <span className="text-[26px] leading-none font-medium tracking-[-0.02em]">vera</span>
       </button>
 
       <nav aria-label={t('navLabel')} className="flex flex-col gap-1">

@@ -12,10 +12,9 @@ import {
   RECOVERY_PATHS,
   RESULT_PATH,
 } from '@/features/desk/recoveryPaths';
-import { illustrationUrl } from '@/assets/illustrations';
+import waitingArt from '@/assets/art/analysis-waiting.svg';
 import { Glyph } from '@/features/desk/Glyph';
 import { Button } from '@/ui/Button';
-import { IconBlob } from '@/ui/IconBlob';
 import { ChevronDownIcon, CloseIcon } from '@/ui/icons';
 import { Sheet } from '@/ui/Sheet';
 import { StatusLine } from '@/ui/StatusLine';
@@ -102,11 +101,15 @@ export default function Processing() {
       <div className="flex flex-1 flex-col gap-5 lg:my-auto lg:mx-auto lg:w-full lg:max-w-140 lg:flex-none lg:rounded-card lg:bg-surface lg:p-8 lg:shadow-raised">
         <h1 className="m-0 text-title text-ink">{t('waitTitle')}</h1>
         <p className="m-0 text-body text-ink">{t('waitBody')}</p>
-        <img src={illustrationUrl('waitingResponse')} alt="" width={160} height={120} decoding="async" className="h-auto w-40 self-center" />
-        <div className="flex items-center gap-3">
-          <Spinner />
-          <div className="min-w-0 flex-1">
-            <StatusLine message={t('waitStatus')} tone="info" />
+        <div className="flex flex-col gap-3.5 rounded-[20px] border border-solid border-soft-line bg-surface p-3.5 pb-4">
+          <div className="flex h-49 items-center justify-center overflow-hidden rounded-xl bg-papel">
+            <img src={waitingArt} alt="" width={300} height={200} decoding="async" className="h-auto w-75 max-w-none" />
+          </div>
+          <div className="flex items-center gap-3">
+            <Spinner />
+            <div className="min-w-0 flex-1">
+              <StatusLine message={t('waitStatus')} tone="info" />
+            </div>
           </div>
         </div>
         <section className="flex flex-col gap-1">
@@ -122,9 +125,9 @@ export default function Processing() {
           onClick={openStop}
           className="grid min-h-16 w-full grid-cols-[auto_1fr_auto] items-center gap-3 rounded-card bg-surface px-4 py-3 text-left text-ink shadow-raised outline-offset-2 transition-transform duration-(--motion-card) ease-perma-out active:scale-[0.98] motion-reduce:active:scale-100 lg:bg-subtle lg:shadow-none"
         >
-          <IconBlob tint="butter">
-            <CloseIcon />
-          </IconBlob>
+          <span aria-hidden="true" className="flex size-11 items-center justify-center rounded-xl bg-overlay-wine/10 text-overlay-wine">
+            <CloseIcon className="size-4.5" />
+          </span>
           <span className="flex min-w-0 flex-col gap-1">
             <span className="text-body text-ink">{t('waitStop')}</span>
             <span className="text-caption text-muted">{t('waitStopHint')}</span>
