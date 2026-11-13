@@ -4,6 +4,7 @@ import basicSsl from '@vitejs/plugin-basic-ssl';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import { fileURLToPath } from 'node:url';
+import { APP_VERSION } from './scripts/app-version';
 
 const API_ORIGIN = process.env.VITE_API_ORIGIN ?? 'https://derm.nicolasmoreno.site';
 
@@ -20,6 +21,7 @@ function preloadLatinFont(): Plugin {
 }
 
 export default defineConfig({
+  define: { __APP_VERSION__: JSON.stringify(APP_VERSION) },
   resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
   server: { proxy: { '/api': { target: API_ORIGIN, changeOrigin: true, secure: true } } },
   // Same-origin /api for `vite preview` (LAN demos): the backend sends no CORS headers for other origins.
