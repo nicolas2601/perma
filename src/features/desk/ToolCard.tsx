@@ -24,6 +24,13 @@ const TONE: Record<ToolCardTone, string> = {
   crema: 'bg-crema border-soft-line',
 };
 
+/** Muted text fails 4.5:1 on Bruma (4.05), so that tone uses a darker ink for the body. */
+const BODY_TONE: Record<ToolCardTone, string> = {
+  surface: 'text-muted',
+  bruma: 'text-ink/80',
+  crema: 'text-muted',
+};
+
 function Art({ art, layout, caption }: { art: string; layout: ToolCardLayout; caption?: string }) {
   if (layout === 'artTop') {
     return (
@@ -64,7 +71,7 @@ export function ToolCard({ title, body, link, art, onSelect, tone = 'surface', l
         <span id={titleId} className="text-[19px] leading-6 font-medium tracking-[-0.005em] lg:text-[34px] lg:leading-[38px] lg:font-normal lg:tracking-[-0.01em]">
           {title}
         </span>
-        <span id={bodyId} className="text-[13px] leading-[18px] text-muted lg:text-[14px] lg:leading-5">
+        <span id={bodyId} className={cx('text-[13px] leading-[18px] lg:text-[14px] lg:leading-5', BODY_TONE[tone])}>
           {body}
         </span>
       </span>
