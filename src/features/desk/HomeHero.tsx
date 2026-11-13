@@ -9,7 +9,7 @@ export type HomeHeroProps = {
 };
 
 const PILL =
-  'inline-flex min-h-12 cursor-pointer items-center gap-2.5 rounded-full px-5.5 text-[15px] leading-5 font-medium outline-offset-2 focus-visible:outline-papel transition-transform duration-(--motion-press) ease-perma-out active:scale-[0.97] motion-reduce:active:scale-100';
+  'min-h-12 cursor-pointer items-center gap-2.5 rounded-full px-5.5 text-[15px] leading-5 font-medium outline-offset-2 focus-visible:outline-papel transition-transform duration-(--motion-press) ease-perma-out active:scale-[0.97] motion-reduce:active:scale-100';
 
 /** Brand hero: the attention V and wordmark, the lead, the entry actions and the skin-field art (decorative). */
 export function HomeHero({ onNewExam, onReference }: HomeHeroProps) {
@@ -29,7 +29,7 @@ export function HomeHero({ onNewExam, onReference }: HomeHeroProps) {
         </p>
         <p className="m-0 max-w-105 text-body text-papel/90">{t('homeLead')}</p>
         <div className="flex flex-wrap gap-3">
-          <button type="button" onClick={onNewExam} className={`${PILL} border-0 bg-papel text-noche`}>
+          <button type="button" onClick={onNewExam} className={`${PILL} inline-flex border-0 bg-papel text-noche`}>
             <PlusIcon className="size-4" />
             {t('newExam')}
           </button>
