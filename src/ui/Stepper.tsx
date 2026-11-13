@@ -1,5 +1,5 @@
 import { cx } from './cx';
-import { TINT_BG, TINT_INK, type TintOrNeutral } from './tints';
+import type { TintOrNeutral } from './tints';
 
 export type StepDef = {
   id: string;
@@ -43,7 +43,7 @@ function Marker({ step, state }: { step: StepDef; state: StepState }) {
     <span
       data-state={state}
       data-tint={tint}
-      className={cx('inline-flex h-8 items-center rounded-full px-3', TINT_BG[tint], TINT_INK[tint])}
+      className="inline-flex h-8 items-center rounded-full bg-accent px-3 text-on-accent"
     >
       <span className="animate-(--animate-perma-fade) text-label font-medium">{step.label}</span>
     </span>
@@ -65,7 +65,7 @@ function StepItem({ step, state, onSelect }: { step: StepDef; state: StepState; 
   );
 }
 
-/** Compact six-step journey. Current step shows its tint and label; others are dots with screen-reader names. */
+/** Compact six-step journey. The current step is an accent chip with its label (its tint is kept as data-tint); others are dots with screen-reader names. */
 export function Stepper({ steps, currentId, label, onSelect }: StepperProps) {
   const currentIndex = steps.findIndex((step) => step.id === currentId);
   return (
