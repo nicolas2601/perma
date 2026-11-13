@@ -51,7 +51,7 @@ export function HomeHero({ onNewExam, onReference }: HomeHeroProps) {
           width={640}
           height={400}
           decoding="async"
-          fetchPriority="low"
+          fetchPriority="high"
           className="absolute top-[-20px] left-[15px] w-80 max-w-none lg:top-0 lg:right-[-20px] lg:left-auto lg:h-full lg:w-auto"
         />
       </div>
