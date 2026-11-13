@@ -20,6 +20,21 @@ function preloadLatinFont(): Plugin {
   };
 }
 
+/**
+ * Preloads the Home hero art. It is the LCP element, but React creates its <img> only after the
+ * bundle boots, so without a preload the fetch starts late. Costs ~36 kB (compressed) on other routes.
+ */
+function preloadHeroArt(): Plugin {
+  return {
+    name: 'vera:preload-hero-art',
+    transformIndexHtml(_html, ctx) {
+      const file = Object.keys(ctx.bundle ?? {}).find((name) => /hero-skin-field.*\.svg$/.test(name));
+      if (!file) return [];
+      return [{ tag: 'link', attrs: { rel: 'preload', as: 'image', type: 'image/svg+xml', href: `/${file}`, fetchpriority: 'high' }, injectTo: 'head' }];
+    },
+  };
+}
+
 export default defineConfig({
   define: { __APP_VERSION__: JSON.stringify(APP_VERSION) },
   resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
@@ -37,6 +52,7 @@ export default defineConfig({
   plugins: [
     react(),
     preloadLatinFont(),
+    preloadHeroArt(),
     // Self-signed HTTPS for LAN demos only: phones need a secure context for camera and service worker.
     ...(process.env.LAN_HTTPS === '1' ? [basicSsl()] : []),
     tailwindcss(),
