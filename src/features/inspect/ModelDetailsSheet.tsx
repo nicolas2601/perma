@@ -1,3 +1,4 @@
+import { APP_VERSION } from '@/app/version';
 import type { InferenceResult } from '@/core/inference/types';
 import { Badge, Button, Sheet } from '@/ui';
 import { useT } from '@/core/i18n/I18nProvider';
@@ -34,6 +35,7 @@ export function ModelDetailsSheet({ open, onOpenChange, result }: ModelDetailsSh
     { label: t('modelShaLabel'), value: identity.sha256 ?? t('notAvailable') },
     { label: t('modelVerifiedLabel'), value: verified },
     { label: t('modelSourceLabel'), value: simulated ? t('sourceMock') : t('sourceLive') },
+    { label: t('appVersionLabel'), value: APP_VERSION },
   ];
   return (
     <Sheet open={open} onOpenChange={onOpenChange} title={t('modelSheetTitle')} closeLabel={t('close')}>
