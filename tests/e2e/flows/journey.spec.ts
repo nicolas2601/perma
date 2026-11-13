@@ -56,7 +56,7 @@ test.describe('9-step journey (mock build, success scenario)', () => {
     await test.step('1 Home renders the entry sequence and the reference card', async () => {
       await openHome(page);
       await expect(page.getByRole('button', { name: COPY.newExam })).toBeVisible();
-      await expect(page.getByText('Imagen de referencia', { exact: true })).toBeVisible();
+      await expect(page.getByRole('button', { name: 'Imagen de referencia', exact: true })).toBeVisible();
     });
 
     await test.step('2 Context step, then continue to capture', async () => {
